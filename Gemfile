@@ -25,7 +25,7 @@ gem 'turbolinks'
 
 # Testing, errors
 group :development, :test do
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
