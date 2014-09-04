@@ -1,0 +1,141 @@
+
+/* Global Variables */
+$min-width: 1160px;
+
+/* Colors */
+$brown: #513E37;
+$blue: #0081BB;
+$dark-blue: #004D68;
+$gallery-blue: #21b8e7;
+$red: #802025;
+$light-red: #B10000;
+$green: #00b433;
+$dark-green: #006f29;
+$grey: #35383B;
+$light-grey: #ddd;
+$purple: #8581A4;
+$tan: #aa8255;
+$max-tan: #827B5F;
+$nav-brown: #513e37;
+$nav-darkbrown: darken(#513e37, 7%);
+$pumpkin-yellow: #b09a00;
+
+/* Fonts */
+$sans: "PT Sans", "HelveticaNeue-Light", sans-serif;
+$serif: Quattrocento, times, serif;
+$body: Proxima, "HelveticaNeue", sans-serif;
+$font-size: 16px;
+
+@mixin helvetica-light {
+  font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
+  letter-spacing: 0.5px;
+}
+
+/* Layouts */
+$small-min-width: 780px;
+$small-container-width: 700px;
+$large-min-width: 1060px;
+$large-container-width: 800px;
+
+$small-phone-width: 320px;
+$phone-width: 480px;
+$tablet-width: 768px;
+$small-desktop-width: 1024px; // Also iPad landscape
+$medium-desktop-width: 1440px; 
+$large-desktop-width: 1624px;
+
+@mixin small-phone {
+  @media only screen and (max-width: #{$phone-width}) { @content; }
+}
+@mixin phone {
+  @media only screen and (max-width: #{$tablet-width - 1}) { @content; }
+}
+@mixin small-tablet {
+  @media only screen and (min-width: #{$tablet-width}) and 
+  (max-width: #{$small-desktop-width}) and 
+  (orientation: portait) { @content; }
+}
+@mixin tablet {
+  @media only screen and (min-width: #{$tablet-width}) and 
+  (max-width: #{$small-desktop-width}) { @content; }
+}
+@mixin large-tablet {
+  @media only screen and (min-width: #{$tablet-width}) and 
+  (max-width: #{$small-desktop-width}) and 
+  (orientation: landscape) { @content; }
+}
+@mixin small-mobile {
+  @media only screen and (max-width: #{$tablet-width}) { @content; }
+}
+@mixin mobile {
+  @media only screen and (max-width: #{$small-desktop-width}) { @content; }
+}
+@mixin desktop {
+  @media only screen and (min-width: #{$tablet-width}) { @content; }
+}
+@mixin small-desktop {
+  @media only screen and (min-width: #{$tablet-width + 1}) and 
+  (max-width: #{$small-desktop-width}) { @content; }
+}
+@mixin medium-desktop {
+  @media only screen and (min-width: #{$small-desktop-width + 1}) and 
+  (max-width: #{$medium-desktop-width}) { @content; }
+}
+@mixin large-desktop {
+  @media only screen and (min-width: #{$small-desktop-width + 1}) and 
+  (max-width: #{$large-desktop-width}) { @content; }
+}
+@mixin huge-desktop {
+  @media only screen and (min-width: #{$large-desktop-width + 1}) { @content; }
+}
+@mixin screen($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) { @content; }
+}
+
+@mixin opacity($o) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$o})";
+  -moz-opacity: $o;
+  -khtml-opacity: $o;
+  opacity: $o;
+  // filter: alpha(opacity=$o);
+}
+
+.transparent { @include opacity(0); }
+.hide { display: none !important; }
+.big { font-size: 120%; }
+.full-width { height:100%; width:100%; }
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.inline-block { display: inline-block !important; }
+.pull-right { float: right; }
+.pull-left { float: left; }
+.centered { text-align: center; }
+.sans { font-family: $sans }
+.align-top { vertical-align: top; }
+.clear-both { clear:both; }
+
+// Colors
+.red { color: $red; }
+.dark-blue { color: $dark-blue; }
+.light-red { color: $light-red; }
+.grey { color: $grey; }
+
+.gainlayout {
+  zoom: 1; // IE hasLayout hack (http://www.satzansatz.de/cssd/onhavinglayout.html)
+}
+/* Can't @extend .hide from @media directive :( */
+.no-phone {
+  @include phone { display: none !important; }
+}
+.no-tablet {
+  @include tablet { display: none !important; }
+}
+.no-small-mobile {
+  @include small-mobile { display: none !important; }
+}
+.no-mobile {
+  @include mobile { display: none !important; }
+}
+.no-desktop {
+  @include desktop { display: none !important; }
+}
