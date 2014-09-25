@@ -7,4 +7,8 @@ class MainController < ApplicationController
     session[:cas_user] = nil
     redirect_to :root
   end
+
+  def template
+    render "templates/#{params[:path]}"
+  end
 end

@@ -9,13 +9,18 @@ gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 gem 'mechanize'
 
 # Assets
+# Javascript
 gem 'jquery-rails'
+gem 'angularjs-rails', '>= 1.2.9'
+gem 'angular-ui-bootstrap-rails'
+gem 'underscore-rails'
 gem 'jbuilder', '~> 2.0'
+# gem 'coffee-rails', '~> 4.0.0'
+# CSS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'bourbon'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'asset_sync'
 gem 'sdoc', '~> 0.4.0', group: :doc
 

@@ -34,6 +34,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angular-ui-bootstrap-rails (0.11.0)
+    angularjs-rails (1.2.19)
     arel (5.0.1.20140414130214)
     asset_sync (1.0.0)
       activemodel
@@ -216,6 +218,7 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.6.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
@@ -227,13 +230,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular-ui-bootstrap-rails
+  angularjs-rails (>= 1.2.9)
   asset_sync
   better_errors
   binding_of_caller
   bootstrap-sass
   bourbon
   capybara
-  coffee-rails (~> 4.0.0)
   factory_girl_rails
   jasmine-rails
   jbuilder (~> 2.0)
@@ -249,3 +253,4 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier (>= 1.3.0)
+  underscore-rails
