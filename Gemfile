@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.4'
 gem 'pg'
 gem 'thin'
+gem 'pg_search'
 
 # CAS
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
@@ -30,7 +31,7 @@ gem 'turbolinks'
 
 # Testing, errors
 group :development, :test do
-  # gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'jasmine-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
