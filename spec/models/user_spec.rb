@@ -1,13 +1,11 @@
 require "rails_helper"
 
 RSpec.describe User, :type => :model do
-  it "doesn't save without netid" do
-    user = build(:user, netid: nil)
-    expect(user.save).to be false
+  it "requires netid" do
+    expect(build(:user, netid: nil)).to_not be_valid
   end
 
-  it "doesn't save without email" do
-    user = build(:user, email: nil)
-    expect(user.save).to be false
+  it "requires email" do
+    expect(build(:user, email: nil)).to_not be_valid
   end
 end
