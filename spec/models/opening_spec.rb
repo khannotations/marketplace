@@ -13,49 +13,44 @@ RSpec.describe Opening, :type => :model do
 
   describe "search" do
     before(:each) do
-      @js_dev = create(:opening,
-        name: "Javascript Developer",
-        description: "Looking to hire fast-paced, experienced coder."
-      )
-      @ios_dev = create(:opening,
-        name: "iOS Developer",
-        description: "A great design sense, experience with Swift."
-      )
+      @o1 = create(:opening)
+      @o2 = create(:opening)
     end
 
-    context "opening only" do
-      it "finds when word is in name" do
-        expect(Opening.search("iOS")).to eq [@ios_dev]
-      end
-
-      it "finds when word is in description" do
-        expect(Opening.search("Swift")).to eq [@ios_dev]
-      end
-
-      it "is case insensitive" do
-        expect(Opening.search("swIfT")).to eq [@ios_dev]
-      end
-
-      xit "finds description by loose terms" do
-        expect(Opening.search("experience")).to eq [@js_dev, @ios_dev]
-      end
-
-      it "finds containing any with multiple words" do
-        expect(Opening.search("Javascript Swift")).to eq [@js_dev, @ios_dev]
-      end
-    end
+    it_behaves_like "thoroughly searchable"
 
     context "through project" do
-      xit "finds through project name"
+      before (:each) do
+        @o1.project = create(:project, name: "Economics project")
+        @o1.save
+        @o2.project = create(:project,
+          description: "A exciting project in brain psychology")
+        @o2.save
+      end
+      it "finds through project name" do
+        expect(Project.thorough_search("economics")).to eq [@o1.project]
+        expect(Opening.search("economics")).to eq [@o1]
+      end
+
+      it "finds through project description (inclusive)" do
+        expect(Opening.search("psychology")).to eq [@o2]
+        expect(Opening.search("brain psychology")).to eq [@o2]
+        expect(Opening.search("child psychology")).to eq [@o2]
+      end
+
+      it "does close search on project" do
+        expect(Opening.search("psychologic")).to eq [@o2]
+      end
     end
 
     context "through skill" do
       before(:each) do
-        @js_dev.skills << create(:skill, name: "Angular")
-        @ios_dev.skills << create(:skill, name: "Design")
+        @o1.skills << create(:skill, name: "Angular")
+        @o2.skills << create(:skill, name: "Design")
       end
+
       it "finds using name" do
-        expect(Opening.search("angular")).to eq [@js_dev]
+        expect(Opening.search("angular")).to eq [@o1]
       end
     end
 

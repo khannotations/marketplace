@@ -9,10 +9,15 @@ FactoryGirl.define do
 
   factory :opening do
     name "Opening"
-    description "This is a description"
+    description "This is an opening description"
     pay_amount 20
     pay_type "hourly"
     timeframe "term"
+  end
+
+  factory :project do
+    name "Project"
+    description "This is a project description"
   end
 
   factory :skill do

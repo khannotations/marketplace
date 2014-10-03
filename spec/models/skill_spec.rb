@@ -11,7 +11,7 @@ RSpec.describe Skill, :type => :model do
     expect(build(:skill, name: name)).to_not be_valid
   end
 
-  context "openings" do
+  context "skillables" do
     before(:each) do
       @o = create(:opening)
       @u = create(:user)
@@ -26,6 +26,25 @@ RSpec.describe Skill, :type => :model do
 
     it "gets users" do
       expect(@s.users.to_a).to eq [@u]
+    end
+  end
+
+  context "search" do
+    before(:each) do
+      @o = create(:opening, name: "Ruby on Rails")
+    end
+
+    it "finds by exact name" do
+      expect(Opening.search("ruby on rails")).to eq [@o]
+    end
+
+    it "finds by part of name" do
+      expect(Opening.search("ruby")).to eq [@o]
+      expect(Opening.search("rails")).to eq [@o]
+    end
+
+    it "misses when wrong name" do
+      expect(Opening.search("iOS")).to eq []
     end
   end
 end
