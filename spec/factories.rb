@@ -16,8 +16,8 @@ FactoryGirl.define do
   end
 
   factory :project do
-    name "Project"
-    description "This is a project description"
+    sequence(:name) { |n| "project#{n}" }
+    description "This is the project description"
   end
 
   factory :skill do

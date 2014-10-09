@@ -2,12 +2,11 @@
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource"])
   .config(function($stateProvider, $locationProvider) {
-    console.log("in config");
     $stateProvider
     .state("home", {
       url: "/",
       templateUrl: "/templates/home",
-      controller: "HomeCtrl"
+      controller: "HomeCtrl",
       data: {
         permissions: 'EVERYONE' | 'LEADERS'
       }

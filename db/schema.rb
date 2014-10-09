@@ -74,11 +74,16 @@ ActiveRecord::Schema.define(version: 20141002171556) do
     t.string   "college"
     t.string   "division"
     t.string   "title"
-    t.boolean  "is_admin",         default: false
+    t.boolean  "is_admin",            default: false
     t.string   "photo_url"
-    t.string   "short_bio"
+    t.string   "github_url"
+    t.string   "linkedin_url"
     t.text     "bio"
     t.text     "past_experiences"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
+    t.datetime "resume_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

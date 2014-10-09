@@ -10,6 +10,7 @@ gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 gem 'mechanize'
 
 # Assets
+gem "paperclip", "~> 4.2"
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails', '>= 1.2.9'

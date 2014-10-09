@@ -1,6 +1,5 @@
 "use strict";
 
-angular.module("Marketplace")
-  .controller("HomeCtrl", ["$scope", function($scope) {
-
+marketplace.controller("HomeCtrl", ["$scope", "User", function($scope, User) {
+    $scope.user = User.getCurrent()
   }]);

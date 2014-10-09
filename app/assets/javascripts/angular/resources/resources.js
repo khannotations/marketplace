@@ -1,7 +1,6 @@
 "use strict";
 
-angular.module("Marketplace")
-  .factory("User", ["$resource", function($resource) {
+marketplace.factory("User", ["$resource", function($resource) {
     var User = $resource("/users/:netid.json", {netid: "@netid"}, 
       {
         update: {method: 'PUT'},
