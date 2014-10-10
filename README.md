@@ -1,6 +1,6 @@
-## Yale Projects Board
+# The Yale Projects Board
 
-#### A senior project Rafi Khan and Bobby Dresser
+### A Senior Project by Rafi Khan and Bobby Dresser
 ###### Fall 2014, Yale University
 
 #### The Yale Projects Board
@@ -13,9 +13,9 @@ The Yale Projects Board will be a website that helps the Yale community match ta
 
 #### Running the Code
 
-The Yale Projects Board runs on Ruby on Rails, with the front-end powered by Angular.js. It users CAS for login-management. To run the code, first `clone` the repo and `bundle install`. To work with the Paperclip gem, you'll also need ImageMagick and GhostScript (`brew install imagemagick` and `brew install gs` on Mac).  
+The Yale Projects Board runs on Ruby on Rails, with the front-end powered by Angular.js. It uses CAS for login-management. To run the code, first `clone` the repo and `bundle install`. To work with the Paperclip gem, you'll also need ImageMagick and GhostScript on your computer: `brew install imagemagick` and `brew install gs` on Mac with [Homebrew](http://brew.sh).  
 
-You'll also need to create a file `config/credentials.yml`. This file contains private information (like your netid and password) that allows the site to communicate with Yale's directory. It should look like the following, with your own credentials:
+Then you need to create the file `config/credentials.yml`. This file contains private information (like your netid and password) that allows the site to communicate with Yale's directory. It should look like the following, with your own credentials:
 
     cas_username: "eli123"
     cas_password: "mysecretpassword"
