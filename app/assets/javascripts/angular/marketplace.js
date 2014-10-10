@@ -1,26 +1,24 @@
 "use strict";
 
-var marketplace = angular.module("Marketplace", ["ui.router", "ngCookies"])
+var marketplace = angular.module("Marketplace", ["ui.router", "ngCookies", "ngResource])
   .config(function($stateProvider, $locationProvider) {
-    console.log("in config");
     $stateProvider
 
     .state("home", {
       url: "/",
       templateUrl: "/templates/home",
-      controller: "HomeCtrl"
+      controller: "HomeCtrl",
+      data: {
+        permissions: 'EVERYONE' | 'LEADERS'
+      }
     });
 
     $locationProvider.html5Mode(true)
-  }).constant("AUTH_EVENTS", {
-    loginSuccess: "auth-login-success",
-    loginFailed: "auth-login-failed",
-    logoutSuccess: "auth-logout-success",
-    sessionTimeout: "auth-session-timeout",
-    notAutheticated: "auth-not-authenticated",
-    notAuthorized: "auth-not-authorized"
-  }).constant("USER_ROLES", {
-      all: "*",
-      user: "user",
-      admin: "admin"
+  }).run(["AuthService", "User", function(AuthService, User) {
+    User.getCurrent(function(user) {
+      console.log(user);
+    });
+  }]).constant("USER_ROLES", {
+    
+>>>>>>> master
   });

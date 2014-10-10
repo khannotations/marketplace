@@ -1,10 +1,19 @@
 class User < ActiveRecord::Base
+  include PgSearch
+
   validates_presence_of :first_name, :last_name, :email, :netid
   validates_uniqueness_of :email, :netid
 
   has_and_belongs_to_many :leading_projects, class_name: "Project"
   has_and_belongs_to_many :openings
   has_many :member_projects, through: :openings
+
+  has_many :skill_links, as: :skillable, dependent: :destroy
+  has_many :skills, through: :skill_links
+
+  has_attached_file :resume
+  validates_attachment_content_type :resume, :content_type => "application/pdf"
+  validates_attachment_size :resume, :less_than => 5.megabytes
 
   # Gets user information from Yale directory
   def User.get_info netid

@@ -12,13 +12,12 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :is_admin, default: false
       t.string :photo_url
 
-      t.string :short_bio
+      t.string :github_url
+      t.string :linkedin_url
       t.text :bio
       t.text :past_experiences
 
-      # Resume, past experiences => v0
-      # Link to LinkedIn => v1
-      # Skills => v1
+      t.attachment :resume
 
       t.timestamps
     end

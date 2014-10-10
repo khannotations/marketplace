@@ -5,6 +5,11 @@
 <p>
   Talent, meet cool projects.
 </p>
+<p>
+  Current user {{user}}
+</p>
+<a onclick="window.location.assign('<%= login_path %>')">login</a>
+<a onclick="window.location.assign('<%= logout_path %>')">logout</a>
 <form ng-submit="saveUser()">
   <input type="text" ng-model="user.name">
   <input type="text" ng-model="user.city">

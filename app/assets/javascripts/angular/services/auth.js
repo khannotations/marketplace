@@ -1,5 +1,6 @@
 "use strict";
 
+<<<<<<< HEAD
 angular.module("marketplace")
 	.factory("AuthService", ["$cookieStore", function($cookieStore, $http, Session){
 		var authService = {};
