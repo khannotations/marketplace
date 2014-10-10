@@ -1,14 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Marketplace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Yale Projects Board</title>
+    <link href='<%= asset_path "favicon.ico" %>' rel='shortcut icon'>
+    <!-- So meta, bro -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta content='Students, find projects! Projects, find students!' name="description">
+    <meta content='learning' name='keywords'>
+    <!-- Facebook -->
+    <meta property="og:title" content="Yale Projects Board" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://yale.projectsboard.com" />
+    <!-- Stylesheets -->
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-app='Marketplace'>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+    
+    <!-- Analytics -->
+    <script type: "text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
 </html>
