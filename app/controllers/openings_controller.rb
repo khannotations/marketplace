@@ -30,17 +30,8 @@ class OpeningsController < ApplicationController
   protected
 
   def set_opening
-    @opening = Opening.includes(:project).find_by(id: params[:id])
+    @opening = Opening.find_by(id: params[:id])
     render_error "opening not found", 404 unless @opening
-  end
-
-  def check_authorization_to_project
-    @project = Project.find_by(id: params[:project_id])
-    render_error "project not found", 404 unless @project
-    @user = current_user
-    unless @project.leader_ids.include? @user.id or @user.is_admin
-      render_error "access to opening forbidden", 403
-    end
   end
 
   def opening_params

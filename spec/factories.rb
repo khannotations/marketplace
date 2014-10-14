@@ -24,4 +24,9 @@ FactoryGirl.define do
   factory :skill do
     sequence(:name) { |n| "skill#{n}" }
   end
+
+  factory :skill_link do
+    association :skillable, factory: :user # Default to user
+    association :skill
+  end
 end
