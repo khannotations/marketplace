@@ -29,4 +29,11 @@ class Opening < ActiveRecord::Base
   end
   # TODO: Term time
   # TODO: Salary / lumpsum
+
+  def serializable_hash(options={})
+    options = {
+      :except => [:created_at, :updated_at]
+    }.update(options)
+    super(options)
+  end
 end

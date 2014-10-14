@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
+
   before(:each) do
     @current_user = create(:user)
     session[:cas_user] = @current_user.netid # Artificially log user in
     request.env["HTTP_ACCEPT"] = 'application/json'
   end
+
   describe "current user" do
     it "gets when logged in" do
       get :current

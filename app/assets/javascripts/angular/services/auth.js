@@ -21,9 +21,10 @@ angular.module("Marketplace")
 			var isUser = this.checkIfCurrentUser();
 			if(!isUser){
 				var user = User.getCurrent();
-				console.log("user.is_admin = " + user.is_admin);
+
+				console.log(user.is_admin, user.first_name);
 				$cookieStore.put("user", user.is_admin);
-				console.log("user.is_admin = " + User.getCurrent().email);
+				console.log("user.is_admin = " + user.is_admin);
 
 			}
 		};
