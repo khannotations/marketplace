@@ -1,30 +1,53 @@
 "use strict";
 
-<<<<<<< HEAD
-angular.module("marketplace")
-	.factory("AuthService", ["$cookieStore", function($cookieStore, $http, Session){
+angular.module("Marketplace")
+	.factory("AuthService", ["$cookieStore", "User", function($cookieStore, User){
 		var authService = {};
 
-		authService.login = function() {
-			return User.getCurrent(function (r) {
-				Session.create(r);
-			});
-		};
+		authService.checkIfCurrentUser = function() {
 
-		authService.isAuthenticated = function() {
-			if(Session.first_name == null){
-				return false;
+			var current = $cookieStore.get();
+
+			if(current !== undefined){
+				return true;
 			}
-			return true;
+
+			else 
+				return false;
+
 		};
 
-  		authService.isAdmin = function() {
-  			return Session.is_admin;
-  			// what if I call this on a non-authenticaed person
-  		}
+		authService.getCurrentUser = function () {
+			var isUser = this.checkIfCurrentUser();
+			if(!isUser){
+				var user = User.getCurrent();
+				console.log("user.is_admin = " + user.is_admin);
+				$cookieStore.put("user", user.is_admin);
+				console.log("user.is_admin = " + User.getCurrent().email);
 
+			}
+		};
 
-	}));
+		authService.isAdmin = function() {
+			return $cookieStore.get('user');
+		};
+
+		authService.isAuthorized = function () {
+			var role;
+
+			if(this.isAdmin()){
+				role = "admin";
+			}
+			else{
+				role = "user";
+			}
+
+			return (this.checkIfCurrentUser() &&
+      			authorizedRoles.indexOf(role) !== -1);
+		};
+
+		return authService;
+	}]);
 
 	/* Methods:
 	     checkIfCurrentUser (checks the cookieStore)
@@ -43,7 +66,7 @@ angular.module("marketplace")
 
 	first_name
 	last_name
-	neit
+	netid
 	email
 	year
 	college

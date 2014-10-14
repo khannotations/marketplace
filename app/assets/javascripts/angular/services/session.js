@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("marketplace")
+angular.module("Marketplace")
 	.service("Session", function(){
 		this.create = function(r){
 			this.first_name = r.first_name;
