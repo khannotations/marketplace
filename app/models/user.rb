@@ -15,6 +15,13 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :resume, :content_type => "application/pdf"
   validates_attachment_size :resume, :less_than => 5.megabytes
 
+  def serializable_hash(options={})
+    options = {
+      :except => [:created_at, :updated_at]
+    }.update(options)
+    super(options)
+  end
+
   # Gets user information from Yale directory
   def User.get_info netid
     name_regex = /^\s*Name:\s*$/i

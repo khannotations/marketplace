@@ -8,11 +8,12 @@ FactoryGirl.define do
   end
 
   factory :opening do
-    name "Opening"
-    description "This is an opening description"
+    sequence(:name) { |n| "opening#{n}" }
+    description "This is the opening description"
     pay_amount 20
     pay_type "hourly"
     timeframe "term"
+    association :project
   end
 
   factory :project do

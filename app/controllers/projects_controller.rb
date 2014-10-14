@@ -28,7 +28,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    render json: @project.destroy # Destroys all associated openings
+    @project.destroy # Destroys all associated openings
+    render json: {}, status: 200
   end
 
   protected

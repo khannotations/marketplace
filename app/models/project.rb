@@ -10,4 +10,12 @@ class Project < ActiveRecord::Base
   pg_search_scope :thorough_search,
     against: [:name, :description],
     using: {tsearch: {dictionary: "english", any_word: true}}
+
+  def serializable_hash(options={})
+    options = { 
+      :include => [:openings, :leaders], 
+      :except => [:created_at, :updated_at]
+    }.update(options)
+    super(options)
+  end
 end
