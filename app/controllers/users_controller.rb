@@ -29,12 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_skill
-  end
-
-  def remove_skill
-  end
-
   protected
 
   def user_params
@@ -44,13 +38,5 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by(id: params[:id])
     render_error "user not found", 404 unless @user
-  end
-
-  # This method assumes user_logged_in? is true
-  def check_authorization_to_user
-    @user = current_user
-    unless @user.id == params[:id].to_i or @user.is_admin
-      render_error "user not authorized", 403
-    end
   end
 end

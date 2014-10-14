@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 
   before_filter :require_login
   before_filter :check_authorization_to_project, only: [:update, :destroy]
-  before_filter :set_project, only: [:show, :update, :destroy]
+  before_filter :set_project, only: [:show]
 
   def show
     render json: @project
@@ -37,15 +37,6 @@ class ProjectsController < ApplicationController
   def set_project
     @project = Project.includes(:leaders, :openings).find_by(id: params[:id])
     render_error "project not found", 404 unless @project
-  end
-
-  # Assumes the user is logged in
-  def check_authorization_to_project 
-    set_project
-    @user = current_user
-    unless @project.leader_ids.include? @user.id or @user.is_admin
-      render_error "access to project forbidden", 403
-    end
   end
 
   def project_params

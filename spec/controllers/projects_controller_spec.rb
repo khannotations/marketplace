@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, :type => :controller do
+
   before(:each) do
     @current_user = create(:user, first_name: "Stan")
     session[:cas_user] = @current_user.netid # Artificially log user in
@@ -36,11 +37,14 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.body).to match "\"name\":\"#{opening.name}\""
     end
 
-    it "sends back leader info" do
+    it "sends back associated leaders" do
       @project.leaders << @current_user
+      new_user = create(:user)
+      @project.leaders << new_user
       get :show, id: @project.id
       expect(response.status).to be 200
       expect(response.body).to match "\"first_name\":\"#{@current_user.first_name}\""
+      expect(response.body).to match "\"first_name\":\"#{new_user.first_name}\""
     end
   end
 

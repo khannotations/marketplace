@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OpeningsController, :type => :controller do
+
   before(:each) do
     @current_user = create(:user)
     session[:cas_user] = @current_user.netid # Artificially log user in
@@ -80,4 +81,3 @@ RSpec.describe OpeningsController, :type => :controller do
     end
   end
 end
-
