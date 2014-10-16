@@ -1,50 +1,55 @@
 "use strict";
 
 angular.module("Marketplace")
-	.factory("AuthService", ["$cookieStore", "User", function($cookieStore, User){
+	.factory("AuthService", ["$cookieStore", "User", "$q", function($cookieStore, User, $q){
 		var authService = {};
 
+		/*
+		 * Checks if a current user is stored in the cookieStore.
+		 * @return boolean
+		 */
 		authService.checkIfCurrentUser = function() {
-
-			var current = $cookieStore.get();
-
-			if(current !== undefined){
-				return true;
-			}
-
-			else 
-				return false;
-
+			return !!$cookieStore.get('marketplace_user');
 		};
 
+		/*
+		 * Checks cookieStore for user. If no user, requests user from server and stores in the
+		 * cookie store.
+		 * @return {Object with a $promise method} The user object, which will resolve to the user
+		 *   or null.
+		 */
 		authService.getCurrentUser = function () {
-			var isUser = this.checkIfCurrentUser();
-			if(!isUser){
+			if(!authService.checkIfCurrentUser()) {
 				var user = User.getCurrent();
-
-				console.log(user.is_admin, user.first_name);
-				$cookieStore.put("user", user.is_admin);
-				console.log("user.is_admin = " + user.is_admin);
-
+				user.$promise.then(function(u) {
+					if (u) {
+						$cookieStore.put('marketplace_user', u);
+					}
+				});
+				return user;
+			}
+			else {
+				return $cookieStore.get("marketplace_user");
 			}
 		};
 
 		authService.isAdmin = function() {
-			return $cookieStore.get('user');
+			return $cookieStore.get("marketplace_user").is_admin;
 		};
 
-		authService.isAuthorized = function () {
+		authService.isAuthorized = function (authorizedRoles) {
 			var role;
-
-			if(this.isAdmin()){
-				role = "admin";
+			if (!authService.checkIfCurrentUser()) {
+				return false;
 			}
-			else{
-				role = "user";
+			if (authService.isAdmin()){
+				role = "ADMIN";
+			}
+			else {
+				role = "USER";
 			}
 
-			return (this.checkIfCurrentUser() &&
-      			authorizedRoles.indexOf(role) !== -1);
+			return (authorizedRoles.indexOf(role) !== -1);
 		};
 
 		return authService;
