@@ -15,8 +15,8 @@ class MainController < ApplicationController
     redirect_to :root
   end
 
-  def destroy
-    current_user.destroy
+  def destroy_user
+    # current_user.destroy
     session[:cas_user] = nil
     redirect_to :root
   end

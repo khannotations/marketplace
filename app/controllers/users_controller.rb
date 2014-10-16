@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    render json: "" # User.search(params[:q], params[:page])
+  end
+
   protected
 
   def user_params

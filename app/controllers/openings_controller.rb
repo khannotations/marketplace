@@ -27,6 +27,10 @@ class OpeningsController < ApplicationController
     render json: {}, status: 200
   end
 
+  def search
+    render json: Opening.search(params[:q], params[:page])
+  end
+
   protected
 
   def set_opening
