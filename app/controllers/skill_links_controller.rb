@@ -1,5 +1,6 @@
 class SkillLinksController < ApplicationController
   respond_to :json
+  before_filter :require_login
   before_filter :check_authorization_to_context
 
   def create

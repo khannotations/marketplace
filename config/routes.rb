@@ -1,26 +1,29 @@
 Rails.application.routes.draw do
-  resources :projects
+  # Test routes
+  mount JasmineRails::Engine => "/spec" if defined?(JasmineRails)
 
   # JSON routes
+
+  # Users
   get '/current_user' => 'users#current'
   resources :users, only: [:show, :update]
+  get '/users/search' => 'users#search'
   post '/users/:user_id/skills/:skill_id' => 'skill_links#create'
   delete '/users/:user_id/skills/:skill_id' => 'skill_links#destroy'
 
-  # Search
-  get '/search' => 'main#search'
-  # Projects
+  # Projects and Openings
   resources :projects, only: [:show, :create, :update, :destroy] do
     resources :openings, only: [:create, :update, :destroy]
   end
-
+  get '/openings/search' => 'openings#search'
   post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
   delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
 
   # Authentication routes
   get '/logout' => 'main#logout', as: 'logout'
   get '/login' => 'main#login', as: 'login'
-  get '/destroy_user' => 'main#destroy'
+  get '/destroy_user' => 'main#destroy_user'
+  
   # Whitelisted page routes
 
   # Template routes

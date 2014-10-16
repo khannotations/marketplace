@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    render json: "" # User.search(params[:q], params[:page])
+  end
+
   protected
 
   def user_params
@@ -36,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(netid: params[:netid])
     render_error "user not found", 404 unless @user
   end
 end
