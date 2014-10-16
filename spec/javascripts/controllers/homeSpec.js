@@ -18,7 +18,11 @@ describe("HomeCtrl", function() {
       first_name: "stan",
       last_name: "the man"
     }
-    $httpBackend.when("GET", "/current_user.json").respond(sampleUser);
+    $httpBackend.whenGET("/current_user.json").respond(sampleUser);
+    // $httpBackend.whenGET("/^\/templates\//").respond("hey");
+    $httpBackend.expectGET("/templates/home");
+    $httpBackend.flush();
+
     createController = function() {
       return $controller("HomeCtrl", {"$scope": $rootScope});
     };

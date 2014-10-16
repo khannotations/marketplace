@@ -1,9 +1,11 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "User", "$cookieStore", function($scope, User, $cookieStore) {
-    $scope.user = User.getCurrent()
+marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
+  function($scope, AuthService, Opening) {
+    $scope.user = AuthService.getCurrentUser();
     $scope.search = function() {
-      $scope.foundOpenings = Opening.search({q: $scope.searchInput})
+      $scope.foundOpenings = Opening.search({q: $scope.searchInput});
+      $scope.searchInput = "";
     }
     $scope.clearCookies = function() {
     	$cookieStore.remove("marketplace_user");

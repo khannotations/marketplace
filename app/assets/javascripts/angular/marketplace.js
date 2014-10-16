@@ -36,12 +36,15 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource", "ngC
         } else {
           // user not logged in
           $rootScope.$broadcast("auth-not-authenticated");
-          $state.go("home");
         }
       }
     });
 
     $rootScope.$on("auth-not-authorized", function() {
       console.log("not authorized for this page; do something!");
+    });
+    $rootScope.$on("auth-not-authenticated", function() {
+      $state.go("home");
+      console.log("not authenticated gotta login!");
     });
   }]);
