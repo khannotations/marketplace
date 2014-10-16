@@ -9,7 +9,9 @@
   Current user {{user}}
 </p>
 <a onclick="window.location.assign('<%= login_path %>')">login</a>
-<a onclick="window.location.assign('<%= logout_path %>')">logout</a>
+<a ng-click="clearCookies()">logout</a>
+
+<a ui-sref="admin">go to admin page</a>
 <form ng-submit="search()">
   <input type="text" ng-model="searchInput">
   <input type="submit" value="Search!">
