@@ -1,24 +1,24 @@
 <h1>Welcome to the Yale Projects Marketplace!</h1>
-<p>
-  Project leaders, meet talent.
-</p>
-<p>
-  Talent, meet cool projects.
-</p>
-<p>
-  Current user {{user}}
-</p>
-<a onclick="window.location.assign('<%= login_path %>')">login</a>
-<a ng-click="clearCookies()">logout</a>
-
-<a ui-sref="admin">go to admin page</a>
+<h2>Search here:</h2>
 <form ng-submit="search()">
   <input type="text" ng-model="searchInput">
   <input type="submit" value="Search!">
 </form>
 
 <p>Found openings</p>
-<p ng-repeat="opening in foundOpenings">
-  {{opening.name}}
-</p>
+<h4 ng-if="!foundOpenings.length">No openings found!</h4>
+<div ng-repeat="opening in foundOpenings">
+  <p style="font-weight:bold;">{{opening.name}}</p>
+  <p style="font-style:italic;">{{opening.description}}</p>
+  <p>Skills:</p>
+  <ul>
+    <li ng-repeat="skill in opening.skills">
+      {{skill.name}}
+    </li>
+  </ul>
+</div>
+
+<h2>Footer</h2>
+<a onclick="window.location.assign('<%= login_path %>')">login</a>
+<a ng-click="clearCookies()">logout</a>
 

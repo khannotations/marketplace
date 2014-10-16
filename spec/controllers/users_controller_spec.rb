@@ -78,10 +78,5 @@ RSpec.describe UsersController, :type => :controller do
       expect(response.body).to match "RobotRafi"
     end
   end
-
-  describe "skills" do
-    xit "can add a skill"
-    xit "can remove a skill"
-  end
 end
 

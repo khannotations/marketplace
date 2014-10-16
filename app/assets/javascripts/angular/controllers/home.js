@@ -2,6 +2,7 @@
 
 marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
   function($scope, AuthService, Opening) {
+    $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
     $scope.search = function() {
       $scope.foundOpenings = Opening.search({q: $scope.searchInput});
