@@ -25,6 +25,9 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource", "ngC
     // Set up authorization check.
     $rootScope.$on('$stateChangeStart', function(event, next){
       var roles = next.data.authorizedRoles;
+      if (next.name == "home") {
+        return; // Always allow visit to home page. 
+      }
       if (!AuthService.isAuthorized(roles)){
         event.preventDefault();
         if (AuthService.checkIfCurrentUser()){

@@ -2,7 +2,7 @@
 
 marketplace.factory("User", ["$resource", function($resource) {
   var skillUrl = "/users/:id/skills/:skill_id.json";
-  var User = $resource("/users/:netid.json", {netid: "@netid"}, 
+  var User = $resource("/users/:id.json", {id: "@id"}, 
     {
       update: {method: "PUT"}, // The update action is not there by default
       getCurrent: {method: "GET", url: "/current_user.json"},

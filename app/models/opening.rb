@@ -20,7 +20,7 @@ class Opening < ActiveRecord::Base
   # does, or that have a skill that matches one of the query terms
   # TODO: how to sort?
   # TODO: eager load
-  def self.search(query, page)
+  def self.search(query, page=0)
     page ||= 0
     matching_openings = thorough_search(query) # match by name, desc
     project_openings = Project.thorough_search(query).map(&:openings).flatten

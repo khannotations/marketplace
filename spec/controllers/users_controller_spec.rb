@@ -55,17 +55,14 @@ RSpec.describe UsersController, :type => :controller do
     end
 
     it "updates correct attibutes when user is authorized" do
-      old_netid = @current_user.netid
       old_email = @current_user.email
       old_last_name = @current_user.last_name
       @current_user.first_name = "MechaStan"
-      @current_user.netid = "stn1337"
       @current_user.email = "stn1337@yalemail.com"
       @current_user.last_name = "TheMan"
       put :update, @current_user.attributes 
       expect(response.status).to be 200
       expect(response.body).to match "\"first_name\":\"MechaStan\""
-      expect(response.body).to match "\"netid\":\"#{old_netid}\""
       expect(response.body).to match "\"email\":\"#{old_email}\""
       expect(response.body).to match "\"last_name\":\"#{old_last_name}\""
     end

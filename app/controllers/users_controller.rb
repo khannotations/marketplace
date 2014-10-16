@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(netid: params[:netid])
+    @user = User.find_by(id: params[:id])
     render_error "user not found", 404 unless @user
   end
 end

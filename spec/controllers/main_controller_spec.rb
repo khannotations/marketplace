@@ -21,8 +21,9 @@ RSpec.describe MainController, :type => :controller do
 
   describe "CAS Logged in" do
     before(:each) do
-      session[:cas_user] = "fak23"
-      CASClient::Frameworks::Rails::Filter.fake("fak23")
+      @user = create(:user)
+      session[:cas_user] = @user.netid
+      CASClient::Frameworks::Rails::Filter.fake(@user.netid)
     end
 
     it "shows index" do
@@ -37,7 +38,7 @@ RSpec.describe MainController, :type => :controller do
 
     it "allows destroying user" do
       # expect(session[:cas_user]).to_not be_nil
-      get :destroy
+      get :destroy_user
       expect(session[:cas_user]).to be_nil
       expect(response).to redirect_to root_path
     end
