@@ -1,5 +1,4 @@
 class MainController < ApplicationController
-  before_action CASClient::Frameworks::Rails::GatewayFilter, only: :index
   before_action CASClient::Frameworks::Rails::Filter, only: :login
 
   def index
