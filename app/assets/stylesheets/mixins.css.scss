@@ -30,63 +30,66 @@ $font-size: 16px;
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
   letter-spacing: 0.5px;
 }
-
 /* Layouts */
 $small-min-width: 780px;
 $small-container-width: 700px;
 $large-min-width: 1060px;
 $large-container-width: 800px;
 
+// Widths are upper bounds
 $small-phone-width: 320px;
 $phone-width: 480px;
-$tablet-width: 768px;
-$small-desktop-width: 1024px; // Also iPad landscape
-$medium-desktop-width: 1440px; 
-$large-desktop-width: 1624px;
+$small-mobile-width: 767px; // Bootstrap collapse width
+$mobile-width: 1024px; // iPad landscape, upper bound of what we consider "mobile"
+$small-desktop-width: 1624px;
+
+// "small-phone": 0 - 320
+// "phone": 0 - 480
+// "tablet": 481 - 1023
+// "mobile": 0 - 1024
+// "desktop": 1025 ->
+// "small desktop": 1025 - 1623
+// "huge destkop": 1624 ->
+
+// To cover all sizes:
+// mobile + desktop
+// phone + tablet = mobile
+// small-mobile + large-mobile = mobile
+// small-desktop + large-desktop = desktop
+
+// Usually, use:
+// large-desktop (default) + small-desktop + large-mobile + small-mobile + phone 
+// Or: default + small-desktop + tablet + phone
 
 @mixin small-phone {
-  @media only screen and (max-width: #{$phone-width}) { @content; }
+  @media only screen and (max-width: #{$small-phone-width}) { @content; }
 }
 @mixin phone {
-  @media only screen and (max-width: #{$tablet-width - 1}) { @content; }
-}
-@mixin small-tablet {
-  @media only screen and (min-width: #{$tablet-width}) and 
-  (max-width: #{$small-desktop-width}) and 
-  (orientation: portait) { @content; }
+  @media only screen and (max-width: #{$phone-width}) { @content; }
 }
 @mixin tablet {
-  @media only screen and (min-width: #{$tablet-width}) and 
-  (max-width: #{$small-desktop-width}) { @content; }
-}
-@mixin large-tablet {
-  @media only screen and (min-width: #{$tablet-width}) and 
-  (max-width: #{$small-desktop-width}) and 
-  (orientation: landscape) { @content; }
-}
-@mixin small-mobile {
-  @media only screen and (max-width: #{$tablet-width}) { @content; }
+  @media only screen and (min-width: #{$phone-width + 1}) and 
+  (max-width: #{$mobile-width}) { @content; }
 }
 @mixin mobile {
-  @media only screen and (max-width: #{$small-desktop-width}) { @content; }
+  @media only screen and (max-width: #{$mobile-width}) { @content; }
+}
+@mixin small-mobile {
+  @media only screen and (max-width: #{$small-mobile-width}) { @content; }
+}
+@mixin large-mobile {
+  @media only screen and (min-width: #{$small-mobile-width + 1}) and 
+  (max-width: #{$mobile-width}){ @content; }
 }
 @mixin desktop {
-  @media only screen and (min-width: #{$tablet-width}) { @content; }
+  @media only screen and (min-width: #{$mobile-width + 1}) { @content; }
 }
 @mixin small-desktop {
-  @media only screen and (min-width: #{$tablet-width + 1}) and 
+  @media only screen and (min-width: #{$mobile-width + 1}) and 
   (max-width: #{$small-desktop-width}) { @content; }
 }
-@mixin medium-desktop {
-  @media only screen and (min-width: #{$small-desktop-width + 1}) and 
-  (max-width: #{$medium-desktop-width}) { @content; }
-}
 @mixin large-desktop {
-  @media only screen and (min-width: #{$small-desktop-width + 1}) and 
-  (max-width: #{$large-desktop-width}) { @content; }
-}
-@mixin huge-desktop {
-  @media only screen and (min-width: #{$large-desktop-width + 1}) { @content; }
+  @media only screen and (min-width: #{$small-desktop-width + 1}) { @content; }
 }
 @mixin screen($min, $max) {
   @media only screen and (min-width: $min) and (max-width: $max) { @content; }

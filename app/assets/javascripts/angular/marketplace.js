@@ -11,17 +11,22 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource", "ngC
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
-    }).state("admin", { // Example route for testing
-      url: "/admin",
-      templateUrl: "/templates/home",
-      controller: "HomeCtrl",
+    }).state("project", { // Example route for testing
+      url: "/projects/:id",
+      templateUrl: "/templates/project",
+      controller: "ProjectCtrl",
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: ["ADMIN", "USER"]
       }
     });
 
     $locationProvider.html5Mode(true)
-  }).run(["AuthService", "$rootScope", "$state", function(AuthService, $rootScope, $state) {
+  })
+  // Configure all AJAX calls to have the right CSRF token for Rails
+  .config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = 
+      angular.element('meta[name=csrf-token]').attr('content');
+  }]).run(["AuthService", "$rootScope", "$state", function(AuthService, $rootScope, $state) {
     // Set up authorization check.
     $rootScope.$on('$stateChangeStart', function(event, next){
       var roles = next.data.authorizedRoles;

@@ -1,0 +1,39 @@
+<button ng-if="canEdit && !editingProject" ng-click="edit()">Edit</button>
+<button ng-if="canEdit && editingProject" ng-click="save()">Save</button>
+<button ng-if="canEdit && editingProject" ng-click="cancel()">Cancel</button>
+<div class="project-heading">
+  <h1 ng-if="!editingProject">{{project.name}}</h1>
+  <input type="text" ng-model="project.name" ng-if="editingProject" class="big" name="name">
+</div>
+<div class="project-description">
+  <p ng-if="!editingProject">{{project.description}}</p>
+  <textarea name="description" ng-model="project.description" ng-if="editingProject" cols="30" rows="10"></textarea>
+</div>
+<h3>Openings</h3>
+<p class="a-like" ng-click="addOpening()">Add opening</p>
+<div class="opening" ng-repeat="opening in project.openings">
+  <!-- Name -->
+  <div>
+    <p class="bold" ng-if="!editingOpenings[$index]">{{opening.name}}</p>
+    <input type="text" ng-model="opening.name" ng-if="editingOpenings[$index]" required>
+  </div>
+  <!-- Description -->
+  <div>
+    <p class="italic" ng-if="!editingOpenings[$index]">{{opening.description}}</p>
+    <textarea cols="30" rows="10" ng-if="editingOpenings[$index]" ng-model="opening.description" required></textarea>
+  </div>
+  <!-- Pay amount, type, and timeframe -->
+  <div>
+    $<span ng-if="!editingOpenings[$index]">{{opening.pay_amount}}</span>
+    <input type="number" ng-if="editingOpenings[$index]" ng-model="opening.pay_amount" required> / 
+    <span ng-if="!editingOpenings[$index]">{{opening.pay_type}}</span>
+    <select ng-if="editingOpenings[$index]" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
+    during
+    <span ng-if="!editingOpenings[$index]">{{opening.timeframe}}</span>
+    <select ng-if="editingOpenings[$index]" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
+  </div>
+  <!-- Buttons -->
+  <button ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)">Edit opening</button>
+  <button ng-if="canEdit && editingOpenings[$index]" ng-click="save($index)">Save</button>
+<button ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">Cancel</button>
+</div>
