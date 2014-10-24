@@ -21,11 +21,11 @@ RSpec.describe Skill, :type => :model do
     end
 
     it "gets openings" do
-      expect(@s.openings.to_a).to eq [@o]
+      expect(@s.openings).to eq [@o]
     end
 
     it "gets users" do
-      expect(@s.users.to_a).to eq [@u]
+      expect(@s.users).to eq [@u]
     end
   end
 

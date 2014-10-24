@@ -30,5 +30,6 @@ marketplace.factory("User", ["$resource", function($resource) {
 
   return Opening;
 }]).factory("Skill", ["$resource", function($resource) {
-
+  var Skill = $resource("/api/skills");
+  return Skill;
 }]);

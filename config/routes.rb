@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get '/openings/search' => 'openings#search'
     post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
     delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
+
+    resources :skills, only: [:index, :create, :update, :destroy]
   end
 
   # Authentication routes

@@ -17,6 +17,7 @@ gem 'angularjs-rails', '>= 1.2.9'
 gem 'angular-ui-bootstrap-rails'
 gem 'underscore-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'chosen-rails'
 # gem 'coffee-rails', '~> 4.0.0'
 # CSS
 gem 'sass-rails', '~> 4.0.3'
