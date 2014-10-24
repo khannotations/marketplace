@@ -10,6 +10,18 @@ rafi = User.create({
   "is_admin"=>true,
   });
 
+bobby = User.create({
+  "first_name"=>"Bobby",
+  "last_name"=>"Dresser",
+  "netid"=>"rmd46",
+  "email"=>"bobby.dresser@yale.edu",
+  "year"=>"2015",
+  "college"=>"Pierson College",
+  "division"=>"Yale College",
+  "title"=>nil,
+  "is_admin"=>true,
+  });
+
 project = Project.create({
   name: "The Yale Projects Board",
   description: "As Yale tech community continues to grow and become more robust, more and more projects—either those started independently by students or in connection to an academic department—are being created. Often, those project leaders are faced with the challenging problem of finding talented programmers, designers, and engineers to join their teams, and are unsure where to search.
@@ -20,7 +32,7 @@ print "creating openings..."
 openings = [
   {
     name: "Frontend developer",
-    description: "A quick-thinking expert at Javascript and CSS",
+    description: "A quick-thinking expert at Javascript and CSS. You will work with a team of 1-100 people building the front-end of our super-useless app. Must be a nice guy to boot!",
     pay_amount: "20",
     pay_type: Opening::PAY_TYPE_HOURLY,
     timeframe: Opening::TIMEFRAME_TERM

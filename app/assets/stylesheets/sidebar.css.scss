@@ -1,0 +1,97 @@
+
+.sidebar{
+	position:fixed;
+	right:0px;
+	padding-right:0px;
+	height:100%;
+	@media screen and (max-height:600px){
+		position:relative;
+		// BUGGY!
+	}
+}
+
+.sidebar-wrapper{ 
+	float: right;
+	background-color: $yale-blue;
+	min-height:100%;
+}
+
+.sidebar *{
+	float: left;
+}
+
+.sidebar-top{
+	margin-top: calc(100vh - 600px);
+	@media screen and (max-height:600px){
+		margin-top:10px;
+	}
+}
+
+.navlink {
+	//@extend $grey-link;
+	font-size: 50px;
+	color:$grey;
+	font-family: $serif;
+	float: left;
+	width: 70%;
+	margin-bottom: 10px;
+	padding-left: 12px;
+	border-radius:2px;
+}
+
+.navlink:link{
+	text-decoration:none;
+	color:$grey;
+}
+.navlink:visited{
+	color:$grey;
+}
+.navlink:hover{
+	background-color: white;
+	text-decoration:none;
+	color:$yale-blue;
+}
+.navlink:active{
+	color:$yale-blue;
+}
+
+
+
+.dots {
+  border-top: 1px dotted $yale-blue;
+  color: rgb(255,255,255);
+  background-color: rgb(255,255,255);
+  height: 1px;
+  width:60%;
+  float: left;
+}
+
+.sidebar-bottom{
+	padding-left: 12px;
+}
+
+.welcome-header{
+	font-family: $serif;
+	letter-spacing:.5px;
+	font-size: 30px;
+	margin-top:0px;
+	margin-bottom:0px;
+	color:$grey;
+}
+
+.sidebar-bottom a, .sidebar-bottom p {
+	display: inline-block;
+	font-family:$serif;
+	font-size: 16px;
+	color:$grey;
+	float: left;
+	margin: 0px;
+	margin-top: 20px;
+	margin-right: 3%;
+}
+
+.sidebar-bottom .welcome{
+	margin-top:10px;
+	@include helvetica-light;
+	font-size:16px;
+}

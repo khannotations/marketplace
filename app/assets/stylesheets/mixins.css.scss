@@ -11,7 +11,7 @@ $red: #802025;
 $light-red: #B10000;
 $green: #00b433;
 $dark-green: #006f29;
-$grey: #35383B;
+$grey: #D8D8D8;
 $light-grey: #ddd;
 $purple: #8581A4;
 $tan: #aa8255;
@@ -19,16 +19,22 @@ $max-tan: #827B5F;
 $nav-brown: #513e37;
 $nav-darkbrown: darken(#513e37, 7%);
 $pumpkin-yellow: #b09a00;
+$yale-blue: #0f4d92;
 
 /* Fonts */
-$sans: "PT Sans", "HelveticaNeue-Light", sans-serif;
-$serif: Quattrocento, times, serif;
 $body: Proxima, "HelveticaNeue", sans-serif;
 $font-size: 16px;
+$sans: "Arimo", Arial, sans-serif; 
+$serif: "Inconsolata", Times, serif;
 
 @mixin helvetica-light {
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+}
+
+@mixin source-font {
+  font-family: "Source Code Pro", Arial, sans-serif;
+  font-weight: 300;
 }
 
 /* Layouts */
@@ -139,3 +145,32 @@ $large-desktop-width: 1624px;
 .no-desktop {
   @include desktop { display: none !important; }
 }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.clearfix{
+  clear:both;
+}
+
+// .white-link {
+//   a:link{
+//     text-decoration:none;
+//     color:white;
+//   }
+//   a:visited{
+//     color:white;
+//   }
+//   a:hover{
+//     background-color: white;
+//     text-decoration:none;
+//     color:$yale-blue;
+//   }
+//   a:active{
+//     color:$yale-blue;
+//   }
+// }

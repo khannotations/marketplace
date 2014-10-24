@@ -1,24 +1,57 @@
-<h1>Welcome to the Yale Projects Marketplace!</h1>
-<h2>Search here:</h2>
-<form ng-submit="search()">
-  <input type="text" ng-model="searchInput">
-  <input type="submit" value="Search!">
-</form>
+<div class="container">
+  <div class="search">
+    <form ng-submit="search()">
+      <div class="searchbox">
+        <img src="../../assets/images/searchicon.jpg" alt="" class="searchicon">
+        <input type="text" class="searchfield" ng-model="searchInput">
+      </div>
+    </form>
+    <div class="options-button">
+      <p>Show Recent</p>
+    </div>
+    <div class="options-button">
+      <p>More Options</p>
+      <img src="" alt="" class="down-arrow">
+    </div>
+  </div>
 
-<p>Found openings</p>
-<h4 ng-if="!foundOpenings.length">No openings found!</h4>
-<div ng-repeat="opening in foundOpenings">
-  <p style="font-weight:bold;">{{opening.name}}</p>
-  <p style="font-style:italic;">{{opening.description}}</p>
-  <p>Skills:</p>
-  <ul>
-    <li ng-repeat="skill in opening.skills">
-      {{skill.name}}
-    </li>
-  </ul>
+  <div class="clearfix"></div>
+
+
+  <div id="results">
+    <p>Found openings</p>
+    <h4 ng-if="!foundOpenings.length">No openings found!</h4>
+
+    <div class="opening" ng-repeat="opening in foundOpenings">
+
+      <div class="col-1">
+      <p class="opening-name" style="font-weight:bold;">{{opening.name}}</p>
+        <p class="opening-description">{{opening.description}}</p>
+        <p class="posted-by">POSTED BY Stan Eisenstat {{opening.postedBy}} ON 9/1/1976{{opening.postedDate}}</p>
+
+      </div>
+
+      <div class="vert-divider"></div>
+
+      <div class="col-2">
+      <p>Skills:</p>
+        <ul>
+          <li ng-repeat="skill in opening.skills">
+            {{skill.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="vert-divider"></div>
+
+      <div class="col-3"> 
+        <p class="pay">$20/hr {{skill.pay}}</p>
+        <p class="pay-type">HOURLY {{skill.payType}}</p>
+        <p class="time">5 - 10 hours</p>
+        <p class="perweek">per week</p>
+      </div>
+    </div>
+
+  </div>
+
 </div>
-
-<h2>Footer</h2>
-<a onclick="window.location.assign('<%= login_path %>')">login</a>
-<a ng-click="clearCookies()">logout</a>
-
