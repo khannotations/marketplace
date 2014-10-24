@@ -8,6 +8,8 @@ RSpec.describe OpeningsController, :type => :controller do
     request.env["HTTP_ACCEPT"] = 'application/json'
     @project = create(:project)
     @opening = create(:opening, project: @project)
+    @skill = create(:skill)
+    @opening.skills << @skill
   end
 
   describe "create" do
@@ -15,13 +17,22 @@ RSpec.describe OpeningsController, :type => :controller do
       @new_opening = build(:opening, project: @project)
     end
 
-    it "creates an opening" do
+    it "works" do
       @project.leaders << @current_user
       expect(Opening.find_by(name: @new_opening.name)).to be_nil
       post :create, @new_opening.attributes
       expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"#{@new_opening.name}\""
       expect(Opening.find_by(name: @new_opening.name)).to_not be_nil
+    end
+
+    it "also adds skills" do
+      @project.leaders << @current_user
+      skill = create(:skill)
+      @new_opening.skills << skill
+      post :create, @new_opening.attributes.merge({skills: [skill.attributes]})
+      expect(response.status).to be 200
+      expect(Opening.last.skills).to eq [skill]
     end
 
     it "fails with missing parameters" do
@@ -63,6 +74,17 @@ RSpec.describe OpeningsController, :type => :controller do
       put :update, @opening.attributes
       expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"Amazing Opening Yo\""
+    end
+
+    it "also updates skills" do
+      @project.leaders << @current_user
+      # At beginning, starts with the given skill
+      expect(Opening.find_by(id: @opening.id).skills).to eq [@skill]
+      skill = create(:skill)
+      put :update, @opening.attributes.merge({skills: [skill.attributes]})
+      expect(response.status).to be 200
+      # After, has new skill
+      expect(Opening.find_by(id: @opening.id).skills).to eq [skill]
     end
   end
 

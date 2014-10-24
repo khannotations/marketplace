@@ -18,7 +18,7 @@ gem 'angular-ui-bootstrap-rails'
 gem 'underscore-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'chosen-rails'
-# gem 'coffee-rails', '~> 4.0.0'
+
 # CSS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
@@ -38,6 +38,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'better_errors'
-  gem 'pry-debugger'
   gem 'binding_of_caller'
+  gem 'pry-debugger'
 end

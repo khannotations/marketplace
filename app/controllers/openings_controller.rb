@@ -8,6 +8,11 @@ class OpeningsController < ApplicationController
     @opening = Opening.create(opening_params.merge(
       {project_id: params[:project_id]}))
     if @opening.id
+      if params[:skills].kind_of?(Array)
+        skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
+        @opening.skill_ids = skill_ids.compact        # Remove nils
+        @opening.save
+      end
       render json: @opening
     else
       render_error "opening could not be created", 400
@@ -16,6 +21,11 @@ class OpeningsController < ApplicationController
 
   def update
     if @opening.update_attributes(opening_params)
+      if params[:skills].kind_of?(Array)
+        skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
+        @opening.skill_ids = skill_ids.compact        # Remove nils
+        @opening.save
+      end
       render json: @opening
     else
       render_error "opening could not be updated", 400
@@ -23,7 +33,7 @@ class OpeningsController < ApplicationController
   end
 
   def destroy
-    @opening.destroy
+    @opening.destroy # Destroys associated skill_links
     render json: {}, status: 200
   end
 
@@ -39,7 +49,7 @@ class OpeningsController < ApplicationController
   end
 
   def opening_params
-    params.permit(:name, :description, :timeframe, :pay_amount, :pay_type)
+    params.permit(:name, :description, :timeframe, :pay_amount, :pay_type, :skills)
   end
 
 end
