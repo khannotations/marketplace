@@ -8,7 +8,9 @@
 <p>Found openings</p>
 <h4 ng-if="!foundOpenings.length">No openings found!</h4>
 <div ng-repeat="opening in foundOpenings">
-  <p style="font-weight:bold;">{{opening.name}}</p>
+  <a ui-sref="project({id: opening.project_id})">
+    <p style="font-weight:bold;">{{opening.name}}</p>
+  </a>
   <p style="font-style:italic;">{{opening.description}}</p>
   <p>Skills:</p>
   <ul>

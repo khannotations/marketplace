@@ -2,13 +2,13 @@ class Opening < ActiveRecord::Base
   include PgSearch
 
   # Validations
-  validates_presence_of :name, :description, :pay_amount, :pay_type, :timeframe, :project_id
+  validates_presence_of :name, :description, :pay_amount, :pay_type,
+    :timeframe, :project_id
 
   # Associations
   belongs_to :project
   has_and_belongs_to_many :members, class_name: "User"
-  # has_and_belongs_to_many :tags, as: :taggable
-  has_many :skill_links, as: :skillable
+  has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
 
   # Scopes

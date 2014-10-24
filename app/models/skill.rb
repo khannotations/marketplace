@@ -11,4 +11,11 @@ class Skill < ActiveRecord::Base
     source: :skillable, source_type: "Opening"
 
   pg_search_scope :search, against: :name
+
+  def serializable_hash(options={})
+    options = {
+      :except => [:created_at, :updated_at]
+    }.update(options)
+    super(options)
+  end
 end

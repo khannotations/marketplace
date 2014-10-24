@@ -9,8 +9,12 @@ marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
       $scope.searchInput = "";
     }
     $scope.clearCookies = function() {
-    	$cookieStore.remove("marketplace_user");
-  		window.location.assign('/logout');
+    	AuthService.logout();
+      window.location.assign('/logout');
     }
+    $scope.$watch("user", function() {
+      // Run every time "user" changes
+      // if ($scope.user.netid)...
+    })
   }]);
 
