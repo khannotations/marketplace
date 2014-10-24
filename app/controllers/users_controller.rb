@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   # and authentication manually
   before_filter :require_login, except: [:current]
   before_filter :check_authorization_to_user, except: [:current, :show]
-  before_filter :set_user, only: [:show, :update]
 
   # Get current user
   def current
@@ -17,15 +16,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    respond_with @user
+    @user = User.includes(:skills, :member_projects, :leading_projects)
+      .find_by(netid: params[:id])
+    render json: @user, include: [:skills, :member_projects, :leading_projects]
   end
 
   def update
+    @user = User.find_by(netid: params[:id]) # The :id key is set by Rails as default
+    render_error "user not found", 404 unless @user
     # respond_with in PUT behaves unexpectedly, so using render instead
     if @user.update_attributes(user_params)
       if params[:skills].kind_of?(Array)
         skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
-        @user.skill_ids = skill_ids.compact.uniq         # Remove nils
+        @user.skill_ids = skill_ids.compact.uniq      # Remove nils
         @user.save
       end
       render json: @user
@@ -42,10 +45,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:first_name, :bio, :github_url, :linkedin_url)
-  end
-
-  def set_user
-    @user = User.find_by(id: params[:id])
-    render_error "user not found", 404 unless @user
   end
 end

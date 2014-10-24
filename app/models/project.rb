@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   include PgSearch
-  has_and_belongs_to_many :leaders, class_name: "User"
+  has_and_belongs_to_many :leaders, class_name: "User", source: :leader_projects
   has_many :openings, dependent: :destroy
   has_many :members, through: :openings, class_name: "User"
 

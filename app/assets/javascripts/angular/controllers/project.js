@@ -1,8 +1,8 @@
 "use strict";
 
-marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "AuthService",
-  "Project", "Opening", "Skill",
-  function($scope, $stateParams, AuthService, Project, Opening, Skill) {
+marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
+  "AuthService", "Project", "Opening", "Skill",
+  function($scope, $stateParams, $state, AuthService, Project, Opening, Skill) {
     $scope.project = Project.get({id: $stateParams.id}, function() {
       // Only allow edits if admin or project leader
       var user = AuthService.getCurrentUser();
@@ -72,6 +72,24 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "AuthService",
         }
       }
     };
+
+    $scope.destroy = function(index) {
+      if ($scope.canEdit) {
+        if (!confirm("Are you sure?")) {
+          return;
+        }
+        if (index !== undefined) {
+          // Remove opening
+          var opening = new Opening($scope.project.openings.splice(index, 1)[0]);
+          console.log(opening);
+          // Destroy it
+          opening.$remove();
+        } else {
+          $scope.project.$remove();
+          $state.go("home");
+        }
+      }
+    }
     /*
      * addOpening() works by adding a stub opening to the end of the 
      * project's openings array and calling edit() on it. If cancel is pushed,
@@ -80,8 +98,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "AuthService",
      */
     $scope.addOpening = function() {
       $scope.project.openings.push(new Opening({
-        name: "My fabulous opening",
-        description: "My enticing description",
         project_id: $scope.project.id
       }));
       $scope.edit($scope.project.openings.length - 1);

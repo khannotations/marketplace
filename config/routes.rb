@@ -9,16 +9,16 @@ Rails.application.routes.draw do
     get '/current_user' => 'users#current'
     resources :users, only: [:show, :update]
     get '/users/search' => 'users#search'
-    post '/users/:user_id/skills/:skill_id' => 'skill_links#create'
-    delete '/users/:user_id/skills/:skill_id' => 'skill_links#destroy'
+    # post '/users/:user_id/skills/:skill_id' => 'skill_links#create'
+    # delete '/users/:user_id/skills/:skill_id' => 'skill_links#destroy'
 
     # Projects and Openings
     resources :projects, only: [:show, :create, :update, :destroy] do
       resources :openings, only: [:create, :update, :destroy]
     end
     get '/openings/search' => 'openings#search'
-    post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
-    delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
+    # post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
+    # delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
 
     resources :skills, only: [:index, :create, :update, :destroy]
   end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   
   # Whitelisted page routes
   get '/projects/:id' => 'main#index'
-  get '/profile' => 'main#index'
+  get '/profile(/:id)' => 'main#index'
   get '/starred' => 'main#index'
 
   # Template routes

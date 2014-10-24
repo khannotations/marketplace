@@ -1,9 +1,9 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
-  function($scope, AuthService, Opening) {
+marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project", "Opening",
+  function($scope, $state, AuthService, Project, Opening) {
     $scope.foundOpenings = []
-    $scope.user = AuthService.getCurrentUser();
+    $scope.currentUser = AuthService.getCurrentUser();
     $scope.search = function() {
       $scope.foundOpenings = Opening.search({q: $scope.searchInput});
       $scope.searchInput = "";
@@ -12,9 +12,19 @@ marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
     	AuthService.logout();
       window.location.assign('/logout');
     }
-    $scope.$watch("user", function() {
-      // Run every time "user" changes
-      // if ($scope.user.netid)...
-    })
+
+    $scope.createProject = function() {
+      $scope.newProject = new Project;
+    }
+
+    $scope.saveNewProject = function() {
+      $scope.newProject.$save(function(project) {
+        $state.go("project", {id: project.id});
+      });
+    }
+
+    $scope.cancelNewProject = function() {
+      delete $scope.newProject;
+    }
   }]);
 

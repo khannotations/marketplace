@@ -1,0 +1,39 @@
+<span ng-switch="!editingUser">
+  <p ng-if="user.is_admin">This person is an admin</p>
+  <button ng-if="canEdit && !editingUser" ng-click="edit()">Edit</button>
+  <button ng-if="canEdit && !editingUser" ng-click="delete()">Delete account</button>
+  <button ng-if="canEdit && editingUser" ng-click="save()">Save</button>
+  <button ng-if="canEdit && editingUser" ng-click="cancel()">Cancel</button>
+  <!-- Name -->
+  <div>
+    <img ng-src="user.photo_url" alt="">
+    <span ng-switch-when="true">{{user.first_name}}</span>
+    <input type="text" ng-model="user.first_name" ng-switch-when="false" required>
+    <!-- Can't edit your last name -->
+    <span>{{user.last_name}}</span>
+  </div>
+  <div>
+    {{user.email}} | {{user.college}} | {{user.division}} | {{user.title}}
+  </div>
+  <div>
+    <p ng-switch-when="true">{{user.bio}}</p>
+    <textarea ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
+  </div>
+  <h4>Leading projects</h4>
+  <ul>
+    <li ng-repeat="project in user.leading_projects">
+      <p class="bold">{{project.name}}</p>
+      <p class="italic">{{project.description}}</p>
+    </li>
+  </ul>
+  <p ng-if="!user.leading_projects.length">This user is not leading any projects</p>
+
+  <h4>Member projects</h4>
+  <ul>
+    <li ng-repeat="project in user.member_projects.length">
+      <p class="bold">{{project.name}}</p>
+      <p class="italic">{{project.description}}</p>
+    </li>
+  </ul>
+  <p ng-if="!user.member_projects.length">This user is not a member of any projects</p>
+</span>

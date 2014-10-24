@@ -1,13 +1,11 @@
 "use strict";
 
 marketplace.factory("User", ["$resource", function($resource) {
-  var skillUrl = "/api/users/:id/skills/:skill_id.json";
-  var User = $resource("/api/users/:id.json", {id: "@id"}, 
+  // NOTE: User uses netid instead of id!
+  var User = $resource("/api/users/:netid.json", {netid: "@netid"}, 
     {
       update: {method: "PUT"}, // The update action is not there by default
-      getCurrent: {method: "GET", url: "/api/current_user.json"},
-      addSkill: {method: "POST", url: skillUrl, params: {id: "@id"}},
-      removeSkill: {method: "DELETE", url: skillUrl, params: {id: "@id"}}
+      getCurrent: {method: "GET", url: "/api/current_user.json"}
     });
 
   return User;
