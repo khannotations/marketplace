@@ -40,6 +40,7 @@ RSpec.describe MainController, :type => :controller do
       # expect(session[:cas_user]).to_not be_nil
       get :destroy_user
       expect(session[:cas_user]).to be_nil
+      expect(User.find_by(id: @user.id)).to be_nil
       expect(response).to redirect_to root_path
     end
   end

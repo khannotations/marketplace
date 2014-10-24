@@ -17,7 +17,8 @@ gem 'angularjs-rails', '>= 1.2.9'
 gem 'angular-ui-bootstrap-rails'
 gem 'underscore-rails'
 gem 'jbuilder', '~> 2.0'
-# gem 'coffee-rails', '~> 4.0.0'
+gem 'chosen-rails'
+
 # CSS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
@@ -39,4 +40,5 @@ group :development, :test do
   gem 'better_errors'
 #  gem 'pry-debugger'
   gem 'binding_of_caller'
+  gem 'pry-debugger'
 end

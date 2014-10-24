@@ -30,13 +30,17 @@ class ApplicationController < ActionController::Base
     render json: {error: msg}, status: status
   end
 
+  def check_admin
+    render_error "access forbidden", 403 unless current_user.is_admin
+  end
+
   def check_authorization_to_project(project_id=nil)
     id = project_id || params[:project_id] || params[:id]
     @project = Project.includes(:leaders, :openings).find_by(id: id)
     render_error "project not found", 404 unless @project
     @user = current_user
     unless @project.leader_ids.include? @user.id or @user.is_admin
-      render_error "access to opening forbidden", 403
+      render_error "access forbidden", 403
     end
   end
 
@@ -45,7 +49,7 @@ class ApplicationController < ActionController::Base
     id = user_id || params[:id].to_i
     @user = current_user
     unless @user.id == id or @user.is_admin
-      render_error "user not authorized", 403
+      render_error "access forbidden", 403
     end
   end
 end

@@ -67,6 +67,19 @@ RSpec.describe UsersController, :type => :controller do
       expect(response.body).to match "\"last_name\":\"#{old_last_name}\""
     end
 
+    it "updates with skills" do
+      skill1 = create(:skill)
+      @current_user.skills << skill1
+      expect(User.find(@current_user.id).skills).to eq [skill1]
+      skill2 = create(:skill)
+      skill3 = create(:skill)
+      put :update, @current_user.attributes.merge({skills:
+        [skill2.attributes, skill3.attributes]})
+      expect(response.status).to be 200
+      # After, has new skills, not old one
+      expect(User.find(@current_user.id).skills).to eq [skill2, skill3]
+    end
+
     it "allows admins to update" do
       @current_user.is_admin = true
       @current_user.save

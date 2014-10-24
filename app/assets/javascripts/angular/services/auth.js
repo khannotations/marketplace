@@ -21,7 +21,7 @@ angular.module("Marketplace")
 			if(!authService.checkIfCurrentUser()) {
 				var user = User.getCurrent();
 				user.$promise.then(function(u) {
-					if (u) {
+					if (u.netid) {
 						$cookieStore.put(COOKIE_KEY, u);
 					}
 				});
