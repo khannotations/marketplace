@@ -10,7 +10,7 @@ class OpeningsController < ApplicationController
     if @opening.id
       if params[:skills].kind_of?(Array)
         skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
-        @opening.skill_ids = skill_ids.compact        # Remove nils
+        @opening.skill_ids = skill_ids.compact.uniq   # Remove nils and dups
         @opening.save
       end
       render json: @opening

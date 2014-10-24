@@ -9,7 +9,6 @@ marketplace.controller("HomeCtrl", ["$scope", "AuthService", "Opening",
       $scope.searchInput = "";
     }
     $scope.clearCookies = function() {
-      console.log("clearing..");
     	AuthService.logout();
       window.location.assign('/logout');
     }

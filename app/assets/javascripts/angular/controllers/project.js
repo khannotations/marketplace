@@ -55,7 +55,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "AuthService",
         $scope.project = $scope.editingProject;
         $scope.editingProject = null;
       }
-      console.log($scope.project.openings);
     };
     /*
      * Persists the pending changes after edit() to the database.

@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   def update
     # respond_with in PUT behaves unexpectedly, so using render instead
     if @user.update_attributes(user_params)
+      if params[:skills].kind_of?(Array)
+        skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
+        @user.skill_ids = skill_ids.compact.uniq         # Remove nils
+        @user.save
+      end
       render json: @user
     else
       render_error "user couldn't be updated", 400

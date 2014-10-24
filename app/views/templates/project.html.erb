@@ -11,7 +11,7 @@
 </div>
 <h3>Openings</h3>
 <!-- Show add openings link only if the last project -->
-<p class="a-like" ng-click="addOpening()" ng-if="project.openings[project.openings.length-1].id">Add opening</p>
+<p class="a-like" ng-click="addOpening()" ng-if="canEdit && project.openings[project.openings.length-1].id">Add opening</p>
 <div class="opening" ng-repeat="opening in project.openings">
   <form ng-submit="save($index)">
     <!-- Name -->
@@ -22,7 +22,7 @@
     <!-- Description -->
     <div>
       <p class="italic" ng-if="!editingOpenings[$index]">{{opening.description}}</p>
-      <textarea cols="30" rows="10" ng-if="editingOpenings[$index]" ng-model="opening.description" required></textarea>
+      <textarea cols="30" rows="10" ng-if="ceditingOpenings[$index]" ng-model="opening.description" required></textarea>
     </div>
     <!-- Pay amount, type, and timeframe -->
     <div>
@@ -42,7 +42,7 @@
       </div>
       <select multiple chosen ng-if="editingOpenings[$index]" ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 300px;" data-placeholder="Choose some skills..."></select>
     </div>
-    <!-- Buttons -->
+    <!-- Control buttons -->
     <button ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)">Edit opening</button>
     <input type="submit" value="Save" ng-if="canEdit && editingOpenings[$index]"></input>
     <button ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">Cancel</button>
