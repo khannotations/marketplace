@@ -1,32 +1,40 @@
-<<<<<<< HEAD
 <div class="container">
+
   <div class="search">
-    <form ng-submit="search()">
+    <form class='main-search' ng-submit="search()">
       <div class="searchbox">
-        <img src="../../assets/images/searchicon.jpg" alt="" class="searchicon">
+        <img src="../../assets/images/searchicon.jpg" alt="" class="searchicon"></img>
         <input type="text" class="searchfield" ng-model="searchInput">
       </div>
     </form>
     <div class="options-button">
       <p>Show Recent</p>
     </div>
-    <div class="options-button">
+    <div class="options-button" ng-click="showOptions()">
       <p>More Options</p>
       <img src="" alt="" class="down-arrow">
     </div>
   </div>
 
+  <div class="welcome" ng-if="hasSearched == 0">
+    <h1 >Welcome to the</h1>
+    <h2>Yale Projects Board</h2>
+    <p>Use the search bar to find projects looking for developers on campus. You can search by programming languages, time commitment, or project description.</p>
+  </div>
+
   <div class="clearfix"></div>
 
-
   <div id="results">
-    <p>Found openings</p>
-    <h4 ng-if="!foundOpenings.length">No openings found!</h4>
+    <p ng-if="foundOpenings.length > 0">Found {{foundOpenings.length}} openings that match your search</p>
+
+    <h4 class="no-openings" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</h4>
 
     <div class="opening" ng-repeat="opening in foundOpenings">
 
       <div class="col-1">
-      <p class="opening-name" style="font-weight:bold;">{{opening.name}}</p>
+      <a ui-sref="project({id: opening.project_id})">  
+        <h1 class="opening-name">{{opening.name}}</h1>
+      </a>
         <p class="opening-description">{{opening.description}}</p>
         <p class="posted-by">POSTED BY Stan Eisenstat {{opening.postedBy}} ON 9/1/1976{{opening.postedDate}}</p>
 
@@ -35,12 +43,19 @@
       <div class="vert-divider"></div>
 
       <div class="col-2">
-      <p>Skills:</p>
-        <ul>
-          <li ng-repeat="skill in opening.skills">
+      <p>SKILLS</p>
+        <ul class="some-skills">
+          <li ng-repeat="skill in opening.skills | limitTo:limit">
             {{skill.name}}
           </li>
+          <li class="more" ng-if="opening.skills.length > 4 && limit == 4" ng-click="toggleSkills()">
+            More...
+          </li>
+          <li class="less" ng-show="limit > 4" ng-click="toggleSkills()">
+            Less...
+          </li>
         </ul>
+
       </div>
 
       <div class="vert-divider"></div>
@@ -54,5 +69,7 @@
     </div>
 
   </div>
+
+  <div class="more-options"></div>
 
 </div>

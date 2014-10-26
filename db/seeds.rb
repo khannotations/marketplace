@@ -43,6 +43,13 @@ openings = [
     pay_amount: "500",
     pay_type: Opening::PAY_TYPE_LUMPSUM,
     timeframe: Opening::TIMEFRAME_TERM
+  },
+  {
+    name: "iOS Wizard for the Masses",
+    description: "Plz Plz Plz help us build an iPhone app for a good cause. Skills required are iOS development (duh) like objective c and the related technologies also please be good at what you do we don't want to waste our time or your time.",
+    pay_amount: "15",
+    pay_type: Opening::PAY_TYPE_HOURLY,
+    timeframe: Opening::TIMEFRAME_TERM
   }
 ]
 openings.each {|o| Opening.create!(o.merge(project_id: project.id))}
@@ -61,5 +68,10 @@ Opening.first.skills << Skill.find_by(name: "CSS")
 Opening.first.skills << Skill.find_by(name: "SASS")
 Opening.second.skills << Skill.find_by(name: "Ruby")
 Opening.second.skills << Skill.find_by(name: "Ruby on Rails")
-Opening.second.skills << Skill.find_by(name: "Postgres")
+Opening.second.skills << Skill.find_by(name: "CSS")
+Opening.second.skills << Skill.find_by(name: "SASS")
+Opening.second.skills << Skill.find_by(name: "Java")
+Opening.second.skills << Skill.find_by(name: "C")
+Opening.third.skills << Skill.find_by(name: "C++")
+
 puts "done!"
