@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   scope '/api' do
     get '/current_user' => 'users#current'
     resources :users, only: [:show, :update]
-    get '/users/search' => 'users#search'
     # post '/users/:user_id/skills/:skill_id' => 'skill_links#create'
     # delete '/users/:user_id/skills/:skill_id' => 'skill_links#destroy'
 
@@ -16,11 +15,13 @@ Rails.application.routes.draw do
     resources :projects, only: [:show, :create, :update, :destroy] do
       resources :openings, only: [:create, :update, :destroy]
     end
-    get '/openings/search' => 'openings#search'
     # post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
     # delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
 
     resources :skills, only: [:index, :create, :update, :destroy]
+
+    get '/search/openings' => 'openings#search'
+    get '/search/users' => 'users#search'
   end
 
   # Authentication routes

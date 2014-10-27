@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # Since AJAX doesn't work well with the CAS filter, we check for authorization
   # and authentication manually
   before_filter :require_login, except: [:current]
-  before_filter :check_authorization_to_user, except: [:current, :show]
+  before_filter :check_authorization_to_user, only: [:update]
 
   # Get current user
   def current
@@ -16,29 +16,37 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:skills, :member_projects, :leading_projects)
+    @user = User.includes(:skills, :leading_projects)
       .find_by(netid: params[:id])
-    render json: @user, include: [:skills, :member_projects, :leading_projects]
+    if @user
+      render json: @user, include: [:skills, :leading_projects]
+    else
+      render_error "user not found", 404
+    end
   end
 
   def update
     @user = User.find_by(netid: params[:id]) # The :id key is set by Rails as default
-    render_error "user not found", 404 unless @user
-    # respond_with in PUT behaves unexpectedly, so using render instead
-    if @user.update_attributes(user_params)
-      if params[:skills].kind_of?(Array)
-        skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
-        @user.skill_ids = skill_ids.compact.uniq      # Remove nils
-        @user.save
-      end
-      render json: @user
+    unless @user
+      render_error "user not found", 404
     else
-      render_error "user couldn't be updated", 400
+      # respond_with in PUT behaves unexpectedly, so using render instead
+      if @user.update_attributes(user_params)
+        if params[:skills].kind_of?(Array)
+          skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
+          @user.skill_ids = skill_ids.compact.uniq      # Remove nils
+          @user.save
+        end
+        render json: @user
+      else
+        render_error "user couldn't be updated", 400
+      end
     end
   end
 
   def search
-    render json: "" # User.search(params[:q], params[:page])
+    render json: User.search(JSON.parse(params[:search], symbolize_names: true),
+      params[:page]), include: :skills
   end
 
   protected

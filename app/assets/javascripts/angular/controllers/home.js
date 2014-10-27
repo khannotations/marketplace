@@ -1,12 +1,15 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project", "Opening",
-  function($scope, $state, AuthService, Project, Opening) {
+marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project",
+  "Opening", "User",
+  function($scope, $state, AuthService, Project, Opening, User) {
     $scope.foundOpenings = []
     $scope.currentUser = AuthService.getCurrentUser();
+    $scope.searchParams = {q: ""}
     $scope.search = function() {
-      $scope.foundOpenings = Opening.search({q: $scope.searchInput});
-      $scope.searchInput = "";
+      $scope.foundOpenings = Opening.search({search: $scope.searchParams});
+      $scope.foundUsers = User.search({search: $scope.searchParams})
+      // $scope.searchParams.q = "";
     }
     $scope.clearCookies = function() {
     	AuthService.logout();

@@ -5,7 +5,8 @@ marketplace.factory("User", ["$resource", function($resource) {
   var User = $resource("/api/users/:netid.json", {netid: "@netid"}, 
     {
       update: {method: "PUT"}, // The update action is not there by default
-      getCurrent: {method: "GET", url: "/api/current_user.json"}
+      getCurrent: {method: "GET", url: "/api/current_user.json"},
+      search: {method: "GET", url: "/api/search/users", isArray: true}
     });
 
   return User;
@@ -19,7 +20,7 @@ marketplace.factory("User", ["$resource", function($resource) {
     {project_id: "@project_id", id: "@id"},
     {
       update: {method: "PUT"},
-      search: {method: "GET", url: "/api/openings/search", isArray: true}
+      search: {method: "GET", url: "/api/search/openings", isArray: true}
     }
   );
   // Don't change these without changing the backend values as well!

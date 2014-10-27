@@ -27,13 +27,4 @@
     </li>
   </ul>
   <p ng-if="!user.leading_projects.length">This user is not leading any projects</p>
-
-  <h4>Member projects</h4>
-  <ul>
-    <li ng-repeat="project in user.member_projects.length">
-      <p class="bold">{{project.name}}</p>
-      <p class="italic">{{project.description}}</p>
-    </li>
-  </ul>
-  <p ng-if="!user.member_projects.length">This user is not a member of any projects</p>
 </span>

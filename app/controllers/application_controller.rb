@@ -45,10 +45,10 @@ class ApplicationController < ActionController::Base
   end
 
   # This method assumes user_logged_in? is true
-  def check_authorization_to_user(user_id=nil)
-    id = user_id || params[:id].to_i
+  def check_authorization_to_user(user_netid=nil)
+    netid = user_netid || params[:id]
     @user = current_user
-    unless @user.id == id or @user.is_admin
+    unless @user.netid == netid or @user.is_admin
       render_error "access forbidden", 403
     end
   end

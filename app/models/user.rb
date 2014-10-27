@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :leading_projects, class_name: "Project", source: :leaders
   has_and_belongs_to_many :openings
-  has_many :member_projects, through: :openings, source: :members
+  # has_many :member_projects, through: :openings, source: :members
 
   has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
@@ -14,6 +14,21 @@ class User < ActiveRecord::Base
   has_attached_file :resume
   validates_attachment_content_type :resume, :content_type => "application/pdf"
   validates_attachment_size :resume, :less_than => 5.megabytes
+
+  pg_search_scope :basic_search,
+    against: [:first_name, :last_name, :email, :netid, :bio],
+    using: {tsearch: {dictionary: "english", any_word: true}}
+
+  def self.search(search_params, page=0)
+    page ||= 0
+    query = search_params[:q]
+    # TODO: how to match everything? Does postgres search do globbing? ie. *
+    matching_openings = basic_search(query) # match by name, desc
+    skill_openings = Skill.search(query).map(&:users).flatten
+    # TODO: Prioritize those that match by both
+    # TODO: Match by projects?
+    return (matching_openings + skill_openings).uniq
+  end
 
   def serializable_hash(options={})
     options = {

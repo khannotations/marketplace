@@ -29,18 +29,26 @@ class Opening < ActiveRecord::Base
   # Search is put here, though it returns Openings and User
   # Returns all openings that match any of the query terms, or whose project
   # does, or that have a skill that matches one of the query terms
+  # @param query Hash A "search object", that has the following keys:
+  #   q: the search query
+  #   timeframe: an array of valid timeframes
+  #   pay_gauge: an array of "pay gauges"
+  #     pay gauge 0: volunteer work
+  #     pay gauge 1: Less than $10/hour or $500
+  #     pay gauge 2: Less than $20/hour or $1500
+  #     pay gauge 3: More than that
   # TODO: how to sort?
   # TODO: eager load
-  def self.search(query, page=0)
+  def self.search(search_params, page=0)
     page ||= 0
+    query = search_params[:q]
+    # TODO: how to match everything? Does postgres search do globbing? ie. *
     matching_openings = thorough_search(query) # match by name, desc
     project_openings = Project.thorough_search(query).map(&:openings).flatten
     skill_openings = Skill.search(query).map(&:openings).flatten
     # TODO:Prioritize those that match by both
     return (matching_openings + project_openings + skill_openings).uniq
   end
-  # TODO: Term time
-  # TODO: Salary / lumpsum
 
   def serializable_hash(options={})
     options = {

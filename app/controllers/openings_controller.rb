@@ -38,7 +38,8 @@ class OpeningsController < ApplicationController
   end
 
   def search
-    render json: Opening.search(params[:q], params[:page])
+    render json: Opening.search(JSON.parse(params[:search], symbolize_names: true),
+      params[:page])
   end
 
   protected
