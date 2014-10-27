@@ -46,12 +46,9 @@ class UsersController < ApplicationController
 
   # Don't need to check authorization, becuase you can only star/unstar logged in user
   def star
-    Favorite.create(user_id: current_user.id, opening_id: params[:opening_id])
-    render json: current_user
-  end
-
-  def unstar
-    Favorite.find_by(user_id: current_user.id, opening_id: params[:opening_id]).destroy
+    @fav = Favorite.find_or_initialize_by(user_id: current_user.id,
+      opening_id: params[:opening_id])
+    @fav.persisted? ? @fav.destroy : @fav.save
     render json: current_user
   end
 

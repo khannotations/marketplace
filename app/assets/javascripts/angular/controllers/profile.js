@@ -7,7 +7,6 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
         currentUser.is_admin;
-      console.log($scope.user);
     });
 
     $scope.edit = function() {

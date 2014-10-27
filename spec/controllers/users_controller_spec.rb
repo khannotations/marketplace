@@ -116,7 +116,7 @@ RSpec.describe UsersController, :type => :controller do
     it "adds a favorite" do
       o = create(:opening)
       expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
-      post :star, opening_id: o.id
+      put :star, opening_id: o.id
       expect(response.status).to be 200
       expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
     end
@@ -125,7 +125,7 @@ RSpec.describe UsersController, :type => :controller do
       o = create(:opening)
       Favorite.create(user_id: @current_user.id, opening_id: o.id)
       expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
-      delete :unstar, opening_id: o.id
+      put :star, opening_id: o.id
       expect(response.status).to be 200
       expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
     end

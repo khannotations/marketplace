@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def serializable_hash(options={})
     options = {
-      :include => [:favorite_openings],
+      :methods => [:favorite_opening_ids],
       :except => [:created_at, :updated_at]
     }.update(options)
     super(options)

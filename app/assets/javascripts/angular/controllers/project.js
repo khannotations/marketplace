@@ -81,7 +81,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         if (index !== undefined) {
           // Remove opening
           var opening = new Opening($scope.project.openings.splice(index, 1)[0]);
-          console.log(opening);
           // Destroy it
           opening.$remove();
         } else {

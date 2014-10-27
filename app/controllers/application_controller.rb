@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     return nil unless user_logged_in?
     return @user if @user # Avoid database lookup if already defined
     @user = User.find_by(netid: session[:cas_user])
-    # First time logging, or for some other reason didn't populate fields
+    # First time logging in, or for some other reason didn't populate fields
     if not @user or not @user.email
       @user = User.get_info session[:cas_user]
     end

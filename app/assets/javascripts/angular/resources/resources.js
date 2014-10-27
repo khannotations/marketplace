@@ -7,8 +7,7 @@ marketplace.factory("User", ["$resource", function($resource) {
       update: {method: "PUT"}, // The update action is not there by default
       getCurrent: {method: "GET", url: "/api/current_user.json"},
       search: {method: "GET", url: "/api/search/users", isArray: true},
-      star: {method: "POST", url: "/api/star/:opending_id"},
-      unstar: {method: "DELETE", url: "/api/star/:opending_id"}
+      toggleStar: {method: "PUT", url: "/api/star/:opening_id"} // Toggle starred status
     });
 
   return User;

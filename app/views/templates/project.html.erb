@@ -19,6 +19,7 @@
 <!-- If the last opening doesn't have an ID, we're editing a new project -->
 <p class="a-like" ng-click="addOpening()" ng-if="canEdit && (project.openings[project.openings.length-1].id || !project.openings.length)">Add opening</p>
 <div class="opening" ng-repeat="opening in project.openings">
+  <span star class="a-like" opening-id="{{opening.id}}">Star</span>
   <form ng-submit="save($index)">
     <!-- A switch on the edit mode for this opening. True => not-editing -->
     <span ng-switch="!editingOpenings[$index]">
