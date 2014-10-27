@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   scope '/api' do
     get '/current_user' => 'users#current'
     resources :users, only: [:show, :update]
-    # post '/users/:user_id/skills/:skill_id' => 'skill_links#create'
-    # delete '/users/:user_id/skills/:skill_id' => 'skill_links#destroy'
+
+    post '/star/:opening_id' => 'users#star'
+    delete '/star/:opening_id' => 'users#unstar'
 
     # Projects and Openings
     resources :projects, only: [:show, :create, :update, :destroy] do

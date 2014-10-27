@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_openings, through: :favorites,
+    class_name: "Opening", source: :opening
+
+
   has_attached_file :resume
   validates_attachment_content_type :resume, :content_type => "application/pdf"
   validates_attachment_size :resume, :less_than => 5.megabytes
@@ -32,6 +37,7 @@ class User < ActiveRecord::Base
 
   def serializable_hash(options={})
     options = {
+      :include => [:favorite_openings],
       :except => [:created_at, :updated_at]
     }.update(options)
     super(options)
@@ -47,7 +53,8 @@ class User < ActiveRecord::Base
     title_regex = /^\s*Title:\s*$/i
     year_regex = /^\s*Class Year:\s*$/i
     browser = User.make_cas_browser
-    browser.get("http://directory.yale.edu/phonebook/index.htm?searchString=uid%3D#{netid}")
+    browser.get("http://directory.yale.edu/phonebook/index.htm?" + 
+      "searchString=uid%3D#{netid}")
     logger.debug "\n\nFetching info for #{netid} from Yale directory..."
     user = User.find_or_create_by(netid: netid)
     browser.page.search('tr').each do |tr|

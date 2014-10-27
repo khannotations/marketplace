@@ -111,5 +111,24 @@ RSpec.describe UsersController, :type => :controller do
       expect(response.body).to match "\"id\":#{@current_user.id}"
     end
   end
+
+  describe "star" do
+    it "adds a favorite" do
+      o = create(:opening)
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
+      post :star, opening_id: o.id
+      expect(response.status).to be 200
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
+    end
+
+    it "removes a favorite" do
+      o = create(:opening)
+      Favorite.create(user_id: @current_user.id, opening_id: o.id)
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
+      delete :unstar, opening_id: o.id
+      expect(response.status).to be 200
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
+    end
+  end
 end
 

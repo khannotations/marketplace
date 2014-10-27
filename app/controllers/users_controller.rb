@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:skills, :leading_projects)
+    @user = User.includes(:skills, :leading_projects, :favorite_openings)
       .find_by(netid: params[:id])
     if @user
       render json: @user, include: [:skills, :leading_projects]
@@ -42,6 +42,17 @@ class UsersController < ApplicationController
         render_error "user couldn't be updated", 400
       end
     end
+  end
+
+  # Don't need to check authorization, becuase you can only star/unstar logged in user
+  def star
+    Favorite.create(user_id: current_user.id, opening_id: params[:opening_id])
+    render json: current_user
+  end
+
+  def unstar
+    Favorite.find_by(user_id: current_user.id, opening_id: params[:opening_id]).destroy
+    render json: current_user
   end
 
   def search

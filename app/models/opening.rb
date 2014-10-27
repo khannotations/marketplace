@@ -11,6 +11,10 @@ class Opening < ActiveRecord::Base
   has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
 
+  has_many :favorites, dependent: :destroy
+  has_many :favoriting_users, through: :favorites,
+    class_name: "User", source: :user
+    
   # Scopes
   default_scope {includes(:skills)}
 

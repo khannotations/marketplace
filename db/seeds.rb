@@ -51,4 +51,7 @@ Opening.first.skills << Skill.find_by(name: "SASS")
 Opening.second.skills << Skill.find_by(name: "Ruby")
 Opening.second.skills << Skill.find_by(name: "Ruby on Rails")
 Opening.second.skills << Skill.find_by(name: "Postgres")
+
+rafi.skills << Skill.find_by(name: "Javascript")
+rafi.skills << Skill.find_by(name: "CSS")
 puts "done!"
