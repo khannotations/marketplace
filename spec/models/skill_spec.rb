@@ -35,16 +35,16 @@ RSpec.describe Skill, :type => :model do
     end
 
     it "finds by exact name" do
-      expect(Opening.search("ruby on rails")).to eq [@o]
+      expect(Opening.search({q: "ruby on rails"})).to eq [@o]
     end
 
     it "finds by part of name" do
-      expect(Opening.search("ruby")).to eq [@o]
-      expect(Opening.search("rails")).to eq [@o]
+      expect(Opening.search({q: "ruby"})).to eq [@o]
+      expect(Opening.search({q: "rails"})).to eq [@o]
     end
 
     it "misses when wrong name" do
-      expect(Opening.search("iOS")).to eq []
+      expect(Opening.search({q: "iOS"})).to eq []
     end
   end
 end

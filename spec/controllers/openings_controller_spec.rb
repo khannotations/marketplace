@@ -102,4 +102,24 @@ RSpec.describe OpeningsController, :type => :controller do
       expect(Opening.find_by(id: @opening.id)).to be_nil
     end
   end
+
+  describe "search" do
+    before(:each) do
+      p = {q: @opening.name}
+      @search_params = {search: p.to_json} # JSON params are strings
+    end
+
+    it "fails when not logged in" do
+      session[:cas_user] = nil
+      get :search, @search_params
+      expect(response.status).to be 403
+    end
+
+    it "works" do
+      get :search, @search_params
+      expect(response.status).to be 200
+      expect(response.body).to match /\[.*\]/
+      expect(response.body).to match "\"id\":#{@opening.id}"
+    end
+  end
 end
