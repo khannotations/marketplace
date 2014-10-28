@@ -4,7 +4,7 @@
 
 	font-family:$serif;
 	font-size:40px;
-	width:80%;
+	width:78%;
 	float: left;
 	margin-left:1.5%;
 
@@ -12,24 +12,24 @@
 		border:none;
 		border-bottom:1px solid $lighter-grey;
 		margin:0px;
-		margin-top: 30px;
-		margin-bottom: 0px;
+		margin-top: 45px;
+		margin-bottom: 10px;
 		padding:0px;
-		height:72px;
+		height:62px;
 	}
 	p{
-		padding-top: 8px;
+		padding-top: 3px;
 	}
 	input{
 		width:100%;
-		margin-top: 30px;
+		margin-top: 40px;
 	}
 }
 
 .project-info{
 	font-family:$sans;
 	margin: 0px;
-	width:100%;
+	width:78%;
 	margin-left:2%;
 	color:$light-grey;
 	.author, .views{
@@ -43,38 +43,13 @@
 	}
 }
 
-.project-buttons-wrapper{
-	float: right;
-	width: 15%;
-}
-
-.edit-button{
-	width: 100%;
-	margin-top:54px;
-}
-
-.save, .cancel{
-	width: 100%;
-	margin-top:10px;
-	float: right;
-}
-.cancel{
-	clear: right;
-}
-
-.project-description-wrapper{
-	float: left;
-	width:80%;
-	//max-height:300px;
-}
-
 .project-description{
 	clear:both;
 	margin-top:0px;
-	margin-left: 2%;
+	margin-left: 1.5%;
 	margin-bottom:50px;
 	font-size:16px;
-	width:100%;
+	width:78%;
 	textarea{
 		margin-top: 0px;
 		width:100%;
@@ -86,68 +61,88 @@
 	}
 }
 
-/* OPENINGS */
+///////////////////
+/* BUTTON STYLES */
+///////////////////
 
-.project-openings-wrapper{
-	margin-left:1.5%;
-
+.top-button{
+	margin-top:20px;
 }
 
-.openings-header{
+.save{
+	&:hover{
+		background-color:$green;
+		border: 1px solid $green;
+	}
+}
+
+.cancel{
+	&:hover{
+		background-color:$red;
+		border:1px solid $red;
+	}
+}
+
+//////////////
+/* OPENINGS */
+//////////////
+.openings-heading{
 	//clear:both;
 	float: left;
-	width:80%;
+	width:78%;
 	font-family:$serif;
 	font-size:30px;
-	padding-bottom:15px;
+	padding-bottom:5px;
 	margin-top:0px;
+	margin-left:2%;
 	border-bottom:1px solid $lighter-grey;
 }
 
 .add-opening{
-	float: right;
-	margin-top: 10px;
+	margin-top: 8px;
 }
 
-.project-opening{
-	display:inline-block;
-	border:1px solid $lighter-grey;
-	@include border-radius(2px);
-	width:100%;
-	min-height:140px;
-	margin-bottom:30px;
-}
 
 /* Styles for "opening" that are
 different from home */
+
+.project-opening{
+	margin-left:2%;
+	width:98%;
+
+	&:hover{
+		border: 1px $lighter-grey solid;
+	}
+
+	.opening-descrption{
+		margin-bottom: 0px;
+	}
+}
+
 .project-opening .col-1{
+
 	width:55%;
-	
 	.opening-name{
-		width:70%;
-		margin-right: 0px;
-	
+		p{margin-bottom: 0px};
 	}
 	input{
 		width: 70%;
+		border:none;
 		border-bottom:1px solid $lighter-grey;
 	}
 	textarea{
 		width:100%;
 		height:120px;
-	}
-	.edit-button{
-		float: left;
-		font-family: $sans;
-		color:$light-grey;
-		margin-left: 10px;
-		width:30%;
+		border:none;
 	}
 }
 
 
 .project-opening .col-2{
-	widows: 22px%;
+
+	width: 20%;
+	padding-left:1%;
+
 	select{
 		div{
 			width:70%;
@@ -168,13 +163,46 @@ different from home */
 
 .project-opening .col-3{
 
+	width: 20%;
+
 	span, input{
 	display:inline-block;
 	width:100%;
 	}
-	input.pay{
-		width: 100px;
+	input{
+		width: 50%;
+		font-size:30px;
+		margin-left:25%;
+		margin-right: 25%;
+		text-align: center;
+	}
 
+	select{
+		width:45%;
+	}
+
+	.pay, input{
+		margin-top: 25px;
+	}
+
+	.options-button{
+		float:none;
+		margin: auto;
+		margin-top: 15px;
+		display:inline-block;
+		width: 40%;
+		height: 30px;
+		p{
+			font-size:13px;
+			padding-top:6px;
+		}
+	}
+
+	.save{
+		font-family: $serif;
+		font-size:13px;
+		font-color:$light-grey;
+		padding:0px;
 	}
 }
 

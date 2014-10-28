@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 <div class="container">
 
   <div class="search">
     <form class='main-search' ng-submit="search()">
       <div class="searchbox">
-        <img src="../../assets/images/searchicon.jpg" alt="" class="searchicon"></img>
-        <input type="text" class="searchfield" ng-model="searchInput">
+        <img src="/assets/searchicon.jpg" alt="" class="searchicon"></img>
+        <input type="text" class="searchfield" ng-model="searchParams.q">
       </div>
     </form>
     <div class="options-button">
@@ -16,24 +15,6 @@
       <img src="" alt="" class="down-arrow">
     </div>
   </div>
-
-<h1>Welcome to the Yale Projects Marketplace!</h1>
-<p>
-  <a ui-sref="profile({netid: currentUser.netid})">View profile</a>
-</p>
-<p class="a-like" ng-click="createProject()">Create a project</p>
-<div ng-if="newProject">
-  <input type="text" ng-model="newProject.name">
-  <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
-  <button ng-click="saveNewProject()">Save</button>
-  <button ng-click="cancelNewProject()">Cancel</button>
-</div>
-<h2>Search here:</h2>
-<form ng-submit="search()">
-  <input type="text" ng-model="searchParams.q">
-  <input type="submit" value="Search!">
-</form>
-
 
   <div class="welcome" ng-if="hasSearched == 0">
     <h1 >Welcome to the</h1>
@@ -48,31 +29,29 @@
 
     <h4 class="no-openings" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</h4>
 
-    <div class="home-opening" ng-repeat="opening in foundOpenings">
+    <div class="opening" ng-init="inLimit=4" ng-repeat="opening in foundOpenings">
 
+      <!-- name & description -->
       <div ui-sref="project({id: opening.project_id})" class="col-1">
       <a ui-sref="project({id: opening.project_id})">  
         <h1 class="opening-name">{{opening.name}}</h1>
       </a>
-      <h2 class="opening-project-name">YALE ROBOTICS DRIVE{{opening.project.name}}</h2>
+      <h2 class="opening-subheader">YALE ROBOTICS DRIVE{{opening.project.name}}</h2>
         <p class="opening-description">{{opening.description}}</p>
         <p class="posted-by">POSTED BY Stan Eisenstat {{opening.postedBy}} ON 9/1/1976{{opening.postedDate}}</p>
-
       </div>
 
       <div class="vert-divider"></div>
 
+      <!-- skills --> 
       <div class="col-2">
       <p>SKILLS</p>
-        <ul class="some-skills">
-          <li ng-repeat="skill in opening.skills | limitTo:limit">
+        <ul class="some-skills" ng-click="inLimit = 20" ng-click"inLimit = 4">
+          <li ng-repeat="skill in opening.skills | limitTo:inLimit" >
             {{skill.name}}
           </li>
-          <li class="more" ng-if="opening.skills.length > 4 && limit == 4" ng-click="toggleSkills()">
-            More...
-          </li>
-          <li class="less" ng-show="limit > 4" ng-click="toggleSkills()">
-            Less...
+          <li class="more" ng-if="opening.skills.length > 4 && inLimit == 4">
+            Show all...
           </li>
         </ul>
 
@@ -80,34 +59,92 @@
 
       <div class="vert-divider"></div>
 
-      <div class="col-3"> 
+      <!-- pay info -->
+      <div ui-sref="project({id: opening.project_id})" class="col-3"> 
         <p class="pay">${{opening.pay_amount}}</p>
         <p class="pay-type">{{opening.pay_type}}</p>
-        <p class="time">{{opening.timeframe}}</p>
+        <p class="time">({{opening.timeframe}})</p>
       </div>
     </div>
 
+    <p ng-if="foundUsers.length > 0 && hasSearched == 1">Found {{foundUsers.length}} users who match your search.</p>
+    <h4 class="no-openings" ng-if="!foundUsers.length && hasSearched == 1">No users match your search</h4>
+
+    <div class="opening" ng-repeat="user in foundUsers" ui-sref="profile({netid: user.netid})">
+
+      <div class="col-1">
+        <h1 class="opening-name" >{{user.first_name}} {{user.last_name}}
+        </h1>
+        <h2 class="user-info opening-subheader">{{user.college}} {{user.year}}</h2>
+        <p class="bio">{{user.bio}}</p>
+      </div>
+
+      <div class="vert-divider"></div>
+
+      <div class="col-2">
+        <p>SKILLS</p>
+        <ul>
+          <li ng-repeat="skill in user.skills">
+            {{skill.name}}
+          </li>
+       </ul>
+      </div>
+
+      <div class="vert-divider"></div>
+      
+      <div class="col-2">
+        <p>CONTACT</p>
+        <p>{{email}}</p>
+        <p>{{github_url}}</p>
+        <p>{{linkedin_url}}</p>
+      </div>
+
+
+    </div>
+
   </div>
-<p>Found Users</p>
-<h4 ng-if="!foundUsers.length">No users found!</h4>
-<div ng-repeat="user in foundUsers">
-  <p style="font-weight:bold;">
-    <a ui-sref="profile({netid: user.netid})">{{user.first_name}} {{user.last_name}}</a>
-  </p>
-  <p style="font-style:italic;">{{user.bio}}</p>
-  <p>Skills:</p>
-  <ul>
-    <li ng-repeat="skill in user.skills">
-      {{skill.name}}
-    </li>
-  </ul>
-</div>
 
-<h2>Footer</h2>
-<a onclick="window.location.assign('<%= login_path %>')">login</a>
-<a ng-click="clearCookies()">logout</a>
->
 
-  <div class="more-options"></div>
+  <div class="more-options">
+
+    <!-- this will eventually move to the sidebar -->
+
+<!-- <p>
+      <a ui-sref="profile({netid: currentUser.netid})">View profile</a>
+    </p>
+    <p class="a-like" ng-click="createProject()">Create a project</p>
+    <div ng-if="newProject">
+      <input type="text" ng-model="newProject.name">
+      <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
+      <button ng-click="saveNewProject()">Save</button>
+      <button ng-click="cancelNewProject()">Cancel</button>
+    </div> -->
+
+    <h1>SHOW</h1>
+      <div class="option-bubble">
+        <div class="left">
+          <p>users</p>
+        </div>
+        <div class="right">
+          <p>openings</p>
+        </div>
+      </div>
+
+    <h1>SORT BY</h1>
+
+    <h1>FILTER ON</h1>
+      <div class="option-bubble">
+        <div class="top-bubble">
+          <p>term-time</p>
+        </div>
+        <div class="middle">
+          <p>summer</p>
+        </div>
+        <div class="bottom">
+          <p>full-time</p>
+        </div>
+      </div>
+
+  </div>
 
 </div>

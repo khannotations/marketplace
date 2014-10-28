@@ -5,10 +5,9 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
   function($scope, $state, AuthService, Project, Opening, User) {
     $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
-    var numSkills = 4;
-    $scope.limit = numSkills;
     $scope.hasSearched = 0;
-    $scope.searchParams = {q: ""}
+    $scope.searchParams = {q: ""};
+
     $scope.search = function() {
 
       $scope.hasSearched = 1;
@@ -20,21 +19,15 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
     	AuthService.logout();
       window.location.assign('/logout');
     }
-<<<<<<< HEAD
+
     $scope.$watch("user", function() {
       // Run every time "user" changes
       // if ($scope.user.netid)...
     })
-    $scope.toggleSkills = function() {
-      if($scope.limit < 10){
-        $scope.limit = 10;
-      }
-      else if($scope.limit == 10){
-        $scope.limit = numSkills;
-      }
-    }
+
     $scope.showOptions = function() {
-      $(".more-options").slideToggle(200);
+      $(".more-options").fadeToggle(100);
+    }
 
     $scope.createProject = function() {
       $scope.newProject = new Project;
@@ -49,5 +42,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
     $scope.cancelNewProject = function() {
       delete $scope.newProject;
     }
+
   }]);
 
