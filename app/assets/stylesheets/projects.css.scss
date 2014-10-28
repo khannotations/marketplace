@@ -1,0 +1,180 @@
+
+
+.project-heading{
+
+	font-family:$serif;
+	font-size:40px;
+	width:80%;
+	float: left;
+	margin-left:1.5%;
+
+	input, p{
+		border:none;
+		border-bottom:1px solid $lighter-grey;
+		margin:0px;
+		margin-top: 30px;
+		margin-bottom: 0px;
+		padding:0px;
+		height:72px;
+	}
+	p{
+		padding-top: 8px;
+	}
+	input{
+		width:100%;
+		margin-top: 30px;
+	}
+}
+
+.project-info{
+	font-family:$sans;
+	margin: 0px;
+	width:100%;
+	margin-left:2%;
+	color:$light-grey;
+	.author, .views{
+		margin-top:5px;
+	}
+	.author{
+		float: left;
+	}
+	.views{
+		float: right;
+	}
+}
+
+.project-buttons-wrapper{
+	float: right;
+	width: 15%;
+}
+
+.edit-button{
+	width: 100%;
+	margin-top:54px;
+}
+
+.save, .cancel{
+	width: 100%;
+	margin-top:10px;
+	float: right;
+}
+.cancel{
+	clear: right;
+}
+
+.project-description-wrapper{
+	float: left;
+	width:80%;
+	//max-height:300px;
+}
+
+.project-description{
+	clear:both;
+	margin-top:0px;
+	margin-left: 2%;
+	margin-bottom:50px;
+	font-size:16px;
+	width:100%;
+	textarea{
+		margin-top: 0px;
+		width:100%;
+		font-size:16px;
+		border:none;
+	}
+	p{
+		margin-top: 0px;
+	}
+}
+
+/* OPENINGS */
+
+.project-openings-wrapper{
+	margin-left:1.5%;
+
+}
+
+.openings-header{
+	//clear:both;
+	float: left;
+	width:80%;
+	font-family:$serif;
+	font-size:30px;
+	padding-bottom:15px;
+	margin-top:0px;
+	border-bottom:1px solid $lighter-grey;
+}
+
+.add-opening{
+	float: right;
+	margin-top: 10px;
+}
+
+.project-opening{
+	display:inline-block;
+	border:1px solid $lighter-grey;
+	@include border-radius(2px);
+	width:100%;
+	min-height:140px;
+	margin-bottom:30px;
+}
+
+/* Styles for "opening" that are
+different from home */
+.project-opening .col-1{
+	width:55%;
+	
+	.opening-name{
+		width:70%;
+		margin-right: 0px;
+	
+	}
+	input{
+		width: 70%;
+		border-bottom:1px solid $lighter-grey;
+	}
+	textarea{
+		width:100%;
+		height:120px;
+	}
+	.edit-button{
+		float: left;
+		font-family: $sans;
+		color:$light-grey;
+		margin-left: 10px;
+		width:30%;
+	}
+}
+
+
+.project-opening .col-2{
+	widows: 22px%;
+	select{
+		div{
+			width:70%;
+		}
+	}
+	
+}
+
+.skill-list{
+	font-family:$sans;
+	margin-top:0px;
+	margin-bottom:0px;
+	li{
+		width:50%;
+		float: left;
+	}
+}
+
+.project-opening .col-3{
+
+	span, input{
+	display:inline-block;
+	width:100%;
+	}
+	input.pay{
+		width: 100px;
+
+	}
+}
+

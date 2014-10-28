@@ -130,9 +130,9 @@
 	color:$lighter-grey;
 }
 
-.opening{
+.home-opening{
 	width: 100%;
-	min-height:150px;
+	min-height:160px;
 	border: 1px $light-grey solid;
 	margin-bottom: 20px;
 	overflow:auto;
@@ -150,9 +150,21 @@
 	font-weight:400;
 	color:$yale-blue;
 	font-size: 28px;
-	//letter-spacing:-.5px;
-	margin-bottom:2px;
+	margin-bottom:0px;
+	line-height:30px;
 	margin-top:12px;
+}
+
+.opening-project-name{
+	text-transform:uppercase;
+	font-family:$sans;
+	color:$light-grey;
+	font-size:14px;
+	letter-spacing:0.5px;
+	font-weight:400;
+	margin-top:0px;
+	margin-left:2px;
+	margin-bottom:8px;
 }
 
 .opening-description{
@@ -195,7 +207,6 @@
 	list-style-type:none;
 	padding:0px;
 	margin:0px;
-	margin-bottom:10px;
 	font-size:14px;
 }
 
@@ -226,7 +237,7 @@
 	margin-bottom:4px;
 }
 
-.pay-type{
+.pay-type, .time{
 	color:$light-grey;
 	font-size:14px;
 	letter-spacing:1.2px;
@@ -234,9 +245,8 @@
 	margin-bottom:10px;
 }
 
-.time, .perweek{
-	margin:0px;
-	line-height: 14px;
+.pay-type{
+	text-transform:uppercase;
 }
 
 .posted-by{

@@ -29,12 +29,13 @@
 
     <h4 class="no-openings" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</h4>
 
-    <div class="opening" ng-repeat="opening in foundOpenings">
+    <div class="home-opening" ng-repeat="opening in foundOpenings">
 
-      <div class="col-1">
+      <div ui-sref="project({id: opening.project_id})" class="col-1">
       <a ui-sref="project({id: opening.project_id})">  
         <h1 class="opening-name">{{opening.name}}</h1>
       </a>
+      <h2 class="opening-project-name">YALE ROBOTICS DRIVE{{opening.project.name}}</h2>
         <p class="opening-description">{{opening.description}}</p>
         <p class="posted-by">POSTED BY Stan Eisenstat {{opening.postedBy}} ON 9/1/1976{{opening.postedDate}}</p>
 
@@ -61,10 +62,9 @@
       <div class="vert-divider"></div>
 
       <div class="col-3"> 
-        <p class="pay">$20/hr {{skill.pay}}</p>
-        <p class="pay-type">HOURLY {{skill.payType}}</p>
-        <p class="time">5 - 10 hours</p>
-        <p class="perweek">per week</p>
+        <p class="pay">${{opening.pay_amount}}</p>
+        <p class="pay-type">{{opening.pay_type}}</p>
+        <p class="time">{{opening.timeframe}}</p>
       </div>
     </div>
 
