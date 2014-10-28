@@ -7,6 +7,7 @@ class CreateOpenings < ActiveRecord::Migration
       t.string :timeframe
       t.integer :pay_amount
       t.string :pay_type
+      t.integer :num_slots
 
       t.timestamps
     end

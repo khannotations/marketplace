@@ -16,6 +16,7 @@ project = Project.create({
 
 We want to solve this coordination with an online projects board that allows those looking for programmers, designers, and engineers (“leaders”) to post their ideas online and recruit talent, and give those looking for projects (“members”) a central location to start their search. The goal is to be professional enough that people take themselves and others seriously on the site, but not so seriously that people short on experience are intimidated. This would also present an exciting opportunity to aggregate data about what kinds of projects are being created at Yale, as well as what skills are most desired."
 })
+project.leaders << rafi
 print "creating openings..."
 openings = [
   {
@@ -50,4 +51,7 @@ Opening.first.skills << Skill.find_by(name: "SASS")
 Opening.second.skills << Skill.find_by(name: "Ruby")
 Opening.second.skills << Skill.find_by(name: "Ruby on Rails")
 Opening.second.skills << Skill.find_by(name: "Postgres")
+
+rafi.skills << Skill.find_by(name: "Javascript")
+rafi.skills << Skill.find_by(name: "CSS")
 puts "done!"

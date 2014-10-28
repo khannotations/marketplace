@@ -12,10 +12,17 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
-    }).state("project", { // Example route for testing
+    }).state("project", {
       url: "/projects/:id",
       templateUrl: "/templates/project",
       controller: "ProjectCtrl",
+      data: {
+        authorizedRoles: ["ADMIN", "USER"]
+      }
+    }).state("profile", {
+      url: "/profile/:netid",
+      templateUrl: "/templates/profile",
+      controller: "ProfileCtrl",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }

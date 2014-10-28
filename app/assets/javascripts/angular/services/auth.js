@@ -55,5 +55,19 @@ angular.module("Marketplace")
 		authService.logout = function() {
 			$cookieStore.remove(COOKIE_KEY);
 		}
+
+		authService.isStarred = function(index) {
+			var user = $cookieStore.get(COOKIE_KEY);
+			return user.favorite_opening_ids.indexOf(index) !== -1;
+		}
+		authService.toggleStar = function(index) {
+			var user = $cookieStore.get(COOKIE_KEY);
+			if (!authService.isStarred(index)) {
+				user.favorite_opening_ids.push(index);
+			} else {
+				user.favorite_opening_ids = _.without(user.favorite_opening_ids, index);
+			}
+			$cookieStore.put(COOKIE_KEY, user);
+		}
 		return authService;
 	}]);

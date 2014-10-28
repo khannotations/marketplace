@@ -4,19 +4,40 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email, :netid
   validates_uniqueness_of :email, :netid
 
-  has_and_belongs_to_many :leading_projects, class_name: "Project"
+  has_and_belongs_to_many :leading_projects, class_name: "Project", source: :leaders
   has_and_belongs_to_many :openings
-  has_many :member_projects, through: :openings
+  # has_many :member_projects, through: :openings, source: :members
 
   has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
+
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_openings, through: :favorites,
+    class_name: "Opening", source: :opening
+
 
   has_attached_file :resume
   validates_attachment_content_type :resume, :content_type => "application/pdf"
   validates_attachment_size :resume, :less_than => 5.megabytes
 
+  pg_search_scope :basic_search,
+    against: [:first_name, :last_name, :email, :netid, :bio],
+    using: {tsearch: {dictionary: "english", any_word: true}}
+
+  def self.search(search_params, page=0)
+    page ||= 0
+    query = search_params[:q]
+    # TODO: how to match everything? Does postgres search do globbing? ie. *
+    matching_openings = basic_search(query) # match by name, desc
+    skill_openings = Skill.search(query).map(&:users).flatten
+    # TODO: Prioritize those that match by both
+    # TODO: Match by projects?
+    return (matching_openings + skill_openings).uniq
+  end
+
   def serializable_hash(options={})
     options = {
+      :methods => [:favorite_opening_ids],
       :except => [:created_at, :updated_at]
     }.update(options)
     super(options)
@@ -32,7 +53,8 @@ class User < ActiveRecord::Base
     title_regex = /^\s*Title:\s*$/i
     year_regex = /^\s*Class Year:\s*$/i
     browser = User.make_cas_browser
-    browser.get("http://directory.yale.edu/phonebook/index.htm?searchString=uid%3D#{netid}")
+    browser.get("http://directory.yale.edu/phonebook/index.htm?" + 
+      "searchString=uid%3D#{netid}")
     logger.debug "\n\nFetching info for #{netid} from Yale directory..."
     user = User.find_or_create_by(netid: netid)
     browser.page.search('tr').each do |tr|

@@ -29,17 +29,17 @@ RSpec.describe Opening, :type => :model do
       end
       it "finds through project name" do
         expect(Project.thorough_search("economics")).to eq [@o1.project]
-        expect(Opening.search("economics")).to eq [@o1]
+        expect(Opening.search({q: "economics"})).to eq [@o1]
       end
 
       it "finds through project description (inclusive)" do
-        expect(Opening.search("psychology")).to eq [@o2]
-        expect(Opening.search("brain psychology")).to eq [@o2]
-        expect(Opening.search("child psychology")).to eq [@o2]
+        expect(Opening.search({q: "psychology"})).to eq [@o2]
+        expect(Opening.search({q: "brain psychology"})).to eq [@o2]
+        expect(Opening.search({q: "child psychology"})).to eq [@o2]
       end
 
       it "does close search on project" do
-        expect(Opening.search("psychologic")).to eq [@o2]
+        expect(Opening.search({q: "psychologic"})).to eq [@o2]
       end
     end
 
@@ -50,7 +50,7 @@ RSpec.describe Opening, :type => :model do
       end
 
       it "finds using name" do
-        expect(Opening.search("angular")).to eq [@o1]
+        expect(Opening.search({q: "angular"})).to eq [@o1]
       end
     end
 

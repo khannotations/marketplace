@@ -1,20 +1,45 @@
 <h1>Welcome to the Yale Projects Marketplace!</h1>
+<p>
+  <a ui-sref="profile({netid: currentUser.netid})">View profile</a>
+</p>
+<p class="a-like" ng-click="createProject()">Create a project</p>
+<div ng-if="newProject">
+  <input type="text" ng-model="newProject.name">
+  <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
+  <button ng-click="saveNewProject()">Save</button>
+  <button ng-click="cancelNewProject()">Cancel</button>
+</div>
 <h2>Search here:</h2>
 <form ng-submit="search()">
-  <input type="text" ng-model="searchInput">
+  <input type="text" ng-model="searchParams.q">
   <input type="submit" value="Search!">
 </form>
 
 <p>Found openings</p>
 <h4 ng-if="!foundOpenings.length">No openings found!</h4>
 <div ng-repeat="opening in foundOpenings">
-  <a ui-sref="project({id: opening.project_id})">
-    <p style="font-weight:bold;">{{opening.name}}</p>
-  </a>
+  <p style="font-weight:bold;">
+    <a ui-sref="project({id: opening.project_id})">{{opening.name}}</a>
+  </p>
   <p style="font-style:italic;">{{opening.description}}</p>
   <p>Skills:</p>
   <ul>
     <li ng-repeat="skill in opening.skills">
+      {{skill.name}}
+    </li>
+  </ul>
+</div>
+
+<p>Found Users</p>
+<h4 ng-if="!foundUsers.length">No users found!</h4>
+<div ng-repeat="user in foundUsers">
+  <p style="font-weight:bold;">
+    <a ui-sref="profile({netid: user.netid})">{{user.first_name}} {{user.last_name}}</a>
+  </p>
+  <p style="font-style:italic;">{{user.bio}}</p>
+  <p>Skills:</p>
+  <ul>
+    <li ng-repeat="skill in user.skills">
       {{skill.name}}
     </li>
   </ul>

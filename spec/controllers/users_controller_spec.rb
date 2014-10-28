@@ -26,20 +26,20 @@ RSpec.describe UsersController, :type => :controller do
   describe "show [profile]" do
     it "forbids when not logged in" do
       session[:cas_user] = nil
-      get :show, id: @current_user.id
+      get :show, id: @current_user.netid
       expect(response.status).to be 403
     end
 
     it "gets correct user with valid id" do
       user = create(:user)
-      get :show, id: user.id
+      get :show, id: user.netid
       expect(response.status).to be 200
       expect(response.body).to match "\"netid\":\"#{user.netid}\""
       expect(response.body).to_not match "\"netid\":\"not the user netid\""
     end
 
-    it "throws error with invalid id" do
-      get :show, id: -1
+    it "throws error with invalid netid" do
+      get :show, id: "somethingthat'snotanetid"
       expect(response.status).to be 404
       expect(response.body).to match "\"error\":"
     end
@@ -50,7 +50,7 @@ RSpec.describe UsersController, :type => :controller do
       user = create(:user)
       old_first_name = user.first_name
       user.first_name = "Rafi++"
-      put :update, user.attributes
+      put :update, user.attributes.merge({id: user.netid})
       expect(response.status).to be 403
     end
 
@@ -60,7 +60,7 @@ RSpec.describe UsersController, :type => :controller do
       @current_user.first_name = "MechaStan"
       @current_user.email = "stn1337@yalemail.com"
       @current_user.last_name = "TheMan"
-      put :update, @current_user.attributes 
+      put :update, @current_user.attributes.merge({id: @current_user.netid})
       expect(response.status).to be 200
       expect(response.body).to match "\"first_name\":\"MechaStan\""
       expect(response.body).to match "\"email\":\"#{old_email}\""
@@ -73,8 +73,8 @@ RSpec.describe UsersController, :type => :controller do
       expect(User.find(@current_user.id).skills).to eq [skill1]
       skill2 = create(:skill)
       skill3 = create(:skill)
-      put :update, @current_user.attributes.merge({skills:
-        [skill2.attributes, skill3.attributes]})
+      put :update, @current_user.attributes.merge({id: @current_user.netid,
+        skills: [skill2.attributes, skill3.attributes]})
       expect(response.status).to be 200
       # After, has new skills, not old one
       expect(User.find(@current_user.id).skills).to eq [skill2, skill3]
@@ -86,9 +86,48 @@ RSpec.describe UsersController, :type => :controller do
       user = create(:user)
       old_first_name = user.first_name
       user.first_name = "RobotRafi"
-      put :update, user.attributes
+      put :update, user.attributes.merge({id: user.netid})
       expect(response.status).to be 200
       expect(response.body).to match "RobotRafi"
+    end
+  end
+
+  describe "search" do
+    before(:each) do
+      p = {q: @current_user.first_name}
+      @search_params = {search: p.to_json} # JSON params are strings
+    end
+
+    it "forbids unless logged in" do
+      session[:cas_user] = nil
+      get :search, @search_params
+      expect(response.status).to be 403
+    end
+
+    it "works" do
+      get :search, @search_params
+      expect(response.status).to be 200
+      expect(response.body).to match /\[.*\]/
+      expect(response.body).to match "\"id\":#{@current_user.id}"
+    end
+  end
+
+  describe "star" do
+    it "adds a favorite" do
+      o = create(:opening)
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
+      put :star, opening_id: o.id
+      expect(response.status).to be 200
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
+    end
+
+    it "removes a favorite" do
+      o = create(:opening)
+      Favorite.create(user_id: @current_user.id, opening_id: o.id)
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to_not be_nil
+      put :star, opening_id: o.id
+      expect(response.status).to be 200
+      expect(Favorite.find_by(user_id: @current_user.id, opening_id: o.id)).to be_nil
     end
   end
 end
