@@ -10,9 +10,12 @@
   <button ng-click="cancelNewProject()">Cancel</button>
 </div>
 <h2>Search here:</h2>
-<form ng-submit="search()">
+<form ng-submit="searchEntered()">
   <input type="text" ng-model="searchParams.q">
   <input type="submit" value="Search!">
+  <input type="checkbox" ng-model="tfs_['termtime']"> termtime
+  <input type="checkbox" ng-model="tfs_['summer']"> summer
+  <input type="checkbox" ng-model="tfs_['fulltime']"> fulltime
 </form>
 
 <p>Found openings</p>
@@ -22,6 +25,7 @@
     <a ui-sref="project({id: opening.project_id})">{{opening.name}}</a>
   </p>
   <p style="font-style:italic;">{{opening.description}}</p>
+  <p>{{opening.timeframe}} | {{opening.pay_amount}} | {{opening.pay_type}}</p>
   <p>Skills:</p>
   <ul>
     <li ng-repeat="skill in opening.skills">

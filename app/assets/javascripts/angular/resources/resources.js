@@ -26,7 +26,7 @@ marketplace.factory("User", ["$resource", function($resource) {
   );
   // Don't change these without changing the backend values as well!
   Opening.PAY_TYPES = ["hourly", "lumpsum", "volunteer"]
-  Opening.TIMEFRAMES = ["termtime", "summer", "full time"]
+  Opening.TIMEFRAMES = ["termtime", "summer", "fulltime"]
 
   return Opening;
 }]).factory("Skill", ["$resource", function($resource) {

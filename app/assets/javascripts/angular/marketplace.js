@@ -6,9 +6,10 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
     $stateProvider
 
     .state("home", {
-      url: "/",
+      url: "/?q&tfs&p&pt",
       templateUrl: "/templates/home",
       controller: "HomeCtrl",
+      reloadOnSearch: false,
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
