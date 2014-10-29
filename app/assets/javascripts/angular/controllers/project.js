@@ -6,8 +6,10 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
     $scope.project = Project.get({id: $stateParams.id}, function() {
       // Only allow edits if admin or project leader
       var user = AuthService.getCurrentUser();
-      $scope.canEdit = (user.is_admin || 
-        _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+      $scope.canEdit = true;
+
+      //(user.is_admin || 
+       // _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
     });
     $scope.editingProject = null; // The previous version of the project being edited
     $scope.editingOpenings = {};  // Previous versions of the openings being edited

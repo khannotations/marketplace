@@ -1,0 +1,208 @@
+
+
+.project-heading{
+
+	font-family:$serif;
+	font-size:40px;
+	width:78%;
+	float: left;
+	margin-left:1.5%;
+
+	input, p{
+		border:none;
+		border-bottom:1px solid $lighter-grey;
+		margin:0px;
+		margin-top: 45px;
+		margin-bottom: 10px;
+		padding:0px;
+		height:62px;
+	}
+	p{
+		padding-top: 3px;
+	}
+	input{
+		width:100%;
+		margin-top: 40px;
+	}
+}
+
+.project-info{
+	font-family:$sans;
+	margin: 0px;
+	width:78%;
+	margin-left:2%;
+	color:$light-grey;
+	.author, .views{
+		margin-top:5px;
+	}
+	.author{
+		float: left;
+	}
+	.views{
+		float: right;
+	}
+}
+
+.project-description{
+	clear:both;
+	margin-top:0px;
+	margin-left: 1.5%;
+	margin-bottom:50px;
+	font-size:16px;
+	width:78%;
+	textarea{
+		margin-top: 0px;
+		width:100%;
+		font-size:16px;
+		border:none;
+	}
+	p{
+		margin-top: 0px;
+	}
+}
+
+///////////////////
+/* BUTTON STYLES */
+///////////////////
+
+.top-button{
+	margin-top:20px;
+}
+
+.save{
+	&:hover{
+		background-color:$green;
+		border: 1px solid $green;
+	}
+}
+
+.cancel{
+	&:hover{
+		background-color:$red;
+		border:1px solid $red;
+	}
+}
+
+//////////////
+/* OPENINGS */
+//////////////
+.openings-heading{
+	//clear:both;
+	float: left;
+	width:78%;
+	font-family:$serif;
+	font-size:30px;
+	padding-bottom:5px;
+	margin-top:0px;
+	margin-left:2%;
+	border-bottom:1px solid $lighter-grey;
+}
+
+.add-opening{
+	margin-top: 8px;
+}
+
+
+/* Styles for "opening" that are
+different from home */
+
+.project-opening{
+	margin-left:2%;
+	width:98%;
+
+	&:hover{
+		border: 1px $lighter-grey solid;
+	}
+
+	.opening-descrption{
+		margin-bottom: 0px;
+	}
+}
+
+.project-opening .col-1{
+
+	width:55%;
+	.opening-name{
+		p{margin-bottom: 0px};
+	}
+	input{
+		width: 70%;
+		border:none;
+		border-bottom:1px solid $lighter-grey;
+	}
+	textarea{
+		width:100%;
+		height:120px;
+		border:none;
+	}
+}
+
+
+.project-opening .col-2{
+
+	width: 20%;
+	padding-left:1%;
+
+	select{
+		div{
+			width:70%;
+		}
+	}
+	
+}
+
+.skill-list{
+	font-family:$sans;
+	margin-top:0px;
+	margin-bottom:0px;
+	li{
+		width:50%;
+		float: left;
+	}
+}
+
+.project-opening .col-3{
+
+	width: 20%;
+
+	span, input{
+	display:inline-block;
+	width:100%;
+	}
+	input{
+		width: 50%;
+		font-size:30px;
+		margin-left:25%;
+		margin-right: 25%;
+		text-align: center;
+	}
+
+	select{
+		width:45%;
+	}
+
+	.pay, input{
+		margin-top: 25px;
+	}
+
+	.options-button{
+		float:none;
+		margin: auto;
+		margin-top: 15px;
+		display:inline-block;
+		width: 40%;
+		height: 30px;
+		p{
+			font-size:13px;
+			padding-top:6px;
+		}
+	}
+
+	.save{
+		font-family: $serif;
+		font-size:13px;
+		font-color:$light-grey;
+		padding:0px;
+	}
+}
+

@@ -1,0 +1,106 @@
+
+.sidebar{
+	position:fixed;
+	right:0px;
+	padding-right:0px;
+	height:100%;
+	@media screen and (max-height:600px){
+		position:relative;
+		// BUGGY!
+	}
+}
+
+.current-page{
+	background-color: white;
+}
+
+.sidebar-wrapper{ 
+	float: right;
+	background-color: $yale-blue;
+	min-height:100%;
+}
+
+.sidebar *{
+	float: left;
+}
+
+.sidebar-top{
+	margin-top: calc(100vh - 575px);
+	@media screen and (max-height:600px){
+		margin-top:10px;
+	}
+}
+
+.navlink {
+	//@extend $grey-link;
+	font-size: 45px;
+	color:$grey;
+	font-family: $serif;
+	letter-spacing:.8px;
+	float: left;
+	width: 70%;
+	margin-bottom: 10px;
+	padding-left: 12px;
+	border-radius:2px;
+}
+
+.navlink:link{
+	text-decoration:none;
+	color:$grey;
+}
+.navlink:visited{
+	color:$grey;
+}
+.navlink:hover{
+	background-color: white;
+	text-decoration:none;
+	color:$yale-blue;
+}
+.navlink:active{
+	color:$yale-blue;
+}
+
+
+
+.dots {
+  border-top: 1px dotted $yale-blue;
+  color: rgb(255,255,255);
+  background-color: rgb(255,255,255);
+  height: 1px;
+  width:60%;
+  float: left;
+}
+
+.sidebar-bottom{
+	padding-left: 12px;
+}
+
+.welcome-header{
+	font-family: $serif;
+	font-weight:100;
+	font-size: 24px;
+	margin-top:0px;
+	margin-bottom:0px;
+	color:$grey;
+}
+
+.sidebar-bottom a, .sidebar-bottom p {
+	display: inline-block;
+	font-family:$serif;
+	font-size: 11px;
+	color:$grey;
+	float: left;
+	margin: 0px;
+	margin-top: 25px;
+	margin-right: 3%;
+}
+
+.sidebar-bottom .welcome-text{
+	margin-top:10px;
+	font-family:$sans;
+	font-weight:100;
+	letter-spacing:.5px;
+	//@include helvetica-light;
+	font-size:15px;
+	margin-right:10%;
+}

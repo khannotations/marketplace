@@ -38,6 +38,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'better_errors'
+#  gem 'pry-debugger'
   gem 'binding_of_caller'
-  gem 'pry-debugger'
+#  gem 'pry-debugger'
 end

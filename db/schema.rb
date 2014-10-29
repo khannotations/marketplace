@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "timeframe"
     t.integer  "pay_amount"
     t.string   "pay_type"
-    t.integer  "num_slots"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
