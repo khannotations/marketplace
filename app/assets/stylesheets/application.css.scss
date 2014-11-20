@@ -3,6 +3,9 @@
 @import "bootstrap"; // Note that this is a file in app/stylesheets.
 @import "mixins";
 @import "style";
+@import "home";
+@import "sidebar";
+@import "projects";
 
 // Styles for chosen
 /* Additional styles to display a spinner image while options are loading */

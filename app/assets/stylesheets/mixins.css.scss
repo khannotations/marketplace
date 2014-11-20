@@ -11,24 +11,35 @@ $red: #802025;
 $light-red: #B10000;
 $green: #00b433;
 $dark-green: #006f29;
-$grey: #35383B;
-$light-grey: #ddd;
+$grey: #D8D8D8;
+$light-grey: #989898;
+$lighter-grey: #c0c0c0;
 $purple: #8581A4;
 $tan: #aa8255;
 $max-tan: #827B5F;
 $nav-brown: #513e37;
 $nav-darkbrown: darken(#513e37, 7%);
 $pumpkin-yellow: #b09a00;
+$yale-blue: #0f4d92;
 
 /* Fonts */
-$sans: "PT Sans", "HelveticaNeue-Light", sans-serif;
-$serif: Quattrocento, times, serif;
 $body: Proxima, "HelveticaNeue", sans-serif;
 $font-size: 16px;
+$sans2: "Arimo", Arial, sans-serif; 
+$sans: "Roboto", Arial, sans-serif;
+$serif4: "Inconsolata", Times, serif;
+$serif3: "Arvo", Times, serif;
+$serif2: "Roboto Slab", Times, serif;
+$serif: "Glegoo", Times, serif;
 
 @mixin helvetica-light {
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+}
+
+@mixin source-font {
+  font-family: "Source Code Pro", Arial, sans-serif;
+  font-weight: 300;
 }
 /* Layouts */
 $small-min-width: 780px;
@@ -107,7 +118,7 @@ $small-desktop-width: 1624px;
 .hide { display: none !important; }
 .big { font-size: 120%; }
 .full-width { height:100%; width:100%; }
-.bold { font-weight: bold; }
+//.bold { font-weight: bold; }
 .italic { font-style: italic; }
 .inline-block { display: inline-block !important; }
 .pull-right { float: right; }
@@ -142,3 +153,16 @@ $small-desktop-width: 1624px;
 .no-desktop {
   @include desktop { display: none !important; }
 }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+
+.clearfix{
+  clear:both;
+}
+

@@ -4,10 +4,12 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
   "AuthService", "Project", "Opening", "User",
   function($scope, $state, $location, $stateParams, AuthService, Project, Opening, User) {
     $scope.foundOpenings = []
-    $scope.currentUser = AuthService.getCurrentUser();
+    $scope.user = AuthService.getCurrentUser();
+    $scope.hasSearched = 0;
     $scope.searchParams = $stateParams;
 
     $scope.search = function() {
+      $scope.hasSearched = 1;
       var allFoundOpenings = Opening.search({search: $scope.searchParams}, function() {
         // Filtering done on front-end
         if ($scope.searchParams["tfs"]) {
@@ -56,6 +58,15 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
       window.location.assign('/logout');
     }
 
+    $scope.$watch("user", function() {
+      // Run every time "user" changes
+      // if ($scope.user.netid)...
+    })
+
+    $scope.showOptions = function() {
+      $(".more-options").fadeToggle(100);
+    }
+
     $scope.createProject = function() {
       $scope.newProject = new Project;
     }
@@ -69,5 +80,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
     $scope.cancelNewProject = function() {
       delete $scope.newProject;
     }
+
   }]);
 

@@ -56,7 +56,7 @@ class Opening < ActiveRecord::Base
 
   def serializable_hash(options={})
     options = {
-      :except => [:created_at, :updated_at],
+      :except => [:updated_at],
       :include => :skills
     }.update(options)
     super(options)

@@ -1,7 +1,7 @@
 "use strict";
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
-  "ngCookies", 'localytics.directives'])
+  "ngCookies", 'localytics.directives', "ui.bootstrap"])
   .config(function($stateProvider, $locationProvider) {
     $stateProvider
 
@@ -21,7 +21,7 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
         authorizedRoles: ["ADMIN", "USER"]
       }
     }).state("profile", {
-      url: "/profile/:netid",
+      url: "/profile[/:netid]",
       templateUrl: "/templates/profile",
       controller: "ProfileCtrl",
       data: {
