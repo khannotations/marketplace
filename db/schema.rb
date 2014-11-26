@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "timeframe"
     t.integer  "pay_amount"
     t.string   "pay_type"
+    t.integer  "num_slots"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "name"
     t.text     "description"
     t.string   "photo_url"
+    t.boolean  "approved",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

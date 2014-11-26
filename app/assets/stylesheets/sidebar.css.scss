@@ -34,6 +34,7 @@
 .navlink {
 	//@extend $grey-link;
 	font-size: 45px;
+	line-height: 60px;
 	color:$grey;
 	font-family: $serif;
 	letter-spacing:.8px;
@@ -41,7 +42,9 @@
 	width: 70%;
 	margin-bottom: 10px;
 	padding-left: 12px;
-	border-radius:2px;
+	border-top-right-radius:2px;
+	border-bottom-right-radius:2px;
+	@include transition(all 0.2s);
 }
 
 .navlink:link{
@@ -52,7 +55,7 @@
 	color:$grey;
 }
 .navlink:hover{
-	background-color: white;
+	background-color: #fafafa;
 	text-decoration:none;
 	color:$yale-blue;
 }

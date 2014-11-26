@@ -7,15 +7,14 @@ class Project < ActiveRecord::Base
   validates_presence_of :name, :description
 
   # Scopes
-  default_scope {includes(:openings)}
+  default_scope { includes(:openings, :leaders) }
   pg_search_scope :thorough_search,
     against: [:name, :description],
     using: {tsearch: {dictionary: "english", any_word: true}}
 
   def serializable_hash(options={})
     options = { 
-      :include => [:openings, :leaders], 
-      :except => [:created_at, :updated_at]
+      :include => [:openings, :leaders]
     }.update(options)
     super(options)
   end

@@ -5,10 +5,13 @@
   </div>
 
   <!-- Only show these buttons if I have edit access -->
-  <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
+  <div class="options-button top-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
+    <p>Approve project</p>
+  </div>
+  <div class="options-button top-button" ng-if="canEdit && !editingProject && project.approved" ng-click="edit()">
     <p>Edit project</p>
   </div>
-  <div class="options-button cancel" ng-if="canEdit && !editingProject" ng-click="destroy()">
+  <div class="options-button cancel" ng-if="canEdit && !editingProject && project.approved" ng-click="destroy()">
     <p>Delete project</p>
   </div>
   <!-- Don't show save/cancel unless I'm currently editing the project -->

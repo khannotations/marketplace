@@ -2,7 +2,7 @@
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
   "ngCookies", 'localytics.directives', "ui.bootstrap"])
-  .config(function($stateProvider, $locationProvider) {
+  .config(function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
 
     .state("home", {
@@ -26,9 +26,21 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
+    }).state("admin", {
+      abstract: true,
+      url: "/admin",
+      controller: "AdminCtrl",
+      template: "<div class='ui-view'></div>",
+      data: {
+        authorizedRoles: ["ADMIN"]
+      }
+    }).state("admin.project-approve", {
+      url: "/approve",
+      templateUrl: "/templates/admin/approve"
     });
 
-    $locationProvider.html5Mode(true)
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise("/");
   })
   // Configure all AJAX calls to have the right CSRF token for Rails
   .config(['$httpProvider', function($httpProvider) {
@@ -54,10 +66,13 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
     });
 
     $rootScope.$on("auth-not-authorized", function() {
-      console.log("not authorized for this page; do something!");
+      $state.go("home");
+      $rootScope.$emit("flash", {state: "error",
+        msg: "You are not authorized to view that page"});
     });
     $rootScope.$on("auth-not-authenticated", function() {
       $state.go("home");
-      console.log("not authenticated gotta login!");
+      $rootScope.$emit("flash", {state: "error",
+        msg: "You must be logged in to do that"});
     });
   }]);
