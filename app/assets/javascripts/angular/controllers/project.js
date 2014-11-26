@@ -6,10 +6,16 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
     $scope.project = Project.get({id: $stateParams.id}, function() {
       // Only allow edits if admin or project leader
       var user = AuthService.getCurrentUser();
-      $scope.canEdit = true;
-
-      //(user.is_admin || 
-       // _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+      // Only viewable if the project is approved, or the user is an admin
+      if (!$scope.project.approved && !user.is_admin) {
+        $scope.$emit("auth-not-authorized");
+      } else {
+        // Viewing normal project
+        $scope.canEdit = (user.is_admin || 
+          _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+        // Only admins can approve
+        $scope.isAdmin = user.is_admin;
+      }
     });
     $scope.editingProject = null; // The previous version of the project being edited
     $scope.editingOpenings = {};  // Previous versions of the openings being edited
@@ -102,6 +108,18 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         project_id: $scope.project.id
       }));
       $scope.edit($scope.project.openings.length - 1);
+    };
+    /*
+     * Approves a given project
+     */
+    $scope.approve = function() {
+      if ($scope.isAdmin) {
+        console.log("approving..")
+        $scope.project.$approve(function() {
+          $scope.$emit("flash:success", {msg:
+            "Project approved! The project leaders will be notified"})
+        });
+      };
     };
   }]);
 

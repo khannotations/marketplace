@@ -1,0 +1,10 @@
+<h1>Unapproved projects for Review</h1>
+<h4 class="no-openings" ng-if="!unapprovedProjects.length">No unapproved projects.</h4>
+<div class="opening" ng-repeat="project in unapprovedProjects">
+  <!-- name & description --> 
+  <a ui-sref="project({id: project.id})">
+    <h1 class="opening-name">{{project.name}}</h1>
+  </a>
+  <p class="opening-description">{{project.description}}</p>
+  <p class="posted-by">CREATED ON {{project.created_at | date:"medium"}}</p>
+</div>

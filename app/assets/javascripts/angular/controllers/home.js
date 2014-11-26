@@ -38,6 +38,5 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
     $scope.cancelNewProject = function() {
       delete $scope.newProject;
     }
-
   }]);
 

@@ -95,9 +95,12 @@ RSpec.describe ProjectsController, :type => :controller do
       @current_user.is_admin = true
       @current_user.save
       @project.name = "Amazing Project Yo"
+      @project.approved = true
       put :update, @project.attributes
       expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"Amazing Project Yo\""
+      # Shouldn't be able to update approved through update
+      expect(response.body).to match "\"approved\":false"
     end
   end
 
@@ -113,6 +116,33 @@ RSpec.describe ProjectsController, :type => :controller do
       delete :destroy, @project.attributes
       expect(response.status).to be 200
       expect(Project.find_by(id: @project.id)).to be_nil
+    end
+  end
+
+  describe "approval" do
+    it "approves project when admin" do
+      @current_user.is_admin = true
+      @current_user.save
+      expect(Project.find_by(id: @project.id).approved).to be false
+      put :approve, {id: @project.id}
+      expect(response.status).to be 200
+      expect(Project.find_by(id: @project.id).approved).to be true
+    end
+
+    it "doesn't approve project when not admin, even when project leader" do
+      @project.leaders << @current_user
+      expect(Project.find_by(id: @project.id).approved).to be false
+      put :approve, {id: @project.id}
+      expect(response.status).to be 403
+      expect(Project.find_by(id: @project.id).approved).to be false
+    end
+
+    it "gets unapproved projects" do
+      @approved_project = create(:project, approved: true)
+      get :unapproved
+      expect(response.status).to be 200
+      expect(response.body).to match "\"name\":\"#{@project.name}\""
+      expect(response.body).to_not match "\"name\":\"#{@approved_project.name}\""
     end
   end
 end
