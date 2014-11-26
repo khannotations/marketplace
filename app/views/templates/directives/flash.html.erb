@@ -1,4 +1,4 @@
-<div class="flash">
-  <p class="msg">{{msg}}</p>
+<div class="flash" ng-class="[state, isVisible]">
   <span class="close" ng-click="close()">&times;</span>
+  <span class="msg">{{msg}}</span>
 </div>

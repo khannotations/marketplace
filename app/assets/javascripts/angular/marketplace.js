@@ -67,10 +67,12 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
 
     $rootScope.$on("auth-not-authorized", function() {
       $state.go("home");
-      console.log("not authorized for this page; do something!");
+      $rootScope.$emit("flash", {state: "error",
+        msg: "You are not authorized to view that page"});
     });
     $rootScope.$on("auth-not-authenticated", function() {
       $state.go("home");
-      console.log("not authenticated gotta login!");
+      $rootScope.$emit("flash", {state: "error",
+        msg: "You must be logged in to do that"});
     });
   }]);
