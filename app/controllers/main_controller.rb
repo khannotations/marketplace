@@ -22,6 +22,6 @@ class MainController < ApplicationController
   end
 
   def templates
-    render "templates/#{params[:path]}"
+    render "templates/#{params[:path]}", layout: false
   end
 end

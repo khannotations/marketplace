@@ -1,0 +1,92 @@
+
+.profile-heading {
+	margin-top: 30px;
+	font-family: $serif;
+	font-size: 40px;
+	margin-left:3%;
+
+	img{
+		width: 15%; 
+		height: auto;
+		display:inline-block;
+	}
+	span, input {
+		width: auto;
+	}
+	input {
+		max-width: 40%;
+		height: 60px;
+		border:none;
+	}
+
+	.user-info {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 4%;
+	}
+	.user-name {
+		display: block;
+		padding-top: 40px;
+
+	}
+	.user-college {
+		display: block;
+		text-transform:uppercase;
+		font-family: $sans;
+		color:$light-grey;
+		font-size:18px;
+		height: 25px;
+		margin:0px;
+		p {
+			display: inline-block;
+			margin:0px;
+
+		}
+	}
+}
+
+.top-button {
+	margin-top: 30px;
+}
+
+.profile-bio {
+	margin-left: 3%;
+	p {
+		font-size: 16px;
+		margin: 0px;
+	}
+	h1 {
+		color: $light-grey;
+		text-transform: uppercase;
+		letter-spacing: .5px;
+		font-weight: 400;
+		font-size:16px;
+		margin:0px;
+		margin-top: 20px;
+	}
+}
+
+.contact {
+	display:inline-block;
+	vertical-align: top;
+	width: 20%;
+	p {
+		disiplay: inline;
+		font-size:14px;
+	}
+}
+.profile-about {
+	display: inline-block;
+	width: 55%;
+	textarea {
+		width: 90%;
+		border:none;
+	}
+}
+
+.profile-skills {
+	display: inline-block;
+	vertical-align: top;
+	margin-left:5%;
+	width: 18%;
+}

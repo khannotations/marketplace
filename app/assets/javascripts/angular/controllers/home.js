@@ -15,10 +15,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
       $scope.foundUsers = User.search({search: $scope.searchParams})
       // $scope.searchParams.q = "";
     }
-    $scope.clearCookies = function() {
-    	AuthService.logout();
-      window.location.assign('/logout');
-    }
 
     $scope.$watch("user", function() {
       // Run every time "user" changes

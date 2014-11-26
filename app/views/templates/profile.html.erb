@@ -1,32 +1,88 @@
-<span ng-switch="!editingUser">
-  <p ng-if="user.is_admin">This person is an admin</p>
-  <button ng-if="canEdit && !editingUser" ng-click="edit()">Edit</button>
-  <button ng-if="canEdit && !editingUser" ng-click="delete()">Delete account</button>
-  <button ng-if="canEdit && editingUser" ng-click="save()">Save</button>
-  <button ng-if="canEdit && editingUser" ng-click="cancel()">Cancel</button>
-  <!-- Name -->
-  <div>
+<span class="profile-page" ng-switch="!editingUser">
+
+  <!-- Edit Buttons -->
+    <div class="options-button top-button" ng-click="edit()">
+      <p>Edit</p>
+    </div>
+    <div class="options-button cancel" ng-click="delete()">
+      <p>Delete account</p>
+    </div>
+    <div class="options-button save" ng-if="canEdit && editingUser" ng-click="save()">
+      <p>Save</p>
+    </div>
+    <div class="options-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
+      <p>Cancel</p>
+    </div>
+
+  <!-- Name & Info-->
+  <div class="profile-heading">
     <img ng-src="user.photo_url" alt="">
-    <span ng-switch-when="true">{{user.first_name}}</span>
-    <input type="text" ng-model="user.first_name" ng-switch-when="false" required>
-    <!-- Can't edit your last name -->
-    <span>{{user.last_name}}</span>
+    <div class="user-info">
+      <div class="user-name">
+        <span contenteditable="true" ng-switch-when="true">{{user.first_name}}</span>
+        <input contenteditable="true" type="text" ng-model="user.first_name" ng-switch-when="false" required>
+        <!-- Can't edit your last name -->
+        <span>{{user.last_name}}</span>
+      </div>
+      <div class="user-college">
+        <p>{{user.college}} {{user.year}} </p>
+        <p class="user-college" ng-if="user.is_admin">|  ADMIN</p>
+      </div>  
+    </div>
   </div>
-  <div>
-    {{user.email}} | {{user.college}} | {{user.division}} | {{user.title}}
+
+
+  
+  <!-- Contact & Bio -->
+  <div class="profile-bio">
+    <div class="contact">
+      <h1>CONTACT</h1>
+          <p>
+            <a ng-href="mailto:{{user.email}}" target="blank">{{user.email}}</a>
+          </p>
+          <p>
+            <a ng-href="{{user.linkedin_url}}" target="blank">{{user.linkedin_url}}</a>
+          </p>
+          <p>
+            <a ng-href="{{user.github_url}}" target="blank">{{user.github_url}}</a>
+          </p>
+        </ul>
+    </div>
+
+    <div class="profile-about">
+      <h1>ABOUT</h1>
+        <p ng-switch-when="true">{{user.bio}}</p>
+        <textarea ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
+    </div>
+    
+    <div class="profile-skills">
+      <h1>SKILLS</h1>
+
+        <span ng-switch-when="true">
+          <ul class="skill-list">
+            <li ng-repeat="skill in opening.skills">
+              {{skill.name}}
+            </li>
+          </ul>
+        </span>
+
+        <span ng-switch-when="false" >
+          <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
+        </span>
+    </div>
+
   </div>
-  <div>
-    <p ng-switch-when="true">{{user.bio}}</p>
-    <textarea ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
+
+  <div class="profile-projects">
+    <h4>Leading projects</h4>
+    <ul>
+      <li ng-repeat="project in user.leading_projects">
+        <p class="bold">{{project.name}}</p>
+        <p class="italic">{{project.description}}</p>
+      </li>
+    </ul>
+    <p ng-if="!user.leading_projects.length">This user is not leading any projects</p>
+    <h4>Starred openings</h4>
+    {{user.favorite_opening_ids}}
   </div>
-  <h4>Leading projects</h4>
-  <ul>
-    <li ng-repeat="project in user.leading_projects">
-      <p class="bold">{{project.name}}</p>
-      <p class="italic">{{project.description}}</p>
-    </li>
-  </ul>
-  <p ng-if="!user.leading_projects.length">This user is not leading any projects</p>
-  <h4>Starred openings</h4>
-  {{user.favorite_opening_ids}}
 </span>

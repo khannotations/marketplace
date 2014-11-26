@@ -10,10 +10,6 @@
 	}
 }
 
-.current-page{
-	background-color: white;
-}
-
 .sidebar-wrapper{ 
 	float: right;
 	background-color: $yale-blue;
@@ -39,8 +35,11 @@
 	letter-spacing:.8px;
 	float: left;
 	width: 70%;
-	margin-bottom: 10px;
-	padding-left: 12px;
+	margin-left:-5px;
+	margin-bottom: 0px;
+	padding-left: 18px;
+	padding-bottom:4px;
+	padding-top:4px;
 	border-radius:2px;
 }
 
@@ -52,14 +51,18 @@
 	color:$grey;
 }
 .navlink:hover{
-	background-color: white;
 	text-decoration:none;
-	color:$yale-blue;
+	color:$light-grey;
 }
 .navlink:active{
 	color:$yale-blue;
 }
 
+#current-tab{
+	background-image: url(/assets/crossword.png);
+  	background-repeat:repeat;
+  	color:$yale-blue;
+}
 
 
 .dots {

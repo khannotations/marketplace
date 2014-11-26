@@ -9,7 +9,10 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
         currentUser.is_admin;
     });
 
+    $scope.canEdit = true;
+
     $scope.edit = function() {
+      $scope.canEdit = true;
       if ($scope.canEdit) {
         $scope.editingUser = angular.copy($scope.user);
       }

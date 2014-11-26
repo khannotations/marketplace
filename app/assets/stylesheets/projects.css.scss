@@ -1,6 +1,6 @@
 
 
-.project-heading{
+.page-heading{
 
 	font-family:$serif;
 	font-size:40px;
@@ -10,15 +10,16 @@
 
 	input, p{
 		border:none;
-		border-bottom:1px solid $lighter-grey;
 		margin:0px;
 		margin-top: 45px;
 		margin-bottom: 10px;
 		padding:0px;
 		height:62px;
+		@include border-radius(2px);
 	}
 	p{
 		padding-top: 3px;
+		border-bottom:1px solid $lighter-grey;
 	}
 	input{
 		width:100%;
@@ -67,20 +68,6 @@
 
 .top-button{
 	margin-top:20px;
-}
-
-.save{
-	&:hover{
-		background-color:$green;
-		border: 1px solid $green;
-	}
-}
-
-.cancel{
-	&:hover{
-		background-color:$red;
-		border:1px solid $red;
-	}
 }
 
 //////////////
