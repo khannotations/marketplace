@@ -31,6 +31,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
 
     $scope.saveNewProject = function() {
       $scope.newProject.$save(function(project) {
+        console.log(project.id);
         $state.go("project", {id: project.id});
       });
     }

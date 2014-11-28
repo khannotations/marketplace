@@ -1,8 +1,8 @@
 "use strict";
 
 marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
-  "User", "Skill",
-  function($scope, $stateParams, AuthService, User, Skill) {
+  "User", "Skill", "Opening",
+  function($scope, $stateParams, AuthService, User, Skill, Opening) {
     var currentUser = AuthService.getCurrentUser();
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
@@ -10,6 +10,9 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     });
 
     $scope.canEdit = true;
+    
+    // for each id in favorite_opening_ids
+    // $scope.openings.add opening
 
     $scope.edit = function() {
       $scope.canEdit = true;

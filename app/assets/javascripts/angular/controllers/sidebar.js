@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("Marketplace")
-  .controller("SidebarCtrl", ["$scope", "$stateParams", "$state", "$rootScope", "AuthService",
-    function($scope, $stateParams, $state, $rootScope, AuthService) {
+  .controller("SidebarCtrl", ["$scope", "$stateParams", "$state", "$rootScope", "AuthService", "Project",
+    function($scope, $stateParams, $state, $rootScope, AuthService, Project) {
 
         $scope.user = AuthService.getCurrentUser();
 
@@ -16,5 +16,10 @@ angular.module("Marketplace")
           AuthService.logout();
           window.location.assign('/logout');
         }
+
+      $scope.newProject = function() {
+        $scope.newProject = new Project;
+        $state.go("project", {id: $scope.newProject.id});
+      }
 
    }]);

@@ -13,9 +13,8 @@ Rails.application.routes.draw do
     # Projects and Openings
     get '/projects/unapproved' => 'projects#unapproved'
     put '/projects/:id/approve' => 'projects#approve'
-    resources :projects, only: [:show, :create, :update, :destroy] do
-      resources :openings, only: [:create, :update, :destroy]
-    end
+    resources :projects, only: [:show, :create, :update, :destroy]
+    resources :openings, only: [:create, :update, :destroy]
     # post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
     # delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
 

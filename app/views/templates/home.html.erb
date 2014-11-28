@@ -8,12 +8,57 @@
       </div>
     </form>
     <div class="options-button">
-      <p>Show Recent</p>
+      <p class="non-q-mark">Help</p>
+      <p class="q-mark">?</p>
     </div>
-    <div class="options-button" ng-click="showOptions()">
+    <div class="options-button" id="right-button" ng-click="showOptions()">
       <p>More Options</p>
       <img src="" alt="" class="down-arrow">
     </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- "More Options" dropdown menu -->
+  <div class="more-options">
+   <!--  <p class="a-like" ng-click="createProject()">Create a project</p>
+    <div ng-if="newProject">
+      <input type="text" ng-model="newProject.name">
+      <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
+      <button ng-click="saveNewProject()">Save</button>
+      <button ng-click="cancelNewProject()">Cancel</button>
+    </div> -->
+    <div class="option-block">
+      <h1>SHOW</h1>
+        <div class="option-bubble">
+          <div class="left">
+            <p>users</p>
+          </div>
+          <div class="right">
+            <p>openings</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="option-block">
+      <h1>SORT BY</h1>
+    </div>
+
+    <div class="option-block">
+      <h1>FILTER ON</h1>
+        <div class="option-bubble">
+          <div class="top-bubble">
+            <p>term-time</p>
+          </div>
+          <div class="middle">
+            <p>summer</p>
+          </div>
+          <div class="bottom">
+            <p>full-time</p>
+          </div>
+        </div>
+      </div>
+
   </div>
 
   <div class="welcome" ng-if="hasSearched == 0">
@@ -22,10 +67,9 @@
     <p>Use the search bar to find projects looking for developers on campus. You can search by programming languages, time commitment, or project description.</p>
   </div>
 
-  <div class="clearfix"></div>
-
   <div id="results">
     <p ng-if="foundOpenings.length > 0">Found {{foundOpenings.length}} openings that match your search</p>
+  </div>
 
     <h4 class="no-openings" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</h4>
 
@@ -36,9 +80,9 @@
       <a ui-sref="project({id: opening.project_id})">  
         <h1 class="opening-name">{{opening.name}}</h1>
       </a>
-      <h2 class="opening-subheader">{{opening.project.name}}</h2>
-        <p class="opening-description">{{opening.description}}</p>
-        <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
+      <h2 class="opening-subheader">{{opening.project_name}}</h2>
+      <p class="opening-description">{{opening.description}}</p>
+      <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
       </div>
 
       <div class="vert-divider"></div>
@@ -101,49 +145,6 @@
 
 
     </div>
-
-  </div>
-
-
-  <div class="more-options">
-
-    <!-- this will eventually move to the sidebar -->
-
-<!-- <p>
-      <a ui-sref="profile({netid: currentUser.netid})">View profile</a>
-    </p>
-    <p class="a-like" ng-click="createProject()">Create a project</p>
-    <div ng-if="newProject">
-      <input type="text" ng-model="newProject.name">
-      <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
-      <button ng-click="saveNewProject()">Save</button>
-      <button ng-click="cancelNewProject()">Cancel</button>
-    </div> -->
-
-    <h1>SHOW</h1>
-      <div class="option-bubble">
-        <div class="left">
-          <p>users</p>
-        </div>
-        <div class="right">
-          <p>openings</p>
-        </div>
-      </div>
-
-    <h1>SORT BY</h1>
-
-    <h1>FILTER ON</h1>
-      <div class="option-bubble">
-        <div class="top-bubble">
-          <p>term-time</p>
-        </div>
-        <div class="middle">
-          <p>summer</p>
-        </div>
-        <div class="bottom">
-          <p>full-time</p>
-        </div>
-      </div>
 
   </div>
 

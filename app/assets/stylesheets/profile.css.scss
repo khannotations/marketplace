@@ -9,24 +9,34 @@
 		width: 15%; 
 		height: auto;
 		display:inline-block;
+		vertical-align: bottom;
 	}
 	span, input {
 		width: auto;
 	}
 	input {
-		max-width: 40%;
+		max-width: 70%;
 		height: 60px;
 		border:none;
+		line-height:45px;
+	}
+
+	input[type=text]{
+		padding-top: 0px;
 	}
 
 	.user-info {
 		display: inline-block;
 		vertical-align: top;
+		margin-top: 80px;
 		margin-left: 4%;
+		max-width: 60%;
+		height:70px;
 	}
 	.user-name {
 		display: block;
-		padding-top: 40px;
+		line-height: 45px;
+		max-width: 100%;
 
 	}
 	.user-college {
@@ -49,12 +59,17 @@
 	margin-top: 30px;
 }
 
-.profile-bio {
-	margin-left: 3%;
+.profile-bio{
+	margin-top:15px;
 	p {
 		font-size: 16px;
 		margin: 0px;
 	}
+}
+
+.profile-bio, .profile-projects {
+	margin-left: 3%;
+	
 	h1 {
 		color: $light-grey;
 		text-transform: uppercase;
@@ -66,27 +81,61 @@
 	}
 }
 
-.contact {
-	display:inline-block;
-	vertical-align: top;
-	width: 20%;
-	p {
-		disiplay: inline;
-		font-size:14px;
-	}
-}
 .profile-about {
 	display: inline-block;
-	width: 55%;
+	width: 65%;
 	textarea {
 		width: 90%;
 		border:none;
 	}
 }
 
+.skills-contact{
+	float: right;
+	width:20%;
+}
+
 .profile-skills {
 	display: inline-block;
-	vertical-align: top;
-	margin-left:5%;
-	width: 18%;
+	width: 100%;
+}
+
+.contact {
+	display:inline-block;
+	width: 100%;
+	p {
+		disiplay: inline;
+		font-size:14px;
+	}
+}
+
+
+
+.profile-projects{
+	h1{
+		margin-bottom:20px;
+		margin-top:50px;
+	}
+	p{
+		margin-left:10px;
+	}
+	.opening{
+		width:75%;
+		margin-left:0px;
+		display:inline-block;
+		min-height:160px;
+	}
+	.opening-name{
+		margin-bottom:5px;
+	}
+
+	.posted-by{
+		left: 2px;
+	}
+
+	.stars{
+		width:100%;
+		clear:both;
+		margin-bottom:50px;
+	}
 }

@@ -75,6 +75,43 @@ a, .a-like {
   cursor:pointer;
   @include border-radius(2px);
   transition: .1s;
+
+  .q-mark {
+    display: none;
+  }
+
+  @include small-mobile {
+    float: left;
+    width: 5%;
+    height:35px;
+    margin-left: 1%;
+
+    .non-q-mark {
+      display:none;
+    }
+    .q-mark{
+      display:block;
+    }
+  }
+
+  @include phone {
+    width: 49%;
+    height: 15px;
+    float: left;
+    margin-top: 6px; 
+    margin-left:0px;
+    margin-right: 2%;
+  }
+}
+
+#right-button{
+  @include small-mobile {
+    margin-right: 0%;
+    width: 13%
+  }
+  @include phone {
+    width: 49%;
+  }
 }
 
 .options-button p{
@@ -85,6 +122,20 @@ a, .a-like {
   margin:0;
   padding:0;
   padding-top:8px;
+  @include small-mobile {
+    font-size:11px;
+    letter-spacing:0px;
+    line-height: 11px;
+    padding-top:10px;
+    vertical-align: center;
+  }
+
+  @include phone {
+    padding-top: 2px;
+    font-size: 8px;
+    line-height: 8px;
+  }
+
 }
 
 .options-button:hover{
