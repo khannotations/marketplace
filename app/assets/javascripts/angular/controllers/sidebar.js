@@ -6,11 +6,11 @@ angular.module("Marketplace")
 
         $scope.user = AuthService.getCurrentUser();
 
-        $scope.setCurrent = function($event) {
-            $(".navlink").removeAttr("id");
-            var target = $event.target;
-            target.setAttribute("id", "current-tab");
-        };
+        // $scope.setCurrent = function($event) {
+        //     $(".navlink").removeAttr("id");
+        //     var target = $event.target;
+        //     target.setAttribute("id", "current-tab");
+        // };
 
         $scope.clearCookies = function() {
           AuthService.logout();
@@ -21,5 +21,12 @@ angular.module("Marketplace")
         $scope.newProject = new Project;
         $state.go("project", {id: $scope.newProject.id});
       }
+
+      $scope.$watch("currentTab", function(tab) {
+        var newTab = document.getElementsByClassName(tab + "-tab");
+        var oldTab = document.getElementById("current-tab");
+        $(oldTab).removeAttr("id");
+        $(newTab).attr("id", "current-tab");
+      })
 
    }]);

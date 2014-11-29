@@ -1,4 +1,4 @@
-
+	
 .profile-heading {
 	margin-top: 30px;
 	font-family: $serif;
@@ -98,6 +98,14 @@
 .profile-skills {
 	display: inline-block;
 	width: 100%;
+
+	ul {
+		list-style-type: none;
+		display:inline-block;
+		padding-left:0px;
+		margin-top: 5px;
+		width: 100%;
+	}
 }
 
 .contact {

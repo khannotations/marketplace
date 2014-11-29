@@ -161,6 +161,12 @@ $small-desktop-width: 1624px;
           border-radius: $radius;
 }
 
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
 
 .clearfix{
   clear:both;

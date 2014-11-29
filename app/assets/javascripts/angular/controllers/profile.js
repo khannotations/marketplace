@@ -9,10 +9,9 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
         currentUser.is_admin;
     });
 
-    $scope.canEdit = true;
-    
-    // for each id in favorite_opening_ids
-    // $scope.openings.add opening
+    //$scope.canEdit = true;
+    $scope.allSkills = Skill.query();
+    $scope.setTab("profile");
 
     $scope.edit = function() {
       $scope.canEdit = true;

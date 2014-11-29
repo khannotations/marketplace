@@ -75,4 +75,8 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       $rootScope.$emit("flash", {state: "error",
         msg: "You must be logged in to do that"});
     });
+
+    $rootScope.setTab = function(tab) {
+      $rootScope.currentTab = tab;
+    };
   }]);

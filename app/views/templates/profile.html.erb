@@ -50,15 +50,15 @@
         <h1>SKILLS</h1>
 
           <span ng-switch-when="true">
-            <ul class="skill-list">
-              <li ng-repeat="skill in opening.skills">
+            <ul>
+              <li ng-repeat="skill in user.skills">
                 {{skill.name}}
               </li>
             </ul>
           </span>
 
           <span ng-switch-when="false" >
-            <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
+            <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="user.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
           </span>
       </div>
 
@@ -82,7 +82,7 @@
   <div class="profile-projects">
 
     <h1 ng-if="user.leading_projects.length">{{user.first_name}}'s projects</h1>
-    <div class="opening" ui-sref="project({id: project.project_id})" ng-repeat="project in user.leading_projects">
+    <div class="opening" ui-sref="project({id: project.id})" ng-repeat="project in user.leading_projects">
       <p class="opening-name">{{project.name}}</p>
       <p class="opening-description">{{project.description}}</p>
       <p class="posted-by">POSTED ON {{opening.updated_at | date:"medium"}} | {{opening.num_views}} views | 3 openings</p>
@@ -91,7 +91,7 @@
     <div class="stars">
       <h1>Starred</h1>
     
-      <!-- <div class="opening" ng-repeat="opening in openings" ui-sref="project({id: project.id})"> -->
+      <!-- <div class="opening" ng-repeat="opening_id in user.favorite_opening_ids track by favorite_opening_ids" ui-sref="project({id: project.id})"> -->
 
       {{user.favorite_opening_ids}}
     </div>

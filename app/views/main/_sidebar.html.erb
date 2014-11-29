@@ -1,9 +1,9 @@
 <div class="sidebar-wrapper">
 		<div class="sidebar-top">
-			<a id="current-tab" class="navlink search-tab" ng-click="setCurrent($event)" href="/">Search</a>
+			<a class="navlink search-tab" id="current-tab" ng-click="setCurrent($event)" href="/">Search</a>
 			<a class="navlink profile-tab" ng-click="setCurrent($event)" ui-sref="profile({netid: user.netid})">Profile</a>
 			<a class="navlink starred-tab" ng-click="setCurrent($event)" href="">Starred</a>
-			<a class="navlink create-tab" ng-click="newProject()" href="">Create</a>
+			<a class="navlink create-tab" ng-click="setCurrent($event)" href="/projects/new">Create</a>
 			<a class="navlink logout-tab" ng-click="clearCookies()" href="">Logout</a>
 			
 			<!-- CREATE PROJECT FLOW 

@@ -7,6 +7,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "AuthService", "Project"
     $scope.user = AuthService.getCurrentUser();
     $scope.hasSearched = 0;
     $scope.searchParams = {q: ""};
+    $scope.setTab("search");
 
     $scope.search = function() {
 

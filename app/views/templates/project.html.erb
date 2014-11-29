@@ -1,7 +1,7 @@
 <span ng-switch="!editingProject">
   <div class="page-heading">
     <p ng-switch-when="true">{{project.name}}</p>
-    <input type="text" ng-model="project.name" ng-switch-when="false" name="name">
+    <input placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
   </div>
 
   <!-- Only show these buttons if I have edit access -->
@@ -22,7 +22,7 @@
 
   <div class="project-description">
     <p ng-switch-when="true">{{project.description}}</p>
-    <textarea ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
+    <textarea placeholder="Describe your project, including its history, current status, and future plans." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
   </div>
 
 </span>
