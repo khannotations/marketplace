@@ -3,6 +3,10 @@
 		width:100%;
 		margin-top:55px;
 	}
+	@include small-mobile{
+		padding: 0px;
+		padding-left:1%;
+	}
 	@include phone{
 		margin-top: 30px;
 	}

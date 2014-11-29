@@ -60,6 +60,12 @@ a, .a-like {
   font-weight: bold;
 }
 
+.star {
+  @include small-mobile {
+    font-size: 8px;
+  }
+}
+
 // BUTTON STYLES
 
 .options-button{
@@ -82,9 +88,10 @@ a, .a-like {
 
   @include small-mobile {
     float: left;
-    width: 5%;
     height:35px;
     margin-left: 1%;
+    background-color: $yale-blue;
+    opacity: (.8);
 
     .non-q-mark {
       display:none;
@@ -92,15 +99,27 @@ a, .a-like {
     .q-mark{
       display:block;
     }
+
   }
 
   @include phone {
     width: 49%;
-    height: 15px;
+    height: 25px;
     float: left;
     margin-top: 6px; 
     margin-left:0px;
     margin-right: 2%;
+    padding-top: 5px;
+  }
+}
+
+.help-button{
+  @include small-mobile {
+    width: 5%;
+    background-color:none;
+  }
+  @include phone {
+    width: 49%;
   }
 }
 
@@ -117,17 +136,22 @@ a, .a-like {
 .options-button p{
   font-family: $serif;
   letter-spacing: .8px;
-  font-size: 18px;
+  font-size: 16px;
   color:$light-grey;
   margin:0;
   padding:0;
   padding-top:8px;
+
+  @include mobile {
+    font-size: 14px;
+  }
   @include small-mobile {
     font-size:11px;
     letter-spacing:0px;
     line-height: 11px;
     padding-top:10px;
     vertical-align: center;
+    color: white;
   }
 
   @include phone {
@@ -138,13 +162,6 @@ a, .a-like {
 
 }
 
-.profile-page .options-button p{
-  font-size:15px;
-
-  @include small-mobile {
-    font-size: 12px;
-  }
-}
 
 .options-button:hover{
   background-color: $yale-blue;
@@ -157,18 +174,28 @@ a, .a-like {
 
 .save{
 
-  @include mobile {
-    margin-top: 10px;
+  color: $light-grey;
+
+  @include small-mobile {
+    background-color:$green;
+    color:#ffffff;
+    opacity:(.8);
   }
 
   &:hover{
     background-color:$green;
     border: 1px solid $green;
+    color:#ffffff;
   }
 
 }
 
 .cancel, .delete{
+
+  @include small-mobile {
+    background-color:$red;
+    opacity:(.8);
+  }
 
   &:hover{
     background-color:$red;

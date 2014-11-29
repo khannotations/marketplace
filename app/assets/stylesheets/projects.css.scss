@@ -12,24 +12,54 @@
 		//color:$yale-blue;
 		padding-top:23px;
 		color:$lighter-grey;
+		@include small-mobile {
+			padding-top: 0px;
+		}
 	}
 
 	input, p{
 		border:none;
 		margin:0px;
-		margin-top: 45px;
 		margin-bottom: 10px;
 		padding:0px;
 		height:62px;
 		@include border-radius(2px);
 	}
 	p{
-		padding-top: 3px;
+		padding-top: 10px;
+		margin-top: 45px;
 		border-bottom:1px solid $lighter-grey;
 	}
 	input{
 		width:100%;
-		margin-top: 40px;
+		margin-top: 20px;
+	}
+	@include small-mobile{
+
+		font-size: 24px;
+
+		input {
+			margin-top: 10px;
+		}
+		p {
+			margin-top:20px;
+			height: 50px;
+		}
+	}
+
+	@include phone {
+		font-size: 18px;
+		width: 97%;
+		input {
+			margin-top: 20px;
+			height: 30px;
+		}
+		p {
+			margin-top: 25px;
+			margin-bottom:5px;
+			padding-bottom:5px;
+			height: 35px;
+		}
 	}
 }
 
@@ -58,7 +88,7 @@
 	clear:both;
 	margin-top:0px;
 	margin-left: 1.5%;
-	margin-bottom:50px;
+	margin-bottom:30px;
 	font-size:16px;
 	width:78%;
 	textarea{
@@ -70,37 +100,74 @@
 	p{
 		margin-top: 0px;
 	}
+	@include small-mobile {
+		width: 97%;
+		margin-top: 10px;
+		font-size:14px;
+	}
+	@include phone {
+		margin-bottom: 0px;
+		textarea, p {
+			font-size: 9px;
+			line-height: 11px;
+		}
+	}
 }
 
 ///////////////////
 /* BUTTON STYLES */
 ///////////////////
 
-.top-button{
-	margin-top:20px;
+.project-buttons{
+	margin-top:30px;
+	@include mobile {
+		margin-top: 70px;
+		font-size:8px;
+	}
+	@include phone {
+		margin-top: 0px;
+
+		.options-button {
+			width: 47%;
+			margin-left:1%;
+			margin-top: 0px;
+		}
+	}
+	
 }
 
-.only-button{
-	margin-top: 60px;
-}
 
 //////////////
 /* OPENINGS */
 //////////////
 .openings-heading{
-	//clear:both;
 	float: left;
 	width:78%;
 	font-family:$serif;
 	font-size:30px;
 	padding-bottom:5px;
-	margin-top:0px;
+	margin-top:20px;
 	margin-left:2%;
 	border-bottom:1px solid $lighter-grey;
+
+	@include mobile {
+		font-size: 24px;
+	}
+
+	@include phone {
+		font-size: 14px;
+		width: 96%;
+		margin-bottom:0px;
+	}
 }
 
 .add-opening{
-	margin-top: 0px;
+	margin-top: 10px;
+	@include phone {
+		margin-left: 2%;
+		margin-top: 5px;
+		width: 96%;
+	}
 }
 
 
@@ -117,17 +184,33 @@ different from home */
 
 	.opening-descrption{
 		margin-bottom: 0px;
+		@include phone {
+			font-size: 8px;
+			line-height: 10px;
+		}
+	}
+
+	@include phone {
+		width: 96%;
 	}
 }
 
 .project-opening .col-1{
 
-	width:55%;
+	// width:calc(70% - 120px);
+
+	@include small-mobile {
+		// width:calc(68% - 80px);
+	}
+
 	.opening-name{
-		p{margin-bottom: 0px};
+		p{
+			margin-bottom: 0px;
+			margin-top: 10px;
+		};
 	}
 	input{
-		width: 70%;
+		width: 90%;
 		border:none;
 		border-bottom:1px solid $lighter-grey;
 	}
@@ -135,19 +218,38 @@ different from home */
 		width:100%;
 		height:120px;
 		border:none;
+		@include small-mobile {
+			height: 80px;
+		}
 	}
+	@include placeholder {
+		padding-top:10px;
+	}
+
 }
 
 
 .project-opening .col-2{
 
-	width: 20%;
+	// width: 120px;
 	padding-left:1%;
 
 	select{
+		width: 70%;
 		div{
 			width:70%;
 		}
+	}
+
+	@include small-mobile {
+		select {
+			font-size: 8px;
+		}
+
+	}
+
+	span{
+		width: 100px;
 	}
 	
 }
@@ -156,54 +258,90 @@ different from home */
 	font-family:$sans;
 	margin-top:0px;
 	margin-bottom:0px;
+	ul{
+		columns:2;
+	}
 	li{
-		width:50%;
-		float: left;
+		width:100%;
 	}
 }
 
 .project-opening .col-3{
 
-	width: 20%;
-
-	span, input{
-	display:inline-block;
-	width:100%;
-	}
-	input{
-		width: 50%;
-		font-size:30px;
-		margin-left:25%;
-		margin-right: 25%;
-		text-align: center;
+	padding-top:20px;
+	 input {
+		width: 70%;
 	}
 
-	select{
-		width:45%;
+	@include small-mobile {
+		select {
+			font-size: 10px;
+		}
 	}
 
-	.pay, input{
-		margin-top: 25px;
+}
+
+.opening-buttons {
+
+	float: right;
+	width: 17%;
+	margin-right:2%;
+	margin-top:10px;
+
+	@include mobile {
+		margin-top: 0px;
+		.options-button {
+			height: 20px;
+		}
 	}
 
-	.options-button{
-		float:none;
-		margin: auto;
-		margin-top: 15px;
-		display:inline-block;
-		width: 40%;
-		height: 30px;
+	@include small-mobile {
+		margin-right: 0px;
+	}
+
+	@include phone {
+		width: 100%;
+		padding-left:1%;
+	}
+
+	.options-button {
+		display: inline-block;
+		clear: none;
+		margin-right:1%;
+		width: 42%;
+		height: 35px;
 		p{
-			font-size:13px;
 			padding-top:6px;
+			font-size: 14px;
+		}
+		@include mobile {
+			margin-top: 10px;
+		}
+		@include small-mobile{
+			padding-top: 5px;
+			p {
+				font-size: 9px;
+			}
+		}
+		@include phone {
+			width: 47%;
+			height: 20px;
+			margin-top: 0px;
+			p {
+				padding-top:0px;
+			}
 		}
 	}
 
 	.save{
 		font-family: $serif;
-		font-size:13px;
-		font-color:$light-grey;
+		font-size: 14px;
 		padding:0px;
+
+		@include small-mobile {	
+			font-size: 9px;
+			
+		}
 	}
 }
 

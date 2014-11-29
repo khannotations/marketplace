@@ -6,19 +6,21 @@
 
   <!-- Only show these buttons if I have edit access -->
   <!-- TEMPORARILY REMOVED "project.approved" FOR BUILD -->
-  <div class="options-button only-button" ng-if="isAdmin" ng-click="approve()">
-    <p>Approve project</p>
-  </div>
-  <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
-    <p>Edit project</p>
-  </div>
-  <div class="options-button cancel" ng-if="canEdit && !editingProject" ng-click="destroy()">
-    <p>Delete project</p>
-  </div>
-
+  <div class="project-buttons">
+<!--     <div class="options-button only-button" ng-if="isAdmin" ng-click="approve()">
+      <p>Approve project</p>
+    </div> -->
+    <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
+      <p>Edit project</p>
+    </div>
+    <div class="options-button cancel" ng-if="canEdit && !editingProject" ng-click="destroy()">
+      <p>Delete project</p>
+    </div>
+  
   <!-- Don't show save/cancel unless I'm currently editing the project -->
-  <div class="options-button top-button save" ng-if="canEdit && editingProject" ng-click="save()"><p>Save</p></div>
-  <div class="options-button cancel" ng-if="canEdit && editingProject" ng-click="cancel()"><p>Cancel</p></div>
+    <div class="options-button save" ng-if="canEdit && editingProject" ng-click="save()"><p>Save</p></div>
+    <div class="options-button cancel" ng-if="canEdit && editingProject" ng-click="cancel()"><p>Cancel</p></div>
+  </div>
 
   <div class="project-description">
     <p ng-switch-when="true">{{project.description}}</p>
@@ -87,23 +89,32 @@
       <div class="col-3">
 
         <span class="pay" ng-switch-when="true">${{opening.pay_amount}}</span>
-        <input type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
+        <input class="pay-amt" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
 
-        <span class="pay-type" ng-switch-when="true">{{opening.pay_type}}</span>
+        <span class="pay-type" ng-switch-when="true"><p class="pay-type">{{opening.pay_type}}</p></span>
         <select ng-switch-when="false" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
 
-        <span class="time" ng-switch-when="true">{{opening.timeframe}}</span>
+        <span class="time" ng-switch-when="true"><p class="time">({{opening.timeframe}})</p></span>
         <select ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
       
 
-      <!-- Control buttons; show only if has edit access -->
-      <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
-      <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
 
-      <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
 
-      <!-- <div class="options-button save" onClick ng-click="" ng-if="canEdit && editingOpenings[$index]"><p>Save</p></div> -->
-      <div class="options-button cancel" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)"><p>Cancel</p></div>
+      </div>
+
+            <!-- Control buttons; show only if has edit access -->
+      <div class="opening-buttons">
+        <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
+        <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
+        
+        <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Contact </p></div>
+
+         
+        <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
+
+        <div class="options-button cancel" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">
+          <p>Cancel</p>
+        </div>
       </div>
 
 
