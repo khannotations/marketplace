@@ -28,7 +28,6 @@
 
 .search{
 	margin-top:20px;
-	//background-color:white;
 	height: 85px;
 
 	@include small-mobile {
@@ -358,7 +357,6 @@
 	margin-bottom:0px;
 
 	@include small-mobile {
-		//margin-top: 0px;
 		font-size: 12px;
 		line-height: 14px;
 	}
@@ -456,8 +454,6 @@
 
 .option-bubble{
 	@include border-radius(2px);
-	//width:80%;
-	//height:70px;
 	margin:auto;
 
 }

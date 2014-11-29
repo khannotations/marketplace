@@ -70,12 +70,6 @@
             </ul>
           </span>
 
-        <!--   
-        <div ng-switch-when="true">
-          <span ng-repeat="skill in opening.skills">{{skill.name}} | </span>
-        </div> 
-        -->
-
         <!-- A multiple-select jQuery chosen element that shows the name
         of each skill and binds the selected elements to the opening's skills array -->
         <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
@@ -98,13 +92,10 @@
 
         <span class="time" ng-switch-when="true"><p class="time">({{opening.timeframe}})</p></span>
         <select ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
-      
-
-
-
       </div>
 
-            <!-- Control buttons; show only if has edit access -->
+      
+      <!-- Control buttons; show only if has edit access -->
       <div class="opening-buttons">
         <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
         <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
