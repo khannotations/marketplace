@@ -101,7 +101,7 @@
 	margin-left:25%;
 	margin-top:20%;
 	float: left;
-	clear: both;
+	clear: none;
 	color:$light-grey;
 	h1, h2{
 		font-family: $serif;
@@ -412,6 +412,8 @@
 		left: 6px;
 	}
 }
+
+
 
 
 

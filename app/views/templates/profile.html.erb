@@ -106,14 +106,6 @@
       <p class="posted-by">POSTED ON {{opening.updated_at | date:"medium"}} | {{opening.num_views}} views | 3 openings</p>
     </div>
 
-    <div class="stars">
-      <h1>Starred</h1>
-    
-      <!-- <div class="opening" ng-repeat="opening_id in user.favorite_opening_ids track by favorite_opening_ids" ui-sref="project({id: project.id})"> -->
-
-      {{user.favorite_opening_ids}}
-    </div>
-
   <h1 ng-if="!user.leading_projects.length">This user is not leading any projects</h1>
   </div>
 

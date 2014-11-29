@@ -5,7 +5,6 @@
   </div>
 
   <!-- Only show these buttons if I have edit access -->
-  <!-- TEMPORARILY REMOVED "project.approved" FOR BUILD -->
   <div class="project-buttons">
     <div class="options-button only-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
       <p>Approve project</p>
