@@ -67,11 +67,11 @@
     <p>Use the search bar to find projects looking for developers on campus. You can search by programming languages, time commitment, or project description.</p>
   </div>
 
-  <div id="results">
+  <div class="openings-count">
     <p ng-if="foundOpenings.length > 0">Found {{foundOpenings.length}} openings that match your search</p>
   </div>
 
-    <h4 class="no-openings" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</h4>
+    <p class="openings-count" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</p>
 
     <div class="opening" ng-init="inLimit=4" ng-repeat="opening in foundOpenings">
 
@@ -111,8 +111,8 @@
       </div>
     </div>
 
-    <p ng-if="foundUsers.length > 0 && hasSearched == 1">Found {{foundUsers.length}} users who match your search.</p>
-    <h4 class="no-openings" ng-if="!foundUsers.length && hasSearched == 1">No users match your search</h4>
+    <p class="openings-count" ng-if="foundUsers.length > 0 && hasSearched == 1">Found {{foundUsers.length}} users who match your search.</p>
+    <p class="openings-count" ng-if="!foundUsers.length && hasSearched == 1">No users match your search</p>
 
     <div class="opening" ng-repeat="user in foundUsers" ui-sref="profile({netid: user.netid})">
 

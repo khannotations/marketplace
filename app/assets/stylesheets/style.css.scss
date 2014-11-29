@@ -138,6 +138,14 @@ a, .a-like {
 
 }
 
+.profile-page .options-button p{
+  font-size:15px;
+
+  @include small-mobile {
+    font-size: 12px;
+  }
+}
+
 .options-button:hover{
   background-color: $yale-blue;
   border: 1px $yale-blue solid;
@@ -148,13 +156,20 @@ a, .a-like {
 }
 
 .save{
+
+  @include mobile {
+    margin-top: 10px;
+  }
+
   &:hover{
     background-color:$green;
     border: 1px solid $green;
   }
+
 }
 
-.cancel{
+.cancel, .delete{
+
   &:hover{
     background-color:$red;
     border:1px solid $red;

@@ -5,11 +5,26 @@
 	font-size: 40px;
 	margin-left:3%;
 
+	@include small-mobile {
+		font-size: 28px;
+	}
+
+	@include phone{
+		font-size: 18px;
+		line-height:20px;
+		margin-left:1%;
+	}
+
 	img{
 		width: 15%; 
 		height: auto;
 		display:inline-block;
 		vertical-align: bottom;
+		@include phone {
+			margin-top: 40px;
+			width:20%;
+			vertical-align: top;
+		}
 	}
 	span, input {
 		width: auto;
@@ -19,6 +34,14 @@
 		height: 60px;
 		border:none;
 		line-height:45px;
+
+		@include small-mobile {
+			max-width: 45%;
+		}
+		@include phone {
+			height: 30px;
+			line-height: 30px;
+		}
 	}
 
 	input[type=text]{
@@ -30,13 +53,32 @@
 		vertical-align: top;
 		margin-top: 80px;
 		margin-left: 4%;
-		max-width: 60%;
+		max-width: 55%;
 		height:70px;
+
+		@include small-mobile {
+			margin-top:60px;
+			max-width: 52%;
+			margin-left:2%;
+		}
+
+		@include phone {
+			max-width:100%;
+			width:70%;
+			margin-top: 40px;
+		}
 	}
 	.user-name {
 		display: block;
 		line-height: 45px;
 		max-width: 100%;
+
+		@include small-mobile {
+			line-height: 30px;
+		}
+		@include phone {
+			line-height: 20px;
+		}
 
 	}
 	.user-college {
@@ -47,16 +89,23 @@
 		font-size:18px;
 		height: 25px;
 		margin:0px;
+		@include mobile {
+			font-size: 12px;
+			height: 20px;
+		}
+		@include phone {
+			height: 14px;
+			font-size: 9px;
+		}
 		p {
 			display: inline-block;
 			margin:0px;
-
+			line-height: 12px;
 		}
-	}
-}
 
-.top-button {
-	margin-top: 30px;
+
+
+	}
 }
 
 .profile-bio{
@@ -64,6 +113,23 @@
 	p {
 		font-size: 16px;
 		margin: 0px;
+	}
+
+	@include small-mobile {
+		.profile-about p, .contact p, .profile-skills li, textarea{
+			font-size: 12px;
+			line-height: 14px;
+		}
+	}
+
+	@include phone {
+
+		margin-top: 10px;
+
+		.profile-about p, .contact p, .profile-skills li, textarea, option{
+			font-size: 8px;
+			line-height: 10px;
+		}
 	}
 }
 
@@ -78,21 +144,50 @@
 		font-size:16px;
 		margin:0px;
 		margin-top: 20px;
+
+		@include small-mobile {
+			font-size: 12px;
+		}
+
+		@include phone {
+			font-size: 10px;
+			line-height:10px;
+			margin-top:0px;
+		}
 	}
 }
 
 .profile-about {
 	display: inline-block;
-	width: 65%;
+	width: 70%;
 	textarea {
-		width: 90%;
+		width: 100%;
 		border:none;
+	}
+
+	@include small-mobile {
+		width: 50%;
+	}
+
+	@include phone {
+		width: 100%;
 	}
 }
 
 .skills-contact{
 	float: right;
 	width:20%;
+
+	@include mobile {
+		width: 22%;
+	}
+	@include small-mobile {
+		width: 45%;
+	}
+	@include phone {
+		width: 100%;
+		margin-top: 15px;
+	}
 }
 
 .profile-skills {
@@ -106,6 +201,12 @@
 		margin-top: 5px;
 		width: 100%;
 	}
+	@include small-mobile {
+		float: left;
+		width: 45%;
+		margin-right:2%;
+	}
+
 }
 
 .contact {
@@ -114,6 +215,11 @@
 	p {
 		disiplay: inline;
 		font-size:14px;
+	}
+
+	@include small-mobile {
+		float: left;
+		width: 45%;
 	}
 }
 
@@ -132,6 +238,11 @@
 		margin-left:0px;
 		display:inline-block;
 		min-height:160px;
+
+		@include small-mobile {
+			width: 97%;
+			min-height: 60px;
+		}
 	}
 	.opening-name{
 		margin-bottom:5px;
@@ -146,4 +257,51 @@
 		clear:both;
 		margin-bottom:50px;
 	}
+}
+
+.profile-buttons {
+	margin-right: 2%;
+	width: 20%;
+	float: right;
+
+	div {
+		width: 100%;
+	}
+
+	@include small-mobile {
+		float: right;
+		.options-button {
+			width: 100%;
+		}
+	}
+
+	@include phone {
+		display:none;
+	}
+}
+
+.mobile-buttons{
+
+	display:none;
+
+	@include phone {
+		display:inline;
+		width: 100%;
+	}
+
+	.mobile-button {
+		width: 40%;
+		height: 16px;
+		p {
+			font-size: 8px;
+			line-height:10px;
+			padding-top:2px;
+		}
+	}
+	.save, .cancel {
+		@include phone {
+   		 width: 20%;
+   		 margin-top: 6px;
+   		}
+  	}
 }

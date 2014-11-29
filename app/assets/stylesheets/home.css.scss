@@ -127,31 +127,11 @@
 	}
 }
 
+.openings-count {
 
-#results{
-	margin-left:0px;
-	width:80%;
-	margin-right:0px;
-	float: left;
-	p{
-		font-family:$sans;
-		font-size: 14px;
-
-		@include small-mobile {
-			font-size: 12px;
-			line-height: 15px;
-		}
-	}
-
-	@include small-mobile {
-		width: 100%;
-	}
-}
-
-.no-openings{
 	font-family:$serif;
 	width:80%;
-	font-size:30px;
+	font-size:16px;
 	clear:both;
 	margin-top:10px;
 	margin-left:0px;
@@ -166,7 +146,7 @@
 }
 
 .opening{
-	width: 100%;
+	width: 80%;
 	min-height:160px;
 	border: 1px $lighter-grey solid;
 	background-color:white;
@@ -183,6 +163,10 @@
 
 	@include mobile {
 		min-height:140px;
+	}
+
+	@include small-mobile {
+		width: 100%;
 	}
 	@include phone {
 		min-height: 70px;

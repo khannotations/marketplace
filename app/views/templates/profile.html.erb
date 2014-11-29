@@ -1,7 +1,8 @@
 <span class="profile-page" ng-switch="!editingUser">
 
   <!-- Edit Buttons -->
-    <div class="options-button top-button" ng-if="canEdit && !editingUser" ng-click="edit()">
+  <div class="profile-buttons">
+    <div class="options-button top-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
       <p>Edit</p>
     </div>
     <div class="options-button save" ng-if="canEdit && editingUser" ng-click="save()">
@@ -10,9 +11,10 @@
     <div class="options-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
       <p>Cancel</p>
     </div>
-    <div class="options-button cancel" ng-click="delete()">
+    <div class="options-button delete" ng-click="delete()">
       <p>Delete account</p>
     </div>
+  </div>
     
 
   <!-- Name & Info-->
@@ -30,7 +32,23 @@
       <div class="user-college">
         <p>{{user.college}} {{user.year}} </p>
         <p class="user-college" ng-if="user.is_admin">|  ADMIN</p>
-      </div>  
+      </div> 
+
+    <div class="mobile-buttons">
+      <div class="options-button mobile-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
+        <p>Edit</p>
+      </div>
+      <div class="options-button mobile-button save" ng-if="canEdit && editingUser" ng-click="save()">
+        <p>Save</p>
+      </div>
+      <div class="options-button mobile-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
+        <p>Cancel</p>
+      </div>
+      <div class="options-button mobile-button delete" ng-click="delete()">
+        <p>Delete account</p>
+      </div>
+    </div>
+
     </div>
   </div>
 
