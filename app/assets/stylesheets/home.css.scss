@@ -101,7 +101,7 @@
 	margin-left:25%;
 	margin-top:20%;
 	float: left;
-	clear: none;
+	clear: both;
 	color:$light-grey;
 	h1, h2{
 		font-family: $serif;
@@ -411,12 +411,6 @@
 		bottom: 2px;
 		left: 6px;
 	}
-}
-
-.star{
-	position:absolute;
-	top: 5px;
-	right: 10px;
 }
 
 

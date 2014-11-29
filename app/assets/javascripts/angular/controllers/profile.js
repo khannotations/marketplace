@@ -9,9 +9,15 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
         currentUser.is_admin;
     });
 
-    //$scope.canEdit = true;
     $scope.allSkills = Skill.query();
     $scope.setTab("profile");
+
+    // if user photo is present, use it instead of default
+    if($scope.user.photo_url){
+      var img = document.getElementsByClassName("user-photo");
+      $(img).attr("src", "user.photo_url");
+      $(img).css("padding", 0);
+    }
 
     $scope.edit = function() {
       $scope.canEdit = true;

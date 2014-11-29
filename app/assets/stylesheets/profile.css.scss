@@ -15,13 +15,19 @@
 		margin-left:1%;
 	}
 
-	img{
-		width: 15%; 
+	.user-photo {
+		width: 18%; 
 		height: auto;
 		display:inline-block;
 		vertical-align: bottom;
+		border: 1px solid $lighter-grey;
+		@include border-radius(2px);
+		padding:5px;
+		@include mobile {
+			margin-top: 30px;
+		}
 		@include phone {
-			margin-top: 40px;
+			margin-top: 30px;
 			width:20%;
 			vertical-align: top;
 		}

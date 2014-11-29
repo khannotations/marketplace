@@ -1,24 +1,15 @@
 <div class="sidebar-wrapper">
 		<div class="sidebar-top">
 			<a class="navlink search-tab" id="current-tab" ng-click="setCurrent($event)" href="/">Search</a>
-			<a class="navlink profile-tab" ng-click="setCurrent($event)" ui-sref="profile({netid: user.netid})">Profile</a>
-			<a class="navlink starred-tab" ng-click="setCurrent($event)" href="">Starred</a>
-			<a class="navlink create-tab" ng-click="setCurrent($event)" href="/projects/new">Create</a>
+			<a class="navlink profile-tab" ui-sref="profile({netid: user.netid})">Profile</a>
+			<a class="navlink starred-tab" href="/starred">Starred</a>
+			<a class="navlink create-tab" ng-click="setTab('create')" href="/projects/new">Create</a>
 			<a class="navlink logout-tab" ng-click="clearCookies()" href="">Logout</a>
-			
-			<!-- CREATE PROJECT FLOW 
-			<div ng-if="newProject">
-		      <input type="text" ng-model="newProject.name">
-		      <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
-		      <button ng-click="saveNewProject()">Save</button>
-		      <button ng-click="cancelNewProject()">Cancel</button>
-		    </div> -->
-
 		</div>
 		
 		<div class="sidebar-bottom">
 			<hr class="dots"></hr>
-			<h1 class="welcome-header">Welcome, {{user.first_name}}!</h1>
+			<h1 ng-if="user.first_name" class="welcome-header">Welcome, {{user.first_name}}!</h1>
 			<p class="welcome-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
 			<a onclick="window.location.assign('<%= login_path %>')">LOGIN</a>
 			<p class="slash">/</p>

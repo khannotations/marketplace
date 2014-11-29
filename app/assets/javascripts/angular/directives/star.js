@@ -12,14 +12,22 @@ angular.module("Marketplace").directive("star",
         var elem = angular.element(element)
         var oId = parseInt(scope.openingId);
         elem.addClass("star"); // For styling
+        elem.attr("src", "/assets/star.svg");
+
         if(AuthService.isStarred(oId)) {
           elem.addClass("starred");
+          elem.attr("src", "/assets/starred.png");  
+
         }
         elem.on('click', function() {
           AuthService.toggleStar(oId); // Reflect on front-end
           currentUser.$toggleStar({opening_id: oId}); // Reflect on back-end
           AuthService.isStarred(oId) ? elem.addClass("starred") :
             elem.removeClass("starred");
+          if(AuthService.isStarred(oId))
+            elem.attr("src", "/assets/starred.png");
+          else
+            elem.attr("src", "/assets/star.svg");
         })
       }
     }

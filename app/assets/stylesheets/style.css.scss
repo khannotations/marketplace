@@ -61,9 +61,15 @@ a, .a-like {
 }
 
 .star {
-  @include small-mobile {
-    font-size: 8px;
-  }
+
+  position:absolute;
+  top: 5px;
+  right: 5px;
+
+  width: 15px;
+  height: auto;
+  display:inline-block;
+
 }
 
 // BUTTON STYLES
@@ -98,6 +104,7 @@ a, .a-like {
     }
     .q-mark{
       display:block;
+      color:$light-grey;
     }
 
   }
@@ -116,10 +123,15 @@ a, .a-like {
 .help-button{
   @include small-mobile {
     width: 5%;
-    background-color:none;
+    background-color:#ffffff;
+    .q-mark {
+      color: $light-grey;
+    }
   }
   @include phone {
     width: 49%;
+    background-color: $yale-blue;
+    .q-mark {color: #ffffff};
   }
 }
 
@@ -162,6 +174,16 @@ a, .a-like {
 
 }
 
+.home-options{
+  @include small-mobile{
+    p {color: $light-grey;}
+    background-color: #ffffff;
+  }
+  @include phone {
+    p {color: #ffffff;}
+    background-color: $yale-blue;
+  }
+}
 
 .options-button:hover{
   background-color: $yale-blue;

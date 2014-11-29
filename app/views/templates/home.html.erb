@@ -11,7 +11,7 @@
       <p class="non-q-mark">Help</p>
       <p class="q-mark">?</p>
     </div>
-    <div class="options-button" id="right-button" ng-click="showOptions()">
+    <div class="options-button home-options" id="right-button" ng-click="showOptions()">
       <p>More Options</p>
       <img src="" alt="" class="down-arrow">
     </div>
@@ -21,13 +21,16 @@
 
   <!-- "More Options" dropdown menu -->
   <div class="more-options">
-   <!--  <p class="a-like" ng-click="createProject()">Create a project</p>
+
+    <!-- TO BE DEPRECATED. But kept now because it works... --> 
+    <p class="a-like" ng-click="createProject()">Create a project</p>
     <div ng-if="newProject">
       <input type="text" ng-model="newProject.name">
       <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
       <button ng-click="saveNewProject()">Save</button>
       <button ng-click="cancelNewProject()">Cancel</button>
-    </div> -->
+    </div>
+
     <div class="option-block">
       <h1>SHOW</h1>
         <div class="option-bubble">

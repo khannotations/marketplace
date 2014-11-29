@@ -4,8 +4,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
   "AuthService", "Project", "Opening", "Skill",
   function($scope, $stateParams, $state, AuthService, Project, Opening, Skill) {
 
-    $scope.setTab("create");
-
     // if this is a new projet being created
     if($stateParams.id === "new") {
       $scope.project = new Project;
@@ -33,7 +31,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.editingOpenings = {};  // Previous versions of the openings being edited
     }
 
-    //enclosed ^^ in else
     $scope.openingPayTypes = Opening.PAY_TYPES;     // constant
     $scope.openingTimeframes = Opening.TIMEFRAMES;  // constant
     // Get all skills
