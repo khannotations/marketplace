@@ -1,7 +1,8 @@
 "use strict";
 
 angular.module("Marketplace").directive("flash",
-  ["$rootScope", "$timeout", "$http", "$compile", function($rootScope, $timeout, $http, $compile) {
+  ["$rootScope", "$timeout", "$http", "$compile",
+  function($rootScope, $timeout, $http, $compile) {
     return {
       restrict: "A",
       templateUrl: "/templates/directives/flash",
@@ -18,7 +19,6 @@ angular.module("Marketplace").directive("flash",
         }
 
         scope.close = function() {
-          console.log("hey");
           scope.isVisible = "";
           clearTimeout(t);
         }
