@@ -26,6 +26,13 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
+    }).state("starred", {
+      url: "/starred",
+      templateUrl: "/templates/starred",
+      controller: "StarredCtrl",
+      data: {
+        authorizedRoles: ["ADMIN", "USER"]
+      }
     }).state("admin", {
       abstract: true,
       url: "/admin",
@@ -75,4 +82,8 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       $rootScope.$emit("flash", {state: "error",
         msg: "You must be logged in to do that"});
     });
+
+    $rootScope.setTab = function(tab) {
+      $rootScope.currentTab = tab;
+    };
   }]);

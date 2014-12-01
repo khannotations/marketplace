@@ -59,3 +59,168 @@ a, .a-like {
 .star.starred {
   font-weight: bold;
 }
+
+.star {
+
+  position:absolute;
+  top: 5px;
+  right: 5px;
+
+  width: 15px;
+  height: auto;
+  display:inline-block;
+
+}
+
+// BUTTON STYLES
+
+.options-button{
+  float: right;
+  clear: right;
+  width: 18%;
+  height: 40px;
+  margin-left:6px;
+  margin-bottom: 4px;
+  text-align: center;
+  border: 1px $lighter-grey solid;
+  background-color: white;
+  cursor:pointer;
+  @include border-radius(2px);
+  transition: .1s;
+
+  .q-mark {
+    display: none;
+  }
+
+  @include small-mobile {
+    float: left;
+    height:35px;
+    margin-left: 1%;
+    background-color: $yale-blue;
+    opacity: (.8);
+
+    .non-q-mark {
+      display:none;
+    }
+    .q-mark{
+      display:block;
+      color:$light-grey;
+    }
+
+  }
+
+  @include phone {
+    width: 49%;
+    height: 25px;
+    float: left;
+    margin-top: 6px; 
+    margin-left:0px;
+    margin-right: 2%;
+    padding-top: 5px;
+  }
+}
+
+.help-button{
+  @include small-mobile {
+    width: 5%;
+    background-color:#ffffff;
+    .q-mark {
+      color: $light-grey;
+    }
+  }
+  @include phone {
+    width: 49%;
+    background-color: $yale-blue;
+    .q-mark {color: #ffffff};
+  }
+}
+
+#right-button{
+  @include small-mobile {
+    margin-right: 0%;
+    width: 13%
+  }
+  @include phone {
+    width: 49%;
+  }
+}
+
+.options-button p{
+  font-family: $serif;
+  letter-spacing: .8px;
+  font-size: 16px;
+  color:$light-grey;
+  margin:0;
+  padding:0;
+  padding-top:8px;
+
+  @include mobile {
+    font-size: 14px;
+  }
+  @include small-mobile {
+    font-size:11px;
+    letter-spacing:0px;
+    line-height: 11px;
+    padding-top:10px;
+    vertical-align: center;
+    color: white;
+  }
+
+  @include phone {
+    padding-top: 2px;
+    font-size: 8px;
+    line-height: 8px;
+  }
+
+}
+
+.home-options{
+  @include small-mobile{
+    p {color: $light-grey;}
+    background-color: #ffffff;
+  }
+  @include phone {
+    p {color: #ffffff;}
+    background-color: $yale-blue;
+  }
+}
+
+.options-button:hover{
+  background-color: $yale-blue;
+  border: 1px $yale-blue solid;
+  opacity:(.8);
+  p {
+    color: white;
+  } 
+}
+
+.save{
+
+  color: $light-grey;
+
+  @include small-mobile {
+    background-color:$green;
+    color:#ffffff;
+    opacity:(.8);
+  }
+
+  &:hover{
+    background-color:$green;
+    border: 1px solid $green;
+    color:#ffffff;
+  }
+
+}
+
+.cancel, .delete{
+
+  @include small-mobile {
+    background-color:$red;
+    opacity:(.8);
+  }
+
+  &:hover{
+    background-color:$red;
+    border:1px solid $red;
+  }
+}

@@ -30,7 +30,7 @@ $sans: "Roboto", Arial, sans-serif;
 $serif4: "Inconsolata", Times, serif;
 $serif3: "Arvo", Times, serif;
 $serif2: "Roboto Slab", Times, serif;
-$serif: "Glegoo", Times, serif;
+$serif: "Glegoo", Times, serif; 
 
 @mixin helvetica-light {
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
@@ -161,6 +161,12 @@ $small-desktop-width: 1624px;
           border-radius: $radius;
 }
 
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
 
 .clearfix{
   clear:both;
