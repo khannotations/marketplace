@@ -49,7 +49,7 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise("/");
-  ]})
+  }])
   // Configure all AJAX calls to have the right CSRF token for Rails
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = 
