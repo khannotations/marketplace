@@ -16,7 +16,7 @@ class Opening < ActiveRecord::Base
     class_name: "User", source: :user
     
   # Scopes
-  default_scope {includes(:skills)}
+  default_scope {includes([:skills, :project])}
 
   # Constants
   PAY_TYPE_HOURLY = "hourly"
@@ -35,14 +35,6 @@ class Opening < ActiveRecord::Base
   # does, or that have a skill that matches one of the query terms
   # @param query Hash A "search object", that has the following keys:
   #   q: the search query
-  #   timeframe: an array of valid timeframes
-  #   pay_gauge: an array of "pay gauges"
-  #     pay gauge 0: volunteer work
-  #     pay gauge 1: Less than $10/hour or $500
-  #     pay gauge 2: Less than $20/hour or $1500
-  #     pay gauge 3: More than that
-  # TODO: how to sort?
-  # TODO: eager load
   def self.search(search_params, page=0)
     page ||= 0
     query = search_params[:q]
@@ -50,13 +42,13 @@ class Opening < ActiveRecord::Base
     matching_openings = thorough_search(query) # match by name, desc
     project_openings = Project.thorough_search(query).map(&:openings).flatten
     skill_openings = Skill.search(query).map(&:openings).flatten
-    # TODO:Prioritize those that match by both
-    return (matching_openings + project_openings + skill_openings).uniq
+    all = (matching_openings + project_openings + skill_openings).uniq
+    return all.select { |o| o.project.approved }
   end
 
   def serializable_hash(options={})
     options = {
-      :include => :skills
+      :include => [:skills, :project]
     }.update(options)
     super(options)
   end

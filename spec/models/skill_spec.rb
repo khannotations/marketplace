@@ -32,6 +32,8 @@ RSpec.describe Skill, :type => :model do
   context "search" do
     before(:each) do
       @o = create(:opening, name: "Ruby on Rails")
+      @o.project = create(:project, approved: true)
+      @o.save
     end
 
     it "finds by exact name" do

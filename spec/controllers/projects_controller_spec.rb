@@ -55,7 +55,7 @@ RSpec.describe ProjectsController, :type => :controller do
     it "creates a project" do
       expect(Project.find_by(name: @new_project.name)).to be_nil
       post :create, @new_project.attributes
-      expect(response.status).to be 201
+      expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"#{@new_project.name}\""
       expect(Project.find_by(name: @new_project.name)).to_not be_nil
     end

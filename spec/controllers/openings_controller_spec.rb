@@ -115,11 +115,19 @@ RSpec.describe OpeningsController, :type => :controller do
       expect(response.status).to be 403
     end
 
-    it "works" do
+    it "works when project is approved" do
+      @opening.project.approved = true
+      @opening.project.save!
       get :search, @search_params
       expect(response.status).to be 200
       expect(response.body).to match /\[.*\]/
       expect(response.body).to match "\"id\":#{@opening.id}"
+    end
+
+    it "fails when project is not approved" do
+      get :search, @search_params
+      expect(response.status).to be 200
+      expect(response.body).to match /\[\]/
     end
   end
 end
