@@ -37,7 +37,7 @@ class UsersController < ApplicationController
           @user.skill_ids = skill_ids.compact.uniq      # Remove nils
           @user.save
         end
-        render json: @user
+        render json: @user, include: [:skills, :leading_projects]
       else
         render_error "user couldn't be updated", 400
       end

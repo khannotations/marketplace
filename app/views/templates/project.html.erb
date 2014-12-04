@@ -37,8 +37,7 @@
 
 <div class="opening project-opening" ng-repeat="opening in project.openings">
  
-  <!-- <span star opening-id="{{opening.id}}">Star</span> -->
-  <img star opening-id="{{opening.id}}" class="star" src="/assets/star.svg" alt="">
+  <div star opening-id="{{opening.id}}" class="star"></div>
 
   <form ng-submit="save($index)">
     <!-- A switch on the edit mode for this opening. True => not-editing -->
