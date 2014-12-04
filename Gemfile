@@ -4,6 +4,7 @@ gem 'rails', '4.1.4'
 gem 'pg'
 gem 'thin'
 gem 'pg_search'
+gem 'sendgrid'
 
 # CAS
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'

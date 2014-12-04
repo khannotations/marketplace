@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
     if @project.id
       @project.leaders << current_user
       render json: @project, include: [:leaders, :openings]
+      AdminMailer.project_approval(@project).deliver!
     else
       render_error "project could not be created", 400
     end

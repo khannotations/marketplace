@@ -7,9 +7,10 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
     $stateProvider
 
     .state("home", {
-      url: "/",
+      url: "/?q&tfs&p&pt",
       templateUrl: "/templates/home",
       controller: "HomeCtrl",
+      reloadOnSearch: false,
       data: {
         authorizedRoles: ["ADMIN", "USER"]
       }
@@ -21,7 +22,7 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
         authorizedRoles: ["ADMIN", "USER"]
       }
     }).state("profile", {
-      url: "/profile/:netid",
+      url: "/profile[/:netid]",
       templateUrl: "/templates/profile",
       controller: "ProfileCtrl",
       data: {

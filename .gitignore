@@ -1,5 +1,13 @@
+
+.DS_Store
+.Trashes
+
 /.bundle
 /log/*.log
 /tmp
 
 /config/credentials.yml
+
+.DS_Store
+.Trashes
+

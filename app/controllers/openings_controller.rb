@@ -39,7 +39,7 @@ class OpeningsController < ApplicationController
 
   def search
     render json: Opening.search(JSON.parse(params[:search], symbolize_names: true),
-      params[:page])
+      params[:page]), include: :project
   end
 
   protected

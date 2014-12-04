@@ -1,7 +1,4 @@
-
-
-.page-heading{
-
+.page-heading {
 	font-family:$serif;
 	font-size:40px;
 	width:78%;
@@ -133,9 +130,7 @@
 			margin-top: 0px;
 		}
 	}
-	
 }
-
 
 //////////////
 /* OPENINGS */
@@ -146,6 +141,13 @@
 	font-family:$serif;
 	font-size:30px;
 	padding-bottom:5px;
+	margin-top:0px;
+	margin-left:2%;
+	border-bottom:1px solid $lighter-grey;
+}
+
+.add-opening{
+	margin-top: 8px;
 	margin-top:20px;
 	margin-left:2%;
 	border-bottom:1px solid $lighter-grey;
@@ -196,8 +198,10 @@ different from home */
 }
 
 .project-opening .col-1{
-
-	// width:calc(70% - 120px);
+	width:55%;
+	.opening-name{
+		p{margin-bottom: 0px};
+	}
 
 	@include small-mobile {
 		// width:calc(68% - 80px);
@@ -225,12 +229,10 @@ different from home */
 	@include placeholder {
 		padding-top:10px;
 	}
-
 }
 
 
 .project-opening .col-2{
-
 	// width: 120px;
 	padding-left:1%;
 
@@ -245,19 +247,19 @@ different from home */
 		select {
 			font-size: 8px;
 		}
-
 	}
-
 	span{
 		width: 100px;
 	}
-	
 }
 
 .skill-list{
 	font-family:$sans;
 	margin-top:0px;
 	margin-bottom:0px;
+	li{
+		width:50%;
+		float: left;
 	ul{
 		columns:2;
 	}
@@ -267,7 +269,6 @@ different from home */
 }
 
 .project-opening .col-3{
-
 	padding-top:20px;
 	 input {
 		width: 70%;

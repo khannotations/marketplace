@@ -36,10 +36,8 @@
 </div>
 
 <div class="opening project-opening" ng-repeat="opening in project.openings">
- 
   <!-- <span star opening-id="{{opening.id}}">Star</span> -->
   <img star opening-id="{{opening.id}}" class="star" src="/assets/star.svg" alt="">
-
   <form ng-submit="save($index)">
     <!-- A switch on the edit mode for this opening. True => not-editing -->
     <span ng-switch="!editingOpenings[$index]">
@@ -69,7 +67,6 @@
               </li>
             </ul>
           </span>
-
         <!-- A multiple-select jQuery chosen element that shows the name
         of each skill and binds the selected elements to the opening's skills array -->
         <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
@@ -109,8 +106,6 @@
           <p>Cancel</p>
         </div>
       </div>
-
-
     </span>
   </form>
 </div>

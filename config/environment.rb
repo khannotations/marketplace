@@ -15,4 +15,16 @@ unless Rails.env.production?
   credentials = YAML.load_file("#{Rails.root}/config/credentials.yml")
   ENV['CAS_NETID'] = credentials['cas_username']
   ENV['CAS_PASS'] = credentials['cas_password']
+  ENV['SENDGRID_USERNAME'] = credentials['sendgrid_username']
+  ENV['SENDGRID_PASSWORD'] = credentials['sendgrid_password']
 end
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => "#{ENV['SENDGRID_USERNAME']}",
+  :password => "#{ENV['SENDGRID_USERNAME']}",
+  :domain => 'projectsboard.io',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}

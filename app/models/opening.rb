@@ -24,7 +24,7 @@ class Opening < ActiveRecord::Base
   PAY_TYPE_VOLUNTEER = "volunteer"
   TIMEFRAME_TERM = "termtime"
   TIMEFRAME_SUMMER = "summer"
-  TIMEFRAME_FULL = "full time"
+  TIMEFRAME_FULL = "fulltime"
 
   pg_search_scope :thorough_search,
     against: [:name, :description],

@@ -3,7 +3,6 @@
 marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
   "AuthService", "Project", "Opening", "Skill",
   function($scope, $stateParams, $state, AuthService, Project, Opening, Skill) {
-
     // if this is a new projet being created
     if($stateParams.id === "new") {
       $scope.project = new Project;
