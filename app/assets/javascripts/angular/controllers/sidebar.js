@@ -1,7 +1,8 @@
 "use strict";
 
 angular.module("Marketplace")
-  .controller("SidebarCtrl", ["$scope", "$stateParams", "$state", "$rootScope", "AuthService", "Project",
+  .controller("SidebarCtrl", ["$scope", "$stateParams", "$state", "$rootScope",
+    "AuthService", "Project",
     function($scope, $stateParams, $state, $rootScope, AuthService, Project) {
 
       $scope.user = AuthService.getCurrentUser();

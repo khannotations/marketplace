@@ -17,5 +17,4 @@ marketplace.controller("StarredCtrl", ["$scope", "$stateParams", "AuthService",
   	$q.all(promises).then(function() {
   		$scope.allOpenings = promises;
   	});
-
   }]);

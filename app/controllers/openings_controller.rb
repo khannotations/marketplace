@@ -10,7 +10,7 @@ class OpeningsController < ApplicationController
 
   def create
     @opening = Opening.create(opening_params.merge(
-      {project_id: params[:project_id]}))
+      {project_id: params[:project_id], expires_on: Date.today + 1.month}))
     if @opening.id
       if params[:skills].kind_of?(Array)
         skill_ids = params[:skills].map{ |s| s[:id] } # Get ids
@@ -43,7 +43,7 @@ class OpeningsController < ApplicationController
 
   def search
     render json: Opening.search(JSON.parse(params[:search], symbolize_names: true),
-      params[:page])
+      params[:page]), include: :project
   end
 
   protected

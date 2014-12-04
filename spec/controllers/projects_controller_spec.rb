@@ -51,11 +51,12 @@ RSpec.describe ProjectsController, :type => :controller do
   describe "create" do
     before(:each) do
       @new_project = build(:project)
+      @user = create(:user, is_admin: true) # So mailer will work
     end
     it "creates a project" do
       expect(Project.find_by(name: @new_project.name)).to be_nil
       post :create, @new_project.attributes
-      expect(response.status).to be 201
+      expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"#{@new_project.name}\""
       expect(Project.find_by(name: @new_project.name)).to_not be_nil
     end
@@ -71,6 +72,11 @@ RSpec.describe ProjectsController, :type => :controller do
       project = build(:project, name: "")
       post :create, project.attributes
       expect(response.status).to be 400
+    end
+
+    it "starts unapproved, and sends an email" do
+      post :create, @new_project.attributes
+      expect(Project.find_by(name: @new_project.name).approved).to be false
     end
   end
 

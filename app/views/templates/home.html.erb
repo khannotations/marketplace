@@ -53,7 +53,6 @@
   <div class="opening"  ng-if="filterType.openings" ng-init="skillLimit=4" ng-repeat="opening in foundOpenings | orderBy: radioModel : reverse">
 
   <div star opening-id="{{opening.id}}" class="star"></div>
-
     <!-- name & description -->
     <div ui-sref="project({id: opening.project_id})" class="col-1">
     <a ui-sref="project({id: opening.project_id})">  
@@ -78,7 +77,6 @@
         </li>
         <li class="more" ng-if="skillLimit == 20">Show fewer...</li>
       </ul>
-
     </div>
 
     <div class="vert-divider"></div>
@@ -104,7 +102,6 @@
       </div>
 
       <div class="vert-divider"></div>
-
       <div class="col-2">
         <p>SKILLS</p>
         <ul>

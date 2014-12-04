@@ -1,11 +1,56 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService", "Project",
-  "Opening", "User", 
-  function($scope, $state, $modal, AuthService, Project, Opening, User) {
+marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "$stateParams",
+  "AuthService", "Opening", "User", 
+  function($scope, $state, $modal, $stateParams, AuthService, Opening, User) {
     $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
     $scope.hasSearched = 0;
+    $scope.searchParams = $stateParams;
+
+    $scope.search = function() {
+      $scope.hasSearched = 1;
+      var allFoundOpenings = Opening.search({search: $scope.searchParams}, function() {
+        // Filtering done on front-end
+        if ($scope.searchParams["tfs"]) {
+          $scope.foundOpenings = _.filter(allFoundOpenings, function(opening) {
+            return $scope.searchParams["tfs"].indexOf(opening.timeframe) !== -1;
+          });
+        } else {
+          $scope.foundOpenings = allFoundOpenings;
+        }
+      });
+      var allFoundUsers = User.search({search: $scope.searchParams});
+    }
+    // Start initial search
+    $scope.tfs_ = {};
+    if ($scope.searchParams["tfs"]) {
+      var arr = $scope.searchParams["tfs"].split(",");
+      _.each(arr, function(elem) {
+        $scope.tfs_[elem] = true;
+      });
+    }
+    if ($scope.searchParams["q"]) {
+      $scope.search();
+    }
+
+    $scope.searchEntered = function() {
+      var arr = [];
+      _.each($scope.tfs_, function(val, key) {
+        if (val) {
+          arr.push(key);
+        }
+      });
+      var tfString = arr.join(",");
+      if (tfString !== "") {
+        $scope.searchParams["tfs"] = tfString;
+      } else {
+        delete $scope.searchParams["tfs"];
+      }
+      $location.search($scope.searchParams);
+      $scope.search();
+    }
+
     $scope.searchParams = {q: ""};
     $scope.setTab("search");
     $scope.reverse = false;
@@ -24,11 +69,11 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
     $scope.radioModel = "relevance";
 
     // set opening order to reverse when sorting by pay
-    $scope.$watch("radioModel", function(){
-      if($scope.radioModel === "pay_amount"){
+    $scope.$watch("radioModel", function() {
+      if($scope.radioModel === "pay_amount") {
         $scope.reverse = true;
       }
-      else{
+      else {
         $scope.reverse = false;
       }
     });
@@ -43,7 +88,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
     // open modal 
     $scope.open = function (size) {
       $("#wrapper").css("-webkit-filter", "blur(8px)");
-      var modalInstance = $modal.open({
+      var modalInstance = $modal.open( {
         templateUrl: '/templates/directives/modalContent',
         controller: 'ModalCtrl',
         size: size,
@@ -85,12 +130,10 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
       $scope.foundUsers = User.search({search: $scope.searchParams})
       // $scope.searchParams.q = "";
 
-
-
     }
 
     // display flash message if user is logged in but has no bio or no skills
-    if(AuthService.checkIfCurrentUser() && !$scope.user.bio){
+    if(AuthService.checkIfCurrentUser() && !$scope.user.bio) {
       $scope.$emit("flash", {state: "error",
         msg: "For the best experience, please fill out your profile."});
     }
@@ -101,20 +144,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
 
     $scope.showOptions = function() {
       $(".more-options").fadeToggle(100);
-    }
-
-    $scope.createProject = function() {
-      $scope.newProject = new Project;
-    }
-
-    $scope.saveNewProject = function() {
-      $scope.newProject.$save(function(project) {
-        $state.go("project", {id: project.id});
-      });
-    }
-
-    $scope.cancelNewProject = function() {
-      delete $scope.newProject;
     }
   }]);
 

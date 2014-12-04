@@ -3,17 +3,16 @@
 marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
   "AuthService", "Project", "Opening", "Skill",
   function($scope, $stateParams, $state, AuthService, Project, Opening, Skill) {
-
     // if this is a new projet being created
     if($stateParams.id === "new") {
       $scope.project = new Project;
       $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
-    }
+    } 
 
-    // if this is an existing project being viewed or edited
     else {
+      // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
         // Only allow edits if admin or project leader
         var user = AuthService.getCurrentUser();
@@ -50,7 +49,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * @param? index The index of the opening (use undefined to edit the project)
      */
     $scope.edit = function(index) {
-
       if($scope.canEdit) {
         if (index !== undefined) {
           // Save current version of opening into previous versions array
@@ -96,7 +94,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           if ($scope.project.id) {
             $scope.project.$update();
           } else {
-            $scope.project.$save(function(){
+            $scope.project.$save(function() {
               $scope.$emit("flash", {state: "error",
                msg: "Your project has been created! You'll have to wait for site approval " +
                  "before it displays in the search results. In the meantime, " +
@@ -136,7 +134,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * it is considered an unwanted new opening and removed from the array.
      */
     $scope.addOpening = function() {
-      $scope.project.openings.push(new Opening({
+      $scope.project.openings.push(new Opening( {
         project_id: $scope.project.id
       }));
       $scope.edit($scope.project.openings.length - 1);

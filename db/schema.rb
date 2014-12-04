@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.integer  "pay_amount"
     t.string   "pay_type"
     t.integer  "num_slots"
+    t.date     "expires_on"
+    t.boolean  "expire_notified", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
