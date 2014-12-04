@@ -9,6 +9,6 @@ class CreateProjects < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_join_table :users, :projects
+    create_join_table :users, :projects # Leaders
   end
 end

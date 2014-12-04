@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     put '/star/:opening_id' => 'users#star'
 
     # Projects and Openings
-    resources :projects, only: [:show, :create, :update, :destroy] do
-      resources :openings, only: [:create, :update, :destroy]
-    end
+    get '/projects/unapproved' => 'projects#unapproved'
+    put '/projects/:id/approve' => 'projects#approve'
+    resources :projects, only: [:show, :create, :update, :destroy]
+    resources :openings, only: [:create, :update, :destroy]
     # post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
     # delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
 
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   get '/projects/:id' => 'main#index'
   get '/profile(/:id)' => 'main#index'
   get '/starred' => 'main#index'
+  get '/admin(/:page)' => 'main#index'
 
   # Template routes
   get '/templates/*path' => 'main#templates'

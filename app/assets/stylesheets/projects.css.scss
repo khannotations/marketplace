@@ -1,6 +1,10 @@
 
 
+<<<<<<< HEAD
 .project-heading{
+=======
+.page-heading{
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 
 	font-family:$serif;
 	font-size:40px;
@@ -8,6 +12,7 @@
 	float: left;
 	margin-left:1.5%;
 
+<<<<<<< HEAD
 	input, p{
 		border:none;
 		border-bottom:1px solid $lighter-grey;
@@ -23,6 +28,60 @@
 	input{
 		width:100%;
 		margin-top: 40px;
+=======
+	@include placeholder {
+		//color:$yale-blue;
+		padding-top:23px;
+		color:$lighter-grey;
+		@include small-mobile {
+			padding-top: 0px;
+		}
+	}
+
+	input, p{
+		border:none;
+		margin:0px;
+		margin-bottom: 10px;
+		padding:0px;
+		height:62px;
+		@include border-radius(2px);
+	}
+	p{
+		padding-top: 10px;
+		margin-top: 45px;
+		border-bottom:1px solid $lighter-grey;
+	}
+	input{
+		width:100%;
+		margin-top: 20px;
+	}
+	@include small-mobile{
+
+		font-size: 24px;
+
+		input {
+			margin-top: 10px;
+		}
+		p {
+			margin-top:20px;
+			height: 50px;
+		}
+	}
+
+	@include phone {
+		font-size: 18px;
+		width: 97%;
+		input {
+			margin-top: 20px;
+			height: 30px;
+		}
+		p {
+			margin-top: 25px;
+			margin-bottom:5px;
+			padding-bottom:5px;
+			height: 35px;
+		}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	}
 }
 
@@ -41,13 +100,24 @@
 	.views{
 		float: right;
 	}
+<<<<<<< HEAD
+=======
+
+	@include placeholder{
+		color:$lighter-grey;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .project-description{
 	clear:both;
 	margin-top:0px;
 	margin-left: 1.5%;
+<<<<<<< HEAD
 	margin-bottom:50px;
+=======
+	margin-bottom:30px;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	font-size:16px;
 	width:78%;
 	textarea{
@@ -59,12 +129,28 @@
 	p{
 		margin-top: 0px;
 	}
+<<<<<<< HEAD
+=======
+	@include small-mobile {
+		width: 97%;
+		margin-top: 10px;
+		font-size:14px;
+	}
+	@include phone {
+		margin-bottom: 0px;
+		textarea, p {
+			font-size: 9px;
+			line-height: 11px;
+		}
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 ///////////////////
 /* BUTTON STYLES */
 ///////////////////
 
+<<<<<<< HEAD
 .top-button{
 	margin-top:20px;
 }
@@ -83,16 +169,41 @@
 	}
 }
 
+=======
+.project-buttons{
+	margin-top:30px;
+	@include mobile {
+		margin-top: 70px;
+		font-size:8px;
+	}
+	@include phone {
+		margin-top: 0px;
+
+		.options-button {
+			width: 47%;
+			margin-left:1%;
+			margin-top: 0px;
+		}
+	}
+	
+}
+
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 //////////////
 /* OPENINGS */
 //////////////
 .openings-heading{
+<<<<<<< HEAD
 	//clear:both;
+=======
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	float: left;
 	width:78%;
 	font-family:$serif;
 	font-size:30px;
 	padding-bottom:5px;
+<<<<<<< HEAD
 	margin-top:0px;
 	margin-left:2%;
 	border-bottom:1px solid $lighter-grey;
@@ -100,6 +211,30 @@
 
 .add-opening{
 	margin-top: 8px;
+=======
+	margin-top:20px;
+	margin-left:2%;
+	border-bottom:1px solid $lighter-grey;
+
+	@include mobile {
+		font-size: 24px;
+	}
+
+	@include phone {
+		font-size: 14px;
+		width: 96%;
+		margin-bottom:0px;
+	}
+}
+
+.add-opening{
+	margin-top: 10px;
+	@include phone {
+		margin-left: 2%;
+		margin-top: 5px;
+		width: 96%;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 
@@ -116,17 +251,45 @@ different from home */
 
 	.opening-descrption{
 		margin-bottom: 0px;
+<<<<<<< HEAD
+=======
+		@include phone {
+			font-size: 8px;
+			line-height: 10px;
+		}
+	}
+
+	@include phone {
+		width: 96%;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	}
 }
 
 .project-opening .col-1{
 
+<<<<<<< HEAD
 	width:55%;
 	.opening-name{
 		p{margin-bottom: 0px};
 	}
 	input{
 		width: 70%;
+=======
+	// width:calc(70% - 120px);
+
+	@include small-mobile {
+		// width:calc(68% - 80px);
+	}
+
+	.opening-name{
+		p{
+			margin-bottom: 0px;
+			margin-top: 10px;
+		};
+	}
+	input{
+		width: 90%;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 		border:none;
 		border-bottom:1px solid $lighter-grey;
 	}
@@ -134,20 +297,53 @@ different from home */
 		width:100%;
 		height:120px;
 		border:none;
+<<<<<<< HEAD
 	}
+=======
+		@include small-mobile {
+			height: 80px;
+		}
+	}
+	@include placeholder {
+		padding-top:10px;
+	}
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 
 .project-opening .col-2{
 
+<<<<<<< HEAD
 	width: 20%;
 	padding-left:1%;
 
 	select{
+=======
+	// width: 120px;
+	padding-left:1%;
+
+	select{
+		width: 70%;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 		div{
 			width:70%;
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		select {
+			font-size: 8px;
+		}
+
+	}
+
+	span{
+		width: 100px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	
 }
 
@@ -155,14 +351,23 @@ different from home */
 	font-family:$sans;
 	margin-top:0px;
 	margin-bottom:0px;
+<<<<<<< HEAD
 	li{
 		width:50%;
 		float: left;
+=======
+	ul{
+		columns:2;
+	}
+	li{
+		width:100%;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	}
 }
 
 .project-opening .col-3{
 
+<<<<<<< HEAD
 	width: 20%;
 
 	span, input{
@@ -195,14 +400,88 @@ different from home */
 		p{
 			font-size:13px;
 			padding-top:6px;
+=======
+	padding-top:20px;
+	 input {
+		width: 70%;
+	}
+
+	@include small-mobile {
+		select {
+			font-size: 10px;
+		}
+	}
+
+}
+
+.opening-buttons {
+
+	float: right;
+	width: 17%;
+	margin-right:2%;
+	margin-top:10px;
+
+	@include mobile {
+		margin-top: 0px;
+		.options-button {
+			height: 20px;
+		}
+	}
+
+	@include small-mobile {
+		margin-right: 0px;
+	}
+
+	@include phone {
+		width: 100%;
+		padding-left:1%;
+	}
+
+	.options-button {
+		display: inline-block;
+		clear: none;
+		margin-right:1%;
+		width: 42%;
+		height: 35px;
+		p{
+			padding-top:6px;
+			font-size: 14px;
+		}
+		@include mobile {
+			margin-top: 10px;
+		}
+		@include small-mobile{
+			padding-top: 5px;
+			p {
+				font-size: 9px;
+			}
+		}
+		@include phone {
+			width: 47%;
+			height: 20px;
+			margin-top: 0px;
+			p {
+				padding-top:0px;
+			}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 		}
 	}
 
 	.save{
 		font-family: $serif;
+<<<<<<< HEAD
 		font-size:13px;
 		font-color:$light-grey;
 		padding:0px;
+=======
+		font-size: 14px;
+		padding:0px;
+
+		@include small-mobile {	
+			font-size: 9px;
+			
+		}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	}
 }
 

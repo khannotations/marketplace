@@ -6,6 +6,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
     $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
     $scope.hasSearched = 0;
+<<<<<<< HEAD
     $scope.searchParams = $stateParams;
 
     $scope.search = function() {
@@ -56,6 +57,26 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
     $scope.clearCookies = function() {
     	AuthService.logout();
       window.location.assign('/logout');
+=======
+    $scope.searchParams = {q: ""};
+    $scope.setTab("search");
+
+    $scope.search = function() {
+
+      $scope.hasSearched = 1;
+      $scope.foundOpenings = Opening.search({search: $scope.searchParams});
+      $scope.foundUsers = User.search({search: $scope.searchParams})
+      // $scope.searchParams.q = "";
+    }
+
+    $scope.$watch("user", function() {
+      // Run every time "user" changes
+      // if ($scope.user.netid)...
+    })
+
+    $scope.showOptions = function() {
+      $(".more-options").fadeToggle(100);
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
     }
 
     $scope.$watch("user", function() {
@@ -73,6 +94,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$location", "$statePara
 
     $scope.saveNewProject = function() {
       $scope.newProject.$save(function(project) {
+        console.log(project.id);
         $state.go("project", {id: project.id});
       });
     }

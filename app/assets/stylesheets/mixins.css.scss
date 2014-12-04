@@ -30,7 +30,11 @@ $sans: "Roboto", Arial, sans-serif;
 $serif4: "Inconsolata", Times, serif;
 $serif3: "Arvo", Times, serif;
 $serif2: "Roboto Slab", Times, serif;
+<<<<<<< HEAD
 $serif: "Glegoo", Times, serif;
+=======
+$serif: "Glegoo", Times, serif; 
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 
 @mixin helvetica-light {
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;
@@ -161,6 +165,15 @@ $small-desktop-width: 1624px;
           border-radius: $radius;
 }
 
+<<<<<<< HEAD
+=======
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 
 .clearfix{
   clear:both;

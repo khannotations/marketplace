@@ -7,15 +7,15 @@ class Project < ActiveRecord::Base
   validates_presence_of :name, :description
 
   # Scopes
-  default_scope {includes(:openings)}
+  # Can't eagerload openings because opening eager loads project
+  default_scope { includes(:leaders) }
   pg_search_scope :thorough_search,
     against: [:name, :description],
     using: {tsearch: {dictionary: "english", any_word: true}}
 
   def serializable_hash(options={})
     options = { 
-      :include => [:openings, :leaders], 
-      :except => [:created_at, :updated_at]
+      :include => [:leaders]
     }.update(options)
     super(options)
   end

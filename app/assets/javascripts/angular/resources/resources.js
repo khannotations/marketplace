@@ -13,7 +13,9 @@ marketplace.factory("User", ["$resource", function($resource) {
   return User;
 }]).factory("Project", ["$resource", function($resource) {
   var Project = $resource("/api/projects/:id.json", {id: "@id"}, {
-    update: {method: "PUT"}
+    update: {method: "PUT"},
+    getUnapproved: {method: "GET", isArray: true, url: "/api/projects/unapproved.json"},
+    approve: {method: "PUT", url: "/api/projects/:id/approve.json"}
   });
   return Project;
 }]).factory("Opening", ["$resource", function($resource) {

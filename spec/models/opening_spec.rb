@@ -15,18 +15,16 @@ RSpec.describe Opening, :type => :model do
     before(:each) do
       @o1 = create(:opening)
       @o2 = create(:opening)
+      @o1.project = create(:project, name: "Economics project", approved: true)
+      @o1.save
+      @o2.project = create(:project,
+        description: "A exciting project in brain psychology", approved: true)
+      @o2.save
     end
 
     it_behaves_like "thoroughly searchable"
 
     context "through project" do
-      before (:each) do
-        @o1.project = create(:project, name: "Economics project")
-        @o1.save
-        @o2.project = create(:project,
-          description: "A exciting project in brain psychology")
-        @o2.save
-      end
       it "finds through project name" do
         expect(Project.thorough_search("economics")).to eq [@o1.project]
         expect(Opening.search({q: "economics"})).to eq [@o1]

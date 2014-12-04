@@ -3,6 +3,7 @@
 marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
   "AuthService", "Project", "Opening", "Skill",
   function($scope, $stateParams, $state, AuthService, Project, Opening, Skill) {
+<<<<<<< HEAD
     $scope.project = Project.get({id: $stateParams.id}, function() {
       // Only allow edits if admin or project leader
       var user = AuthService.getCurrentUser();
@@ -13,6 +14,36 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
     });
     $scope.editingProject = null; // The previous version of the project being edited
     $scope.editingOpenings = {};  // Previous versions of the openings being edited
+=======
+
+    // if this is a new projet being created
+    if($stateParams.id === "new") {
+      $scope.project = new Project;
+      $scope.canEdit = true;
+      $scope.editingProject = true;
+    }
+
+    // if this is an existing project being viewed or edited
+    else {
+      $scope.project = Project.get({id: $stateParams.id}, function() {
+        // Only allow edits if admin or project leader
+        var user = AuthService.getCurrentUser();
+        // Only viewable if the project is approved, or the user is an admin
+        if (!$scope.project.approved && !user.is_admin) {
+          $scope.$emit("auth-not-authorized");
+        } else {
+          // Viewing normal project
+          $scope.canEdit = (user.is_admin || 
+            _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+          // Only admins can approve
+          $scope.isAdmin = user.is_admin;
+        }
+      });
+      $scope.editingProject = null; // The previous version of the project being edited
+      $scope.editingOpenings = {};  // Previous versions of the openings being edited
+    }
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
     $scope.openingPayTypes = Opening.PAY_TYPES;     // constant
     $scope.openingTimeframes = Opening.TIMEFRAMES;  // constant
     // Get all skills
@@ -69,6 +100,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           opening.id ? opening.$update() : opening.$save(); // Save if no ID (new)
           $scope.editingOpenings[index] = null;
         } else {
+          console.log($scope.project);
           $scope.project.$update();
           $scope.editingProject = null;
         }
@@ -102,6 +134,18 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         project_id: $scope.project.id
       }));
       $scope.edit($scope.project.openings.length - 1);
+    };
+    /*
+     * Approves a given project
+     */
+    $scope.approve = function() {
+      if ($scope.isAdmin) {
+        console.log("approving..")
+        $scope.project.$approve(function() {
+          $scope.$emit("flash:success", {msg:
+            "Project approved! The project leaders will be notified"})
+        });
+      };
     };
   }]);
 

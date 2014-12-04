@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+=======
+.content{
+	@include mobile {
+		width:100%;
+		margin-top:55px;
+	}
+	@include small-mobile{
+		padding: 0px;
+		padding-left:1%;
+	}
+	@include phone{
+		margin-top: 30px;
+	}
+}
+
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 
 ////////////////
 /* SEARCH BAR */
@@ -5,17 +23,38 @@
 
 .main-search {
 	font-size: 60px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		font-size: 20px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .search{
 	margin-top:20px;
+<<<<<<< HEAD
 	background-color:white;
+=======
+	height: 85px;
+
+	@include small-mobile {
+		height: 35px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .search form{
 	width: 80%;
 	float: left;
 	margin:0px;
+<<<<<<< HEAD
+=======
+	@include phone {
+		width: 100%;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .searchbox{
@@ -32,6 +71,21 @@
 		padding-top:8px;
 		float: left;
 	}
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		height: 35px;
+		width: 100%;
+
+		img {
+			height: 30px;
+			width: 30px;
+			padding-left: 4px;
+			padding-top: 4px;
+		}
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .searchfield{
@@ -43,6 +97,7 @@
 	font-weight: 100 !important;
 	outline:none;
 	padding-left:20px;
+<<<<<<< HEAD
 }
 
 .options-button{
@@ -77,6 +132,17 @@
 		color: white;
 	}	
 }
+=======
+
+	@include small-mobile {
+		height: 30px;
+		width: calc(100% - 50px);
+		padding-left:10px;
+		padding-top:5px;
+	}
+}
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 
 /////////////////////
 /* SEARCH RESULTS */
@@ -117,6 +183,7 @@
 	}
 }
 
+<<<<<<< HEAD
 
 #results{
 	margin-left:0px;
@@ -140,6 +207,28 @@
 
 .opening{
 	width: 100%;
+=======
+.openings-count {
+
+	font-family:$serif;
+	width:80%;
+	font-size:16px;
+	clear:both;
+	margin-top:10px;
+	margin-left:0px;
+	margin-bottom: 10px;
+	color:$lighter-grey;
+
+	@include mobile{
+		font-size: 12px;
+		line-height: 12px;
+		margin-left: 0px;
+	}
+}
+
+.opening{
+	width: 80%;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	min-height:160px;
 	border: 1px $lighter-grey solid;
 	background-color:white;
@@ -153,6 +242,21 @@
 	&:hover{
 		border: 1px black solid;
 	}
+<<<<<<< HEAD
+=======
+
+	@include mobile {
+		min-height:140px;
+	}
+
+	@include small-mobile {
+		width: 100%;
+	}
+	@include phone {
+		min-height: 70px;
+		margin-bottom: 10px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .opening-name{
@@ -163,6 +267,19 @@
 	margin-bottom:0px;
 	line-height:30px;
 	margin-top:14px;
+<<<<<<< HEAD
+=======
+
+	@include mobile {
+		font-size: 22px;
+	}
+
+	@include phone {
+		font-size: 14px;
+		margin-top: 5px;
+		line-height: 16px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .opening-subheader{
@@ -175,6 +292,14 @@
 	margin-top:0px;
 	margin-left:2px;
 	margin-bottom:8px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		font-size: 12px;
+		line-height: 15px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .opening-description{
@@ -182,6 +307,21 @@
 	font-size:14px;
 	margin-top:0px;
 	margin-bottom:30px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		font-size: 12px;
+		line-height: 15px;
+		margin-bottom: 20px;
+	}
+
+	@include phone {
+		font-size: 8px;
+		line-height:9px;
+		margin-bottom: 16px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .col-1, .col-2, .col-3, .vert-divider{
@@ -199,6 +339,19 @@
 	height: 130px;
 	margin-left:1%;
 	border-left: 1px solid $lighter-grey;
+<<<<<<< HEAD
+=======
+
+	@include mobile {
+		margin-top: 10px;
+		height: 110px;
+	}
+
+	@include phone {
+		display:none;
+		height: 0px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .col-2{
@@ -211,6 +364,22 @@
 	color:$light-grey;
 	margin-bottom:5px;
 	letter-spacing:1px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		margin-top: 15px;
+		font-size: 12px;
+		line-height: 14px;
+	}
+
+	@include phone {
+		font-size: 8px;
+		line-height: 9px;
+		margin-top: 8px;
+	}
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .col-2 ul{
@@ -219,6 +388,19 @@
 	margin:0px;
 	margin-bottom:10px;
 	font-size:14px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		font-size: 12px;
+		line-height: 15px;
+	}
+	@include phone {
+		font-size: 8px;
+		line-height:9px;
+		margin-bottom:5px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .more{
@@ -237,6 +419,17 @@
 	width:18%;
 	text-align:center;
 	font-family:$sans;
+<<<<<<< HEAD
+=======
+	vertical-align: middle;
+	float: right;
+	margin-right:10px;
+
+	@include small-mobile{
+		margin-right: 0px;
+	}
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .pay{
@@ -245,6 +438,21 @@
 	line-height:24px;
 	margin-top:40px;
 	margin-bottom:4px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile{
+		font-size: 18px;
+		line-height: 18px;
+	}
+
+	@include phone {
+		font-size: 15px;
+		line-height: 15px;
+		margin-top: 20px;
+	}
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .pay-type, .time{
@@ -253,11 +461,37 @@
 	letter-spacing:1.2px;
 	margin:0px;
 	margin-bottom:0px;
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		font-size: 12px;
+		line-height: 14px;
+	}
+
+	@include phone {
+		font-size: 8px;
+		line-height:9px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .time{
 	font-weight:100;
+<<<<<<< HEAD
 	font-size:13px;
+=======
+	font-size:14px;
+
+	@include small-mobile {
+		font-size: 12px;
+		line-height: 15px;
+	}
+	@include phone {
+		font-size: 8px;
+		line-height:9px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .pay-type{
@@ -273,16 +507,39 @@
 	position: absolute;
 	bottom: 4px;
 	left: 15px;
+<<<<<<< HEAD
 }
 
 .star{
 	position:absolute;
 	top: 5px;
 	right: 10px;
+=======
+
+	@include small-mobile {
+		font-size: 8px;
+		line-height: 8px;
+		bottom: 4px;
+		left: 6px;
+		letter-spacing: 0px;
+	}
+
+	@include phone {
+		font-size: 5px;
+		line-height: 5px;
+		bottom: 2px;
+		left: 6px;
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 ///////////////////
 /* SEARCH OPTIONS */
 ///////////////////
@@ -296,7 +553,11 @@
 	width:18%;
 	height:500px;
 	float: right;
+<<<<<<< HEAD
 	margin-top:50px;
+=======
+	margin-top:52px;
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 	@include border-radius(2px);
 
 	h1{
@@ -306,12 +567,55 @@
 		letter-spacing: .5px;
 		margin-left:5px;
 	}
+<<<<<<< HEAD
+=======
+
+	@include small-mobile {
+		width: 100%;
+		float: none;
+		position: relative;
+		margin-top: 0px;
+		height: 50px;
+
+		h1 {
+			font-size: 8px;
+		}
+	}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 }
 
 .option-bubble{
 	@include border-radius(2px);
+<<<<<<< HEAD
 	width:80%;
 	height:70px;
 	margin:auto;
 
 }
+=======
+	margin:auto;
+
+}
+
+.option-block {
+	@include small-mobile {
+		width: 30%;
+		margin-right: 3%;
+		float: left;
+
+		p {
+			float: left;
+			font-size: 8px;
+			line-height: 10px;
+			margin-bottom:0px;
+			margin-top: 0px;
+		}
+
+		h1{
+			line-height: 10px;
+			margin-bottom: 0px;
+
+		}
+	}
+}
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67

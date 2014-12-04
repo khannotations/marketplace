@@ -1,14 +1,26 @@
 <div class="sidebar-wrapper">
 		<div class="sidebar-top">
+<<<<<<< HEAD
 			<a class="navlink search-tab" ui-sref="home">Search</a>
 			<a class="navlink profile-tab" ui-sref="profile">Profile</a>
 			<a class="navlink starred-tab" href="">Starred</a>
 			<a class="navlink create-tab" href="">Create</a>
+=======
+			<a class="navlink search-tab" id="current-tab" ng-click="setCurrent($event)" href="/">Search</a>
+			<a class="navlink profile-tab" ui-sref="profile({netid: user.netid})">Profile</a>
+			<a class="navlink starred-tab" href="/starred">Starred</a>
+			<a class="navlink create-tab" ng-click="setTab('create')" href="/projects/new">Create</a>
+			<a class="navlink logout-tab" ng-click="clearCookies()" href="">Logout</a>
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 		</div>
 		
 		<div class="sidebar-bottom">
 			<hr class="dots"></hr>
+<<<<<<< HEAD
 			<h1 class="welcome-header">Welcome, Stan!</h1>
+=======
+			<h1 ng-if="user.first_name" class="welcome-header">Welcome, {{user.first_name}}!</h1>
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
 			<p class="welcome-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
 			<a onclick="window.location.assign('<%= login_path %>')">LOGIN</a>
 			<p class="slash">/</p>
@@ -20,4 +32,8 @@
 		</div>
 		
 	</div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 85ba5225e55015f2c71970d88acaa21b3395fa67
