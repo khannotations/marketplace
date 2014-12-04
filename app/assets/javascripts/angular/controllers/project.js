@@ -12,16 +12,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.editingProject = true;
     }
 
-    // if($scope.editingProject && $scope.project.description === undefined || $scope.project.title === undefined){
-    //   $scope.$emit("flash", {state: "error",
-    //     msg: "Give your project a title and a brief description"});
-    // }
-
-    // if($scope.project.description && $scope.project.title && $scope.project.openings.length == 0){
-    //   $scope.$emit("flash", {state: "error",
-    //     msg: "Add openings to describe the specific positions you're looking to fill."});
-    // }
-
     // if this is an existing project being viewed or edited
     else {
       $scope.project = Project.get({id: $stateParams.id}, function() {
