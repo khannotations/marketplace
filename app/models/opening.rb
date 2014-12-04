@@ -30,6 +30,10 @@ class Opening < ActiveRecord::Base
     against: [:name, :description],
     using: {tsearch: {dictionary: "english", any_word: true}}
 
+  def expired?
+    return expires_on <= Date.now
+  end
+
   # Search is put here, though it returns Openings and User
   # Returns all openings that match any of the query terms, or whose project
   # does, or that have a skill that matches one of the query terms

@@ -9,6 +9,9 @@ class CreateOpenings < ActiveRecord::Migration
       t.string :pay_type
       t.integer :num_slots
 
+      t.date :expires_on
+      t.boolean :expire_notified, default: false
+
       t.timestamps
     end
     create_join_table :users, :openings
