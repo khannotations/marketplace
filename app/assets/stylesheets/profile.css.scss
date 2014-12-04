@@ -36,7 +36,7 @@
 		width: auto;
 	}
 	input {
-		max-width: 70%;
+		max-width: 60%;
 		height: 60px;
 		border:none;
 		line-height:45px;
@@ -59,7 +59,7 @@
 		vertical-align: top;
 		margin-top: 80px;
 		margin-left: 4%;
-		max-width: 55%;
+		max-width: 50%;
 		height:70px;
 
 		@include small-mobile {
@@ -280,6 +280,7 @@
 
 	@include small-mobile {
 		float: right;
+		
 		.options-button {
 			width: 100%;
 		}

@@ -17,10 +17,8 @@ angular.module("Marketplace")
       }
 
       $scope.$watch("currentTab", function(tab) {
-        var newTab = document.getElementsByClassName(tab + "-tab");
-        var oldTab = document.getElementById("current-tab");
-        $(oldTab).removeAttr("id");
-        $(newTab).attr("id", "current-tab");
+        $("#current-tab").removeAttr("id");
+        $("."+tab+"-tab").attr("id", "current-tab");
       })
 
    }]);

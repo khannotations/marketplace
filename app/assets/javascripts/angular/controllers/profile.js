@@ -14,7 +14,7 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
 
     // if user photo is present, use it instead of default
     if($scope.user.photo_url){
-      var img = document.getElementsByClassName("user-photo");
+      var img = $("user-photo");
       $(img).attr("src", "user.photo_url");
       $(img).css("padding", 0);
     }
@@ -35,6 +35,9 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
       if ($scope.canEdit) {
         $scope.user.$update();
         delete $scope.editingUser;
+        $scope.$emit("flash", {state: "success",
+               msg: "Changes saved!"});
       }
+
     }
   }]);

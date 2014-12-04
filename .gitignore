@@ -3,3 +3,5 @@
 /tmp
 
 /config/credentials.yml
+
+.DS_Store

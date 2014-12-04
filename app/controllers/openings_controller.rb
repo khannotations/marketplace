@@ -2,7 +2,11 @@ class OpeningsController < ApplicationController
   respond_to :json
   before_filter :require_login
   before_filter :check_authorization_to_project, only: [:create, :update, :destroy]
-  before_filter :set_opening, only: [:update, :destroy]
+  before_filter :set_opening, only: [:show, :update, :destroy]
+
+  def show
+    render json: @opening
+  end
 
   def create
     @opening = Opening.create(opening_params.merge(
