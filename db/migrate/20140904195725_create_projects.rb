@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :photo_url
+      t.boolean :approved, default: false
 
       t.timestamps
     end

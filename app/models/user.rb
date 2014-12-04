@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     against: [:first_name, :last_name, :email, :netid, :bio],
     using: {tsearch: {dictionary: "english", any_word: true}}
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def self.search(search_params, page=0)
     page ||= 0
     query = search_params[:q]

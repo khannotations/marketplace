@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     if @project.id
       @project.leaders << current_user
       respond_with @project
+      AdminMailer.project_approval(@project).deliver!
     else
       render_error "project could not be created", 400
     end
