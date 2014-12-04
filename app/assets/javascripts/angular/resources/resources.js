@@ -19,8 +19,7 @@ marketplace.factory("User", ["$resource", function($resource) {
   });
   return Project;
 }]).factory("Opening", ["$resource", function($resource) {
-  var Opening = $resource("/api/projects/:project_id/openings/:id.json",
-    {project_id: "@project_id", id: "@id"},
+  var Opening = $resource("/api/openings/:id.json", {id: "@id"},
     {
       update: {method: "PUT"},
       search: {method: "GET", url: "/api/search/openings", isArray: true}

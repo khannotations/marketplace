@@ -25,7 +25,7 @@
 
 .sidebar-wrapper { 
 	float: right;
-	background-color: $yale-blue;
+	background-color: $green;
 	min-height:100%;
 
 	@include mobile {
@@ -56,15 +56,15 @@
 }
 
 .navlink {
-	//@extend $grey-link;
 	font-size: 45px;
 	line-height: 60px;
-	color:$grey;
+	color:#ffffff;
 	font-family: $serif;
 	letter-spacing:.8px;
 	float: left;
-	width: 70%;
+	width: auto;
 	margin-bottom: 10px;
+	padding-right:20px;
 	padding-left: 12px;
 	border-top-right-radius:2px;
 	border-bottom-right-radius:2px;
@@ -100,27 +100,37 @@
 
 .navlink:link {
 	text-decoration:none;
-	color:$grey;
+	color:#ffffff;
 }
+<<<<<<< HEAD
 .navlink:visited {
 	color:$grey;
+=======
+.navlink:visited {
+	color:#ffffff;
+>>>>>>> master
 }
 .navlink:hover {
 	background-color: #fafafa;
 	text-decoration:none;
-	color:$yale-blue;
+	color:$blue;
 	@include mobile {
 		background-color: none;
 	}
 }
+<<<<<<< HEAD
 .navlink:active {
 	color:$yale-blue;
+=======
+.navlink:active {
+	//color:$blue;
+>>>>>>> master
 }
 
 #current-tab {
 	background-image: url(/assets/crossword.png);
   	background-repeat:repeat;
-  	color:$yale-blue;
+  	color:$blue;
 }
 
 .logout-tab {
@@ -149,14 +159,14 @@
 	font-size: 24px;
 	margin-top:0px;
 	margin-bottom:0px;
-	color:$grey;
+	color:#ffffff;
 }
 
 .sidebar-bottom a, .sidebar-bottom p {
 	display: inline-block;
 	font-family:$serif;
 	font-size: 11px;
-	color:$grey;
+	color:#ffffff;
 	float: left;
 	margin: 0px;
 	margin-top: 25px;

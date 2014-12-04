@@ -12,6 +12,14 @@ RSpec.describe OpeningsController, :type => :controller do
     @opening.skills << @skill
   end
 
+  describe "get" do
+    it "gets an opening" do
+      get :show, id: @opening.id
+      expect(response.status).to be 200
+      expect(response.body).to match "\"id\":#{@opening.id}"
+    end
+  end
+
   describe "create" do
     before(:each) do
       @new_opening = build(:opening, project: @project)

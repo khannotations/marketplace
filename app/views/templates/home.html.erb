@@ -3,7 +3,7 @@
     <form class='main-search' ng-submit="search()">
       <div class="searchbox">
         <img src="/assets/searchicon.jpg" alt="" class="searchicon"></img>
-        <input type="text" class="searchfield" ng-model="searchParams.q">
+        <input type="text" class="searchfield" autofocus="autofocus" ng-model="searchParams.q">
       </div>
     </form>
     <div class="options-button help-button">
@@ -20,102 +20,79 @@
 
   <!-- "More Options" dropdown menu -->
   <div class="more-options">
-
-    <!-- TO BE DEPRECATED. But kept now because it works... --> 
-    <p class="a-like" ng-click="createProject()">Create a project</p>
-    <div ng-if="newProject">
-      <input type="text" ng-model="newProject.name">
-      <textarea cols="30" rows="10" ng-model="newProject.description"></textarea>
-      <button ng-click="saveNewProject()">Save</button>
-      <button ng-click="cancelNewProject()">Cancel</button>
-    </div>
-
     <div class="option-block">
       <h1>SHOW</h1>
-        <div class="option-bubble">
-          <div class="left">
-            <p>users</p>
-          </div>
-          <div class="right">
-            <p>openings</p>
-          </div>
+        <div class="btn-group show">
+          <label class="btn btn-primary filter-btn" ng-model="filterType.openings" btn-checkbox>openings</label>
+          <label class="btn btn-primary filter-btn" ng-model="filterType.users" btn-checkbox>users</label>
         </div>
     </div>
-
     <div class="option-block">
       <h1>SORT BY</h1>
+        <div class="btn-group sort-by">
+          <label class="btn btn-primary filter-btn top" ng-model="radioModel" btn-radio="'updated_at'">newest</label>
+          <label class="btn btn-primary filter-btn" ng-model="radioModel" btn-radio="'pay_amount'">pay</label>
+          <label class="btn btn-primary filter-btn bottom" ng-model="radioModel" btn-radio="'relevance'">relevance</label>
+      </div>
     </div>
-
     <div class="option-block">
       <h1>FILTER ON</h1>
-        <div class="option-bubble">
-          <div class="top-bubble">
-            <p>term-time</p>
-          </div>
-          <div class="middle">
-            <p>summer</p>
-          </div>
-          <div class="bottom">
-            <p>full-time</p>
-          </div>
-        </div>
-      </div>
-
-  </div>
-
-  <div class="welcome" ng-if="hasSearched == 0">
-    <h1 >Welcome to the</h1>
-    <h2>Yale Projects Board</h2>
-    <p>Use the search bar to find projects looking for developers on campus. You can search by programming languages, time commitment, or project description.</p>
-  </div>
-
-  <div class="openings-count">
-    <p ng-if="foundOpenings.length > 0">Found {{foundOpenings.length}} openings that match your search</p>
-  </div>
-
-    <p class="openings-count" ng-if="!foundOpenings.length && hasSearched == 1">No openings match your search.</p>
-
-    <div class="opening" ng-init="inLimit=4" ng-repeat="opening in foundOpenings">
-
-      <!-- name & description -->
-      <div ui-sref="project({id: opening.project_id})" class="col-1">
-      <a ui-sref="project({id: opening.project_id})">  
-        <h1 class="opening-name">{{opening.name}}</h1>
-      </a>
-      <h2 class="opening-subheader">{{opening.project.name}}</h2>
-      <p class="opening-description">{{opening.description}}</p>
-      <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
-      </div>
-
-      <div class="vert-divider"></div>
-      <!-- skills --> 
-      <div class="col-2">
-      <p>SKILLS</p>
-        <ul class="some-skills" ng-click="inLimit = 20" ng-click"inLimit = 4">
-          <li ng-repeat="skill in opening.skills | limitTo:inLimit" >
-            {{skill.name}}
-          </li>
-          <li class="more" ng-if="opening.skills.length > 4 && inLimit == 4">
-            Show all...
-          </li>
-        </ul>
-
-      </div>
-
-      <div class="vert-divider"></div>
-
-      <!-- pay info -->
-      <div ui-sref="project({id: opening.project_id})" class="col-3"> 
-        <p class="pay">${{opening.pay_amount}}</p>
-        <p class="pay-type">{{opening.pay_type}}</p>
-        <p class="time">({{opening.timeframe}})</p>
+      <div class="btn-group filter-on">
+        <label class="btn btn-primary filter-btn top" ng-model="filterTime.termtime" btn-checkbox>term-time</label>
+        <label class="btn btn-primary filter-btn" ng-model="filterTime.summer" btn-checkbox>summer</label>
+        <label class="btn btn-primary filter-btn bottom" ng-model="filterTime.fulltime" btn-checkbox>full-time</label>
       </div>
     </div>
+  </div>
 
-    <p class="openings-count" ng-if="foundUsers.length > 0 && hasSearched == 1">Found {{foundUsers.length}} users who match your search.</p>
-    <p class="openings-count" ng-if="!foundUsers.length && hasSearched == 1">No users match your search</p>
+  <p class="helper-text" ng-if="foundOpenings.length > 0 && filterType.openings">Found {{foundOpenings.length}} openings that match your search</p>
 
-    <div class="opening" ng-repeat="user in foundUsers" ui-sref="profile({netid: user.netid})">
+  <p class="helper-text" ng-if="!foundOpenings.length && hasSearched && filterType.openings">No openings match your search.</p>
+
+  <!-- Job Opening returned from search -->
+  <div class="opening"  ng-if="filterType.openings" ng-init="skillLimit=4" ng-repeat="opening in foundOpenings | orderBy: radioModel : reverse">
+
+  <div star opening-id="{{opening.id}}" class="star"></div>
+    <!-- name & description -->
+    <div ui-sref="project({id: opening.project_id})" class="col-1">
+    <a ui-sref="project({id: opening.project_id})">  
+      <h1 class="opening-name">{{opening.name}}</h1>
+    </a>
+    <h2 class="opening-subheader">{{opening.project.name}}</h2>
+    <p class="opening-description">{{opening.description}}</p>
+    <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
+    </div>
+
+    <div class="vert-divider"></div>
+
+    <!-- skills --> 
+    <div class="col-2">
+    <p>SKILLS</p>
+      <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="some-skills">
+        <li ng-repeat="skill in opening.skills | limitTo:skillLimit" >
+          {{skill.name}}
+        </li>
+        <li class="more" ng-if="opening.skills.length > 4 && skillLimit == 4">
+          Show all...
+        </li>
+        <li class="more" ng-if="skillLimit == 20">Show fewer...</li>
+      </ul>
+    </div>
+
+    <div class="vert-divider"></div>
+
+    <!-- pay info -->
+    <div ui-sref="project({id: opening.project_id})" class="col-3"> 
+      <p class="pay">${{opening.pay_amount}}</p>
+      <p class="pay-type">{{opening.pay_type}}</p>
+      <p class="time">({{opening.timeframe}})</p>
+    </div>
+  </div>
+
+    <p class="helper-text" ng-if="foundUsers.length > 0 && hasSearched == 1 && filterType.users">Found {{foundUsers.length}} users who match your search.</p>
+    <p class="helper-text" ng-if="!foundUsers.length && hasSearched == 1 && filterType.users">No users match your search</p>
+
+    <div class="opening" ng-if="filterType.users" ng-repeat="user in foundUsers" ui-sref="profile({netid: user.netid})">
 
       <div class="col-1">
         <h1 class="opening-name" >{{user.first_name}} {{user.last_name}}

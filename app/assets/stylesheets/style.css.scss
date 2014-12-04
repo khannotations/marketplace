@@ -10,6 +10,7 @@ html, body, #wrapper {
   font: 16px/22px normal $sans;
   background-image: url(/assets/crossword.png);
   background-repeat:repeat;
+  -webkit-filter: blur(0px);
 }
 
 a, .a-like {
@@ -34,30 +35,64 @@ a, .a-like {
 .flash {
   display: none;
   position: fixed;
-  top: 50px; left: 25%;
-  width: 50%;
+  font-family: $sans;
+  top: 20px; right: 2%;
+  width: 20%;
   z-index: 10;
   border: 1pt solid #ddd;
-  padding: 15px;
+  @include border-radius(2px);
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right:30px;
+
   &.success {
     background-color: #c3fbcb;
+    border: 1pt solid #c3fbcb;
   }
   &.error {
-    background-color: #fba1a2;
+    //background-color: #fba1a2;
+    background-color: $orange;
+    border: 1pt solid $orange;
+    color:#ffffff;
+  }
+  &.standard {
+    background-color:$yale-blue;
   }
   &.visible {
     display: block;
   }
   .close {
-    float: right;
+    position: absolute;
+    top:5px;
+    right: 15px;
     color: #555;
     cursor: pointer;
     font-size: 20px;
   }
-}
 
-.star.starred {
-  font-weight: bold;
+  @include mobile {
+    position: absolute;
+    font-size: 10px;
+    line-height: 12px;
+    width: 45%;
+    height: 35px;
+    top: 10px;
+    right: 1%;
+    padding: 5px;
+
+    .close {
+      font-size: 10px;
+      right: 5px;
+    }
+  }
+  @include phone {
+    font-size: 8px;
+    padding: 2px;
+    width: 30%;
+    top: 53px;
+  }
+
 }
 
 .star {
@@ -65,16 +100,24 @@ a, .a-like {
   position:absolute;
   top: 5px;
   right: 5px;
-
-  width: 15px;
-  height: auto;
+  background-image: url("/assets/star.svg");
+  background-repeat:no-repeat;
+  background-size:  20px 20px;
+  border:none;
+  //background-color: $yale-blue;
+  width: 20px;
+  height: 20px;
   display:inline-block;
 
 }
 
+.starred {
+    background-image: url("/assets/starred.png");
+}
+
 // BUTTON STYLES
 
-.options-button{
+.options-button {
   float: right;
   clear: right;
   width: 18%;
@@ -96,13 +139,13 @@ a, .a-like {
     float: left;
     height:35px;
     margin-left: 1%;
-    background-color: $yale-blue;
+    background-color: $blue;
     opacity: (.8);
 
     .non-q-mark {
       display:none;
     }
-    .q-mark{
+    .q-mark {
       display:block;
       color:$light-grey;
     }
@@ -120,22 +163,7 @@ a, .a-like {
   }
 }
 
-.help-button{
-  @include small-mobile {
-    width: 5%;
-    background-color:#ffffff;
-    .q-mark {
-      color: $light-grey;
-    }
-  }
-  @include phone {
-    width: 49%;
-    background-color: $yale-blue;
-    .q-mark {color: #ffffff};
-  }
-}
-
-#right-button{
+#right-button {
   @include small-mobile {
     margin-right: 0%;
     width: 13%
@@ -145,7 +173,7 @@ a, .a-like {
   }
 }
 
-.options-button p{
+.options-button p {
   font-family: $serif;
   letter-spacing: .8px;
   font-size: 16px;
@@ -174,8 +202,8 @@ a, .a-like {
 
 }
 
-.home-options{
-  @include small-mobile{
+.home-options {
+  @include small-mobile {
     p {color: $light-grey;}
     background-color: #ffffff;
   }
@@ -185,16 +213,35 @@ a, .a-like {
   }
 }
 
-.options-button:hover{
-  background-color: $yale-blue;
-  border: 1px $yale-blue solid;
-  opacity:(.8);
+.options-button:hover {
+  background-color: $blue;
+  border: 1px $blue solid;
+  //opacity:(.8);
   p {
     color: white;
   } 
 }
 
-.save{
+.help-button {
+  &:hover {
+    background-color: $orange;
+    border: 1px solid $orange;
+  }
+  @include small-mobile {
+    width: 5%;
+    background-color:#ffffff;
+    .q-mark {
+      color: $light-grey;
+    }
+  }
+  @include phone {
+    width: 49%;
+    background-color: $blue;
+    .q-mark {color: #ffffff};
+  }
+}
+
+.save {
 
   color: $light-grey;
 
@@ -204,7 +251,7 @@ a, .a-like {
     opacity:(.8);
   }
 
-  &:hover{
+  &:hover {
     background-color:$green;
     border: 1px solid $green;
     color:#ffffff;
@@ -212,15 +259,108 @@ a, .a-like {
 
 }
 
-.cancel, .delete{
+.cancel, .delete {
 
   @include small-mobile {
     background-color:$red;
     opacity:(.8);
   }
 
-  &:hover{
+  &:hover {
     background-color:$red;
     border:1px solid $red;
   }
 }
+
+
+
+//////////////////
+// MODAL STYLES //
+//////////////////
+
+.modal {
+  margin-top: 8%;
+  @include border-radius (2px);
+}
+
+.modal-button {
+  margin:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  float:none;
+  width: 35%;
+
+  @include small-mobile {
+    width: 90%;
+    height: 70px;
+    p {
+      font-size: 20px;
+      margin-top:20px;
+    }
+  }
+
+}
+
+.modal-content {
+
+  padding: 0px;
+
+  .modal-title1, .modal-title2 {
+    text-align:center;
+    margin:0px;
+  }
+  .modal-title1 {
+    font-family: $sans;
+    letter-spacing: 1.5px;
+    font-weight: 100;
+    font-size:20px;
+
+    @include small-mobile {
+      margin-bottom: 10px;
+    }
+  }
+  .modal-title2 {
+    font-family: $serif;
+    color:$blue;
+    font-size:50px;
+    line-height:60px;
+    margin-bottom: 10px;
+  }
+
+  .modal-text {
+    width:50%;
+    margin:auto;
+    text-align:center;
+
+    @include small-mobile {
+      width: 75%;
+    }
+
+  }
+
+  .or {
+    font-size:35px;
+    font-weight: 400;
+    color: $blue;
+  }
+
+  .modal-sentence {
+    font-family: $sans;
+    font-weight: 100;
+    font-size:20px;
+    line-height:25px;
+    margin-bottom:10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.btn-group {
+  label {
+    font-family: $sans;
+  }
+}
+
+
+
+

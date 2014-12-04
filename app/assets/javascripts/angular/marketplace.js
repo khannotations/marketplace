@@ -57,14 +57,14 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       angular.element('meta[name=csrf-token]').attr('content');
   }]).run(["AuthService", "$rootScope", "$state", function(AuthService, $rootScope, $state) {
     // Set up authorization check.
-    $rootScope.$on('$stateChangeStart', function(event, next){
+    $rootScope.$on('$stateChangeStart', function(event, next) {
       var roles = next.data.authorizedRoles;
       if (next.name == "home") {
         return; // Always allow visit to home page. 
       }
-      if (!AuthService.isAuthorized(roles)){
+      if (!AuthService.isAuthorized(roles)) {
         event.preventDefault();
-        if (AuthService.checkIfCurrentUser()){
+        if (AuthService.checkIfCurrentUser()) {
           // user not allowed
           $rootScope.$broadcast("auth-not-authorized");
         } else {

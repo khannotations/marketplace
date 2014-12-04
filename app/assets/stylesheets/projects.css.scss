@@ -6,7 +6,6 @@
 	margin-left:1.5%;
 
 	@include placeholder {
-		//color:$yale-blue;
 		padding-top:23px;
 		color:$lighter-grey;
 		@include small-mobile {
@@ -197,14 +196,6 @@ different from home */
 }
 
 .project-opening .col-1 {
-	width:55%;
-	.opening-name {
-		p {margin-bottom: 0px};
-	}
-
-	@include small-mobile {
-		// width:calc(68% - 80px);
-	}
 
 	.opening-name {
 		p {
@@ -230,9 +221,7 @@ different from home */
 	}
 }
 
-
 .project-opening .col-2 {
-	// width: 120px;
 	padding-left:1%;
 
 	select {

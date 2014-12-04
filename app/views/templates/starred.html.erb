@@ -2,4 +2,61 @@
 	Starred openings
 </h1>
 
-{{user.favorite_opening_ids}}
+<div class="opening project-opening" ng-repeat="opening in allOpenings">
+ 
+  <div star opening-id="{{opening.id}}" class=""></div>
+
+  <form ng-submit="save($index)">
+    <!-- A switch on the edit mode for this opening. True => not-editing -->
+    <span ng-switch="!editingOpenings[$index]">
+
+      <!-- Name & Description -->
+      <div class="col-1">
+        <div class="opening-name">
+          <p ng-switch-when="true">{{opening.name}}</p>
+          <input type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!">
+        </div>
+
+        <div class="opening-description">
+          <p ng-switch-when="true">{{opening.description}}</p>
+          <textarea cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" placeholder="And this is why"></textarea>
+        </div>
+      </div>
+
+      <div class="vert-divider"></div>
+
+      <!-- Skills -->
+      <div class="col-2">
+        <p>SKILLS</p>
+          <span ng-switch-when="true">
+            <ul class="skill-list">
+              <li ng-repeat="skill in opening.skills">
+                {{skill.name}}
+              </li>
+            </ul>
+          </span>
+
+        <!-- A multiple-select jQuery chosen element that shows the name
+        of each skill and binds the selected elements to the opening's skills array -->
+        <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
+
+        <span ng-switch-when="false" >
+          <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
+        </span>
+      </div>
+
+      <div class="vert-divider"></div>
+
+      <!-- Pay amount, type, and timeframe -->
+      <div class="col-3">
+
+        <span class="pay" ng-switch-when="true">${{opening.pay_amount}}</span>
+        <input class="pay-amt" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
+
+        <span class="pay-type" ng-switch-when="true"><p class="pay-type">{{opening.pay_type}}</p></span>
+        <select ng-switch-when="false" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
+
+        <span class="time" ng-switch-when="true"><p class="time">({{opening.timeframe}})</p></span>
+        <select ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
+      </div>
+  </div>

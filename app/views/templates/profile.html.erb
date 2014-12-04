@@ -52,8 +52,6 @@
     </div>
   </div>
 
-
-  
   <!-- Contact & Bio -->
   <div class="profile-bio">
 
@@ -99,7 +97,7 @@
 
   <div class="profile-projects">
 
-    <h1 ng-if="user.leading_projects.length">{{user.first_name}}'s projects</h1>
+    <h1 ng-if="user.leading_projects.length">Projects {{user.first_name}} leads</h1>
     <div class="opening" ui-sref="project({id: project.id})" ng-repeat="project in user.leading_projects">
       <p class="opening-name">{{project.name}}</p>
       <p class="opening-description">{{project.description}}</p>

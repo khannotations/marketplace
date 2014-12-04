@@ -6,6 +6,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
     // if this is a new projet being created
     if($stateParams.id === "new") {
       $scope.project = new Project;
+      $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
     }
@@ -46,6 +47,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * @param? index The index of the opening (use undefined to edit the project)
      */
     $scope.edit = function(index) {
+
       if($scope.canEdit) {
         if (index !== undefined) {
           // Save current version of opening into previous versions array
@@ -85,9 +87,20 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           var opening = new Opening($scope.project.openings[index]);
           opening.id ? opening.$update() : opening.$save(); // Save if no ID (new)
           $scope.editingOpenings[index] = null;
+          $scope.$emit("flash", {state: "success",
+               msg: "Opening added!"});
         } else {
-          console.log($scope.project);
-          $scope.project.$update();
+          if ($scope.project.id) {
+            $scope.project.$update();
+          } else {
+            $scope.project.$save(function() {
+              $scope.$emit("flash", {state: "error",
+               msg: "Your project has been created! You'll have to wait for site approval " +
+                 "before it displays in the search results. In the meantime, " +
+                 "add openings that describe the positions you're looking to fill."});
+              $state.go("project", {id: $scope.project.id});              
+            });
+          }
           $scope.editingProject = null;
         }
       }
@@ -103,9 +116,13 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           var opening = new Opening($scope.project.openings.splice(index, 1)[0]);
           // Destroy it
           opening.$remove();
+          $scope.$emit("flash", {state: "success",
+               msg: "Opening removed"});
         } else {
           $scope.project.$remove();
           $state.go("home");
+          $scope.$emit("flash", {state: "success",
+               msg: "Your project has been deleted"});
         }
       }
     }
@@ -116,7 +133,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * it is considered an unwanted new opening and removed from the array.
      */
     $scope.addOpening = function() {
-      $scope.project.openings.push(new Opening({
+      $scope.project.openings.push(new Opening( {
         project_id: $scope.project.id
       }));
       $scope.edit($scope.project.openings.length - 1);
