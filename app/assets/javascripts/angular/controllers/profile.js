@@ -4,6 +4,7 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
   "User", "Skill", "Opening",
   function($scope, $stateParams, AuthService, User, Skill, Opening) {
     var currentUser = AuthService.getCurrentUser();
+    $stateParams.netid = $stateParams.netid || currentUser.netid;
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
         currentUser.is_admin;
@@ -13,7 +14,7 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     $scope.setTab("profile");
 
     // if user photo is present, use it instead of default
-    if($scope.user.photo_url){
+    if($scope.user.photo_url) {
       var img = $("user-photo");
       $(img).attr("src", "user.photo_url");
       $(img).css("padding", 0);

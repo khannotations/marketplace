@@ -9,7 +9,7 @@
 		font-size: 28px;
 	}
 
-	@include phone{
+	@include phone {
 		font-size: 18px;
 		line-height:20px;
 		margin-left:1%;
@@ -50,7 +50,7 @@
 		}
 	}
 
-	input[type=text]{
+	input[type=text] {
 		padding-top: 0px;
 	}
 
@@ -114,7 +114,7 @@
 	}
 }
 
-.profile-bio{
+.profile-bio {
 	margin-top:15px;
 	p {
 		font-size: 16px;
@@ -122,7 +122,7 @@
 	}
 
 	@include small-mobile {
-		.profile-about p, .contact p, .profile-skills li, textarea{
+		.profile-about p, .contact p, .profile-skills li, textarea {
 			font-size: 12px;
 			line-height: 14px;
 		}
@@ -132,7 +132,7 @@
 
 		margin-top: 10px;
 
-		.profile-about p, .contact p, .profile-skills li, textarea, option{
+		.profile-about p, .contact p, .profile-skills li, textarea, option {
 			font-size: 8px;
 			line-height: 10px;
 		}
@@ -180,7 +180,7 @@
 	}
 }
 
-.skills-contact{
+.skills-contact {
 	float: right;
 	width:20%;
 
@@ -231,15 +231,15 @@
 
 
 
-.profile-projects{
-	h1{
+.profile-projects {
+	h1 {
 		margin-bottom:20px;
 		margin-top:50px;
 	}
-	p{
+	p {
 		margin-left:10px;
 	}
-	.opening{
+	.opening {
 		width:75%;
 		margin-left:0px;
 		display:inline-block;
@@ -250,15 +250,15 @@
 			min-height: 60px;
 		}
 	}
-	.opening-name{
+	.opening-name {
 		margin-bottom:5px;
 	}
 
-	.posted-by{
+	.posted-by {
 		left: 2px;
 	}
 
-	.stars{
+	.stars {
 		width:100%;
 		clear:both;
 		margin-bottom:50px;
@@ -274,7 +274,7 @@
 		width: 100%;
 	}
 
-	@include mobile{
+	@include mobile {
 		margin-top:30px;
 	}
 
@@ -291,7 +291,7 @@
 	}
 }
 
-.mobile-buttons{
+.mobile-buttons {
 
 	display:none;
 

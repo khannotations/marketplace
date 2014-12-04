@@ -26,7 +26,8 @@ project = Project.create({
   name: "The Yale Projects Board",
   description: "As Yale tech community continues to grow and become more robust, more and more projects—either those started independently by students or in connection to an academic department—are being created. Often, those project leaders are faced with the challenging problem of finding talented programmers, designers, and engineers to join their teams, and are unsure where to search.
 
-We want to solve this coordination with an online projects board that allows those looking for programmers, designers, and engineers (“leaders”) to post their ideas online and recruit talent, and give those looking for projects (“members”) a central location to start their search. The goal is to be professional enough that people take themselves and others seriously on the site, but not so seriously that people short on experience are intimidated. This would also present an exciting opportunity to aggregate data about what kinds of projects are being created at Yale, as well as what skills are most desired."
+We want to solve this coordination with an online projects board that allows those looking for programmers, designers, and engineers (“leaders”) to post their ideas online and recruit talent, and give those looking for projects (“members”) a central location to start their search. The goal is to be professional enough that people take themselves and others seriously on the site, but not so seriously that people short on experience are intimidated. This would also present an exciting opportunity to aggregate data about what kinds of projects are being created at Yale, as well as what skills are most desired.",
+  approved: true
 })
 project.leaders << rafi
 print "creating openings..."

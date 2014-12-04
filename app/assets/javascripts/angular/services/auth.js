@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("Marketplace")
-	.factory("AuthService", ["$cookieStore", "User", function($cookieStore, User){
+	.factory("AuthService", ["$cookieStore", "User", function($cookieStore, User) {
 		var authService = {};
 		var COOKIE_KEY = "marketplace_user";
 		/*

@@ -1,7 +1,6 @@
 "use strict";
 
-marketplace.controller("AdminCtrl", ["$scope", "$state", "AuthService", "Project",
-  "Opening", "User",
-  function($scope, $state, AuthService, Project, Opening, User) {
+marketplace.controller("AdminCtrl", ["$scope", "Project",
+  function($scope, Project) {
     $scope.unapprovedProjects = Project.getUnapproved();
   }]);

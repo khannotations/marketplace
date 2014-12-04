@@ -19,6 +19,7 @@ FactoryGirl.define do
   factory :project do
     sequence(:name) { |n| "project#{n}" }
     description "This is the project description"
+    approved false
   end
 
   factory :skill do
