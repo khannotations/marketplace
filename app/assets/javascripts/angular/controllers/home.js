@@ -1,8 +1,8 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService", "Project",
-  "Opening", "User", 
-  function($scope, $state, $modal, AuthService, Project, Opening, User) {
+marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "$stateParams",
+  "AuthService", "Opening", "User", 
+  function($scope, $state, $modal, $stateParams, AuthService, Opening, User) {
     $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
     $scope.hasSearched = 0;
@@ -13,9 +13,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
       var allFoundOpenings = Opening.search({search: $scope.searchParams}, function() {
         // Filtering done on front-end
         if ($scope.searchParams["tfs"]) {
-          console.log("tfs", $scope.searchParams["tfs"], allFoundOpenings);
           $scope.foundOpenings = _.filter(allFoundOpenings, function(opening) {
-            console.log($scope.searchParams["tfs"], opening.timeframe);
             return $scope.searchParams["tfs"].indexOf(opening.timeframe) !== -1;
           });
         } else {
@@ -119,11 +117,11 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
       $scope.foundUsers = User.search({search: $scope.searchParams})
       // $scope.searchParams.q = "";
 
-      $scope.filteredOpenings = _.filter($scope.foundOpenings, 
+      $scope.filteredOpenings = _.filter($scope.foundOpenings,
         function(openings) {
           return num < 3;
-        });
-
+        }
+      );
     }
 
     // display flash message if user is logged in but has no bio or no skills
@@ -139,20 +137,5 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
     $scope.showOptions = function() {
       $(".more-options").fadeToggle(100);
     }
-
-    $scope.createProject = function() {
-      $scope.newProject = new Project;
-    }
-
-    $scope.saveNewProject = function() {
-      $scope.newProject.$save(function(project) {
-        $state.go("project", {id: project.id});
-      });
-    }
-
-    $scope.cancelNewProject = function() {
-      delete $scope.newProject;
-    }
-
   }]);
 

@@ -450,16 +450,12 @@
 	border:1px solid $lighter-grey;
 	background-color:white;
 	@include border-radius(2px);
-<<<<<<< HEAD
-	margin:auto;
-=======
 	margin-bottom: 20px;
 
 	h1 {
 		font-family: $serif;
 		margin-left:15px;
 	}
->>>>>>> master
 }
 
 .filter-btn {

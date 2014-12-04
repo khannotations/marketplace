@@ -12,11 +12,7 @@ angular.module("Marketplace").directive("star",
         var elem = angular.element(element);
         var oId = parseInt(scope.openingId);
         elem.addClass("star"); // For styling
-<<<<<<< HEAD
         elem.attr("src", "/assets/star.svg");
-=======
-
->>>>>>> master
         if(AuthService.isStarred(oId)) {
           elem.addClass("starred");
         }

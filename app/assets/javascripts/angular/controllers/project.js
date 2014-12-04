@@ -9,10 +9,8 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
-    }
-
-    // if this is an existing project being viewed or edited
-    else {
+    } else {
+      // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
         // Only allow edits if admin or project leader
         var user = AuthService.getCurrentUser();
@@ -47,7 +45,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * @param? index The index of the opening (use undefined to edit the project)
      */
     $scope.edit = function(index) {
-
       if($scope.canEdit) {
         if (index !== undefined) {
           // Save current version of opening into previous versions array
