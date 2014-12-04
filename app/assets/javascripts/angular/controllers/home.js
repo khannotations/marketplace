@@ -64,18 +64,28 @@ marketplace.controller("HomeCtrl", ["$scope", "$state", "$modal", "AuthService",
     $scope.search = function() {
       $scope.hasSearched = 1;
       $scope.foundOpenings = Opening.search({search: $scope.searchParams}, function(){
-        $scope.filteredOpenings = _.filter($scope.foundOpenings, 
+        $scope.foundOpenings = _.filter($scope.foundOpenings, 
         function(opening){
-          return true;
+          var timeframe = opening.timeframe;
+          if(timeframe === "summer"){
+            console.log($scope.filterTime.summer);
+            console.log(timeframe);
+            console.log(opening.id)
+            return $scope.filterTime.summer;
+          }
+          if(timeframe === "termtime"){
+            return $scope.filterTime.termtime;
+          }
+          if(timeframe === "fulltime"){
+            return $scope.filterTime.fulltime;
+          }
+          return false;
         });
       });
       $scope.foundUsers = User.search({search: $scope.searchParams})
       // $scope.searchParams.q = "";
 
-      $scope.filteredOpenings = _.filter($scope.foundOpenings, 
-        function(openings){
-          return num < 3;
-        });
+
 
     }
 
