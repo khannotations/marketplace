@@ -144,5 +144,19 @@ RSpec.describe OpeningsController, :type => :controller do
       expect(response.status).to be 200
       expect(response.body).to match /\[\]/
     end
+
+    it "returns all with out a search param" do
+      3.times { create(:opening) }
+      @search_params = {}
+      get :search, @search_params
+      expect(assigns[:openings].length).to be 4
+    end
+
+    it "returns all with a blank search param" do
+      3.times { create(:opening) }
+      @search_params = {search: {q: ""}.to_json}
+      get :search, @search_params
+      expect(assigns[:openings].length).to be 4
+    end
   end
 end
