@@ -53,8 +53,16 @@ class UsersController < ApplicationController
   end
 
   def search
-    render json: User.search(JSON.parse(params[:search], symbolize_names: true),
-      params[:page]), include: :skills
+    if (params[:search])
+      search_params = JSON.parse(params[:search], symbolize_names: true)
+    end
+    if (params[:search] && search_params[:q] != "")
+      @users = User.search(JSON.parse(params[:search], symbolize_names: true),
+        params[:page])
+    else
+      @users = User.all
+    end
+    render json: @users, include: :skills
   end
 
   protected
