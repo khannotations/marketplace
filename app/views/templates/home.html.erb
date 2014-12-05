@@ -1,6 +1,6 @@
 <div class="container">
   <div class="search">
-    <form class='main-search' ng-submit="search()">
+    <form class='main-search' ng-submit="searchEntered()">
       <div class="searchbox">
         <img src="/assets/searchicon.jpg" alt="" class="searchicon"></img>
         <input type="text" class="searchfield" autofocus="autofocus" ng-model="searchParams.q">
@@ -10,47 +10,48 @@
       <p class="non-q-mark">Help</p>
       <p class="q-mark">?</p>
     </div>
-    <div class="options-button home-options" id="right-button" ng-click="showOptions()">
+    <div class="options-button home-options" id="right-button" ng-click="searchParams.options = !searchParams.options">
       <p>More Options</p>
-      <img src="" alt="" class="down-arrow">
+      <!-- <img src="" alt="" class="down-arrow"> -->
     </div>
   </div>
 
   <div class="clearfix"></div>
 
   <!-- "More Options" dropdown menu -->
-  <div class="more-options">
+  <div class="more-options" ng-show="searchParams.options">
     <div class="option-block">
       <h1>SHOW</h1>
         <div class="btn-group show">
-          <label class="btn btn-primary filter-btn" ng-model="filterType.openings" btn-checkbox>openings</label>
-          <label class="btn btn-primary filter-btn" ng-model="filterType.users" btn-checkbox>users</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
         </div>
     </div>
     <div class="option-block">
       <h1>SORT BY</h1>
         <div class="btn-group sort-by">
-          <label class="btn btn-primary filter-btn top" ng-model="radioModel" btn-radio="'updated_at'">newest</label>
-          <label class="btn btn-primary filter-btn" ng-model="radioModel" btn-radio="'pay_amount'">pay</label>
-          <label class="btn btn-primary filter-btn bottom" ng-model="radioModel" btn-radio="'relevance'">relevance</label>
+          <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
+          <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
       </div>
     </div>
     <div class="option-block">
       <h1>FILTER ON</h1>
       <div class="btn-group filter-on">
-        <label class="btn btn-primary filter-btn top" ng-model="filterTime.termtime" btn-checkbox>term-time</label>
-        <label class="btn btn-primary filter-btn" ng-model="filterTime.summer" btn-checkbox>summer</label>
-        <label class="btn btn-primary filter-btn bottom" ng-model="filterTime.fulltime" btn-checkbox>full-time</label>
+        <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
+        <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
+        <label class="btn btn-primary filter-btn bottom" ng-model="tfs.fulltime" btn-checkbox>full-time</label>
       </div>
     </div>
   </div>
 
-  <p class="helper-text" ng-if="foundOpenings.length > 0 && filterType.openings">Found {{foundOpenings.length}} openings that match your search</p>
+  <p class="helper-text" ng-if="filteredOpenings.length > 0 && show.openings">Found {{filteredOpenings.length}} openings that match your search</p>
 
-  <p class="helper-text" ng-if="!foundOpenings.length && hasSearched && filterType.openings">No openings match your search.</p>
+  <p class="helper-text" ng-if="!filteredOpenings.length && hasSearched && show.openings">No openings match your search.</p>
 
   <!-- Job Opening returned from search -->
-  <div class="opening"  ng-if="filterType.openings" ng-init="skillLimit=4" ng-repeat="opening in foundOpenings | orderBy: radioModel : reverse">
+  <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy: sort : reverse">
 
   <div star opening-id="{{opening.id}}" class="star"></div>
     <!-- name & description -->
@@ -92,7 +93,7 @@
     <p class="helper-text" ng-if="foundUsers.length > 0 && hasSearched == 1 && filterType.users">Found {{foundUsers.length}} users who match your search.</p>
     <p class="helper-text" ng-if="!foundUsers.length && hasSearched == 1 && filterType.users">No users match your search</p>
 
-    <div class="opening" ng-if="filterType.users" ng-repeat="user in foundUsers" ui-sref="profile({netid: user.netid})">
+    <div class="opening" ng-repeat="user in filteredUsers" ui-sref="profile({netid: user.netid})">
 
       <div class="col-1">
         <h1 class="opening-name" >{{user.first_name}} {{user.last_name}}
@@ -119,8 +120,6 @@
         <p>{{github_url}}</p>
         <p>{{linkedin_url}}</p>
       </div>
-
-
     </div>
   </div>
 </div>

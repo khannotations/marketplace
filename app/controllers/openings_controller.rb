@@ -42,8 +42,15 @@ class OpeningsController < ApplicationController
   end
 
   def search
-    render json: Opening.search(JSON.parse(params[:search], symbolize_names: true),
-      params[:page]), include: :project
+    if (params[:search])
+      search_params = JSON.parse(params[:search], symbolize_names: true)
+    end
+    if (params[:search] && search_params[:q] != "")
+      @openings = Opening.search(search_params, params[:page])
+    else
+      @openings = Opening.all
+    end
+    render json: @openings
   end
 
   protected
