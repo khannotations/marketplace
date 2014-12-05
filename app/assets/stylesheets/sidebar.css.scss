@@ -1,10 +1,10 @@
 
-.sidebar {
+.sidebar{
 	position:fixed;
 	right:0px;
 	padding-right:0px;
 	height:100%;
-	@media screen and (max-height:600px) {
+	@media screen and (max-height:600px){
 		position:relative;
 		// BUGGY!
 	}
@@ -23,7 +23,7 @@
 	}
 }
 
-.sidebar-wrapper { 
+.sidebar-wrapper{ 
 	float: right;
 	background-color: $green;
 	min-height:100%;
@@ -39,13 +39,16 @@
 	}
 }
 
-.sidebar * {
+.sidebar *{
 	float: left;
+	@include mobile {
+		float: none;
+	}
 }
 
-.sidebar-top {
+.sidebar-top{
 	margin-top: calc(100vh - 575px);
-	@media screen and (max-height:600px) {
+	@media screen and (max-height:600px){
 		margin-top:10px;
 	}
 
@@ -70,7 +73,7 @@
 	border-bottom-right-radius:2px;
 	@include transition(all 0.2s);
 
-	@include mobile {
+	@include mobile{
 		font-size: 18px;
 		margin-bottom: 0px;
 		float: none;
@@ -98,14 +101,14 @@
 	}
 }
 
-.navlink:link {
+.navlink:link{
 	text-decoration:none;
 	color:#ffffff;
 }
-.navlink:visited {
+.navlink:visited{
 	color:#ffffff;
 }
-.navlink:hover {
+.navlink:hover{
 	background-color: #fafafa;
 	text-decoration:none;
 	color:$blue;
@@ -113,11 +116,11 @@
 		background-color: none;
 	}
 }
-.navlink:active {
+.navlink:active{
 	//color:$blue;
 }
 
-#current-tab {
+#current-tab{
 	background-image: url(/assets/crossword.png);
   	background-repeat:repeat;
   	color:$blue;
@@ -139,11 +142,11 @@
   float: left;
 }
 
-.sidebar-bottom {
+.sidebar-bottom{
 	padding-left: 12px;
 }
 
-.welcome-header {
+.welcome-header{
 	font-family: $serif;
 	font-weight:100;
 	font-size: 24px;
@@ -151,6 +154,7 @@
 	margin-bottom:0px;
 	color:#ffffff;
 }
+
 
 .sidebar-bottom a, .sidebar-bottom p {
 	display: inline-block;
@@ -178,3 +182,5 @@
 		display:none;
 	}
 }
+
+
