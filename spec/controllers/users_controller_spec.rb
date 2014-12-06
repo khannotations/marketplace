@@ -60,11 +60,13 @@ RSpec.describe UsersController, :type => :controller do
       @current_user.first_name = "MechaStan"
       @current_user.email = "stn1337@yalemail.com"
       @current_user.last_name = "TheMan"
+      @current_user.has_logged_in = true
       put :update, @current_user.attributes.merge({id: @current_user.netid})
       expect(response.status).to be 200
       expect(response.body).to match "\"first_name\":\"MechaStan\""
       expect(response.body).to match "\"email\":\"#{old_email}\""
       expect(response.body).to match "\"last_name\":\"#{old_last_name}\""
+      expect(response.body).to match "\"has_logged_in\":true"
     end
 
     it "updates with skills" do

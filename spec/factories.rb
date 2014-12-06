@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence(:netid) { |n| "netid#{n}" }
     sequence(:email) { |n| "first.last#{n}@yale.edu" }
     is_admin false
+    has_logged_in false
   end
 
   factory :opening do

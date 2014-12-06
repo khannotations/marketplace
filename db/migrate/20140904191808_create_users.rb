@@ -19,6 +19,8 @@ class CreateUsers < ActiveRecord::Migration
 
       t.attachment :resume
 
+      t.boolean :has_logged_in, default: false
+
       t.timestamps
     end
   end

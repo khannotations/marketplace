@@ -68,6 +68,6 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.permit(:first_name, :bio, :github_url, :linkedin_url)
+    params.permit(:first_name, :bio, :github_url, :linkedin_url, :has_logged_in)
   end
 end
