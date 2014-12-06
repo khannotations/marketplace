@@ -11,14 +11,12 @@ angular.module("Marketplace").directive("star",
         var currentUser = new User(AuthService.getCurrentUser());
         var elem = angular.element(element);
         var oId = parseInt(scope.openingId);
+        console.log(scope.openingId, oId);
         elem.addClass("star"); // For styling
         elem.attr("src", "/assets/star.svg");
         if(AuthService.isStarred(oId)) {
           elem.addClass("starred");
         }
-
-        // instead of changing src, change background image
-        
         elem.on('click', function() {
           AuthService.toggleStar(oId);                // Change on front-end
           currentUser.$toggleStar({opening_id: oId}); // Change on back-end

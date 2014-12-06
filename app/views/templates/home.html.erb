@@ -1,3 +1,8 @@
+<style>
+  .star.starred {
+    color: red;
+  }
+</style>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-10">
@@ -41,7 +46,7 @@
 
       Job Opening returned from search
       <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-        <div star opening-id="{{opening.id}}" class="star"></div>
+        <div star opening-id="{{opening.id}}" class="star">star</div>
         <div class="row">
           <div class="col-xs-8" style="border-right: 1pt solid grey">
             <a ui-sref="project({id: opening.project_id})">  
