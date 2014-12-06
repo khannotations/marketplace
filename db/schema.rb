@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
+    t.boolean  "has_logged_in",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
