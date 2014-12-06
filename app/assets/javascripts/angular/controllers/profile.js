@@ -8,10 +8,23 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
         currentUser.is_admin;
+      if(!$scope.user.has_logged_in) {
+        $scope.user.has_logged_in = true;
+        $scope.user.$update();
+      }
     });
 
     $scope.allSkills = Skill.query();
     $scope.setTab("profile");
+
+    if(!$scope.user.bio) {
+      $scope.$emit("flash", {state: "success",
+        msg: "For the best experience, please fill out your profile." +
+        "Add a short bio and add some programming languages you have experience with"});
+    } else if (!$scope.user.skills.length) {  
+      $scope.$emit("flash", {state: "success",
+        msg: "Your profile isn't complete! Add some skills to help us show you the jobs you're best suited for."});
+    }
 
     // if user photo is present, use it instead of default
     if($scope.user.photo_url) {

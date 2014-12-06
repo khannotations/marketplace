@@ -15,7 +15,7 @@
     <div class="options-button cancel" ng-if="canEdit && !editingProject" ng-click="destroy()">
       <p>Delete project</p>
     </div>
-  
+
   <!-- Don't show save/cancel unless I'm currently editing the project -->
     <div class="options-button save" ng-if="canEdit && editingProject" ng-click="save()"><p>Save</p></div>
     <div class="options-button cancel" ng-if="canEdit && editingProject" ng-click="cancel()"><p>Cancel</p></div>
@@ -96,7 +96,7 @@
         <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
         <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
         
-        <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Contact </p></div>
+        <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]"><p>Contact </p></div>
 
          
         <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>

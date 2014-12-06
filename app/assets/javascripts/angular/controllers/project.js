@@ -9,7 +9,9 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
-    } else {
+    } 
+
+    else {
       // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
         // Only allow edits if admin or project leader
@@ -19,8 +21,10 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           $scope.$emit("auth-not-authorized");
         } else {
           // Viewing normal project
-          $scope.canEdit = (user.is_admin || 
-            _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+          // CHANGE MADE FOR TESTING
+          // $scope.canEdit = (user.is_admin || 
+          //   _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
+              $scope.canEdit = false;
           // Only admins can approve
           $scope.isAdmin = user.is_admin;
         }
