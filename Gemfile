@@ -23,7 +23,7 @@ gem 'chosen-rails'
 # CSS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
-gem 'bourbon'
+gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 # gem 'asset_sync'
 gem 'sdoc', '~> 0.4.0', group: :doc

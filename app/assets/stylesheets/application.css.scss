@@ -1,12 +1,11 @@
-@import "bourbon";   // Imported by bourbon gem
 @import "chosen";    // Imported by chosen-rails gem
-@import "bootstrap"; // Note that this is a file in app/stylesheets.
 @import "mixins";
+@import "bootstrap"; // Note that this is a file in app/stylesheets.
 @import "style";
-@import "home";
-@import "sidebar";
-@import "projects";
-@import "profile";
+// @import "home";
+// @import "sidebar";
+// @import "projects";
+// @import "profile";
 
 // Styles for chosen
 /* Additional styles to display a spinner image while options are loading */

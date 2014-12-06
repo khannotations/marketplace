@@ -15,7 +15,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     var isCurrentUser = AuthService.checkIfCurrentUser();
 
     // display flash message if user is logged in but has no bio or no skills
-    console.log(isCurrentUser, $scope.user);
     if (isCurrentUser && !$scope.user.has_logged_in) {
       $scope.$emit("flash", {state: "success",
         msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
@@ -119,7 +118,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
      });
     };
 
-   if(!isCurrentUser) {
+    if(!isCurrentUser) {
       openModal();
     }
 
@@ -144,20 +143,20 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     }
 
     // $scope.$watchGruop isn't working...
-    $scope.$watchCollection("tfs", function() {
-      adjustUrl();
-      filterResults();
-    });
-    $scope.$watch("searchParams.sort", function() {
-      adjustUrl();
-      filterResults();
-    });
-    $scope.$watch("searchParams.show", function() {
-      adjustUrl();
-      filterResults();
-    });
-    $scope.$watch("searchParams.options", function() {
-      adjustUrl();
-    });
+    // $scope.$watchCollection("tfs", function() {
+    //   adjustUrl();
+    //   filterResults();
+    // });
+    // $scope.$watch("searchParams.sort", function() {
+    //   adjustUrl();
+    //   filterResults();
+    // });
+    // $scope.$watch("searchParams.show", function() {
+    //   adjustUrl();
+    //   filterResults();
+    // });
+    // $scope.$watch("searchParams.options", function() {
+    //   adjustUrl();
+    // });
   }]);
 

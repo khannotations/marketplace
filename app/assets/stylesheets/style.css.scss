@@ -9,364 +9,395 @@ html, body, #wrapper {
   margin: 0; padding: 0;
   font: 16px/22px normal $sans;
   background-image: url(/assets/crossword.png);
-  background-repeat:repeat;
-  -webkit-filter: blur(0px);
+  background-repeat: repeat;
 }
 
-.wrapper-blur {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-}
-
-a, .a-like {
-  text-decoration: none;
-  display: inline;
-  cursor: pointer;
-  &:hover {
-    text-decoration: none;
-  }
-
-  @include transition(all 0.2s);
-  &.no-effect { // Make links look regular
-    color: inherit;
-    text-decoration: none;
-    &:hover {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-}
-
-.flash {
-  display: none;
-  position: fixed;
-  font-family: $sans;
-  top: 20px; right: 2%;
-  width: 20%;
-  z-index: 10;
-  border: 1pt solid #ddd;
-  @include border-radius(2px);
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right:30px;
-
-  &.success {
-    background-color: #c3fbcb;
-    border: 1pt solid #c3fbcb;
-  }
-  &.error {
-    //background-color: #fba1a2;
-    background-color: $orange;
-    border: 1pt solid $orange;
-    color:#ffffff;
-  }
-  &.standard {
-    background-color:$yale-blue;
-  }
-  &.visible {
-    display: block;
-  }
-  .close {
-    position: absolute;
-    top:5px;
-    right: 15px;
-    color: #555;
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  @include mobile {
-    position: absolute;
-    font-size: 10px;
-    line-height: 12px;
-    width: 45%;
-    height: 35px;
-    top: 10px;
-    right: 1%;
-    padding: 5px;
-
-    .close {
-      font-size: 10px;
-      right: 5px;
-    }
-  }
-  @include phone {
-    font-size: 8px;
-    padding: 2px;
-    width: 30%;
-    top: 53px;
-  }
-
-}
-
-.star {
-
-  position:absolute;
-  top: 5px;
-  right: 5px;
-  background-image: url("/assets/star.svg");
-  background-repeat:no-repeat;
-  background-size:  20px 20px;
-  border:none;
-  //background-color: $yale-blue;
-  width: 20px;
-  height: 20px;
-  display:inline-block;
-
-}
-
-.starred {
-    background-image: url("/assets/starred.png");
-}
-
-// BUTTON STYLES
-
-.options-button{
-  float: right;
-  clear: right;
-  width: 18%;
-  height: 40px;
-  margin-left:6px;
-  margin-bottom: 4px;
-  text-align: center;
-  border: 1px $lighter-grey solid;
-  background-color: white;
-  cursor:pointer;
-  @include border-radius(2px);
-  transition: .1s;
-
-  .q-mark {
-    display: none;
-  }
-
-  @include small-mobile {
-    float: left;
-    height:35px;
-    margin-left: 1%;
-    background-color: $blue;
-    opacity: (.8);
-
-    .non-q-mark {
-      display:none;
-    }
-    .q-mark{
-      display:block;
-      color:$light-grey;
-    }
-
-  }
-
-  @include phone {
-    width: 49%;
-    height: 25px;
-    float: left;
-    margin-top: 6px; 
-    margin-left:0px;
-    margin-right: 2%;
-    padding-top: 5px;
-  }
-}
-
-#right-button{
-  @include small-mobile {
-    margin-right: 0%;
-    width: 13%
-  }
-  @include phone {
-    width: 49%;
-  }
-}
-
-.options-button p{
-  font-family: $serif;
-  letter-spacing: .8px;
-  font-size: 16px;
-  color:$light-grey;
-  margin:0;
-  padding:0;
-  padding-top:8px;
-
-  @include mobile {
-    font-size: 14px;
-  }
-  @include small-mobile {
-    font-size:11px;
-    letter-spacing:0px;
-    line-height: 11px;
-    padding-top:10px;
-    vertical-align: center;
-    color: white;
-  }
-
-  @include phone {
-    padding-top: 2px;
-    font-size: 8px;
-    line-height: 8px;
-  }
-
-}
-
-.home-options{
-  @include small-mobile{
-    p {color: $light-grey;}
-    background-color: #ffffff;
-  }
-  @include phone {
-    p {color: #ffffff;}
-    background-color: $yale-blue;
-  }
-}
-
-.options-button:hover{
-  background-color: $blue;
-  border: 1px $blue solid;
-  //opacity:(.8);
-  p {
-    color: white;
-  } 
-}
-
-.help-button{
-  &:hover{
-    background-color: $orange;
-    border: 1px solid $orange;
-  }
-  @include small-mobile {
-    width: 5%;
-    background-color:#ffffff;
-    .q-mark {
-      color: $light-grey;
-    }
-  }
-  @include phone {
-    width: 49%;
-    background-color: $blue;
-    .q-mark {color: #ffffff};
-  }
-}
-
-.save{
-
-  color: $light-grey;
-
-  @include small-mobile {
-    background-color:$green;
-    color:#ffffff;
-    opacity:(.8);
-  }
-
-  &:hover{
-    background-color:$green;
-    border: 1px solid $green;
-    color:#ffffff;
-  }
-
-}
-
-.cancel, .delete{
-
-  @include small-mobile {
-    background-color:$red;
-    opacity:(.8);
-  }
-
-  &:hover{
-    background-color:$red;
-    border:1px solid $red;
-  }
-}
-
-.contact {
+$sidebar-width: 250px;
+$sidebar-height-mobile: 100px;
+$sidebar-height-phone: 50px;
+#content {
   width: 100%;
-}
-
-
-
-//////////////////
-// MODAL STYLES //
-//////////////////
-
-.modal {
-  margin-top: 8%;
-  @include border-radius (2px);
-}
-
-.modal-button {
-  margin:auto;
-  margin-top:10px;
-  margin-bottom:10px;
-  float:none;
-  width: 35%;
-
-  @include small-mobile {
-    width: 90%;
-    height: 70px;
-    p {
-      font-size: 20px;
-      margin-top:20px;
-    }
+  padding: 20px 10px;
+  padding-right: $sidebar-width;
+  @include mobile {
+    padding-right: 10px;
+    padding-top: $sidebar-height-mobile + 20px;
   }
-
-}
-
-.modal-content {
-
-  padding: 0px;
-
-  .modal-title1, .modal-title2 {
-    text-align:center;
-    margin:0px;
-  }
-  .modal-title1{
-    font-family: $sans;
-    letter-spacing: 1.5px;
-    font-weight: 100;
-    font-size:20px;
-
-    @include small-mobile {
-      margin-bottom: 10px;
-    }
-  }
-  .modal-title2 {
-    font-family: $serif;
-    color:$blue;
-    font-size:50px;
-    line-height:60px;
-    margin-bottom: 10px;
-  }
-
-  .modal-text{
-    width:50%;
-    margin:auto;
-    text-align:center;
-
-    @include small-mobile {
-      width: 75%;
-    }
-
-  }
-
-  .or {
-    font-size:35px;
-    font-weight: 400;
-    color: $green;
-  }
-
-  .modal-sentence {
-    font-family: $sans;
-    font-weight: 100;
-    font-size:20px;
-    line-height:25px;
-    margin-bottom:10px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  @include phone {
+    padding-top: $sidebar-height-phone + 15px;
   }
 }
 
-.btn-group{
-  label {
-    font-family: $sans;
+#sidebar {
+  position: fixed;
+  top: 0; right: 0;
+  width: $sidebar-width;
+  height: 100%;
+  background-color: $green;
+  padding: 10px;
+  @include mobile {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: $sidebar-height-mobile;
+  }
+  @include phone {
+    height: $sidebar-height-phone;
   }
 }
+
+// .wrapper-blur {
+//   filter: blur(8px);
+//   -webkit-filter: blur(8px);
+// }
+
+// a, .a-like {
+//   text-decoration: none;
+//   display: inline;
+//   cursor: pointer;
+//   &:hover {
+//     text-decoration: none;
+//   }
+//   @include transition(all 0.2s);
+//   &.no-effect { // Make links look regular
+//     color: inherit;
+//     text-decoration: none;
+//     &:hover {
+//       color: inherit;
+//       text-decoration: none;
+//     }
+//   }
+// }
+
+// .flash {
+//   display: none;
+//   position: fixed;
+//   font-family: $sans;
+//   top: 20px; right: 2%;
+//   width: 20%;
+//   z-index: 10;
+//   border: 1pt solid #ddd;
+//   @include border-radius(2px);
+//   padding-left: 20px;
+//   padding-top: 10px;
+//   padding-bottom: 10px;
+//   padding-right:30px;
+
+//   &.success {
+//     background-color: #c3fbcb;
+//     border: 1pt solid #c3fbcb;
+//   }
+//   &.error {
+//     //background-color: #fba1a2;
+//     background-color: $orange;
+//     border: 1pt solid $orange;
+//     color:#ffffff;
+//   }
+//   &.standard {
+//     background-color:$yale-blue;
+//   }
+//   &.visible {
+//     display: block;
+//   }
+//   .close {
+//     position: absolute;
+//     top:5px;
+//     right: 15px;
+//     color: #555;
+//     cursor: pointer;
+//     font-size: 20px;
+//   }
+
+//   @include mobile {
+//     position: absolute;
+//     font-size: 10px;
+//     line-height: 12px;
+//     width: 45%;
+//     height: 35px;
+//     top: 10px;
+//     right: 1%;
+//     padding: 5px;
+
+//     .close {
+//       font-size: 10px;
+//       right: 5px;
+//     }
+//   }
+//   @include phone {
+//     font-size: 8px;
+//     padding: 2px;
+//     width: 30%;
+//     top: 53px;
+//   }
+
+// }
+
+// .star {
+//   position:absolute;
+//   top: 5px;
+//   right: 5px;
+//   background-image: url("/assets/star.svg");
+//   background-repeat:no-repeat;
+//   background-size:  20px 20px;
+//   border:none;
+//   //background-color: $yale-blue;
+//   width: 20px;
+//   height: 20px;
+//   display:inline-block;
+
+// }
+
+// .starred {
+//   background-image: url("/assets/starred.png");
+// }
+
+// // BUTTON STYLES
+
+// .options-button{
+//   float: right;
+//   clear: right;
+//   width: 18%;
+//   height: 40px;
+//   margin-left:6px;
+//   margin-bottom: 4px;
+//   text-align: center;
+//   border: 1px $lighter-grey solid;
+//   background-color: white;
+//   cursor:pointer;
+//   @include border-radius(2px);
+//   transition: .1s;
+
+//   .q-mark {
+//     display: none;
+//   }
+
+//   @include small-mobile {
+//     float: left;
+//     height:35px;
+//     margin-left: 1%;
+//     background-color: $blue;
+//     opacity: (.8);
+
+//     .non-q-mark {
+//       display:none;
+//     }
+//     .q-mark{
+//       display:block;
+//       color:$light-grey;
+//     }
+
+//   }
+
+//   @include phone {
+//     width: 49%;
+//     height: 25px;
+//     float: left;
+//     margin-top: 6px; 
+//     margin-left:0px;
+//     margin-right: 2%;
+//     padding-top: 5px;
+//   }
+// }
+
+// #right-button{
+//   @include small-mobile {
+//     margin-right: 0%;
+//     width: 13%
+//   }
+//   @include phone {
+//     width: 49%;
+//   }
+// }
+
+// .options-button p{
+//   font-family: $serif;
+//   letter-spacing: .8px;
+//   font-size: 16px;
+//   color:$light-grey;
+//   margin:0;
+//   padding:0;
+//   padding-top:8px;
+
+//   @include mobile {
+//     font-size: 14px;
+//   }
+//   @include small-mobile {
+//     font-size:11px;
+//     letter-spacing:0px;
+//     line-height: 11px;
+//     padding-top:10px;
+//     vertical-align: center;
+//     color: white;
+//   }
+
+//   @include phone {
+//     padding-top: 2px;
+//     font-size: 8px;
+//     line-height: 8px;
+//   }
+
+// }
+
+// .home-options{
+//   @include small-mobile{
+//     p {color: $light-grey;}
+//     background-color: #ffffff;
+//   }
+//   @include phone {
+//     p {color: #ffffff;}
+//     background-color: $yale-blue;
+//   }
+// }
+
+// .options-button:hover{
+//   background-color: $blue;
+//   border: 1px $blue solid;
+//   //opacity:(.8);
+//   p {
+//     color: white;
+//   } 
+// }
+
+// .help-button{
+//   &:hover{
+//     background-color: $orange;
+//     border: 1px solid $orange;
+//   }
+//   @include small-mobile {
+//     width: 5%;
+//     background-color:#ffffff;
+//     .q-mark {
+//       color: $light-grey;
+//     }
+//   }
+//   @include phone {
+//     width: 49%;
+//     background-color: $blue;
+//     .q-mark {color: #ffffff};
+//   }
+// }
+
+// .save{
+
+//   color: $light-grey;
+
+//   @include small-mobile {
+//     background-color:$green;
+//     color:#ffffff;
+//     opacity:(.8);
+//   }
+
+//   &:hover{
+//     background-color:$green;
+//     border: 1px solid $green;
+//     color:#ffffff;
+//   }
+
+// }
+
+// .cancel, .delete{
+
+//   @include small-mobile {
+//     background-color:$red;
+//     opacity:(.8);
+//   }
+
+//   &:hover{
+//     background-color:$red;
+//     border:1px solid $red;
+//   }
+// }
+
+// .contact {
+//   width: 100%;
+// }
+
+
+
+// //////////////////
+// // MODAL STYLES //
+// //////////////////
+
+// .modal {
+//   margin-top: 4%;
+//   @include border-radius (2px);
+// }
+
+// .modal-button {
+//   margin:auto;
+//   margin-top:10px;
+//   margin-bottom:10px;
+//   float:none;
+//   width: 35%;
+
+//   @include small-mobile {
+//     width: 90%;
+//     height: 70px;
+//     p {
+//       font-size: 20px;
+//       margin-top:20px;
+//     }
+//   }
+
+// }
+
+// .modal-content {
+
+//   padding: 0px;
+
+//   .modal-title1, .modal-title2 {
+//     text-align:center;
+//     margin:0px;
+//   }
+//   .modal-title1{
+//     font-family: $sans;
+//     letter-spacing: 1.5px;
+//     font-weight: 100;
+//     font-size:20px;
+
+//     @include small-mobile {
+//       margin-bottom: 10px;
+//     }
+//   }
+//   .modal-title2 {
+//     font-family: $serif;
+//     color:$blue;
+//     font-size:50px;
+//     line-height:60px;
+//     margin-bottom: 10px;
+//   }
+
+//   .modal-text{
+//     width:50%;
+//     margin:auto;
+//     text-align:center;
+
+//     @include small-mobile {
+//       width: 75%;
+//     }
+
+//   }
+
+//   .or {
+//     font-size:35px;
+//     font-weight: 400;
+//     color: $green;
+//   }
+
+//   .modal-sentence {
+//     font-family: $sans;
+//     font-weight: 100;
+//     font-size:20px;
+//     line-height:25px;
+//     margin-bottom:10px;
+//     margin-top: 30px;
+//     margin-bottom: 20px;
+//   }
+// }
+
+// .btn-group{
+//   label {
+//     font-family: $sans;
+//   }
+// }
 

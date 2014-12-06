@@ -1,3 +1,13 @@
+$screen-sm: $mobile-width;
+$screen-md: $desktop-width;
+$screen-lg: $large-desktop-width;
+/*
+ * col-xs-: <= 479px
+ * col-sm-: 480 - 991px
+ * col-md-: 992 - 1623px
+ * col-lg-: >= 1624
+ */
+@import "bootstrap-sprockets";
 @import "bootstrap/mixins";
 @import "bootstrap/variables";
 @import "bootstrap/scaffolding";
@@ -7,13 +17,6 @@
 @import "bootstrap/dropdowns";
 @import "bootstrap/modals";
 @import "bootstrap/buttons";
-
-.container{
-	width:100%;
-	padding-left: 0px;
-	padding-right:0px;
-	margin: 0px;
-}
 
 .modal-content {
 	border-radius: 5px;
