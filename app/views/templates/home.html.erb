@@ -1,3 +1,8 @@
+<style>
+  .star.starred {
+    color: red;
+  }
+</style>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-10">
@@ -9,9 +14,11 @@
         </div>
       </form>
       <div class="mobile-search no-tablet no-desktop" ng-click="searchParams.options=!searchParams.options">
+        <!-- Options button for phone only -->
         <p>More options</p>
       </div>
       <div class="more-options no-desktop" ng-show="searchParams.options">
+        <!-- Options for tablet and phone (i.e. mobile) -->
         <div class="option-block">
           <h1>SHOW</h1>
           <div class="btn-group show">
@@ -39,7 +46,7 @@
 
       Job Opening returned from search
       <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-        <div star opening-id="{{opening.id}}" class="star"></div>
+        <div star opening-id="{{opening.id}}" class="star">star</div>
         <div class="row">
           <div class="col-xs-8" style="border-right: 1pt solid grey">
             <a ui-sref="project({id: opening.project_id})">  
@@ -75,7 +82,7 @@
       <!-- Users go here -->
     </div>
     <div class="col-sm-2 no-phone">
-      <!-- Options -->
+      <!-- Options for tablet and desktop (i.e. not phone) -->
       <div class="blue-button" ng-click="searchParams.options=!searchParams.options">
         <p>More Options</p>
       </div>

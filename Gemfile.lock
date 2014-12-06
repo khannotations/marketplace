@@ -37,6 +37,8 @@ GEM
     angular-ui-bootstrap-rails (0.11.1)
     angularjs-rails (1.2.25)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (4.0.1.1)
+      execjs
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -45,9 +47,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
-    bourbon (3.2.3)
-      sass (~> 3.2)
-      thor
     builder (3.2.2)
     capybara (2.4.3)
       mime-types (>= 1.16)
@@ -232,10 +231,10 @@ PLATFORMS
 DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails (>= 1.2.9)
+  autoprefixer-rails
   better_errors
   binding_of_caller
   bootstrap-sass
-  bourbon
   capybara
   chosen-rails
   factory_girl_rails
