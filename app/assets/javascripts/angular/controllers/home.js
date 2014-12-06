@@ -8,13 +8,26 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
     $scope.searchParams = $stateParams;
     var allOpenings = [];
     var allUsers = [];
+    var openModal;
     $scope.setTab("search");
 
     // Check authorization
     var isCurrentUser = AuthService.checkIfCurrentUser();
-    if(!isCurrentUser) {
-      openModal();
+
+    // display flash message if user is logged in but has no bio or no skills
+    console.log()
+    if(!$scope.user.has_logged_in){
+      $state.go("profile", {netid: $scope.user.netid});
     }
+    if(isCurrentUser && !$scope.user.bio) {
+      $scope.$emit("flash", {state: "success",
+        msg: "For the best experience, please fill out your profile."});
+    } else if (isCurrentUser && !$scope.user.skills){  
+      $scope.$emit("flash", {state: "success",
+        msg: "Your profile isn't complete! Add some skills to help us show you the jobs you're best suited for."});
+    }
+
+
     /*
      * Filter openings by the values in $scope.searchParams
      * Starts from global variables allOpenings and allUsers
@@ -113,6 +126,10 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
      });
     };
 
+   if(!isCurrentUser) {
+      openModal();
+    }
+
     // Set up searchParams from URL
     $scope.tfs = {};
     if ($scope.searchParams["tfs"]) {
@@ -123,15 +140,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
     }
     // Start initial search (returns everything if no q param)
     search($scope.searchParams["q"] || "");
-
-    // display flash message if user is logged in but has no bio or no skills
-    if(isCurrentUser && !$scope.user.bio) {
-      $scope.$emit("flash", {state: "error",
-        msg: "For the best experience, please fill out your profile."});
-    } else if (isCurrentUser && !$scope.user.skills){  
-      $scope.$emit("flash", {state: "error",
-        msg: "Your profile isn't complete! Add some skills to help us show you the jobs you're best suited for."});
-    }
 
     /*
      * When the user presses enter in the search bar.

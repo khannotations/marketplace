@@ -2,61 +2,45 @@
 	Starred openings
 </h1>
 
-<div class="opening project-opening" ng-repeat="opening in allOpenings">
- 
-  <div star opening-id="{{opening.id}}" class=""></div>
+<div class="opening project-opening"  ng-init="skillLimit = 4" ng-repeat="opening in allOpenings">
 
-  <form ng-submit="save($index)">
-    <!-- A switch on the edit mode for this opening. True => not-editing -->
-    <span ng-switch="!editingOpenings[$index]">
+  <div star opening-id="{{opening.id}}" class="star"></div>
 
-      <!-- Name & Description -->
-      <div class="col-1">
-        <div class="opening-name">
-          <p ng-switch-when="true">{{opening.name}}</p>
-          <input type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!">
-        </div>
+    <!-- name & description -->
+    <div ui-sref="project({id: opening.project_id})" class="col-1">
+    <a ui-sref="project({id: opening.project_id})">  
+      <h1 class="opening-name">{{opening.name}}</h1>
+    </a>
+    <h2 class="opening-subheader">{{opening.project.name}}</h2>
+    <p class="opening-description">{{opening.description}}</p>
+    <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
+    </div>
 
-        <div class="opening-description">
-          <p ng-switch-when="true">{{opening.description}}</p>
-          <textarea cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" placeholder="And this is why"></textarea>
-        </div>
-      </div>
+    <div class="vert-divider"></div>
 
-      <div class="vert-divider"></div>
+    <!-- skills --> 
+    <div class="col-2">
+    <p>SKILLS</p>
+      <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="some-skills">
+        <li ng-repeat="skill in opening.skills | limitTo:skillLimit" >
+          {{skill.name}}
+        </li>
+        <li class="more" ng-if="opening.skills.length > 4 && skillLimit == 4">
+          Show all...
+        </li>
+        <li class="more" ng-if="skillLimit == 20">Show fewer...</li>
+      </ul>
+    </div>
 
-      <!-- Skills -->
-      <div class="col-2">
-        <p>SKILLS</p>
-          <span ng-switch-when="true">
-            <ul class="skill-list">
-              <li ng-repeat="skill in opening.skills">
-                {{skill.name}}
-              </li>
-            </ul>
-          </span>
+    <div class="vert-divider"></div>
 
-        <!-- A multiple-select jQuery chosen element that shows the name
-        of each skill and binds the selected elements to the opening's skills array -->
-        <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
+    <!-- pay info -->
+    <div ui-sref="project({id: opening.project_id})" class="col-3"> 
+      <p class="pay starred-pay">${{opening.pay_amount}}</p>
+      <p class="pay-type">{{opening.pay_type}}</p>
+      <p class="time">({{opening.timeframe}})</p>
+      <div class="options-button contact"><p>Contact </p></div>
+    </div>
 
-        <span ng-switch-when="false" >
-          <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
-        </span>
-      </div>
 
-      <div class="vert-divider"></div>
-
-      <!-- Pay amount, type, and timeframe -->
-      <div class="col-3">
-
-        <span class="pay" ng-switch-when="true">${{opening.pay_amount}}</span>
-        <input class="pay-amt" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
-
-        <span class="pay-type" ng-switch-when="true"><p class="pay-type">{{opening.pay_type}}</p></span>
-        <select ng-switch-when="false" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
-
-        <span class="time" ng-switch-when="true"><p class="time">({{opening.timeframe}})</p></span>
-        <select ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
-      </div>
   </div>
