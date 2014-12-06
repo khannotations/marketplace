@@ -1,5 +1,4 @@
 <span class="profile-page" ng-switch="!editingUser">
-
   <!-- Edit Buttons -->
   <div class="profile-buttons">
     <div class="options-button top-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
@@ -15,8 +14,6 @@
       <p>Delete account</p>
     </div>
   </div>
-    
-
   <!-- Name & Info-->
   <div class="profile-heading">
     <img class="user-photo" ng-src="/assets/default-user.svg">
@@ -24,31 +21,27 @@
       <div class="user-name">
         <span ng-switch-when="true">{{user.first_name}}</span>
         <input type="text" ng-model="user.first_name" ng-switch-when="false" required> 
-
         <!-- Can't edit your last name -->
         <span>{{user.last_name}}</span>
       </div>
-
       <div class="user-college">
         <p>{{user.college}} {{user.year}} </p>
         <p class="user-college" ng-if="user.is_admin">|  ADMIN</p>
-      </div> 
-
-    <div class="mobile-buttons">
-      <div class="options-button mobile-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
-        <p>Edit</p>
       </div>
-      <div class="options-button mobile-button save" ng-if="canEdit && editingUser" ng-click="save()">
-        <p>Save</p>
+      <div class="mobile-buttons">
+        <div class="options-button mobile-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
+          <p>Edit</p>
+        </div>
+        <div class="options-button mobile-button save" ng-if="canEdit && editingUser" ng-click="save()">
+          <p>Save</p>
+        </div>
+        <div class="options-button mobile-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
+          <p>Cancel</p>
+        </div>
+        <div class="options-button mobile-button delete" ng-click="delete()">
+          <p>Delete account</p>
+        </div>
       </div>
-      <div class="options-button mobile-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
-        <p>Cancel</p>
-      </div>
-      <div class="options-button mobile-button delete" ng-click="delete()">
-        <p>Delete account</p>
-      </div>
-    </div>
-
     </div>
   </div>
 
@@ -92,11 +85,9 @@
           </ul>
       </div>
     </div>
-
   </div>
 
   <div class="profile-projects">
-
     <h1 ng-if="user.leading_projects.length">Projects {{user.first_name}} leads</h1>
     <div class="opening" ui-sref="project({id: project.id})" ng-repeat="project in user.leading_projects">
       <p class="opening-name">{{project.name}}</p>

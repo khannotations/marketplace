@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="search">
     <form class='main-search' ng-submit="searchEntered()">
       <div class="searchbox">
@@ -27,16 +27,16 @@
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
         </div>
-    </div>
-    <div class="option-block">
+    <!-- </div>
+    <div class="option-block"> -->
       <h1>SORT BY</h1>
         <div class="btn-group sort-by">
           <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
           <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
           <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
       </div>
-    </div>
-    <div class="option-block">
+    <!-- </div>
+    <div class="option-block"> -->
       <h1>FILTER ON</h1>
       <div class="btn-group filter-on">
         <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
