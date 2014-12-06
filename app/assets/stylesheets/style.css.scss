@@ -46,6 +46,125 @@ $sidebar-height-phone: 50px;
   }
 }
 
+//////////////////
+/* TEXT STYLES */
+//////////////////
+
+.title {
+  font-family: $serif;
+  font-size: 45px;
+  line-height: 45px;
+
+  @include mobile {
+    font-size: 18px;
+  }
+
+}
+
+.title-small {
+  font-family: $serif;
+  font-size: 30px;
+
+  @include tablet {
+    font-size: 20px;
+  }
+
+  @include phone {
+    font-size: 12px;
+  }
+}
+
+.header-medium {
+  font-family: $sans;
+  font-size: 15px;
+  line-height:17px;
+  font-weight: 400;
+
+  @include tablet {
+    font-size: 12px;
+  }
+
+  @include phone {
+    font-size: 8px;
+  }
+
+}
+
+.body-text{
+  font-family: $sans;
+  font-size: 15px;
+  line-height: 19px;
+
+  @include tablet {
+    font-size: 12px;
+  }
+
+  @include phone {
+    font-size: 8px; 
+  }
+}
+
+
+.link {
+  color: inherit;
+  &:link {
+    text-decoration:none;
+  }
+  &:hover {
+    text-decoration:none;
+  }
+}
+
+.list {
+  list-style-type:none;
+  
+  padding-left:0px;
+}
+
+.grey {
+  color: $lighter-grey;
+}
+
+.blue {
+  color: $blue;
+}
+
+.green {
+  color: $green;
+}
+
+.spaced{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.no-space {
+  margin:0px;
+  padding:0px;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.thin {
+  font-weight: 100;
+}
+
+.white {
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
 // .wrapper-blur {
 //   filter: blur(8px);
 //   -webkit-filter: blur(8px);

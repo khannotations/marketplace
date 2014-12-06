@@ -1,7 +1,7 @@
 <span ng-switch="!editingProject">
   <div class="page-heading">
-    <p ng-switch-when="true">{{project.name}}</p>
-    <input placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
+    <p class="title" ng-switch-when="true">{{project.name}}</p>
+    <input class="title" placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
   </div>
 
   <!-- Only show these buttons if I have edit access -->

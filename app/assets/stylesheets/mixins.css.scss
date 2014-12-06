@@ -93,7 +93,10 @@ $large-desktop-width: 1624px;
 .red { color: $red; }
 .dark-blue { color: $dark-blue; }
 .light-red { color: $light-red; }
-.grey { color: $grey; }
+.grey { color: $lighter-grey; }
+
+.blue { color: $blue; }
+.green { color: $green; }
 
 .gainlayout {
   zoom: 1; // IE hasLayout hack (http://www.satzansatz.de/cssd/onhavinglayout.html)

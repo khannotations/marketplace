@@ -180,24 +180,24 @@
 	}
 }
 
-.opening-description {
-	font-family:$sans;
-	font-size:14px;
-	margin-top:0px;
-	margin-bottom:30px;
+// .opening-description {
+// 	font-family:$sans;
+// 	font-size:14px;
+// 	margin-top:0px;
+// 	margin-bottom:30px;
 
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 15px;
-		margin-bottom: 20px;
-	}
+// 	@include small-mobile {
+// 		font-size: 12px;
+// 		line-height: 15px;
+// 		margin-bottom: 20px;
+// 	}
 
-	@include phone {
-		font-size: 8px;
-		line-height:9px;
-		margin-bottom: 16px;
-	}
-}
+// 	@include phone {
+// 		font-size: 8px;
+// 		line-height:9px;
+// 		margin-bottom: 16px;
+// 	}
+// }
 
 .col-1, .col-2, .col-3, .vert-divider {
 	float: left;
