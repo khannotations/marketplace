@@ -28,6 +28,7 @@
 
 .search{
 	margin-top:20px;
+	margin-bottom:10px;
 	height: 85px;
 
 	@include small-mobile {
@@ -102,8 +103,9 @@
 	letter-spacing: .5px;
 	float: left;
 	width:80%;
-	font-size:20px;
+	font-size:16px;
 	margin-left:0px;
+	margin-top:0px;
 	margin-bottom: 10px;
 	color:$lighter-grey;
 
@@ -127,7 +129,7 @@
 	cursor:pointer;
 	@include border-radius(2px);
 	&:hover{
-		border: 1px black solid;
+		border: 1px $blue solid;
 	}
 
 	@include mobile {
@@ -394,7 +396,7 @@
 .more-options {
 	width:18%;
 	float: right;
-	margin-top:52px;
+	margin-top:32px;
 	@include border-radius(2px);
 
 	h1{

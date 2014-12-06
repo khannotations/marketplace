@@ -46,9 +46,9 @@
     </div>
   </div>
 
-  <p class="helper-text" ng-if="filteredOpenings.length > 0 && show.openings">Found {{filteredOpenings.length}} openings that match your search</p>
+  <p class="helper-text" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
 
-  <p class="helper-text" ng-if="!filteredOpenings.length && hasSearched && show.openings">No openings match your search.</p>
+  <p class="helper-text" ng-if="!filteredOpenings.length">No openings match your search.</p>
 
   <!-- Job Opening returned from search -->
   <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy: sort : reverse">
@@ -90,8 +90,8 @@
     </div>
   </div>
 
-    <p class="helper-text" ng-if="foundUsers.length > 0 && hasSearched == 1 && filterType.users">Found {{foundUsers.length}} users who match your search.</p>
-    <p class="helper-text" ng-if="!foundUsers.length && hasSearched == 1 && filterType.users">No users match your search</p>
+    <p class="helper-text" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+    <p class="helper-text" ng-if="!filteredUsers.length">No users match your search</p>
 
     <div class="opening" ng-repeat="user in filteredUsers" ui-sref="profile({netid: user.netid})">
 

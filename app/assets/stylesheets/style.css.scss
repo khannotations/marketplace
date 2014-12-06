@@ -13,6 +13,11 @@ html, body, #wrapper {
   -webkit-filter: blur(0px);
 }
 
+.wrapper-blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
 a, .a-like {
   text-decoration: none;
   display: inline;
@@ -345,7 +350,7 @@ a, .a-like {
   .or {
     font-size:35px;
     font-weight: 400;
-    color: $blue;
+    color: $green;
   }
 
   .modal-sentence {
