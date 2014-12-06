@@ -34,7 +34,7 @@ angular.module("Marketplace")
 		 * Sets currentUser manually
 		 */
 		authService.setCurrentUser = function(user) {
-			$cookieStore.set(COOKIE_KEY, user);
+			$cookieStore.put(COOKIE_KEY, user);
 		};
 		/* 
 		 * Checks if current user is admin.
