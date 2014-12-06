@@ -30,6 +30,12 @@ angular.module("Marketplace")
 				return $cookieStore.get(COOKIE_KEY);
 			}
 		};
+		/*
+		 * Sets currentUser manually
+		 */
+		authService.setCurrentUser = function(user) {
+			$cookieStore.put(COOKIE_KEY, user);
+		};
 		/* 
 		 * Checks if current user is admin.
 		 */

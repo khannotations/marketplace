@@ -1,18 +1,16 @@
-.content{
+.content {
 	@include mobile {
 		width:100%;
 		margin-top:55px;
 	}
-	@include small-mobile{
+	@include small-mobile {
 		padding: 0px;
 		padding-left:1%;
 	}
-	@include phone{
+	@include phone {
 		margin-top: 30px;
 	}
 }
-
-
 
 ////////////////
 /* SEARCH BAR */
@@ -26,7 +24,7 @@
 	}
 }
 
-.search{
+.search {
 	margin-top:20px;
 	margin-bottom:10px;
 	height: 85px;
@@ -36,7 +34,7 @@
 	}
 }
 
-.search form{
+.search form {
 	width: 80%;
 	float: left;
 	margin:0px;
@@ -45,13 +43,13 @@
 	}
 }
 
-.searchbox{
+.searchbox {
 	height: 85px;
 	border: 1px solid $lighter-grey;
 	background-color: white;
 	@include border-radius(2px);
 
-	img{
+	img {
 		background-color:white;
 		width: 80px;
 		height: 80px;
@@ -73,7 +71,7 @@
 	}
 }
 
-.searchfield{
+.searchfield {
 	float: left;
 	height:81px;
 	border:none;
@@ -109,14 +107,14 @@
 	margin-bottom: 10px;
 	color:$lighter-grey;
 
-	@include mobile{
+	@include mobile {
 		font-size: 12px;
 		line-height: 12px;
 		margin-left: 0px;
 	}
 }
 
-.opening{
+.opening {
 	width: 80%;
 	min-height:160px;
 	border: 1px $lighter-grey solid;
@@ -128,7 +126,7 @@
 	transition: .2s;
 	cursor:pointer;
 	@include border-radius(2px);
-	&:hover{
+	&:hover {
 		border: 1px $blue solid;
 	}
 
@@ -145,7 +143,7 @@
 	}
 }
 
-.opening-name{
+.opening-name {
 	font-family: $serif;
 	font-weight:400;
 	color:$blue;
@@ -165,7 +163,7 @@
 	}
 }
 
-.opening-subheader{
+.opening-subheader {
 	text-transform:uppercase;
 	font-family:$sans;
 	color:$light-grey;
@@ -182,7 +180,7 @@
 	}
 }
 
-.opening-description{
+.opening-description {
 	font-family:$sans;
 	font-size:14px;
 	margin-top:0px;
@@ -201,16 +199,16 @@
 	}
 }
 
-.col-1, .col-2, .col-3, .vert-divider{
+.col-1, .col-2, .col-3, .vert-divider {
 	float: left;
 }
 
-.col-1{
+.col-1 {
 	padding-left:2%;
 	width:60%;
 }
 
-.vert-divider{
+.vert-divider {
 	width: 1px;
 	margin-top: 15px;
 	height: 130px;
@@ -228,13 +226,13 @@
 	}
 }
 
-.col-2{
+.col-2 {
 	width: 18%;
 	padding-left: 2%;
 	font-family:$sans;
 }
 
-.col-2 p{
+.col-2 p {
 	color:$light-grey;
 	margin-bottom:5px;
 	letter-spacing:1px;
@@ -253,7 +251,7 @@
 
 }
 
-.col-2 ul{
+.col-2 ul {
 	list-style-type:none;
 	padding:0px;
 	margin:0px;
@@ -271,19 +269,19 @@
 	}
 }
 
-.more{
+.more {
 	color:$light-grey;
 	cursor:pointer;
-	&:hover{
+	&:hover {
 		text-decoration: underline;
 	}
 }
 
-.less{
+.less {
 	margin-bottom:10px;
 }
 
-.col-3{
+.col-3 {
 	width:18%;
 	text-align:center;
 	font-family:$sans;
@@ -291,13 +289,13 @@
 	float: right;
 	margin-right:10px;
 
-	@include small-mobile{
+	@include small-mobile {
 		margin-right: 0px;
 	}
 
 }
 
-.pay{
+.pay {
 	font-family:$sans;
 	font-size: 30px;
 	line-height:24px;
@@ -305,7 +303,7 @@
 	margin-bottom:4px;
 	color:$green;
 
-	@include small-mobile{
+	@include small-mobile {
 		font-size: 18px;
 		line-height: 18px;
 	}
@@ -318,11 +316,11 @@
 
 }
 
-.starred-pay{
+.starred-pay {
 	margin-top: 10px;
 }
 
-.pay-type, .time{
+.pay-type, .time {
 	color:$light-grey;
 	font-size:15px;
 	letter-spacing:1.2px;
@@ -340,7 +338,7 @@
 	}
 }
 
-.time{
+.time {
 	font-weight:100;
 	font-size:14px;
 
@@ -354,11 +352,11 @@
 	}
 }
 
-.pay-type{
+.pay-type {
 	text-transform:uppercase;
 }
 
-.posted-by{
+.posted-by {
 	font-family:$sans;
 	font-weight:100;
 	color: $light-grey;
@@ -399,7 +397,7 @@
 	margin-top:32px;
 	@include border-radius(2px);
 
-	h1{
+	h1 {
 		font-family: $sans;
 		color: $light-grey;
 		font-size: 14px;
@@ -422,13 +420,14 @@
 
 .option-block {
 	border:1px solid $lighter-grey;
-	background-color:white;
+	background-color: white;
 	@include border-radius(2px);
 	margin-bottom: 20px;
 
-	h1{
+	h1 {
 		font-family: $serif;
-		margin-left:15px;
+		font-size: 14px;
+		margin: 5px;
 	}
 }
 
@@ -438,30 +437,30 @@
 	border-bottom: .5px solid $light-grey;
 	border-right:none;
 	border-left:none;
-	font-color: #000000;
-	&:hover{
+	font-color: white;
+	&:hover {
 		opacity:(.8);
 		background-color: $light-grey;
 		border-top: 1px solid $light-grey;
 	}
 }
 
-.show{
-	.btn:active, .btn.active, .btn.active:hover{
+.show {
+	.btn:active, .btn.active, .btn.active:hover {
 		background-color:$blue;
 		border-top: 1px solid $light-grey;
 	}
 }
 
-.sort-by{
-	.btn:active, .btn.active, .btn.active:hover{
+.sort-by {
+	.btn:active, .btn.active, .btn.active:hover {
 		background-color:$orange;
 		border-top: 1px solid $light-grey;
 	}
 }
 
-.filter-on{
-	.btn:active, .btn.active, .btn.active:hover{
+.filter-on {
+	.btn:active, .btn.active, .btn.active:hover {
 		background-color:$green;
 		border-top: 1px solid $light-grey;
 	}

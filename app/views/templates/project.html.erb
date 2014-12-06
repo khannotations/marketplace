@@ -16,7 +16,7 @@
       <p>Delete project</p>
     </div>
 
-  <!-- Don't show save/cancel unless I'm currently editing the project -->
+    <!-- Don't show save/cancel unless I'm currently editing the project -->
     <div class="options-button save" ng-if="canEdit && editingProject" ng-click="save()"><p>Save</p></div>
     <div class="options-button cancel" ng-if="canEdit && editingProject" ng-click="cancel()"><p>Cancel</p></div>
   </div>
@@ -59,13 +59,13 @@
       <!-- Skills -->
       <div class="col-2">
         <p>SKILLS</p>
-          <span ng-switch-when="true">
-            <ul class="skill-list">
-              <li ng-repeat="skill in opening.skills">
-                {{skill.name}}
-              </li>
-            </ul>
-          </span>
+        <span ng-switch-when="true">
+          <ul class="skill-list">
+            <li ng-repeat="skill in opening.skills">
+              {{skill.name}}
+            </li>
+          </ul>
+        </span>
         <!-- A multiple-select jQuery chosen element that shows the name
         of each skill and binds the selected elements to the opening's skills array -->
         <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
@@ -98,7 +98,7 @@
         
         <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]"><p>Contact </p></div>
 
-         
+        
         <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
 
         <div class="options-button cancel" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">

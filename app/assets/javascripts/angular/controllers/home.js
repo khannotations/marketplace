@@ -1,8 +1,8 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
+marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams", "$q",
   "$location", "AuthService", "Opening", "User", 
-  function($scope, $modal, $stateParams, $q, $location, AuthService, Opening, User) {
+  function($scope, $modal, $state, $stateParams, $q, $location, AuthService, Opening, User) {
     $scope.foundOpenings = []
     $scope.user = AuthService.getCurrentUser();
     $scope.searchParams = $stateParams;
@@ -15,19 +15,12 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
     var isCurrentUser = AuthService.checkIfCurrentUser();
 
     // display flash message if user is logged in but has no bio or no skills
-    console.log()
-    if(!$scope.user.has_logged_in){
+    console.log(isCurrentUser, $scope.user);
+    if (isCurrentUser && !$scope.user.has_logged_in) {
+      $scope.$emit("flash", {state: "success",
+        msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
       $state.go("profile", {netid: $scope.user.netid});
     }
-    if(isCurrentUser && !$scope.user.bio) {
-      $scope.$emit("flash", {state: "success",
-        msg: "For the best experience, please fill out your profile."});
-    } else if (isCurrentUser && !$scope.user.skills){  
-      $scope.$emit("flash", {state: "success",
-        msg: "Your profile isn't complete! Add some skills to help us show you the jobs you're best suited for."});
-    }
-
-
     /*
      * Filter openings by the values in $scope.searchParams
      * Starts from global variables allOpenings and allUsers
