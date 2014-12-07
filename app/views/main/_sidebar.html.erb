@@ -1,0 +1,16 @@
+
+<!-- <img class='logo' src="/assets/logo.png" alt=""> -->
+<div class="navlink-group">
+	<a class="navlink title link explore-tab" ui-sref="home" id="current-tab">Explore</a>
+	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
+	<a class="navlink title link create-tab" ui-sref="project({id: 'new'})" ng-click="setTab('create')">Create</a>
+	<a class="navlink title link profile-tab white" ui-sref="profile({netid: user.netid})">Profile</a>
+</div>
+
+<h1 ng-if="header-medium" class="welcome-header">Welcome, {{user.first_name}}!</h1>
+
+<p class="body-text thin white greeting-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
+
+<a class="link body-text thin white" ng-click="clearCookies()">LOGOUT</a>
+<a class="link body-text thin white" href="" class="terms">TERMS</a>
+<a class="link body-text thin white" href="" class="about">ABOUT</a>
