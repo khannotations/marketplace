@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.integer  "num_slots"
     t.date     "expires_on"
     t.boolean  "expire_notified", default: false
+    t.boolean  "filled",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,8 +86,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "college"
     t.string   "division"
     t.string   "title"
-    t.boolean  "is_admin",            default: false
-    t.string   "photo_url"
+    t.boolean  "is_admin",             default: false
     t.string   "github_url"
     t.string   "linkedin_url"
     t.text     "bio"
@@ -95,7 +95,11 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.boolean  "has_logged_in",       default: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.boolean  "has_logged_in",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

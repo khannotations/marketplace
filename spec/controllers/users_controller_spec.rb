@@ -100,10 +100,10 @@ RSpec.describe UsersController, :type => :controller do
       @search_params = {search: p.to_json} # JSON params are strings
     end
 
-    it "forbids unless logged in" do
+    it "works even unless logged in" do
       session[:cas_user] = nil
       get :search, @search_params
-      expect(response.status).to be 403
+      expect(response.status).to be 200
     end
 
     it "works" do

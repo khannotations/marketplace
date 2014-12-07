@@ -51,6 +51,38 @@ RSpec.describe Opening, :type => :model do
         expect(Opening.search({q: "angular"})).to eq [@o1]
       end
     end
-
   end 
+
+  describe "expire notifications" do
+    before(:each) do
+      Opening.delete_all
+      @openings = []
+      4.times do
+        o = create(:opening)
+        o.project = create(:project)
+        o.project.leaders << create(:user) << create(:user)
+        o.save
+        @openings.push o
+      end
+      @openings[0].expires_on = Date.today - 2.days
+      @openings[0].expire_notified = true
+      @openings[1].expires_on = Date.today - 1.days
+      @openings[2].expires_on = Date.today
+      @openings[3].expires_on = Date.today + 1.days
+      @openings.each { |o| o.save }
+    end
+
+    it "markes all expired openings as notified" do
+      expect(Opening.where("expires_on <= ?", Date.today).count).to be 3
+      expect(Opening.where(expire_notified: true).count).to be 1
+      Opening.notify_expired
+      expect(Opening.where(expire_notified: true).count).to be 3
+    end
+
+    it "sends emails only to unnotified leaders" do
+      expect { Opening.notify_expired }.to change {
+        ActionMailer::Base.deliveries.length
+      }.by 2
+    end
+  end
 end

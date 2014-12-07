@@ -9,9 +9,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
-    } 
-
-    else {
+    } else {
       // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
         // Only allow edits if admin or project leader
@@ -29,8 +27,10 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           $scope.isAdmin = user.is_admin;
         }
       });
-      $scope.editingProject = null; // The previous version of the project being edited
-      $scope.editingOpenings = {};  // Previous versions of the openings being edited
+      // The previous version of the project being edited
+      $scope.editingProject = null;
+      // Previous versions of the openings being edited
+      $scope.editingOpenings = {};
     }
 
     $scope.openingPayTypes = Opening.PAY_TYPES;     // constant
@@ -134,10 +134,10 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      * it is considered an unwanted new opening and removed from the array.
      */
     $scope.addOpening = function() {
-      $scope.project.openings.push(new Opening( {
+      $scope.project.openings.unshift(new Opening( {
         project_id: $scope.project.id
       }));
-      $scope.edit($scope.project.openings.length - 1);
+      $scope.edit(0);
     };
     /*
      * Approves a given project

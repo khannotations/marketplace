@@ -10,7 +10,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :division # Yale section
       t.string :title # For professors
       t.boolean :is_admin, default: false
-      t.string :photo_url
 
       t.string :github_url
       t.string :linkedin_url
@@ -18,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :past_experiences
 
       t.attachment :resume
+      t.attachment :picture
 
       t.boolean :has_logged_in, default: false
 

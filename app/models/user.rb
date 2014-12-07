@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :resume, :content_type => "application/pdf"
   validates_attachment_size :resume, :less_than => 5.megabytes
 
+  has_attached_file :picture, styles: { normal: "200x200" },
+    default_url: "/assets/default-user.svg"
+  validates_attachment_content_type :resume, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :resume, :less_than => 1.megabytes
+
   pg_search_scope :basic_search,
     against: [:first_name, :last_name, :email, :netid, :bio],
     using: {tsearch: {dictionary: "english", any_word: true}}
