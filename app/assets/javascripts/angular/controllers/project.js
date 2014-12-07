@@ -26,7 +26,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // $scope.canEdit = (user.is_admin || 
           //   _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
               $scope.canEdit = false;
-              $scope.canEdit = true;
           // Only admins can approve
           $scope.isAdmin = user.is_admin;
         }

@@ -1,10 +1,14 @@
 
 /* SEARCH BAR */
-.main-search {
+.search-font {
 	font-size: 60px;
+	font-family: $sans;
+	font-weight: 100 !important;
+	line-height:80px;
 
 	@include mobile {
 		font-size: 20px;
+		line-height: 32px;
 	}
 }
 
@@ -24,30 +28,37 @@
 
 }
 
-.searchbox {
-	height: 85px;
-	border: 1px solid $lighter-grey;
-	background-color: white;
-	@include border-radius(2px);
-
-	img {
+.form-icon {
 		background-color:white;
 		width: 80px;
 		height: 80px;
 		padding-left:10px;
 		padding-top:8px;
 		float: left;
-	}
 
-	@include mobile {
-		height: 35px;
-
-		img {
+		@include mobile {
 			height: 30px;
 			width: 30px;
 			padding-left: 4px;
 			padding-top: 4px;
-		}
+	}
+}
+
+.searchbox {
+	height: 85px;
+	border: 1px solid $lighter-grey;
+	background-color: white;
+	@include border-radius(2px);
+
+	@include mobile {
+		height: 35px;
+
+		// img {
+		// 	height: 30px;
+		// 	width: 30px;
+		// 	padding-left: 4px;
+		// 	padding-top: 4px;
+		// }
 	}
 }
 
@@ -56,8 +67,6 @@
 	height:81px;
 	border:none;
 	width: calc(100% - 95px);
-	font-family:$sans;
-	font-weight: 100 !important;
 	outline:none;
 	padding-left:20px;
 
@@ -88,26 +97,15 @@
 		border: 1px $blue solid;
 	}
 
-	@include mobile {
-		min-height:140px;
-	}
-
 	@include phone {
-		min-height: 70px;
+		min-height: 50px;
 		margin-bottom: 10px;
 		padding: 3px;
 	}
 }
 
-.margin-top {
-	margin-top: 5px;
-}
 
-.has-borders{
-	border-left: 1px solid $lighter-grey;
-	border-right: 1px solid $lighter-grey;
-	min-height: 120px;
-}
+
 
 .pay-column {
 	text-align: center;

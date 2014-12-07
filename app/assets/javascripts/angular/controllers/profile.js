@@ -38,6 +38,11 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
       delete $scope.editingUser;
     }
 
+    $scope.clearCookies = function() {
+        AuthService.logout();
+        window.location.assign('/logout');
+      }
+
     $scope.save = function() {
       if ($scope.canEdit) {
         $scope.user.$update();

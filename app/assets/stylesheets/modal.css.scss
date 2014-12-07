@@ -1,0 +1,84 @@
+/* MODAL STYLES */
+
+.modal {
+  margin-top: 8%;
+  @include border-radius (2px);
+}
+
+.modal-button {
+  margin:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  float:none;
+  width: 35%;
+
+  @include tablet {
+    width: 90%;
+    height: 70px;
+    p {
+      font-size: 20px;
+      margin-top:20px;
+    }
+  }
+
+}
+
+.modal-content {
+
+  padding: 0px;
+
+  .modal-title1, .modal-title2 {
+    text-align:center;
+    margin:0px;
+  }
+  .modal-title1{
+    font-family: $sans;
+    letter-spacing: 1.5px;
+    font-weight: 100;
+    font-size:20px;
+
+    @include tablet {
+      margin-bottom: 10px;
+    }
+  }
+  .modal-title2 {
+    font-family: $serif;
+    color:$blue;
+    font-size:50px;
+    line-height:60px;
+    margin-bottom: 10px;
+  }
+
+  .modal-text{
+    width:50%;
+    margin:auto;
+    text-align:center;
+
+    @include tablet {
+      width: 75%;
+    }
+
+  }
+
+  .or {
+    font-size:35px;
+    font-weight: 400;
+    color: $green;
+  }
+
+  .modal-sentence {
+    font-family: $sans;
+    font-weight: 100;
+    font-size:20px;
+    line-height:25px;
+    margin-bottom:10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.btn-group{
+  label {
+    font-family: $sans;
+  }
+}

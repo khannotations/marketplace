@@ -63,7 +63,7 @@ hr {
   background-color: white;
   text-align: center;
   cursor:pointer;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   @include border-radius(2px);
   transition: .1s;
 
@@ -76,18 +76,26 @@ hr {
 .options-button:hover {
   background-color: $blue;
   border: 1px $blue solid;
-  //opacity:(.8);
-  p {
+  p, value {
     color: white;
   } 
 }
 
 .tall-button {
-  @include desktop{
+  @include desktop {
     height: 85px;
     line-height: 85px;
   }
 }
+
+.tall-mobile-button {
+  @include mobile {
+    height: 60px;
+    margin-top: 30px;
+    line-height: 60px;
+  }
+}
+
 
 .red-button {
 
@@ -114,6 +122,19 @@ hr {
 
 }
 
+.orange-button {
+
+  &:hover {
+    background-color: $orange;
+    border: 1px solid $orange;
+  }
+  @include mobile {
+    background-color: $orange;
+    border: 1px solid $orange;
+  }
+
+}
+
 /* TEXT STYLES */
 .title {
   font-family: $serif;
@@ -127,15 +148,13 @@ hr {
 
   @include phone {
     font-size: 14px;
-    line-height: 16px;
+    line-height: 14px;
   }
 
 }
 
 .mobile-button {
   @include phone {
-    width: 45%;
-    margin-right: 5px;
     float: left;
     height: 25px;
     margin-top: 5px;
@@ -167,10 +186,12 @@ hr {
 
   @include phone {
     font-size: 8px;
-    line-height: 10px
+    line-height: 8px
   }
 
 }
+
+
 
 .body-text{
   font-family: $sans;
@@ -188,6 +209,11 @@ hr {
   }
 }
 
+.serif {
+  font-family: $serif;
+}
+
+
 .button-text {
   font-family: $serif;
   letter-spacing: .8px;
@@ -195,8 +221,6 @@ hr {
   line-height: 50px;
   color:$light-grey;
   margin:auto;
-
-
 
   @include mobile {
     font-size:11px;
@@ -222,8 +246,23 @@ hr {
   }
 }
 
+.short-button-text {
+  @include desktop { 
+    line-height: 38px;
+  }
+}
+
+.footer-link {
+  font-size: 12px;
+}
+
+.welcome-header {
+  font-family: $serif;
+  font-size: 16px;
+  color: white;
+}
+
 .link {
-  //color: inherit;
 
   &:link {
     text-decoration:none;
@@ -231,6 +270,8 @@ hr {
   &:hover {
     cursor:pointer;
     text-decoration:none;
+    color: $lighter-grey;
+    transition: .2s;
   }
 }
 
@@ -245,6 +286,9 @@ hr {
   margin-bottom: 0px;
   bottom: 4px;
   left: 15px;
+  @include phone {
+    left: 5px;
+  }
 }
 
 .spaced{
@@ -273,7 +317,7 @@ hr {
   position:absolute;
   top: 5px;
   right: 5px;
-  background-image: url("/assets/star.svg");
+  background-image: url("/assets/star.png");
   background-repeat:no-repeat;
   background-size:  20px 20px;
   border:none;
@@ -298,10 +342,56 @@ hr {
   padding-left: 10px;
 }
 
+.padding {
+  padding: 10px;
+  @include mobile {
+    padding: 5px;
+  }
+  @include phone {
+    padding: 2px;
+  }
+}
+
+
+.margin-top {
+  margin-top: 15px;
+  @include mobile {
+    margin-top: 0px;
+  }
+}
+
+.no-pad-top {
+  padding-top: 0px !important;
+}
+
 .no-mobile-padding{
   @include phone {
     padding: 0px;
     padding-left: 5px;
+  }
+}
+
+.float-right {
+  float: right;
+}
+
+.has-borders{
+  border-left: 1px solid $lighter-grey;
+  border-right: 1px solid $lighter-grey;
+  min-height: 120px;
+  @include mobile {
+    min-height: 100px;
+  }
+  @include phone {
+    min-height: 70px;
+  }
+}
+
+.margin-left {
+  margin-left: 20px;
+
+  @include mobile {
+    margin-top: 30px;
   }
 }
 
@@ -310,4 +400,11 @@ hr {
 input, textarea {
   border: 1px solid $lighter-grey;
   @include border-radius(2px);
+}
+
+
+/* STARRED PAGE */
+
+.starred-header {
+  margin-bottom: 10px;
 }

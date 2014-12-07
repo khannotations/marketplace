@@ -13,6 +13,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
 
     // Check authorization
     var isCurrentUser = AuthService.checkIfCurrentUser();
+    console.log(isCurrentUser);
 
     // display flash message if user is logged in but has no bio or no skills
     if (isCurrentUser && !$scope.user.has_logged_in) {
