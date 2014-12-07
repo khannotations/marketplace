@@ -12,7 +12,13 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       controller: "HomeCtrl",
       reloadOnSearch: false,
       data: {
-        authorizedRoles: ["ADMIN", "USER"]
+        authorizedRoles: ["ADMIN", "USER", "PUBLIC"]
+      }
+    }).state("about", {
+      url: "/about",
+      templateUrl: "/templates/about",
+      data: {
+        authorizedRoles: ["ADMIN", "USER", "PUBLIC"]
       }
     }).state("project", {
       url: "/projects/:id",
@@ -55,16 +61,13 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = 
       angular.element('meta[name=csrf-token]').attr('content');
-  }])
-  .config(['$httpProvider', function($httpProvider) {
-    $httpProvider.interceptors.push('httpErrorInterceptor');
   }]).run(["AuthService", "$rootScope", "$state", function(AuthService, $rootScope, $state) {
     // Set up authorization check.
     $rootScope.$on('$stateChangeStart', function(event, next) {
       var roles = next.data.authorizedRoles;
-      if (next.name == "home") {
-        return; // Always allow visit to home page. 
-      }
+      // if (next.name == "home") {
+      //   return; // Always allow visit to home page. 
+      // }
       if (!AuthService.isAuthorized(roles)) {
         event.preventDefault();
         if (AuthService.checkIfCurrentUser()) {

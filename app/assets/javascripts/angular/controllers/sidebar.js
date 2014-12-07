@@ -5,7 +5,16 @@ angular.module("Marketplace")
     "AuthService", "Project",
     function($scope, $stateParams, $state, $rootScope, AuthService, Project) {
 
+      // Run login code
       $scope.user = AuthService.getCurrentUser();
+      if ($scope.user.$promise) {
+        $scope.user.$promise.then(function() {
+          // Wait for user to load
+          $scope.isLoggedIn = AuthService.checkIfCurrentUser();
+        });
+      } else {
+        $scope.isLoggedIn = AuthService.checkIfCurrentUser();
+      }
 
       $scope.clearCookies = function() {
         AuthService.logout();

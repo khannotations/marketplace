@@ -49,6 +49,10 @@ angular.module("Marketplace")
 		 *   authorized roles.
 		 */
 		authService.isAuthorized = function (authorizedRoles) {
+			if (authorizedRoles.indexOf("PUBLIC") !== -1) {
+				// Always allow access to public routes
+				return true;
+			}
 			if (!authService.checkIfCurrentUser()) {
 				return false;
 			}
@@ -64,7 +68,7 @@ angular.module("Marketplace")
 
 		authService.isStarred = function(index) {
 			var user = $cookieStore.get(COOKIE_KEY);
-			return user.favorite_opening_ids.indexOf(index) !== -1;
+			return user && user.favorite_opening_ids.indexOf(index) !== -1;
 		}
 		authService.toggleStar = function(index) {
 			var user = $cookieStore.get(COOKIE_KEY);
