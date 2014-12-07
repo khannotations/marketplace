@@ -11,6 +11,7 @@ class CreateOpenings < ActiveRecord::Migration
 
       t.date :expires_on
       t.boolean :expire_notified, default: false
+      t.boolean :filled, default: false
 
       t.timestamps
     end

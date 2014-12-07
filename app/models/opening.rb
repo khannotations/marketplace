@@ -5,6 +5,9 @@ class Opening < ActiveRecord::Base
   validates_presence_of :name, :description, :pay_amount, :pay_type,
     :timeframe, :project_id
 
+  # Callbacks
+  before_create :set_expires
+
   # Associations
   belongs_to :project
   has_and_belongs_to_many :members, class_name: "User"
@@ -47,7 +50,19 @@ class Opening < ActiveRecord::Base
     project_openings = Project.thorough_search(query).map(&:openings).flatten
     skill_openings = Skill.search(query).map(&:openings).flatten
     all = (matching_openings + project_openings + skill_openings).uniq
-    return all.select { |o| o.project.approved }
+    return all.select { |o| o.project.approved && !o.expire_notified && !o.filled}
+  end
+
+  def self.notify_expired
+    expired_openings = Opening.includes(project: :leaders)
+      .where("expires_on <= ?", Date.today)
+      .where(expire_notified: false)
+    expired_openings.each do |o|
+        ProjectMailer.expired_opening(o).deliver
+        o.expire_notified = true
+        o.save
+    end
+    AdminMailer.job_ran.deliver
   end
 
   def serializable_hash(options={})
@@ -55,5 +70,11 @@ class Opening < ActiveRecord::Base
       :include => [:skills, :project]
     }.update(options)
     super(options)
+  end
+
+  private
+
+  def set_expires
+    self.expires_on = Date.today + 1.month
   end
 end

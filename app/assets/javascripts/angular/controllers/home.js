@@ -4,7 +4,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
   "$location", "AuthService", "Opening", "User", 
   function($scope, $modal, $state, $stateParams, $q, $location, AuthService, Opening, User) {
     $scope.foundOpenings = []
-    $scope.user = AuthService.getCurrentUser();
     $scope.searchParams = $stateParams;
     var allOpenings = [];
     var allUsers = [];
@@ -12,14 +11,44 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     $scope.setTab("explore");
 
     // Check authorization
-    var isCurrentUser = AuthService.checkIfCurrentUser();
-    console.log(isCurrentUser);
 
-    // display flash message if user is logged in but has no bio or no skills
-    if (isCurrentUser && !$scope.user.has_logged_in) {
-      $scope.$emit("flash", {state: "success",
-        msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
-      $state.go("profile", {netid: $scope.user.netid});
+    var setCurrentUser = function() {
+      var isCurrentUser = AuthService.checkIfCurrentUser();
+      // display flash message if user is logged in but has no bio or no skills
+      if (isCurrentUser && !$scope.user.has_logged_in) {
+        $scope.$emit("flash", {state: "success",
+          msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
+        $state.go("profile", {netid: $scope.user.netid});
+      }
+      if(!isCurrentUser) {
+        openModal();
+      }
+    }
+    
+    var openModal = function (size) {
+      $("#wrapper").css("-webkit-filter", "blur(8px)");
+      var modalInstance = $modal.open( {
+        templateUrl: '/templates/directives/modalContent',
+        controller: 'ModalCtrl',
+        size: size,
+        backdrop: false, 
+        windowClass: "modal fade in",
+        resolve: {
+         items: function () {
+          return $scope.items;
+         }
+        }
+     });
+    };
+    // Run login code
+    $scope.user = AuthService.getCurrentUser();
+    if ($scope.user.$promise) {
+      $scope.user.$promise.then(function() {
+        // Wait for user to load
+        setCurrentUser();
+      });
+    } else {
+      setCurrentUser();
     }
     /*
      * Filter openings by the values in $scope.searchParams
@@ -100,27 +129,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
         }
       });
       $location.search($scope.searchParams);
-    }
-
-    // open modal 
-    var openModal = function (size) {
-      $("#wrapper").css("-webkit-filter", "blur(8px)");
-      var modalInstance = $modal.open( {
-        templateUrl: '/templates/directives/modalContent',
-        controller: 'ModalCtrl',
-        size: size,
-        backdrop: false, 
-        windowClass: "modal fade in",
-        resolve: {
-         items: function () {
-          return $scope.items;
-         }
-        }
-     });
-    };
-
-    if(!isCurrentUser) {
-      openModal();
     }
 
     // Set up searchParams from URL

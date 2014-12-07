@@ -14,10 +14,8 @@ Rails.application.routes.draw do
     get '/projects/unapproved' => 'projects#unapproved'
     put '/projects/:id/approve' => 'projects#approve'
     resources :projects, only: [:show, :create, :update, :destroy]
+    put '/openings/:id/renew' => 'openings#renew'
     resources :openings, only: [:show, :create, :update, :destroy]
-    # post '/openings/:opening_id/skills/:skill_id' => 'skill_links#create'
-    # delete '/openings/:opening_id/skills/:skill_id' => 'skill_links#destroy'
-
     resources :skills, only: [:index, :create, :update, :destroy]
 
     get '/search/openings' => 'openings#search'

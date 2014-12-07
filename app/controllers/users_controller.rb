@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :json
   # Since AJAX doesn't work well with the CAS filter, we check for authorization
   # and authentication manually
-  before_filter :require_login, except: [:current]
+  before_filter :require_login, except: [:current, :search]
   before_filter :check_authorization_to_user, only: [:update]
 
   # Get current user

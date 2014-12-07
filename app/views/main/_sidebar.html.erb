@@ -12,11 +12,11 @@
 
 	<p class="body-text thin white">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
 
-	<a class="link serif thin white footer-link" href="" class="terms">TERMS</a>
-	<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
-	<a class="link serif thin white footer-link" href="" class="about">ABOUT</a>
-	<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
-	<a class="link serif thin white footer-link" href="" class="about">CONTACT</a>
-	<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
-	<a class="link serif thin white footer-link" ng-click="clearCookies()" class="about">LOGOUT</a>
-</div>
+
+<a class="link body-text thin white" ng-click="clearCookies()" ng-if="isLoggedIn">LOGOUT</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
+<a class="link body-text thin white" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
+<a class="link body-text thin white" href="" class="terms">TERMS</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
+<a class="link body-text thin white" ui-sref="about" class="about">ABOUT</a>
