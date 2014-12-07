@@ -55,6 +55,9 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = 
       angular.element('meta[name=csrf-token]').attr('content');
+  }])
+  .config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('httpErrorInterceptor');
   }]).run(["AuthService", "$rootScope", "$state", function(AuthService, $rootScope, $state) {
     // Set up authorization check.
     $rootScope.$on('$stateChangeStart', function(event, next) {
