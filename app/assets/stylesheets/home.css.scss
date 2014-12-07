@@ -1,25 +1,9 @@
-.content {
-	@include mobile {
-		width:100%;
-		margin-top:55px;
-	}
-	@include small-mobile {
-		padding: 0px;
-		padding-left:1%;
-	}
-	@include phone {
-		margin-top: 30px;
-	}
-}
 
-////////////////
 /* SEARCH BAR */
-////////////////
-
 .main-search {
 	font-size: 60px;
 
-	@include small-mobile {
+	@include mobile {
 		font-size: 20px;
 	}
 }
@@ -29,18 +13,15 @@
 	margin-bottom:10px;
 	height: 85px;
 
-	@include small-mobile {
+	@include mobile {
 		height: 35px;
 	}
 }
 
 .search form {
-	width: 80%;
 	float: left;
 	margin:0px;
-	@include phone {
-		width: 100%;
-	}
+
 }
 
 .searchbox {
@@ -58,9 +39,8 @@
 		float: left;
 	}
 
-	@include small-mobile {
+	@include mobile {
 		height: 35px;
-		width: 100%;
 
 		img {
 			height: 30px;
@@ -81,42 +61,20 @@
 	outline:none;
 	padding-left:20px;
 
-	@include small-mobile {
+	@include mobile {
 		height: 30px;
 		width: calc(100% - 50px);
-		padding-left:10px;
 		padding-top:5px;
 	}
 }
 
 
-/////////////////////
+
 /* SEARCH RESULTS */
-/////////////////////
-
-.helper-text {
-
-	font-family:$sans;
-	font-weight:100;
-	letter-spacing: .5px;
-	float: left;
-	width:80%;
-	font-size:16px;
-	margin-left:0px;
-	margin-top:0px;
-	margin-bottom: 10px;
-	color:$lighter-grey;
-
-	@include mobile {
-		font-size: 12px;
-		line-height: 12px;
-		margin-left: 0px;
-	}
-}
 
 .opening {
-	width: 80%;
-	min-height:160px;
+	min-height:140px;
+	padding: 15px;
 	border: 1px $lighter-grey solid;
 	background-color:white;
 	opacity:.8;
@@ -134,289 +92,56 @@
 		min-height:140px;
 	}
 
-	@include small-mobile {
-		width: 100%;
-	}
 	@include phone {
 		min-height: 70px;
 		margin-bottom: 10px;
+		padding: 3px;
 	}
 }
 
-.opening-name {
-	font-family: $serif;
-	font-weight:400;
-	color:$blue;
-	font-size: 28px;
-	margin-bottom:0px;
-	line-height:30px;
-	margin-top:14px;
+.margin-top {
+	margin-top: 5px;
+}
 
-	@include mobile {
-		font-size: 22px;
+.has-borders{
+	border-left: 1px solid $lighter-grey;
+	border-right: 1px solid $lighter-grey;
+	min-height: 120px;
+}
+
+.pay-column {
+	text-align: center;
+	padding-top: 23px;
+	@include phone {
+		text-align: left;
 	}
+}
 
+.pay-amt {
+	font-size: 40px;
+	color: $green;
+	line-height: 40px;
+	@include tablet {
+		font-size: 24px;
+		line-height: 24px;
+	}
 	@include phone {
 		font-size: 14px;
-		margin-top: 5px;
-		line-height: 16px;
-	}
-}
-
-.opening-subheader {
-	text-transform:uppercase;
-	font-family:$sans;
-	color:$light-grey;
-	font-size:14px;
-	letter-spacing:0.5px;
-	font-weight:400;
-	margin-top:0px;
-	margin-left:2px;
-	margin-bottom:8px;
-
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 15px;
-	}
-}
-
-.opening-description {
-	font-family:$sans;
-	font-size:14px;
-	margin-top:0px;
-	margin-bottom:30px;
-
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 15px;
-		margin-bottom: 20px;
-	}
-
-	@include phone {
-		font-size: 8px;
-		line-height:9px;
-		margin-bottom: 16px;
-	}
-}
-
-.col-1, .col-2, .col-3, .vert-divider {
-	float: left;
-}
-
-.col-1 {
-	padding-left:2%;
-	width:60%;
-}
-
-.vert-divider {
-	width: 1px;
-	margin-top: 15px;
-	height: 130px;
-	margin-left:1%;
-	border-left: 1px solid $lighter-grey;
-
-	@include mobile {
-		margin-top: 10px;
-		height: 110px;
-	}
-
-	@include phone {
-		display:none;
-		height: 0px;
-	}
-}
-
-.col-2 {
-	width: 18%;
-	padding-left: 2%;
-	font-family:$sans;
-}
-
-.col-2 p {
-	color:$light-grey;
-	margin-bottom:5px;
-	letter-spacing:1px;
-
-	@include small-mobile {
-		margin-top: 15px;
-		font-size: 12px;
 		line-height: 14px;
 	}
-
-	@include phone {
-		font-size: 8px;
-		line-height: 9px;
-		margin-top: 8px;
-	}
-
 }
 
-.col-2 ul {
-	list-style-type:none;
-	padding:0px;
-	margin:0px;
-	margin-bottom:10px;
-	font-size:14px;
-
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 15px;
-	}
-	@include phone {
-		font-size: 8px;
-		line-height:9px;
-		margin-bottom:5px;
-	}
-}
-
-.more {
-	color:$light-grey;
-	cursor:pointer;
-	&:hover {
-		text-decoration: underline;
-	}
-}
-
-.less {
-	margin-bottom:10px;
-}
-
-.col-3 {
-	width:18%;
-	text-align:center;
-	font-family:$sans;
-	vertical-align: middle;
-	float: right;
-	margin-right:10px;
-
-	@include small-mobile {
-		margin-right: 0px;
-	}
-
-}
-
-.pay {
-	font-family:$sans;
-	font-size: 30px;
-	line-height:24px;
-	margin-top:40px;
-	margin-bottom:4px;
-	color:$green;
-
-	@include small-mobile {
-		font-size: 18px;
-		line-height: 18px;
-	}
-
-	@include phone {
-		font-size: 15px;
-		line-height: 15px;
+/* SEARCH OPTIONS */
+.more-options {
+	margin-top: 52px;
+	@include mobile {
 		margin-top: 20px;
 	}
-
-}
-
-.starred-pay {
-	margin-top: 10px;
-}
-
-.pay-type, .time {
-	color:$light-grey;
-	font-size:15px;
-	letter-spacing:1.2px;
-	margin:0px;
-	margin-bottom:0px;
-
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 14px;
-	}
-
 	@include phone {
-		font-size: 8px;
-		line-height:9px;
+		margin-top: 10px;
 	}
 }
 
-.time {
-	font-weight:100;
-	font-size:14px;
-
-	@include small-mobile {
-		font-size: 12px;
-		line-height: 15px;
-	}
-	@include phone {
-		font-size: 8px;
-		line-height:9px;
-	}
-}
-
-.pay-type {
-	text-transform:uppercase;
-}
-
-.posted-by {
-	font-family:$sans;
-	font-weight:100;
-	color: $light-grey;
-	font-size:12px;
-	letter-spacing:.5px;
-	margin-bottom:0px;
-	position: absolute;
-	bottom: 4px;
-	left: 15px;
-
-	@include small-mobile {
-		font-size: 8px;
-		line-height: 8px;
-		bottom: 4px;
-		left: 6px;
-		letter-spacing: 0px;
-	}
-
-	@include phone {
-		font-size: 5px;
-		line-height: 5px;
-		bottom: 2px;
-		left: 6px;
-	}
-}
-
-
-
-
-
-////////////////////
-/* SEARCH OPTIONS */
-////////////////////
-
-.more-options {
-	width:18%;
-	float: right;
-	margin-top:32px;
-	@include border-radius(2px);
-
-	h1 {
-		font-family: $sans;
-		color: $light-grey;
-		font-size: 14px;
-		letter-spacing: .5px;
-		margin-left:5px;
-	}
-
-	@include small-mobile {
-		width: 100%;
-		float: none;
-		position: relative;
-		margin-top: 0px;
-		height: 50px;
-
-		h1 {
-			font-size: 8px;
-		}
-	}
-}
 
 .option-block {
 	border:1px solid $lighter-grey;
@@ -425,9 +150,7 @@
 	margin-bottom: 20px;
 
 	h1 {
-		font-family: $serif;
-		font-size: 14px;
-		margin: 5px;
+		margin-left: 5px;
 	}
 }
 

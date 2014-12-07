@@ -11,6 +11,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.editingProject = true;
     } 
 
+
     else {
       // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
@@ -25,6 +26,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // $scope.canEdit = (user.is_admin || 
           //   _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
               $scope.canEdit = false;
+              $scope.canEdit = true;
           // Only admins can approve
           $scope.isAdmin = user.is_admin;
         }
@@ -74,8 +76,13 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         }
         $scope.editingOpenings[index] = null;
       } else {
+        console.log($stateParams);
+        if($stateParams.id === 'new'){
+          $state.go("home");
+        }
         $scope.project = $scope.editingProject;
         $scope.editingProject = null;
+
       }
     };
     /*
@@ -90,19 +97,33 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           $scope.editingOpenings[index] = null;
           $scope.$emit("flash", {state: "success",
                msg: "Opening added!"});
-        } else {
+          $scope.editingProject = null;
+        } 
+        else {
           if ($scope.project.id) {
             $scope.project.$update();
-          } else {
-            $scope.project.$save(function() {
+            $scope.editingProject = null;
+          } 
+          else {
+            if(!$scope.project.name || !$scope.project.description){
+              console.log("hey");
               $scope.$emit("flash", {state: "error",
-               msg: "Your project has been created! You'll have to wait for site approval " +
-                 "before it displays in the search results. In the meantime, " +
-                 "add openings that describe the positions you're looking to fill."});
-              $state.go("project", {id: $scope.project.id});              
-            });
+               msg: "Make sure your project has a name" +
+                    " and a description before you continue."});
+              $scope.editingProject = true;
+            }
+            else {
+              $scope.project.$save(function() {
+                $scope.$emit("flash", {state: "error",
+                 msg: "Your project has been created! You'll have to wait for site approval " +
+                   "before it displays in the search results. In the meantime, " +
+                   "add openings that describe the positions you're looking to fill."});
+                $state.go("project", {id: $scope.project.id});
+                $scope.editingProject = null;  
+              });            
+            }
           }
-          $scope.editingProject = null;
+          
         }
       }
     };

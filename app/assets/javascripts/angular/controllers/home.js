@@ -9,7 +9,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     var allOpenings = [];
     var allUsers = [];
     var openModal;
-    $scope.setTab("search");
+    $scope.setTab("explore");
 
     // Check authorization
     var isCurrentUser = AuthService.checkIfCurrentUser();

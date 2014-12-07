@@ -9,6 +9,7 @@
     <div class="options-button only-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
       <p>Approve project</p>
     </div>
+    history{{editingProject}}his
     <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
       <p>Edit project</p>
     </div>
@@ -27,6 +28,7 @@
   </div>
 
 </span>
+
 <h3 class="openings-heading">Openings</h3>
 
 <!-- Show add openings link only if not already editing a new project -->

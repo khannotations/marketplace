@@ -1,8 +1,4 @@
-<style>
-  .star.starred {
-    color: red;
-  }
-</style>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-10">
@@ -15,96 +11,159 @@
       </form>
       <div class="mobile-search no-tablet no-desktop" ng-click="searchParams.options=!searchParams.options">
         <!-- Options button for phone only -->
-        <p>More options</p>
-      </div>
-      <div class="more-options no-desktop" ng-show="searchParams.options">
-        <!-- Options for tablet and phone (i.e. mobile) -->
-        <div class="option-block">
-          <h1>SHOW</h1>
-          <div class="btn-group show">
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
-          </div>
-          <h1>SORT BY</h1>
-          <div class="btn-group sort-by">
-            <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
-            <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
-          </div>
-          <h1>FILTER ON</h1>
-          <div class="btn-group filter-on">
-            <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
-            <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
-            <label class="btn btn-primary filter-btn bottom" ng-model="tfs.fulltime" btn-checkbox>full-time</label>
-          </div>
+        <div class="options-button">
+          <p class="button-text">More options</p>
         </div>
+        
       </div>
-      <p class="grey" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
-
-      <p class="grey" ng-if="!filteredOpenings.length">No openings match your search.</p>
-
-      Job Opening returned from search
-      <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-        <div star opening-id="{{opening.id}}" class="star">star</div>
-        <div class="row">
-          <div class="col-xs-8" style="border-right: 1pt solid grey">
-            <a ui-sref="project({id: opening.project_id})">  
-              <h1 class="blue opening-head">{{opening.name}}</h1>
-            </a>
-            <h2>{{opening.project.name}}</h2>
-            <p>{{opening.description}}</p>
-            <p>UPDATED ON {{opening.updated_at | date:"medium"}}</p>
-          </div>
-
-          <div class="col-xs-2" style="border-right: 1pt solid grey">
-            <p>SKILLS</p>
-            <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="some-skills">
-              <li ng-repeat="skill in opening.skills | limitTo:skillLimit" >
-                {{skill.name}}
-              </li>
-              <li class="more" ng-if="opening.skills.length > 4 && skillLimit == 4">
-                Show all...
-              </li>
-              <li class="more" ng-if="skillLimit == 20">Show fewer...</li>
-            </ul>
-          </div>
-          <div class="col-xs-2">
-            <p>${{opening.pay_amount}}</p>
-            <p>{{opening.pay_type}}</p>
-            <p>({{opening.timeframe}})</p>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <p class="grey" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
-      <p class="grey" ng-if="!filteredUsers.length">No users match your search</p>
-      <!-- Users go here -->
     </div>
+
     <div class="col-sm-2 no-phone">
       <!-- Options for tablet and desktop (i.e. not phone) -->
-      <div class="blue-button" ng-click="searchParams.options=!searchParams.options">
-        <p>More Options</p>
+      <div class="options-button tall-button" ng-click="searchParams.options=!searchParams.options">
+        <p class="button-text tall-button-text">More Options</p>
       </div>
+    </div>
+  </div>
+
+  <div class="more-options no-desktop row" ng-show="searchParams.options">
+    <!-- Options for tablet and phone (i.e. mobile) -->
+    <div class="col-xs-4">
+      <div class="option-block">
+        <h1 class="header-medium grey no-space">SHOW</h1>
+        <div class="btn-group show mobile-block">
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
+        </div>
+    </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="option-block">
+        <h1 class="header-medium grey no-space">SORT BY</h1>
+        <div class="btn-group sort-by">
+          <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
+          <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="option-block">
+        <h1 class="header-medium grey no-space">FILTER ON</h1>
+        <div class="btn-group filter-on">
+          <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
+          <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
+          <label class="btn btn-primary filter-btn bottom" ng-model="tfs.fulltime" btn-checkbox>full-time</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-10 col-sm-12">
+      <p class="header-medium grey thin" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
+        <p class="header-medium grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
+
+
+        <!-- Job Opening returned from search -->
+        <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
+          <div star opening-id="{{opening.id}}" class="star"></div>
+          <div class="row">
+            <div class="col-xs-8" ui-sref="project({id: opening.project_id})">
+                <h1 class="title-small blue no-space">{{opening.name}}</h1>
+              
+              <h2 class="header-medium grey caps no-space margin-top">{{opening.project.name}}</h2>
+              <p class="body-text margin-top">{{opening.description}}</p>
+              
+            </div>
+            <p class="header-medium thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
+
+            <div class="col-xs-2 no-mobile-padding has-borders">
+              <p class="header-medium grey caps no-space">SKILLS</p>
+              <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
+                <li class="body-text" ng-repeat="skill in opening.skills | limitTo:skillLimit" >
+                  {{skill.name}}
+                </li>
+                <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4">
+                  Show all...
+                </li>
+                <li class="body-text grey" ng-if="skillLimit == 20">Show fewer...</li>
+              </ul>
+            </div>
+            <div class="col-xs-2 pay-column no-mobile-padding">
+              <p class="title-small no-space pay-amt">${{opening.pay_amount}}</p>
+              <p class="header-medium grey caps no-space">{{opening.pay_type}}</p>
+              <p class="header-medium grey no-space thin">({{opening.timeframe}})</p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <hr>
+
+        <p class="header-medium grey thin" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+        <p class="header-medium grey thin" ng-if="!filteredUsers.length">No users match your search</p>
+        <!-- Users go here -->
+        <div class="opening" ng-repeat="user in filteredUsers" ui-sref="profile({netid: user.netid})">
+          <div class="row">
+            <div class="col-xs-8">
+              <h1 class="title-small no-space green" >{{user.first_name}} {{user.last_name}}
+              </h1>
+              <h2 class="header-medium caps grey margin-top">{{user.college}} {{user.year}}</h2>
+              <p class="body-text margin-top">{{user.bio}}</p>
+            </div>
+
+            <div class="col-xs-2 has-borders">
+              <p class="medium-header grey caps no-space"> SKILLS</p>
+              <ul class="list">
+                <li class="body-text" ng-repeat="skill in user.skills">
+                  {{skill.name}}
+                </li>
+             </ul>
+            </div>
+            
+            <div class="col-xs-2">
+              <p class="medium header grey caps no-space">CONTACT</p>
+              <p>{{email}}</p>
+              <p>{{github_url}}</p>
+              <p>{{linkedin_url}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-md-2 no-phone no-tablet">
+      <!-- Options desktop (i.e. not phone or tablet) -->
+
       <div class="more-options no-mobile" ng-show="searchParams.options">
         <div class="option-block">
-          <h1>SHOW</h1>
+          <h1 class="header-medium grey">SHOW</h1>
           <div class="btn-group show">
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
           </div>
-          <h1>SORT BY</h1>
-          <div class="btn-group sort-by">
-            <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
-            <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
+        </div>
+        <div class="option-block">
+          <h1 class="header-medium grey">SORT BY</h1>
+            <div class="btn-group sort-by">
+              <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
+              <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
+              <label class="btn btn-primary filter-btn bottom" ng-model="searchParams.sort" btn-radio="'relevance'">relevance</label>
+            </div>
           </div>
-          <h1>FILTER ON</h1>
-          <div class="btn-group filter-on">
-            <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
-            <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
-            <label class="btn btn-primary filter-btn bottom" ng-model="tfs.fulltime" btn-checkbox>full-time</label>
+        <div class="option-block">
+          <h1 class="header-medium grey">FILTER ON</h1>
+            <div class="btn-group filter-on">
+              <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
+              <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
+              <label class="btn btn-primary filter-btn bottom" ng-model="tfs.fulltime" btn-checkbox>full-time</label>
+            </div>
           </div>
         </div>
       </div>
