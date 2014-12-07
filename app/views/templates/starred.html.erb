@@ -1,16 +1,78 @@
-<style>
-  .star.starred {
-    color: red;
-  }
-</style>
+
+
+
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-9">
-      Ng-repeat full-width openings
-      <div ng-repeat="opening in allOpenings">
-        <div star opening-id="{{opening.id}}" class="star">star</div>
-        <p class="bold">{{opening.name}} ({{opening.id}})</p>
+  <div class="row starred-header">
+    <div class="col-sm-10">
+    <div class="searchbox">
+      <img class="form-icon star-form-icon" src="/assets/starred.png" alt="" class="searchicon"></img>
+      <span class="search-font margin-left">Your Starred Openings</span>
+    </div>
+  </div>
+    <div class="col-sm-2 no-phone">
+      <!-- Options for tablet and desktop (i.e. not phone) -->
+      <div class="options-button tall-button orange-button" ng-click="searchParams.options=!searchParams.options">
+        <p class="button-text tall-button-text">Unstar All</p>
       </div>
     </div>
+  </div>
+
+<div class="opening" ng-repeat="opening in allOpenings">
+  <div star opening-id="{{opening.id}}" class="star"></div>
+  <form ng-submit="save($index)">
+
+    <!-- A switch on the edit mode for this opening. True => not-editing -->
+
+    <div class="row">
+
+      <!-- TITLE & DESCRIPTION -->
+      <div class="col-xs-6">
+        <p class="title-small blue no-space">{{opening.name}}</p>
+        <div>
+          <p class="body-text margin-top">{{opening.description}}</p>
+        </div>
+      </div>
+
+      <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
+        <p class="header-medium grey caps no-space">SKILLS</p>
+          <ul class="list">
+            <li class="body-text"ng-repeat="skill in opening.skills">
+              {{skill.name}}
+            </li>
+          </ul>
+      </div>
+
+       <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
+        <span class="title-small no-space pay-amt">${{opening.pay_amount}}</span>
+        <p class="header-medium grey caps no-space">{{opening.pay_type}}</p>
+        <p class="header-medium grey caps no-space" >({{opening.timeframe}})</p>
+      </div>
+
+      
+      <!-- Control buttons; show only if has edit access -->
+      
+      <div class="opening-buttons margin-top col-xs-2 no-phone">
+        <div class="options-button green-button tall-button tall-mobile-button"><p class="button-text tall-button-text tall-mobile-text">Contact </p></div>
+      </div>
+
+      <div class="opening-buttons margin-top col-xs-12 no-desktop no-tablet">
+        
+        <div class="options-button green-button tall-button"><p class="button-text tall-button-text">Contact </p></div>
+
+      </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
   </div>
 </div>

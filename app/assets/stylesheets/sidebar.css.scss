@@ -5,9 +5,38 @@
 }
 
 .logo {
-	width: 300px;
-	margin-left:-25px;
-	height: auto;
+	background-image: url("/assets/logo.png");
+	 background-repeat:no-repeat;
+  	background-size:  180px 90px;
+	margin-left:15px;
+	height: 200px;
+	margin-top: 10px;
+	margin-bottom: calc(100vh - 750px);
+
+	@include tablet {
+		float: right;
+		background-size: 120px 60px;
+		width: 120px;
+		height: 70px;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+	}
+
+	@media only screen and (max-width: 600px){
+		background-image: url("/assets/logo-small.png");
+		background-size: 65px 60px;
+		width: 80px;
+	}
+
+	@include phone {
+		float: right;
+		height: 40px;
+		margin-top: 0px;
+		margin-right: 10px;
+		background-size: 45px 40px;
+		width: 45px
+	}
 }
 .navlink {
 
@@ -32,11 +61,18 @@
 	@include mobile {
 		float: left;
 		margin-top: 20px;
-		margin-left: 10px;
+		margin-left: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
 		border-bottom-right-radius:0px;
 		border-bottom-left-radius:0px;
 		border-top-right-radius:2px;
 		border-top-left-radius:2px;
+	}
+
+	@include phone {
+		line-height:30px;
+		margin-top: 10px;
 	}
 }
 
@@ -52,5 +88,10 @@
 	}
 }
 
-
+.sidebar-footer{
+	margin-left: 5px;
+	@include mobile {
+		display: none;
+	}
+}
 

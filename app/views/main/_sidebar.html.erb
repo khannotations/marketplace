@@ -1,5 +1,5 @@
 
-<!-- <img class='logo' src="/assets/logo.png" alt=""> -->
+<div class='logo'></div>
 <div class="navlink-group">
 	<a class="navlink title link explore-tab" ui-sref="home" id="current-tab">Explore</a>
 	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
@@ -7,11 +7,16 @@
 	<a class="navlink title link profile-tab white" ui-sref="profile({netid: user.netid})">Profile</a>
 </div>
 
-<h1 ng-if="header-medium" class="welcome-header">Welcome, {{user.first_name}}!</h1>
+<div class="sidebar-footer">
+	<h1 ng-if="user.first_name" class="welcome-header">Welcome, {{user.first_name}}!</h1>
 
-<p class="body-text thin white greeting-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
+	<p class="body-text thin white">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
+
 
 <a class="link body-text thin white" ng-click="clearCookies()" ng-if="isLoggedIn">LOGOUT</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
 <a class="link body-text thin white" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
+<span class="serif thin white slash footer-link" ng-if="!isLoggedIn">&nbsp; /&nbsp; </span>
 <a class="link body-text thin white" href="" class="terms">TERMS</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
 <a class="link body-text thin white" ui-sref="about" class="about">ABOUT</a>

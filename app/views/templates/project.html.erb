@@ -3,61 +3,62 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-10">
-        <div class="page-heading">
-          <p class="title full-width project-title" ng-switch-when="true">{{project.name}}</p>
-          <input class="title full-width project-title" placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
-        </div>
-        <div class="no-tablet no-desktop">
+          
+        <div class="searchbox">
+          <img class="form-icon project-form-icon" src="/assets/project-blue.png" alt="" class="searchicon"></img>
+          <span class="search-font margin-left" ng-switch-when="true">{{project.name}}</span>
+          <input type="text" class="searchfield search-font grey" placeholder="Project Name" autofocus="autofocus" ng-model="project.name" ng-switch-when="false" name="name">
+       </div>
+
+       <!-- PHONE BUTTONS -->
+        <div class="no-tablet no-desktop row">
           <!-- Only show these buttons if I have edit access -->
-          <div class="project-buttons">
-            <div class="options-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
+            <div class="options-button mobile-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
               <p class="button-text">Approve project</p>
             </div>
 
-            <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
+            <div class="options-button mobile-button col-xs-6" ng-if="canEdit && !editingProject" ng-click="edit()">
               <p class="button-text">Edit project</p>
             </div>
-            <div class="options-button red-button" ng-if="canEdit && !editingProject" ng-click="destroy()">
+            <div class="options-button red-button mobile-button col-xs-6" ng-if="canEdit && !editingProject" ng-click="destroy()">
               <p class="button-text">Delete project</p>
             </div>
 
             <!-- Don't show save/cancel unless I'm currently editing the project -->
-            <div class="options-button green-button" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text">Save</p></div>
-            <div class="options-button red-button" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text">Cancel</p></div>
-          </div>
-
+            <div class="options-button green-button mobile-button col-xs-6" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text ">Save</p></div>
+            <div class="options-button red-button mobile-button col-xs-6" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text ">Cancel</p></div>
         </div>
+
       </div>
       <div class="col-sm-2 no-phone">
         <!-- Only show these buttons if I have edit access -->
         <div class="project-buttons">
+
+ <!-- COMMENTED FOR BUILD -->         
  <!--      <div class="options-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
         <p class="button-text">Approve project</p>
       </div> -->
+
       <div class="options-button" ng-if="canEdit && !editingProject" ng-click="edit()">
-        <p class="button-text">Edit project</p>
+        <p class="button-text short-button-text">Edit project</p>
       </div>
       <div class="options-button red-button" ng-if="canEdit && !editingProject" ng-click="destroy()">
-        <p class="button-text">Delete project</p>
+        <p class="button-text short-button-text">Delete project</p>
       </div>
 
       <!-- Don't show save/cancel unless I'm currently editing the project -->
-      <div class="options-button green-button" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text">Save</p></div>
-      <div class="options-button red-button" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text">Cancel</p></div>
+      <div class="options-button green-button" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text short-button-text">Save</p></div>
+      <div class="options-button red-button" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text short-button-text">Cancel</p></div>
     </div>
   </div>
 </div>
-<hr>
 <div class="row">
-  <div class="col-md-9">
-    <div class="full-width">
+  <div class="col-md-10">
       <div ng-repeat="leader in project.leaders">
         <p class="body-text grey">Lead by {{leader.full_name}} &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
       </div>
-      <p class="body-text"></p>
       <p class="body-text" ng-switch-when="true">{{project.description}}</p>
-      <textarea class="body-text full-width" placeholder="Describe your project, including its history, current status, and future plans." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
-    </div>
+      <textarea class="body-text padding full-width grey description-textarea" placeholder="Give a brief overview of your project. You may want to describe your motivation for working on the project, its current status, and future plans. Don't worry about specific job openings — we'll add those individually below." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
   </div>
 </div>
 
@@ -67,82 +68,104 @@
   </div>
   <div class="col-md-2">
     <div class="options-button add-opening" ng-click="addOpening()" ng-if="canEdit && (project.openings[project.openings.length-1].id || !project.openings.length)">
-      <p class="button-text">Add opening</p>
+      <p class="button-text short-button-text">Add opening</p>
+
     </div>
   </div>
 </div>
 
 
-<div class="opening project-opening" ng-repeat="opening in project.openings">
+<div class="opening" ng-repeat="opening in project.openings">
   <div star opening-id="{{opening.id}}" class="star"></div>
   <form ng-submit="save($index)">
     <!-- A switch on the edit mode for this opening. True => not-editing -->
     <span ng-switch="!editingOpenings[$index]">
 
-      <!-- Name & Description -->
-      <div class="col-1">
-        <div class="opening-name">
-          <p ng-switch-when="true">{{opening.name}}</p>
-          <input type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!">
-        </div>
+    <div class="row">
 
-        <div class="opening-description">
-          <p ng-switch-when="true">{{opening.description}}</p>
-          <textarea cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" placeholder="And this is why"></textarea>
+      <!-- TITLE & DESCRIPTION -->
+      <div class="col-xs-6">
+        <p class="title-small blue no-space" ng-switch-when="true">{{opening.name}}</p>
+        <input class="title-small blue no-space full-width" type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!">
+
+        <div>
+          <p class="body-text margin-top" ng-switch-when="true">{{opening.description}}</p>
+          <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" placeholder="And this is why"></textarea>
         </div>
       </div>
 
-      <div class="vert-divider"></div>
-
-      <!-- Skills -->
-      <div class="col-2">
-        <p>SKILLS</p>
+    
+      <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
+        <p class="header-medium grey caps no-space">SKILLS</p>
         <span ng-switch-when="true">
-          <ul class="skill-list">
-            <li ng-repeat="skill in opening.skills">
+          <ul class="list">
+            <li class="body-text"ng-repeat="skill in opening.skills">
               {{skill.name}}
             </li>
           </ul>
         </span>
+
         <!-- A multiple-select jQuery chosen element that shows the name
         of each skill and binds the selected elements to the opening's skills array -->
         <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
-
         <span ng-switch-when="false" >
-          <select multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
+          <select class="body-text" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
         </span>
       </div>
 
-      <div class="vert-divider"></div>
+       <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
+        <span class="title-small no-space pay-amt" ng-switch-when="true">${{opening.pay_amount}}</span>
+        <input class="title-small no-space pay-amt pay-input" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
 
-      <!-- Pay amount, type, and timeframe -->
-      <div class="col-3">
+        <span ng-switch-when="true">
+          <p class="header-medium grey caps no-space">{{opening.pay_type}}</p>
+        </span>
+        <select class="header-medium grey caps no-space" ng-switch-when="false" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
 
-        <span class="pay" ng-switch-when="true">${{opening.pay_amount}}</span>
-        <input class="pay-amt" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
-
-        <span class="pay-type" ng-switch-when="true"><p class="pay-type">{{opening.pay_type}}</p></span>
-        <select ng-switch-when="false" ng-options="name for name in openingPayTypes" ng-model="opening.pay_type" required></select>
-
-        <span class="time" ng-switch-when="true"><p class="time">({{opening.timeframe}})</p></span>
-        <select ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
+        <span ng-switch-when="true">
+          <p class="header-medium grey caps no-space" >({{opening.timeframe}})</p>
+        </span>
+        <select class="header-medium grey caps no-space" ng-switch-when="false" ng-options="name for name in openingTimeframes" ng-model="opening.timeframe" required></select>
       </div>
 
       
       <!-- Control buttons; show only if has edit access -->
-      <div class="opening-buttons">
-        <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
-        <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
+      
+      <div class="opening-buttons margin-top col-xs-2 no-phone">
+        <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p class="button-text short-button-text">Edit</p>
+        </div>
+        <div class="options-button cancel red-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p class="button-text short-button-text">Delete </p></div>
         
-        <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]"><p>Contact </p></div>
+        <div class="options-button green-button tall-button tall-mobile-button" ng-if="!canEdit && !editingOpenings[$index]"><p class="button-text tall-button-text tall-mobile-text">Contact </p></div>
 
         
-        <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
+        <input class="options-button full-width save-button green-button button-text short-button-text" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
 
-        <div class="options-button cancel" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">
-          <p>Cancel</p>
+        <div class="options-button red-button col-xs-12" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">
+          <p class="button-text short-button-text">Cancel</p>
         </div>
       </div>
+
+      <div class="opening-buttons margin-top col-xs-12 no-desktop no-tablet">
+        <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p class="button-text short-button-text">Edit</p>
+        </div>
+        <div class="options-button cancel red-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p class="button-text short-button-text">Delete </p></div>
+        
+        <div class="options-button green-button tall-button" ng-if="!canEdit && !editingOpenings[$index]"><p class="button-text tall-button-text">Contact </p></div>
+
+        
+        <input class="options-button full-width save-button green-button button-text short-button-text" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
+
+        <div class="options-button red-button col-xs-12" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">
+          <p class="button-text short-button-text">Cancel</p>
+        </div>
+      </div>
+
+
+
+      </div>
+    </div>
+    </span>
     </span>
   </form>
 </div>
