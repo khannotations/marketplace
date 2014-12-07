@@ -11,6 +11,7 @@
 
 <p class="body-text thin white greeting-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
 
-<a class="link body-text thin white" ng-click="clearCookies()">LOGOUT</a>
+<a class="link body-text thin white" ng-click="clearCookies()" ng-if="isLoggedIn">LOGOUT</a>
+<a class="link body-text thin white" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
 <a class="link body-text thin white" href="" class="terms">TERMS</a>
-<a class="link body-text thin white" href="" class="about">ABOUT</a>
+<a class="link body-text thin white" ui-sref="about" class="about">ABOUT</a>

@@ -4,12 +4,13 @@ gem 'rails', '4.1.4'
 gem 'pg'
 gem 'thin'
 gem 'pg_search'
-gem 'sendgrid'
 
+# Email
+gem 'sendgrid'
+gem 'whenever'
 # CAS
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 gem 'mechanize'
-
 # Assets
 gem "paperclip", "~> 4.2"
 # Javascript
@@ -19,7 +20,6 @@ gem 'angular-ui-bootstrap-rails'
 gem 'underscore-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'chosen-rails'
-
 # CSS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
@@ -39,7 +39,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'better_errors'
-#  gem 'pry-debugger'
+  # gem 'pry-debugger'
   gem 'binding_of_caller'
-#  gem 'pry-debugger'
 end

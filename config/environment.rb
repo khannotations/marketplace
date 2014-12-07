@@ -19,9 +19,11 @@ unless Rails.env.production?
   ENV['SENDGRID_PASSWORD'] = credentials['sendgrid_password']
 end
 
+ENV['BASE_URL'] = "http://yale.projectsboard.io"
+
 ActionMailer::Base.smtp_settings = {
-  :user_name => "#{ENV['SENDGRID_USERNAME']}",
-  :password => "#{ENV['SENDGRID_USERNAME']}",
+  :user_name => ENV['SENDGRID_USERNAME'],
+  :password => ENV['SENDGRID_PASSWORD'],
   :domain => 'projectsboard.io',
   :address => 'smtp.sendgrid.net',
   :port => 587,

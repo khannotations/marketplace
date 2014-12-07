@@ -45,8 +45,10 @@ RSpec.describe OpeningsController, :type => :controller do
 
     it "sets expires on to 1 month in advance" do
       @project.leaders << @current_user
+      num_openings = Opening.count
       post :create, @new_opening.attributes
       expect(response.status).to be 200
+      expect(Opening.count).to be num_openings + 1
       expect(Opening.last.expires_on).to eq (Date.today + 1.month)
     end
 
@@ -75,11 +77,13 @@ RSpec.describe OpeningsController, :type => :controller do
 
     it "updates correct attibutes when user is authorized" do
       @project.leaders << @current_user
-      old_name = @opening.name
+      expect(@opening.filled).to be false
       @opening.name = "Amazing Opening Yo"
+      @opening.filled = true
       put :update, @opening.attributes
       expect(response.status).to be 200
       expect(response.body).to match "\"name\":\"Amazing Opening Yo\""
+      expect(response.body).to match "\"filled\":true"
     end
 
     it "allows admins to update" do
@@ -124,10 +128,10 @@ RSpec.describe OpeningsController, :type => :controller do
       @search_params = {search: p.to_json} # JSON params are strings
     end
 
-    it "fails when not logged in" do
+    it "works even when not logged in" do
       session[:cas_user] = nil
       get :search, @search_params
-      expect(response.status).to be 403
+      expect(response.status).to be 200
     end
 
     it "works when project is approved" do
@@ -157,6 +161,22 @@ RSpec.describe OpeningsController, :type => :controller do
       @search_params = {search: {q: ""}.to_json}
       get :search, @search_params
       expect(assigns[:openings].length).to be 4
+    end
+  end
+
+  describe "renew" do
+    it "fails when not authorized" do
+      put :renew, @opening.attributes
+      expect(response.status).to be 403
+    end
+
+    it "renews by 1 month" do
+      @project.leaders << @current_user
+      @opening.expires_on = Date.today
+      @opening.save
+      put :renew, @opening.attributes
+      expect(Opening.find(@opening.id).expires_on).to eql Date.today + 1.month
+      expect(Opening.find(@opening.id).expire_notified).to eql false
     end
   end
 end

@@ -74,8 +74,12 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.status).to be 400
     end
 
-    it "starts unapproved, and sends an email" do
-      post :create, @new_project.attributes
+    it "starts unapproved, and send emails" do
+      expect {
+        post :create, @new_project.attributes
+      }.to change {
+        ActionMailer::Base.deliveries.length
+      }.by(2)
       expect(Project.find_by(name: @new_project.name).approved).to be false
     end
   end

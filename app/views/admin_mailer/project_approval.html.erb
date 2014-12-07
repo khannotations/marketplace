@@ -4,9 +4,9 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  <h1>Please approve this project</h1>
+  <h1>Please approve <%= @project.name %></h1>
   <p>
-    Go to the admin console and approve the project "<%= @project.name %>" (id: <%= @project.id %>).
+    Visit <a href="<%= ENV['BASE_URL'] %>/projects/<%= @project.id %>"><%= ENV['BASE_URL'] %>/projects/<%= @project.id %></a>
   </p>
   <p>
     Thanks! :)

@@ -20,7 +20,7 @@ RSpec.describe AdminMailer, :type => :mailer do
     end
 
     it "sends from yale@" do
-      expect(@m.from.first).to match("yale@projectsboard.io")
+      expect(@m.from.first).to match("noreply@projectsboard.io")
     end
   end
 end
