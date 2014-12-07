@@ -92,10 +92,9 @@ hr {
   @include mobile {
     height: 60px;
     margin-top: 30px;
-    line-height: 60px;
+    //line-height: 60px !important;
   }
 }
-
 
 .red-button {
 
@@ -214,6 +213,7 @@ hr {
 }
 
 
+
 .button-text {
   font-family: $serif;
   letter-spacing: .8px;
@@ -243,6 +243,12 @@ hr {
   @include mobile {
     font-size: 11px;
     line-height: 15px;
+  }
+}
+
+.tall-mobile-text {
+  @include mobile {
+    line-height: 30px; 
   }
 }
 
@@ -299,6 +305,14 @@ hr {
 .no-space {
   margin:0px;
   padding:0px;
+}
+
+.small-margin {
+  margin-top: 5px;
+}
+
+.med-margin {
+  margin-top: 10px;
 }
 
 .caps {

@@ -73,8 +73,8 @@
             <div class="col-xs-8" ui-sref="project({id: opening.project_id})">
                 <h1 class="title-small blue no-space">{{opening.name}}</h1>
               
-              <h2 class="header-medium grey caps no-space">{{opening.project.name}}</h2>
-              <p class="body-text margin-top">{{opening.description}}</p>
+              <h2 class="header-medium grey caps no-space small-margin">{{opening.project.name}}</h2>
+              <p class="body-text no-space med-margin">{{opening.description}}</p>
               
             </div>
             <p class="header-medium thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
@@ -114,12 +114,12 @@
             <div class="col-xs-8">
               <h1 class="title-small no-space green" >{{user.first_name}} {{user.last_name}}
               </h1>
-              <h2 class="header-medium caps grey margin-top">{{user.college}} {{user.year}}</h2>
-              <p class="body-text margin-top">{{user.bio}}</p>
+              <h2 class="header-medium caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
+              <p class="body-text no-space med-margin">{{user.bio}}</p>
             </div>
 
             <div class="col-xs-2 has-borders">
-              <p class="header-medium grey caps no-space"> SKILLS</p>
+              <p class="header-medium grey caps margin-top:"> SKILLS</p>
               <ul class="list">
                 <li class="body-text" ng-repeat="skill in user.skills">
                   {{skill.name}}

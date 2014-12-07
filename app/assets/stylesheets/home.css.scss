@@ -6,10 +6,16 @@
 	font-weight: 100 !important;
 	line-height:80px;
 
+	@media only screen and (max-width: 1200px) {
+		font-size: 50px;
+	} 
+
 	@include mobile {
 		font-size: 20px;
 		line-height: 32px;
 	}
+
+
 }
 
 .search {

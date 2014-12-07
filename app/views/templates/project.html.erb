@@ -69,6 +69,7 @@
   <div class="col-md-2">
     <div class="options-button add-opening" ng-click="addOpening()" ng-if="canEdit && (project.openings[project.openings.length-1].id || !project.openings.length)">
       <p class="button-text short-button-text">Add opening</p>
+
     </div>
   </div>
 </div>
@@ -135,7 +136,7 @@
         </div>
         <div class="options-button cancel red-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p class="button-text short-button-text">Delete </p></div>
         
-        <div class="options-button green-button tall-button" ng-if="!canEdit && !editingOpenings[$index]"><p class="button-text tall-button-text">Contact </p></div>
+        <div class="options-button green-button tall-button tall-mobile-button" ng-if="!canEdit && !editingOpenings[$index]"><p class="button-text tall-button-text tall-mobile-text">Contact </p></div>
 
         
         <input class="options-button full-width save-button green-button button-text short-button-text" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
@@ -165,25 +166,6 @@
       </div>
     </div>
     </span>
-
-      <!-- Control buttons; show only if has edit access -->
-<!--       <div class="opening-buttons">
-        <div class="options-button" ng-if="canEdit && !editingOpenings[$index]" ng-click="edit($index)"><p>Edit</p></div>
-        <div class="options-button cancel" ng-if="canEdit && !editingOpenings[$index]" ng-click="destroy($index)"><p>Delete </p></div>
-        
-        <div class="options-button contact" ng-if="!canEdit && !editingOpenings[$index]"><p>Contact </p></div>
-
-        
-        <input class="options-button save" value="Save" type="submit" ng-if="canEdit && editingOpenings[$index]"></input>
-
-        <div class="options-button cancel" ng-if="canEdit && editingOpenings[$index]" ng-click="cancel($index)">
-          <p>Cancel</p>
-        </div>
-      </div> -->
-
-
-
-
     </span>
   </form>
 </div>
