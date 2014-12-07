@@ -9,7 +9,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     var allOpenings = [];
     var allUsers = [];
     var openModal;
-    $scope.setTab("search");
+    $scope.setTab("explore");
 
     // Check authorization
     var isCurrentUser = AuthService.checkIfCurrentUser();
@@ -143,20 +143,20 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
     }
 
     // $scope.$watchGruop isn't working...
-    // $scope.$watchCollection("tfs", function() {
-    //   adjustUrl();
-    //   filterResults();
-    // });
-    // $scope.$watch("searchParams.sort", function() {
-    //   adjustUrl();
-    //   filterResults();
-    // });
-    // $scope.$watch("searchParams.show", function() {
-    //   adjustUrl();
-    //   filterResults();
-    // });
-    // $scope.$watch("searchParams.options", function() {
-    //   adjustUrl();
-    // });
+    $scope.$watchCollection("tfs", function() {
+      adjustUrl();
+      filterResults();
+    });
+    $scope.$watch("searchParams.sort", function() {
+      adjustUrl();
+      filterResults();
+    });
+    $scope.$watch("searchParams.show", function() {
+      adjustUrl();
+      filterResults();
+    });
+    $scope.$watch("searchParams.options", function() {
+      adjustUrl();
+    });
   }]);
 

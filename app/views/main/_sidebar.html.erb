@@ -1,12 +1,16 @@
-<a class="title link spaced" id="current-tab" ng-click="setCurrent($event)" href="/">Explore</a>
-<a class="title link spaced" href="/starred">Starred</a>
-<a class="title link spaced" ng-click="setTab('create')" href="/projects/new">Create</a>
-<a class="title link spaced" ui-sref="profile({netid: user.netid})">Profile</a>
 
-<h1 ng-if="header-medium white" class="welcome-header">Welcome, {{user.first_name}}!</h1>
+<!-- <img class='logo' src="/assets/logo.png" alt=""> -->
+<div class="navlink-group">
+	<a class="navlink title link explore-tab" ui-sref="home" id="current-tab">Explore</a>
+	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
+	<a class="navlink title link create-tab" ui-sref="project({id: 'new'})" ng-click="setTab('create')">Create</a>
+	<a class="navlink title link profile-tab white" ui-sref="profile({netid: user.netid})">Profile</a>
+</div>
 
-<p class="body-text white thin">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
+<h1 ng-if="header-medium" class="welcome-header">Welcome, {{user.first_name}}!</h1>
 
-<a class="link body-text white thin" ng-click="clearCookies()">LOGOUT</a>
-<a class="link body-text white thin" href="" class="terms">TERMS</a>
-<a class="link body-text white thin" href="" class="about">ABOUT</a>
+<p class="body-text thin white greeting-text">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
+
+<a class="link body-text thin white" ng-click="clearCookies()">LOGOUT</a>
+<a class="link body-text thin white" href="" class="terms">TERMS</a>
+<a class="link body-text thin white" href="" class="about">ABOUT</a>

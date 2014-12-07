@@ -1,37 +1,16 @@
-<h1 class="starred-header">
-	Starred openings
-</h1>
-<div class="opening project-opening"  ng-init="skillLimit = 4" ng-repeat="opening in allOpenings">
-  <div star opening-id="{{opening.id}}" class="star"></div>
-  <!-- name & description -->
-  <div ui-sref="project({id: opening.project_id})" class="col-1">
-    <a ui-sref="project({id: opening.project_id})">  
-      <h1 class="opening-name">{{opening.name}}</h1>
-    </a>
-    <h2 class="opening-subheader">{{opening.project.name}}</h2>
-    <p class="opening-description">{{opening.description}}</p>
-    <p class="posted-by">UPDATED ON {{opening.updated_at | date:"medium"}}</p>
-  </div>
-  <div class="vert-divider"></div>
-  <!-- skills --> 
-  <div class="col-2">
-    <p>SKILLS</p>
-    <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="some-skills">
-      <li ng-repeat="skill in opening.skills | limitTo:skillLimit" >
-        {{skill.name}}
-      </li>
-      <li class="more" ng-if="opening.skills.length > 4 && skillLimit == 4">
-        Show all...
-      </li>
-      <li class="more" ng-if="skillLimit == 20">Show fewer...</li>
-    </ul>
-  </div>
-  <div class="vert-divider"></div>
-  <!-- pay info -->
-  <div ui-sref="project({id: opening.project_id})" class="col-3"> 
-    <p class="pay starred-pay">${{opening.pay_amount}}</p>
-    <p class="pay-type">{{opening.pay_type}}</p>
-    <p class="time">({{opening.timeframe}})</p>
-    <div class="options-button contact"><p>Contact </p></div>
+<style>
+  .star.starred {
+    color: red;
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+      Ng-repeat full-width openings
+      <div ng-repeat="opening in allOpenings">
+        <div star opening-id="{{opening.id}}" class="star">star</div>
+        <p class="bold">{{opening.name}} ({{opening.id}})</p>
+      </div>
+    </div>
   </div>
 </div>

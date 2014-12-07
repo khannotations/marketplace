@@ -1,122 +1,43 @@
-.sidebar {
-	position:fixed;
-	right:0px;
-	padding-right:0px;
-	height:100%;
-	@media screen and (max-height:600px) {
-		position:relative;
-		// BUGGY!
-	}
 
-	@include mobile {
-		width: 100%;
-		height:55px;
-		position:absolute;
-		top:0px;
-		display:inline-block;
-		padding:0px;
-	}
+.navlink-group {
+	margin-top: 0px;
 
-	@include phone {
-		height: 30px;
-	}
 }
 
-.sidebar-wrapper { 
-	float: right;
-	background-color: $green;
-	min-height:100%;
-
-	@include mobile {
-		float: none;
-		min-height: 40px;
-		height:55px;
-		padding:0px;
-	}
-	@include phone {
-		height: 30px;
-	}
+.logo {
+	width: 300px;
+	margin-left:-25px;
+	height: auto;
 }
-
-.sidebar * {
-	float: left;
-	@include mobile {
-		float: none;
-	}
-}
-
-.sidebar-top {
-	margin-top: calc(100vh - 575px);
-	@media screen and (max-height:600px) {
-		margin-top:10px;
-	}
-
-	@include mobile {
-		margin-top: 0px;
-		width:100%;
-	}
-}
-
 .navlink {
-	font-size: 45px;
+
+	display:inline-block;
+	color: #ffffff;
+	margin-left: -10px;
+	padding-left: 15px;
+	padding-right: 15px;
 	line-height: 60px;
-	color:#ffffff;
-	font-family: $serif;
-	letter-spacing:.8px;
-	float: left;
-	width: auto;
-	margin-bottom: 10px;
-	padding-right:20px;
-	padding-left: 12px;
 	border-top-right-radius:2px;
 	border-bottom-right-radius:2px;
-	@include transition(all 0.2s);
+
+	.navlink:hover {
+		text-decoration:none;
+		color:$blue;
+		background-color: white;
+		@include mobile {
+			background-color: none;
+		}
+	}
 
 	@include mobile {
-		font-size: 18px;
-		margin-bottom: 0px;
-		float: none;
-		padding: 10px;
-		margin-top:10px;
-		margin-left:1%;
-		width:11%;
-		min-width:85px;
-		text-align:center;
-		line-height:30px;
-		display:inline-block;
 		float: left;
-		border-top-right-radius:2px;
-		border-top-left-radius:2px;
+		margin-top: 20px;
+		margin-left: 10px;
 		border-bottom-right-radius:0px;
 		border-bottom-left-radius:0px;
+		border-top-right-radius:2px;
+		border-top-left-radius:2px;
 	}
-
-	@include phone {
-		font-size:12px;
-		width: 18%;
-		padding:6px;
-		line-height:18px;
-		min-width:0px;
-	}
-}
-
-.navlink:link {
-	text-decoration:none;
-	color:#ffffff;
-}
-.navlink:visited {
-	color:#ffffff;
-}
-.navlink:hover {
-	background-color: #fafafa;
-	text-decoration:none;
-	color:$blue;
-	@include mobile {
-		background-color: none;
-	}
-}
-.navlink:active {
-	//color:$blue;
 }
 
 #current-tab {
@@ -125,61 +46,11 @@
   	color:$blue;
 }
 
-.logout-tab {
-	display:none;
-	@include mobile {
-		display: inline;
-	}
-}
-
-.dots {
-  border-top: 1px dotted $yale-blue;
-  color: rgb(255,255,255);
-  background-color: rgb(255,255,255);
-  height: 1px;
-  width:60%;
-  float: left;
-}
-
-.sidebar-bottom {
-	padding-left: 12px;
-}
-
-.welcome-header {
-	font-family: $serif;
-	font-weight:100;
-	font-size: 24px;
-	margin-top:0px;
-	margin-bottom:0px;
-	color:#ffffff;
-}
-
-
-.sidebar-bottom a, .sidebar-bottom p {
-	display: inline-block;
-	font-family:$serif;
-	font-size: 11px;
-	color:#ffffff;
-	float: left;
-	margin: 0px;
-	margin-top: 25px;
-	margin-right: 3%;
-}
-
-.sidebar-bottom .welcome-text {
-	margin-top:10px;
-	font-family:$sans;
-	font-weight:100;
-	letter-spacing:.5px;
-	//@include helvetica-light;
-	font-size:15px;
-	margin-right:10%;
-}
-
-.sidebar-bottom {
+.greeting-text {
 	@include mobile {
 		display:none;
 	}
 }
+
 
 

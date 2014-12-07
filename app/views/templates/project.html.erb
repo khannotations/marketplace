@@ -1,39 +1,77 @@
 <span ng-switch="!editingProject">
-  <div class="page-heading">
-    <p class="title" ng-switch-when="true">{{project.name}}</p>
-    <input class="title" placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
-  </div>
 
-  <!-- Only show these buttons if I have edit access -->
-  <div class="project-buttons">
-    <div class="options-button only-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
-      <p>Approve project</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="page-heading">
+          <p class="title full-width project-title" ng-switch-when="true">{{project.name}}</p>
+          <input class="title full-width project-title" placeholder="Project Name" type="text" ng-model="project.name" ng-switch-when="false" name="name">
+        </div>
+        <div class="no-tablet no-desktop">
+          <!-- Only show these buttons if I have edit access -->
+          <div class="project-buttons">
+            <div class="options-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
+              <p class="button-text">Approve project</p>
+            </div>
+
+            <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
+              <p class="button-text">Edit project</p>
+            </div>
+            <div class="options-button red-button" ng-if="canEdit && !editingProject" ng-click="destroy()">
+              <p class="button-text">Delete project</p>
+            </div>
+
+            <!-- Don't show save/cancel unless I'm currently editing the project -->
+            <div class="options-button green-button" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text">Save</p></div>
+            <div class="options-button red-button" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text">Cancel</p></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-2 no-phone">
+        <!-- Only show these buttons if I have edit access -->
+        <div class="project-buttons">
+ <!--      <div class="options-button" ng-if="isAdmin && !project.approved" ng-click="approve()">
+        <p class="button-text">Approve project</p>
+      </div> -->
+      <div class="options-button" ng-if="canEdit && !editingProject" ng-click="edit()">
+        <p class="button-text">Edit project</p>
+      </div>
+      <div class="options-button red-button" ng-if="canEdit && !editingProject" ng-click="destroy()">
+        <p class="button-text">Delete project</p>
+      </div>
+
+      <!-- Don't show save/cancel unless I'm currently editing the project -->
+      <div class="options-button green-button" ng-if="canEdit && editingProject" ng-click="save()"><p class="button-text">Save</p></div>
+      <div class="options-button red-button" ng-if="canEdit && editingProject" ng-click="cancel()"><p class="button-text">Cancel</p></div>
     </div>
-    <div class="options-button top-button" ng-if="canEdit && !editingProject" ng-click="edit()">
-      <p>Edit project</p>
-    </div>
-    <div class="options-button cancel" ng-if="canEdit && !editingProject" ng-click="destroy()">
-      <p>Delete project</p>
-    </div>
-
-    <!-- Don't show save/cancel unless I'm currently editing the project -->
-    <div class="options-button save" ng-if="canEdit && editingProject" ng-click="save()"><p>Save</p></div>
-    <div class="options-button cancel" ng-if="canEdit && editingProject" ng-click="cancel()"><p>Cancel</p></div>
   </div>
-
-  <div class="project-description">
-    <p ng-switch-when="true">{{project.description}}</p>
-    <textarea placeholder="Describe your project, including its history, current status, and future plans." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
-  </div>
-
-</span>
-<h3 class="openings-heading">Openings</h3>
-
-<!-- Show add openings link only if not already editing a new project -->
-<!-- If the last opening doesn't have an ID, we're editing a new project -->
-<div class="options-button add-opening" ng-click="addOpening()" ng-if="canEdit && (project.openings[project.openings.length-1].id || !project.openings.length)">
-  <p>Add opening</p>
 </div>
+<hr>
+<div class="row">
+  <div class="col-md-9">
+    <div class="full-width">
+      <div ng-repeat="leader in project.leaders">
+        <p class="body-text grey">Lead by {{leader.full_name}} &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
+      </div>
+      <p class="body-text"></p>
+      <p class="body-text" ng-switch-when="true">{{project.description}}</p>
+      <textarea class="body-text full-width" placeholder="Describe your project, including its history, current status, and future plans." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <h3 class="title-small">Openings</h3>
+  </div>
+  <div class="col-md-2">
+    <div class="options-button add-opening" ng-click="addOpening()" ng-if="canEdit && (project.openings[project.openings.length-1].id || !project.openings.length)">
+      <p class="button-text">Add opening</p>
+    </div>
+  </div>
+</div>
+
 
 <div class="opening project-opening" ng-repeat="opening in project.openings">
   <div star opening-id="{{opening.id}}" class="star"></div>
@@ -108,3 +146,6 @@
     </span>
   </form>
 </div>
+</div>
+</div>
+</span>

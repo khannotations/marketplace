@@ -1,318 +1,344 @@
-	
-.profile-heading {
-	margin-top: 30px;
-	font-family: $serif;
-	font-size: 40px;
-	margin-left:3%;
 
-	@include small-mobile {
-		font-size: 28px;
+.user-pic {
+	width: 100%;
+	padding: 0 10px;
+	@include mobile {
+		padding: 0px;
 	}
-
-	@include phone{
-		font-size: 18px;
-		line-height:20px;
-		margin-left:1%;
-	}
-
-	.user-photo {
-		width: 18%; 
-		height: auto;
-		display:inline-block;
-		vertical-align: bottom;
-		border: 1px solid $lighter-grey;
-		@include border-radius(2px);
-		padding:5px;
-		@include mobile {
-			margin-top: 30px;
-		}
-		@include phone {
-			margin-top: 30px;
-			width:20%;
-			vertical-align: top;
-		}
-	}
-	span, input {
-		width: auto;
-	}
-	input {
-		max-width: 60%;
-		height: 60px;
-		border:none;
-		line-height:45px;
-
-		@include small-mobile {
-			max-width: 45%;
-		}
-		@include phone {
-			height: 30px;
-			line-height: 30px;
-		}
-	}
-
-	input[type=text]{
-		padding-top: 0px;
-	}
-
-	.user-info {
-		display: inline-block;
-		vertical-align: top;
-		margin-top: 80px;
-		margin-left: 4%;
-		max-width: 50%;
-		height:70px;
-
-		@include small-mobile {
-			margin-top:60px;
-			max-width: 52%;
-			margin-left:2%;
-		}
-
-		@include phone {
-			max-width:100%;
-			width:70%;
-			margin-top: 40px;
-		}
-	}
-	.user-name {
-		display: block;
-		line-height: 45px;
-		max-width: 100%;
-
-		@include small-mobile {
-			line-height: 30px;
-		}
-		@include phone {
-			line-height: 20px;
-		}
-
-	}
-	.user-college {
-		display: block;
-		text-transform:uppercase;
-		font-family: $sans;
-		color:$light-grey;
-		font-size:18px;
-		height: 25px;
-		margin:0px;
-		@include mobile {
-			font-size: 12px;
-			height: 20px;
-		}
-		@include phone {
-			height: 14px;
-			font-size: 9px;
-		}
-		p {
-			display: inline-block;
-			margin:0px;
-			line-height: 12px;
-		}
-
-
-
-	}
-}
-
-.profile-bio{
-	margin-top:15px;
-	p {
-		font-size: 16px;
-		margin: 0px;
-	}
-
-	@include small-mobile {
-		.profile-about p, .contact p, .profile-skills li, textarea{
-			font-size: 12px;
-			line-height: 14px;
-		}
-	}
-
 	@include phone {
 
-		margin-top: 10px;
-
-		.profile-about p, .contact p, .profile-skills li, textarea, option{
-			font-size: 8px;
-			line-height: 10px;
-		}
 	}
 }
 
-.profile-bio, .profile-projects {
-	margin-left: 3%;
-	
-	h1 {
-		color: $light-grey;
-		text-transform: uppercase;
-		letter-spacing: .5px;
-		font-weight: 400;
-		font-size:16px;
-		margin:0px;
-		margin-top: 20px;
-
-		@include small-mobile {
-			font-size: 12px;
-		}
-
-		@include phone {
-			font-size: 10px;
-			line-height:10px;
-			margin-top:0px;
-		}
-	}
+.v-align {
+	float:none;
+	display:inline-block;
+	vertical-align:bottom;
 }
 
-.profile-about {
-	display: inline-block;
-	width: 70%;
-	textarea {
-		width: 100%;
-		border:none;
-	}
-
-	@include small-mobile {
-		width: 50%;
-	}
-
-	@include phone {
-		width: 100%;
-	}
-}
-
-.skills-contact{
-	float: right;
-	width:20%;
+.chosen-box {
+	width: 130px;
 
 	@include mobile {
-		width: 22%;
-	}
-	@include small-mobile {
-		width: 45%;
-	}
-	@include phone {
-		width: 100%;
-		margin-top: 15px;
+		width: 80%;
+		font-size: 10px;
 	}
 }
 
-.profile-skills {
-	display: inline-block;
-	width: 100%;
+// .profile-heading {
+// 	margin-top: 30px;
+// 	font-family: $serif;
+// 	font-size: 40px;
+// 	margin-left:3%;
 
-	ul {
-		list-style-type: none;
-		display:inline-block;
-		padding-left:0px;
-		margin-top: 5px;
-		width: 100%;
-	}
-	@include small-mobile {
-		float: left;
-		width: 45%;
-		margin-right:2%;
-	}
+// 	@include small-mobile {
+// 		font-size: 28px;
+// 	}
 
-}
+// 	@include phone{
+// 		font-size: 18px;
+// 		line-height:20px;
+// 		margin-left:1%;
+// 	}
 
-.contact {
-	display:inline-block;
-	width: 100%;
-	p {
-		disiplay: inline;
-		font-size:14px;
-	}
+// 	.user-photo {
+// 		width: 18%; 
+// 		height: auto;
+// 		display:inline-block;
+// 		vertical-align: bottom;
+// 		border: 1px solid $lighter-grey;
+// 		@include border-radius(2px);
+// 		padding:5px;
+// 		@include mobile {
+// 			margin-top: 30px;
+// 		}
+// 		@include phone {
+// 			margin-top: 30px;
+// 			width:20%;
+// 			vertical-align: top;
+// 		}
+// 	}
+// 	span, input {
+// 		width: auto;
+// 	}
+// 	input {
+// 		max-width: 60%;
+// 		height: 60px;
+// 		border:none;
+// 		line-height:45px;
 
-	@include small-mobile {
-		float: left;
-		width: 45%;
-	}
-}
+// 		@include small-mobile {
+// 			max-width: 45%;
+// 		}
+// 		@include phone {
+// 			height: 30px;
+// 			line-height: 30px;
+// 		}
+// 	}
+
+// 	input[type=text]{
+// 		padding-top: 0px;
+// 	}
+
+// 	.user-info {
+// 		display: inline-block;
+// 		vertical-align: top;
+// 		margin-top: 80px;
+// 		margin-left: 4%;
+// 		max-width: 50%;
+// 		height:70px;
+
+// 		@include small-mobile {
+// 			margin-top:60px;
+// 			max-width: 52%;
+// 			margin-left:2%;
+// 		}
+
+// 		@include phone {
+// 			max-width:100%;
+// 			width:70%;
+// 			margin-top: 40px;
+// 		}
+// 	}
+// 	.user-name {
+// 		display: block;
+// 		line-height: 45px;
+// 		max-width: 100%;
+
+// 		@include small-mobile {
+// 			line-height: 30px;
+// 		}
+// 		@include phone {
+// 			line-height: 20px;
+// 		}
+
+// 	}
+// 	.user-college {
+// 		display: block;
+// 		text-transform:uppercase;
+// 		font-family: $sans;
+// 		color:$light-grey;
+// 		font-size:18px;
+// 		height: 25px;
+// 		margin:0px;
+// 		@include mobile {
+// 			font-size: 12px;
+// 			height: 20px;
+// 		}
+// 		@include phone {
+// 			height: 14px;
+// 			font-size: 9px;
+// 		}
+// 		p {
+// 			display: inline-block;
+// 			margin:0px;
+// 			line-height: 12px;
+// 		}
 
 
 
-.profile-projects{
-	h1{
-		margin-bottom:20px;
-		margin-top:50px;
-	}
-	p{
-		margin-left:10px;
-	}
-	.opening{
-		width:75%;
-		margin-left:0px;
-		display:inline-block;
-		min-height:160px;
+// 	}
+// }
 
-		@include small-mobile {
-			width: 97%;
-			min-height: 60px;
-		}
-	}
-	.opening-name{
-		margin-bottom:5px;
-	}
+// .profile-bio{
+// 	margin-top:15px;
+// 	p {
+// 		font-size: 16px;
+// 		margin: 0px;
+// 	}
 
-	.posted-by{
-		left: 2px;
-	}
+// 	@include small-mobile {
+// 		.profile-about p, .contact p, .profile-skills li, textarea{
+// 			font-size: 12px;
+// 			line-height: 14px;
+// 		}
+// 	}
 
-	.stars{
-		width:100%;
-		clear:both;
-		margin-bottom:50px;
-	}
-}
+// 	@include phone {
 
-.profile-buttons {
-	margin-right: 2%;
-	width: 20%;
-	float: right;
+// 		margin-top: 10px;
 
-	div {
-		width: 100%;
-	}
+// 		.profile-about p, .contact p, .profile-skills li, textarea, option{
+// 			font-size: 8px;
+// 			line-height: 10px;
+// 		}
+// 	}
+// }
 
-	@include mobile{
-		margin-top:30px;
-	}
+// .profile-bio, .profile-projects {
+// 	margin-left: 3%;
+	
+// 	h1 {
+// 		color: $light-grey;
+// 		text-transform: uppercase;
+// 		letter-spacing: .5px;
+// 		font-weight: 400;
+// 		font-size:16px;
+// 		margin:0px;
+// 		margin-top: 20px;
 
-	@include small-mobile {
-		float: right;
+// 		@include small-mobile {
+// 			font-size: 12px;
+// 		}
+
+// 		@include phone {
+// 			font-size: 10px;
+// 			line-height:10px;
+// 			margin-top:0px;
+// 		}
+// 	}
+// }
+
+// .profile-about {
+// 	display: inline-block;
+// 	width: 70%;
+// 	textarea {
+// 		width: 100%;
+// 		border:none;
+// 	}
+
+// 	@include small-mobile {
+// 		width: 50%;
+// 	}
+
+// 	@include phone {
+// 		width: 100%;
+// 	}
+// }
+
+// .skills-contact{
+// 	float: right;
+// 	width:20%;
+
+// 	@include mobile {
+// 		width: 22%;
+// 	}
+// 	@include small-mobile {
+// 		width: 45%;
+// 	}
+// 	@include phone {
+// 		width: 100%;
+// 		margin-top: 15px;
+// 	}
+// }
+
+// .profile-skills {
+// 	display: inline-block;
+// 	width: 100%;
+
+// 	ul {
+// 		list-style-type: none;
+// 		display:inline-block;
+// 		padding-left:0px;
+// 		margin-top: 5px;
+// 		width: 100%;
+// 	}
+// 	@include small-mobile {
+// 		float: left;
+// 		width: 45%;
+// 		margin-right:2%;
+// 	}
+
+// }
+
+// .contact {
+// 	display:inline-block;
+// 	width: 100%;
+// 	p {
+// 		disiplay: inline;
+// 		font-size:14px;
+// 	}
+
+// 	@include small-mobile {
+// 		float: left;
+// 		width: 45%;
+// 	}
+// }
+
+
+
+// .profile-projects{
+// 	h1{
+// 		margin-bottom:20px;
+// 		margin-top:50px;
+// 	}
+// 	p{
+// 		margin-left:10px;
+// 	}
+// 	.opening{
+// 		width:75%;
+// 		margin-left:0px;
+// 		display:inline-block;
+// 		min-height:160px;
+
+// 		@include small-mobile {
+// 			width: 97%;
+// 			min-height: 60px;
+// 		}
+// 	}
+// 	.opening-name{
+// 		margin-bottom:5px;
+// 	}
+
+// 	.posted-by{
+// 		left: 2px;
+// 	}
+
+// 	.stars{
+// 		width:100%;
+// 		clear:both;
+// 		margin-bottom:50px;
+// 	}
+// }
+
+// .profile-buttons {
+// 	margin-right: 2%;
+// 	width: 20%;
+// 	float: right;
+
+// 	div {
+// 		width: 100%;
+// 	}
+
+// 	@include mobile{
+// 		margin-top:30px;
+// 	}
+
+// 	@include small-mobile {
+// 		float: right;
 		
-		.options-button {
-			width: 100%;
-		}
-	}
+// 		.options-button {
+// 			width: 100%;
+// 		}
+// 	}
 
-	@include phone {
-		display:none;
-	}
-}
+// 	@include phone {
+// 		display:none;
+// 	}
+// }
 
-.mobile-buttons{
+// .mobile-buttons{
 
-	display:none;
+// 	display:none;
 
-	@include phone {
-		display:inline;
-		width: 100%;
-	}
+// 	@include phone {
+// 		display:inline;
+// 		width: 100%;
+// 	}
 
-	.mobile-button {
-		width: 40%;
-		height: 25px;
-		p {
-			font-size: 8px;
-			line-height:10px;
-			padding-top:2px;
-		}
-	}
-	.save, .cancel {
-		@include phone {
-   		 width: 20%;
-   		 margin-top: 6px;
-   		}
-  	}
-}
+// 	.mobile-button {
+// 		width: 40%;
+// 		height: 25px;
+// 		p {
+// 			font-size: 8px;
+// 			line-height:10px;
+// 			padding-top:2px;
+// 		}
+// 	}
+// 	.save, .cancel {
+// 		@include phone {
+//    		 width: 20%;
+//    		 margin-top: 6px;
+//    		}
+//   	}
+// }
