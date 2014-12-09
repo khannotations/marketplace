@@ -32,9 +32,9 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     }
 
     $scope.clearCookies = function() {
-        AuthService.logout();
-        window.location.assign('/logout');
-      }
+      AuthService.logout();
+      window.location.assign('/logout');
+    }
 
     $scope.save = function() {
       if ($scope.canEdit) {
