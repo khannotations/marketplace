@@ -8,7 +8,7 @@ html, body, #wrapper {
   width: 100%;
   margin: 0; padding: 0;
   font: 16px/22px normal $sans;
-  background-image: url(/assets/crossword.png);
+  background-image: url(asset-path("crossword.png"));
   background-repeat: repeat;
 }
 
@@ -34,7 +34,7 @@ $sidebar-height-phone: 50px;
   top: 0; right: 0;
   width: $sidebar-width;
   height: 100%;
-  background-color: $green;
+  background-color: $blue;
   padding: 10px;
   overflow: scroll;
   @include mobile {
@@ -69,14 +69,14 @@ hr {
   transition: .1s;
 
   @include mobile {
-    border: 1px solid $blue;
-    background-color: $blue;
+    border: 1px solid $green;
+    background-color: $green;
   }
 }
 
 .options-button:hover {
-  background-color: $blue;
-  border: 1px $blue solid;
+  background-color: $green;
+  border: 1px $green solid;
   p, value {
     color: white;
   } 
@@ -339,6 +339,13 @@ hr {
   margin-top: 50px;
 }
 
+.sm-margin {
+  margin-top: 5px;
+  @include phone {
+    margin-top: 3px;
+  }
+}
+
 .caps {
   text-transform: uppercase;
 }
@@ -368,7 +375,7 @@ hr {
   position:absolute;
   top: 5px;
   right: 5px;
-  background-image: url("/assets/star.png");
+  background-image: url(asset-path("star.png"));
   background-repeat:no-repeat;
   background-size:  20px 20px;
   border:none;
@@ -386,7 +393,7 @@ hr {
 }
 
 .star.starred {
-    background-image: url("/assets/starred.png"); 
+    background-image: url(asset-path("starred.png"));
 }
 
 .full-width {
@@ -489,10 +496,10 @@ input, textarea {
 
 .flash {
   position: absolute;
-  padding: 5px;
+  padding: 10px;
   top: 26px;
   right: 15px;
-  height: 123px;
+  //height: 123px;
   width: 220px;
   background-color: $lighter-grey;
   border-radius: 2px;
@@ -505,12 +512,27 @@ input, textarea {
 
 }
 
+.close {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+}
+
 .success {
   background-color: $dark-blue;
 }
 
 .error {
-  background-color: $lighter-grey;
+  background-color: $orange;
+  .msg {
+    color: $dark-blue !important;
+  }
+  .close {
+    color: $dark-blue !important;
+  }
 }
 
 .msg {

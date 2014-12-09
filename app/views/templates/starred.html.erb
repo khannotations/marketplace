@@ -1,12 +1,8 @@
-
-
-
 <div class="container-fluid">
   <div class="row starred-header">
-
     <div class="col-sm-10">
     <div class="searchbox">
-      <img class="form-icon star-form-icon" src="/assets/starred.png" alt="" class="searchicon"></img>
+      <img class="form-icon star-form-icon" src="<%= asset_path 'starred.png' %>" alt="" class="searchicon"></img>
       <span class="search-font margin-left">Your Starred Openings</span>
     </div>
   </div>
@@ -57,28 +53,17 @@
       
       <!-- Control buttons; show only if has edit access -->
       
-      <div class="margin-top col-xs-2 no-phone">
-        <div class="options-button green-button tall-button tall-mobile-button contact-button"><p class="button-text tall-button-text tall-mobile-text">Contact </p></div>
+      <div contact class="margin-top col-xs-2 no-phone">
+        <div class="options-button green-button tall-button tall-mobile-button contact-button">
+          <p class="button-text tall-button-text tall-mobile-text">Contact</p>
+        </div>
       </div>
-
-      <div class="margin-top col-xs-12 no-desktop no-tablet">
-        
-        <div class="options-button green-button tall-button"><p class="button-text tall-button-text">Contact </p></div>
-
-      </div>
-
-
-
+      <div contact class="margin-top col-xs-12 no-desktop no-tablet">
+        <div class="options-button green-button tall-button">
+          <p class="button-text tall-button-text">Contact</p>
+        </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
+  </div>
   </div>
 </div>

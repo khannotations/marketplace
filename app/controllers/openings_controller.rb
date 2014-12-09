@@ -20,7 +20,7 @@ class OpeningsController < ApplicationController
       end
       render json: @opening
     else
-      render_error "opening could not be created", 400
+      render_error "You opening could not be created. Please make sure you've filled out all the fields", 4000
     end
   end
 

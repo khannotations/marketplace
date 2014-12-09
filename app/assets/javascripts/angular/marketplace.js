@@ -93,5 +93,6 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
 
     $rootScope.setTab = function(tab) {
       $rootScope.currentTab = tab;
+      // close flash alert
     };
   }]);
