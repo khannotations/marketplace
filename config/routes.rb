@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/profile(/:id)' => 'main#index'
   get '/starred' => 'main#index'
   get '/admin(/:page)' => 'main#index'
+  get '/about' => 'main#index'
 
   # Template routes
   get '/templates/*path' => 'main#templates'

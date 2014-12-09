@@ -22,4 +22,11 @@ marketplace.controller("StarredCtrl", ["$scope", "$stateParams", "AuthService",
       // The set scope variable (otherwise star directive doesn't work)
   		$scope.allOpenings = openings; // All resolved
   	});
+
+    $scope.unstarAll =  function() {
+      _.map(openings, function(opening) {
+        AuthService.toggleStar(opening.id);
+      });
+      $scope.allOpenings = [];
+    };
   }]);

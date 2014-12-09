@@ -9,6 +9,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
+      $scope.isNewProject = true;
     } else {
       // if this is an existing project being viewed or edited
       $scope.project = Project.get({id: $stateParams.id}, function() {
@@ -102,7 +103,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           } 
           else {
             if(!$scope.project.name || !$scope.project.description){
-              //console.log("hey");
               $scope.$emit("flash", {state: "error",
                msg: "Make sure your project has a name" +
                     " and a description before you continue."});
@@ -110,7 +110,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
             }
             else {
               $scope.project.$save(function() {
-                $scope.$emit("flash", {state: "error",
+                $scope.$emit("flash", {state: "success",
                  msg: "Your project has been created! You'll have to wait for site approval " +
                    "before it displays in the search results. In the meantime, " +
                    "add openings that describe the positions you're looking to fill."});

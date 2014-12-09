@@ -11,16 +11,18 @@ angular.module("Marketplace").directive("flash",
         var show = function(msg, state) {
           scope.msg = msg;
           scope.state = state;
-          //scope.isVisible = "visible";
-          // scope.$apply();
+          $(".logo").toggle();
+          scope.isVisible = "visible";
+          scope.$apply();
           t = $timeout(function() {
             scope.close();
-          }, 5000);
+          }, 4000);
         }
 
         scope.close = function() {
           scope.isVisible = "";
           clearTimeout(t);
+          $(".logo").fadeToggle();
         }
 
         $rootScope.$on("flash", function(e, args) {

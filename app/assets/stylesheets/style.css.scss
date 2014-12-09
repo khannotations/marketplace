@@ -36,6 +36,7 @@ $sidebar-height-phone: 50px;
   height: 100%;
   background-color: $green;
   padding: 10px;
+  overflow: scroll;
   @include mobile {
     position: fixed;
     left: 0;
@@ -190,8 +191,8 @@ hr {
 
 .about-text {
   font-family: $sans;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 28px;
 }
 
 .about-header {
@@ -359,7 +360,7 @@ hr {
 
 .extra-breakpoint {
   @media only screen and (max-width: 670px) {
-    font-size: 8px;
+    font-size: 7px;
   } 
 }
 
@@ -484,7 +485,37 @@ input, textarea {
   margin-bottom: 10px;
 }
 
+/* FLASH */
 
+.flash {
+  position: absolute;
+  padding: 5px;
+  top: 26px;
+  right: 15px;
+  height: 123px;
+  width: 220px;
+  background-color: $lighter-grey;
+  border-radius: 2px;
+  z-index: 100;
+  //opacity:(.7);
+
+  @include mobile {
+
+  }
+
+}
+
+.success {
+  background-color: $dark-blue;
+}
+
+.error {
+  background-color: $lighter-grey;
+}
+
+.msg {
+  line-height: 8px;
+}
 
 
 /* ABOUT PAGE */
