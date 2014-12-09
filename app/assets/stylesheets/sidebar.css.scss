@@ -15,9 +15,9 @@
 
 	@include tablet {
 		float: right;
-		background-size: 120px 60px;
-		width: 120px;
-		height: 70px;
+		background-size: 100px 50px;
+		width: 100px;
+		height: 50px;
 		margin-top: 0px;
 		margin-bottom: 10px;
 		margin-right: 10px;
@@ -25,17 +25,17 @@
 
 	@media only screen and (max-width: 600px){
 		background-image: url("/assets/logo-small.png");
-		background-size: 65px 60px;
-		width: 80px;
+		background-size: 49px 45px;
+		width: 45px;
 	}
 
 	@include phone {
 		float: right;
 		height: 40px;
-		margin-top: 0px;
-		margin-right: 10px;
-		background-size: 45px 40px;
-		width: 45px
+		margin-top: 5px;
+		margin-right: -5px;
+		background-size: 35px 30px;
+		width: 35px
 	}
 }
 .navlink {
@@ -60,10 +60,12 @@
 
 	@include mobile {
 		float: left;
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-left: 5px;
-		padding-left: 10px;
-		padding-right: 10px;
+		margin-bottom: 0px;
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-bottom: 0px;
 		border-bottom-right-radius:0px;
 		border-bottom-left-radius:0px;
 		border-top-right-radius:2px;
@@ -86,6 +88,12 @@
 	@include mobile {
 		display:none;
 	}
+}
+
+.welcome-header {
+  font-family: $serif;
+  font-size: 18px;
+  color: white;
 }
 
 .sidebar-footer{

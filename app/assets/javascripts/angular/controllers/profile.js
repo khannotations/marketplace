@@ -19,13 +19,6 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     $scope.allSkills = Skill.query();
     $scope.setTab("profile");
 
-    // if user photo is present, use it instead of default
-    if($scope.user.photo_url) {
-      var img = $("user-photo");
-      $(img).attr("src", "user.photo_url");
-      $(img).css("padding", 0);
-    }
-
     $scope.edit = function() {
       $scope.canEdit = true;
       if ($scope.canEdit) {
