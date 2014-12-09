@@ -4,7 +4,7 @@
       <!-- Search bar and results -->
       <form class='main-search' ng-submit="searchEntered()">
         <div class="searchbox">
-          <img class="form-icon" src="/assets/searchicon.jpg" alt="" class="searchicon"></img>
+          <img class="form-icon" src="<%= asset_path 'searchicon.jpg' %>" alt="" class="searchicon"></img>
           <input type="text" class="searchfield search-font" autofocus="autofocus" ng-model="searchParams.q">
         </div>
       </form>

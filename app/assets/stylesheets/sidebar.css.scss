@@ -5,9 +5,9 @@
 }
 
 .logo {
-	background-image: url("/assets/logo.png");
-	 background-repeat:no-repeat;
-  	background-size:  180px 90px;
+	background-image: url(asset-path("logo.png"));
+	background-repeat:no-repeat;
+  background-size: 180px 90px;
 	margin-left:15px;
 	height: 200px;
 	margin-top: 10px;
@@ -24,7 +24,7 @@
 	}
 
 	@media only screen and (max-width: 600px){
-		background-image: url("/assets/logo-small.png");
+		background-image: url(asset-path("logo-small.png"));
 		background-size: 49px 45px;
 		width: 45px;
 	}
@@ -79,7 +79,7 @@
 }
 
 #current-tab {
-	background-image: url(/assets/crossword.png);
+	background-image: url(asset-path("crossword.png"));
   	background-repeat:repeat;
   	color:$blue;
 }
