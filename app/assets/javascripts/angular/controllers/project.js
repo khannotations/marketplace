@@ -21,7 +21,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // Viewing normal project
           $scope.canEdit = (user.is_admin || 
             _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
-              $scope.canEdit = false;
           // Only admins can approve
           $scope.isAdmin = user.is_admin;
         }
@@ -69,17 +68,15 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           $scope.project.openings[index] = $scope.editingOpenings[index];          
         } else {
           // Was a new opening, so remove from the array since we can't "revert"
-          $scope.project.openings.splice(index, 1);
+          $scope.project.openings.shift();
         }
         $scope.editingOpenings[index] = null;
       } else {
-        console.log($stateParams);
         if($stateParams.id === 'new'){
           $state.go("home");
         }
         $scope.project = $scope.editingProject;
         $scope.editingProject = null;
-
       }
     };
     /*
@@ -93,34 +90,31 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           opening.id ? opening.$update() : opening.$save(); // Save if no ID (new)
           $scope.editingOpenings[index] = null;
           $scope.$emit("flash", {state: "success",
-               msg: "Opening added!"});
+               msg: "Opening added"});
           $scope.editingProject = null;
-        } 
-        else {
+        } else {
+          // Editing a project
           if ($scope.project.id) {
+            // Updating
             $scope.project.$update();
             $scope.editingProject = null;
-          } 
-          else {
+          } else {
+            // Creating a new project
             if(!$scope.project.name || !$scope.project.description){
-              console.log("hey");
               $scope.$emit("flash", {state: "error",
                msg: "Make sure your project has a name" +
                     " and a description before you continue."});
               $scope.editingProject = true;
-            }
-            else {
+            } else {
               $scope.project.$save(function() {
                 $scope.$emit("flash", {state: "error",
                  msg: "Your project has been created! You'll have to wait for site approval " +
                    "before it displays in the search results. In the meantime, " +
                    "add openings that describe the positions you're looking to fill."});
                 $state.go("project", {id: $scope.project.id});
-                $scope.editingProject = null;  
               });            
             }
           }
-          
         }
       }
     };
@@ -162,7 +156,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      */
     $scope.approve = function() {
       if ($scope.isAdmin) {
-        console.log("approving..")
         $scope.project.$approve(function() {
           $scope.$emit("flash:success", {msg:
             "Project approved! The project leaders will be notified"})

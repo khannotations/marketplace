@@ -1,14 +1,14 @@
 <span ng-switch="!editingUser">
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-10">
-      <div class="searchbox">
-        <img class="form-icon" src="/assets/default-user.png" alt="" class="searchicon"></img>
-         <span class="search-font margin-left" ng-switch-when="true">{{user.first_name}}</span>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="searchbox">
+          <img class="form-icon" src="/assets/default-user.png" alt="" class="searchicon"></img>
+          <span class="search-font margin-left" ng-switch-when="true">{{user.first_name}}</span>
           
           <span class="search-font" ng-switch-when="true">&nbsp;{{user.last_name}}</span>
           <input type="text" class="searchfield search-font grey" autofocus="autofocus" ng-model="user.first_name" ng-switch-when="false" required>
-       </div>
+        </div>
 
         <!-- MOBILE BUTTONS --> 
         <div class="no-tablet no-desktop row">
@@ -26,10 +26,8 @@
               <p class="button-text">Log Out</p>
             </div>
           </div>
-        </div> <!-- no tablet, no desktop -->
-
-
-
+        </div>
+         <!-- no tablet, no desktop -->
 
       <!-- <div class="row">
         <div class="col-xs-3 v-align">
@@ -64,69 +62,74 @@
         </div> 
       </div> 
     </div> -->
-  </div>  
+      </div>  
 
-    <!-- DESKTOP BUTTONS -->
-    <div class="col-sm-2 no-phone">
-      <div class="profile-buttons">
-        <div class="options-button top-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
-          <p class="button-text short-button-text">Edit</p>
-        </div>
-        <div class="options-button top-button red-button" ng-if="canEdit && !editingUser" ng-click="clearCookies()">
-          <p class="button-text short-button-text">Log Out</p>
-        </div>
-        <div class="options-button save" ng-if="canEdit && editingUser" ng-click="save()">
-          <p class="button-text short-button-text">Save</p>
-        </div>
-        <div class="options-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
-          <p class="button-text short-button-text">Cancel</p>
-        </div>
+      <!-- DESKTOP BUTTONS -->
+      <div class="col-sm-2 no-phone">
+        <div class="profile-buttons">
+          <div class="options-button top-button edit" ng-if="canEdit && !editingUser" ng-click="edit()">
+            <p class="button-text short-button-text">Edit</p>
+          </div>
+          <div class="options-button top-button red-button" ng-if="canEdit && !editingUser" ng-click="clearCookies()">
+            <p class="button-text short-button-text">Log Out</p>
+          </div>
+          <div class="options-button save" ng-if="canEdit && editingUser" ng-click="save()">
+            <p class="button-text short-button-text">Save</p>
+          </div>
+          <div class="options-button cancel" ng-if="canEdit && editingUser" ng-click="cancel()">
+            <p class="button-text short-button-text">Cancel</p>
+          </div>
 
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <!-- Contact, Skills & Bio -->
-  <div class="row pad-left">
-
-        <div class="col-xs-12 col-md-8">
-          <div class="profile-about">
-            <h1 class="header-medium grey">ABOUT</h1>
-           <p class="body-text" ng-switch-when="true">{{user.bio}}</p>
-            <textarea class="full-width body-text" ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
-          </div>
+    <!-- Contact, Skills & Bio -->
+    <div class="row pad-left">
+      <div class="col-xs-12 col-md-8">
+        <div class="profile-about">
+          <h1 class="header-medium grey">ABOUT</h1>
+          <p class="body-text" ng-switch-when="true">{{user.bio}}</p>
+          <textarea class="full-width body-text" ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
         </div>
-        <div class="col-xs-6 col-md-2">        
-          <div class="profile-skills">
-           <h1 class="header-medium grey">SKILLS</h1>
+      </div>
+      <div class="col-xs-6 col-md-2">        
+        <div class="profile-skills">
+         <h1 class="header-medium grey">SKILLS</h1>
 
-            <span ng-switch-when="true">
-              <ul class="list">
-                <li class="body-text" ng-repeat="skill in user.skills">
-                  {{skill.name}}
-                </li>
-              </ul>
-            </span>
+         <span ng-switch-when="true">
+          <ul class="list">
+            <li class="body-text" ng-repeat="skill in user.skills">
+              {{skill.name}}
+            </li>
+          </ul>
+        </span>
 
-            <span ng-switch-when="false" >
-              <select class="chosen-box" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="user.skills" required data-placeholder="Choose some skills..."></select>
-            </span>
-          </div>
-        </div>
+        <span ng-switch-when="false" >
+          <select class="chosen-box" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="user.skills" required data-placeholder="Choose some skills..."></select>
+        </span>
+      </div>
+    </div>
 
-        <div class="col-xs-6 col-md-2">
-          <h1 class="header-medium grey">CONTACT</h1>
-            <p class="body-text">
-              <a ng-href="mailto:{{user.email}}" target="blank">{{user.email}}</a>
-            </p>
-            <p>
-              <a ng-href="{{user.linkedin_url}}" target="blank">{{user.linkedin_url}}</a>
-            </p>
-            <p class="body-text">
-              <a ng-href="{{user.github_url}}" target="blank">{{user.github_url}}</a>
-            </p>
-        </div>
+    <div class="col-xs-6 col-md-2">
+      <h1 class="header-medium grey">CONTACT</h1>
+      <p class="body-text">
+        <a ng-href="mailto:{{user.email}}" target="blank">{{user.email}}</a>
+      </p>
+      <p>
+        <a ng-href="http://linkedin.com/in/{{user.linkedin_url}}" target="blank" ng-if="user.linkedin_url && !editingUser">linkedin.com/in/{{user.linkedin_url}}</a>
+        <span ng-switch-when="false">
+          linkedin.com/in/<input type="text" ng-model="user.linkedin_url">
+        </span>
+      </p>
+      <p class="body-text">
+        <a ng-href="http://github.com/{{user.github_url}}" target="blank" ng-if="user.github_url && !editingUser">github.com/{{user.github_url}}</a>
+        <span ng-switch-when="false">
+          github.com/<input type="text" ng-model="user.github_url">
+        </span>
+      </p>
+    </div>
 
   </div>
   <hr class="no-desktop">
@@ -174,13 +177,13 @@
 
       <h1 class="header-medium grey thin" ng-if="!user.leading_projects.length">This user is not leading any projects</h1>
     </div>
-    </div>
-    <div class="row">
-      <div class="options-button red-button col-md-2 col-xs-12 mobile-button float-right" ng-click="delete()">
-              <p class="button-text short-button-text">Delete account</p>
-      </div>
+  </div>
+  <div class="row">
+    <div class="options-button red-button col-md-2 col-xs-12 mobile-button float-right" ng-click="delete()">
+      <p class="button-text short-button-text">Delete account</p>
     </div>
   </div>
+</div>
 
 </div>
 </span>
