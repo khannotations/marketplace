@@ -13,7 +13,7 @@ html, body, #wrapper {
 }
 
 $sidebar-width: 250px;
-$sidebar-height-mobile: 80px;
+$sidebar-height-mobile: 65px;
 $sidebar-height-phone: 50px;
 #content {
   width: 100%;
@@ -68,7 +68,7 @@ hr {
   transition: .1s;
 
   @include mobile {
-    height: 35px;
+    border: 1px solid $blue;
     background-color: $blue;
   }
 }
@@ -81,18 +81,11 @@ hr {
   } 
 }
 
-.tall-button {
-  @include desktop {
-    height: 85px;
-    line-height: 85px;
-  }
-}
 
 .tall-mobile-button {
   @include mobile {
     height: 60px;
     margin-top: 30px;
-    //line-height: 60px !important;
   }
 }
 
@@ -152,15 +145,6 @@ hr {
 
 }
 
-.mobile-button {
-  @include phone {
-    float: left;
-    height: 25px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-  }
-}
-
 .title-small {
   font-family: $serif;
   font-size: 30px;
@@ -171,26 +155,14 @@ hr {
 
   @include phone {
     font-size: 12px;
+    line-height: 12px;
   }
 }
 
-.header-medium {
-  font-family: $sans;
-  font-size: 15px;
-  font-weight: 400;
-
-  @include tablet {
-    font-size: 12px;
-  }
-
-  @include phone {
-    font-size: 8px;
-    line-height: 8px
-  }
-
+.title-smallest {
+  font-family: $serif;
+  font-size: 24px;
 }
-
-
 
 .body-text{
   font-family: $sans;
@@ -204,7 +176,7 @@ hr {
 
   @include phone {
     font-size: 8px; 
-    line-height: 10px;
+    line-height: 9px;
   }
 }
 
@@ -212,60 +184,91 @@ hr {
   font-family: $serif;
 }
 
+.no-overflow {
+  overflow: x-wrap;
+}
 
+.about-text {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.about-header {
+  @include mobile {
+    font-size: 30px !important; 
+  }
+  @include phone {
+    font-size: 20px !important;
+  }
+}
 
 .button-text {
   font-family: $serif;
   letter-spacing: .8px;
   font-size: 15px;
-  line-height: 50px;
+  line-height: 38px;
   color:$light-grey;
   margin:auto;
 
+  @media only screen and (max-width: 1200px) {
+    font-size: 12px;
+  } 
+
   @include mobile {
-    font-size:11px;
+    font-size:10px;
     letter-spacing:0px;
-    line-height: 11px;
+    line-height: 33px;
     text-align: center;
-    margin-top: 10px;
     color: white;
   }
 
   @include phone {
-    margin-top: 8px;
     font-size: 8px;
-    line-height: 8px;
+    line-height: 15px;
   }
 }
 
+.med-text {
+  font-size: 20px;
+
+}
+
 .tall-button-text {
-  line-height: 80px;
+  line-height: 83px;
+
   @include mobile {
     font-size: 11px;
+    line-height: 33px;
+  }
+
+  @include phone {
+    font-size: 8px;
     line-height: 15px;
+  }
+}
+
+.two-across-btn {
+  @include mobile {
+    width: 47%;
+    float: left;
+  }
+}
+
+.left-btn {
+  @include mobile {
+    margin-right: 5px;
   }
 }
 
 .tall-mobile-text {
   @include mobile {
-    line-height: 30px; 
-  }
-}
-
-.short-button-text {
-  @include desktop { 
-    line-height: 38px;
+    line-height: 60px; 
   }
 }
 
 .footer-link {
   font-size: 12px;
-}
-
-.welcome-header {
-  font-family: $serif;
-  font-size: 16px;
-  color: white;
 }
 
 .link {
@@ -281,6 +284,18 @@ hr {
   }
 }
 
+.link-r {
+  &:hover {
+    color: $green;
+  }
+}
+
+.link-b {
+  &:hover {
+    color: $orange;
+  }
+}
+
 .list {
   list-style-type:none;
   margin-top: 5px;
@@ -293,7 +308,7 @@ hr {
   bottom: 4px;
   left: 15px;
   @include phone {
-    left: 5px;
+    left: 3px;
   }
 }
 
@@ -313,6 +328,14 @@ hr {
 
 .med-margin {
   margin-top: 10px;
+  @include phone {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}
+
+.lg-margin {
+  margin-top: 50px;
 }
 
 .caps {
@@ -323,8 +346,21 @@ hr {
   font-weight: 100;
 }
 
+.tiny-text {
+  @include phone {
+  font-size: 6px;
+  line-height: 7px;
+}
+}
+
 .white {
   color: #ffffff;
+}
+
+.extra-breakpoint {
+  @media only screen and (max-width: 670px) {
+    font-size: 8px;
+  } 
 }
 
 .star {
@@ -338,6 +374,14 @@ hr {
   width: 20px;
   height: 20px;
   z-index: 1;
+
+  @include phone {
+    width: 10px;
+    height: 10px;
+    background-size: 10px 10px;
+    top: 2px;
+    right: 2px;
+  }
 }
 
 .star.starred {
@@ -367,10 +411,9 @@ hr {
 }
 
 
-.margin-top {
-  margin-top: 15px;
-  @include mobile {
-    margin-top: 0px;
+.mobile-margin-top {
+  @include phone {
+    margin-top: 5px;
   }
 }
 
@@ -389,6 +432,10 @@ hr {
   float: right;
 }
 
+.clear-bottom {
+  margin-bottom: 12px;
+}
+
 .has-borders{
   border-left: 1px solid $lighter-grey;
   border-right: 1px solid $lighter-grey;
@@ -397,16 +444,30 @@ hr {
     min-height: 100px;
   }
   @include phone {
-    min-height: 70px;
+    min-height: 60px;
+    height: 100%;
   }
 }
+
 
 .margin-left {
   margin-left: 20px;
 
   @include mobile {
     margin-top: 30px;
+    margin-left: 10px;
   }
+}
+
+.no-hover {
+  &:hover {
+    border:1px solid $lighter-grey !important;
+    cursor: default !important;
+  }
+}
+
+h1 {
+  font-weight: normal;
 }
 
 /* FORMS */
@@ -421,4 +482,14 @@ input, textarea {
 
 .starred-header {
   margin-bottom: 10px;
+}
+
+
+
+
+/* ABOUT PAGE */
+
+.about-wrapper{
+  padding: 60px;
+  padding-top: 20px;
 }

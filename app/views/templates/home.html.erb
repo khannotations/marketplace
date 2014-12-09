@@ -10,7 +10,7 @@
       </form>
       <div class="mobile-search no-tablet no-desktop" ng-click="searchParams.options=!searchParams.options">
         <!-- Options button for phone only -->
-        <div class="options-button">
+        <div class="options-button mobile-margin-top">
           <p class="button-text">More options</p>
         </div>
         
@@ -20,7 +20,7 @@
     <div class="col-sm-2 no-phone">
       <!-- Options for tablet and desktop (i.e. not phone) -->
       <div class="options-button tall-button" ng-click="searchParams.options=!searchParams.options">
-        <p class="button-text tall-button-text">More Options</p>
+        <p class="button-text tall-button-text extra-breakpoint">More Options</p>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <!-- Options for tablet and phone (i.e. mobile) -->
     <div class="col-xs-4">
       <div class="option-block">
-        <h1 class="header-medium grey no-space">SHOW</h1>
+        <h1 class="body-text grey no-space">SHOW</h1>
         <div class="btn-group show mobile-block">
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
@@ -39,7 +39,7 @@
     </div>
     <div class="col-xs-4">
       <div class="option-block">
-        <h1 class="header-medium grey no-space">SORT BY</h1>
+        <h1 class="body-text grey no-space">SORT BY</h1>
         <div class="btn-group sort-by">
           <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
           <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
@@ -49,7 +49,7 @@
     </div>
     <div class="col-xs-4">
       <div class="option-block">
-        <h1 class="header-medium grey no-space">FILTER ON</h1>
+        <h1 class="body-text grey no-space">FILTER ON</h1>
         <div class="btn-group filter-on">
           <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
           <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>
@@ -62,25 +62,25 @@
 
   <div class="row">
     <div class="col-md-10 col-sm-12">
-      <p class="header-medium grey thin" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
-        <p class="header-medium grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
+      <p class="body-text grey thin" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
+        <p class="body-text grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
 
 
         <!-- Job Opening returned from search -->
         <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
           <div star opening-id="{{opening.id}}" class="star"></div>
           <div class="row">
-            <div class="col-xs-8" ui-sref="project({id: opening.project_id})">
+            <div class="col-xs-7 col-sm-8" ui-sref="project({id: opening.project_id})">
                 <h1 class="title-small blue no-space">{{opening.name}}</h1>
               
-              <h2 class="header-medium grey caps no-space small-margin">{{opening.project.name}}</h2>
-              <p class="body-text no-space med-margin">{{opening.description}}</p>
+              <h2 class="body-text grey thin caps no-space small-margin">{{opening.project.name}}</h2>
+              <p class="body-text no-space med-margin clear-bottom">{{opening.description}}</p>
               
             </div>
-            <p class="header-medium thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
+            <p class="body-text thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
 
-            <div class="col-xs-2 no-mobile-padding has-borders">
-              <p class="header-medium grey caps no-space">SKILLS</p>
+            <div class="col-xs-2 col-sm-2 no-mobile-padding has-borders">
+              <p class="body-text grey caps no-space">SKILLS</p>
               <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
                 <li class="body-text" ng-repeat="skill in opening.skills | limitTo:skillLimit" >
                   {{skill.name}}
@@ -92,34 +92,31 @@
               </ul>
             </div>
 
-            <div class="col-xs-2 pay-column no-mobile-padding">
+            <div class="col-xs-3 col-sm-2 pay-column no-mobile-padding">
               <p class="title-small no-space pay-amt">${{opening.pay_amount}}</p>
-              <p class="header-medium grey caps no-space">{{opening.pay_type}}</p>
-              <p class="header-medium grey no-space thin">({{opening.timeframe}})</p>
+              <p class="body-text grey caps tiny-text no-space">{{opening.pay_type}}</p>
+              <p class="body-text grey no-space thin tiny-text">({{opening.timeframe}})</p>
             </div>
           </div>
         </div>
 
 
-
-
-
         <hr>
 
-        <p class="header-medium grey thin" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
-        <p class="header-medium grey thin" ng-if="!filteredUsers.length">No users match your search</p>
+        <p class="body-text grey thin" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+        <p class="body-text grey thin" ng-if="!filteredUsers.length">No users match your search</p>
         <!-- Users go here -->
-        <div class="opening" ng-repeat="user in filteredUsers" ui-sref="profile({netid: user.netid})">
+        <div class="opening user" ng-repeat="user in filteredUsers">
           <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-8" ui-sref="profile({netid: user.netid})">
               <h1 class="title-small no-space green" >{{user.first_name}} {{user.last_name}}
               </h1>
-              <h2 class="header-medium caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
+              <h2 class="body-text caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
               <p class="body-text no-space med-margin">{{user.bio}}</p>
             </div>
 
-            <div class="col-xs-2 has-borders">
-              <p class="header-medium grey caps margin-top:"> SKILLS</p>
+            <div class="col-sm-2 col-xs-4 has-borders">
+              <p class="body-text grey caps no-space"> SKILLS</p>
               <ul class="list">
                 <li class="body-text" ng-repeat="skill in user.skills">
                   {{skill.name}}
@@ -127,11 +124,8 @@
              </ul>
             </div>
             
-            <div class="col-xs-2">
-              <p class="header-medium grey caps no-space">CONTACT</p>
-              <p>{{email}}</p>
-              <p>{{github_url}}</p>
-              <p>{{linkedin_url}}</p>
+            <div class="col-sm-2 col-xs-12">
+              <div class="options-button green-button contact-button tall-button mobile-margin-top"><p class="button-text tall-button-text link">Contact </p></div>
             </div>
           </div>
         </div>
@@ -142,7 +136,7 @@
 
       <div class="more-options no-mobile" ng-show="searchParams.options">
         <div class="option-block">
-          <h1 class="header-medium grey">SHOW</h1>
+          <h1 class="body-text grey">SHOW</h1>
           <div class="btn-group show">
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
@@ -150,7 +144,7 @@
           </div>
         </div>
         <div class="option-block">
-          <h1 class="header-medium grey">SORT BY</h1>
+          <h1 class="body-text grey">SORT BY</h1>
             <div class="btn-group sort-by">
               <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
               <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
@@ -158,7 +152,7 @@
             </div>
           </div>
         <div class="option-block">
-          <h1 class="header-medium grey">FILTER ON</h1>
+          <h1 class="body-text grey">FILTER ON</h1>
             <div class="btn-group filter-on">
               <label class="btn btn-primary filter-btn top" ng-model="tfs.termtime" btn-checkbox>term-time</label>
               <label class="btn btn-primary filter-btn" ng-model="tfs.summer" btn-checkbox>summer</label>

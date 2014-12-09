@@ -21,7 +21,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // Viewing normal project
           $scope.canEdit = (user.is_admin || 
             _.pluck($scope.project.leaders, "id").indexOf(user.id) != -1);
-              $scope.canEdit = false;
           // Only admins can approve
           $scope.isAdmin = user.is_admin;
         }
@@ -103,7 +102,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           } 
           else {
             if(!$scope.project.name || !$scope.project.description){
-              console.log("hey");
+              //console.log("hey");
               $scope.$emit("flash", {state: "error",
                msg: "Make sure your project has a name" +
                     " and a description before you continue."});
