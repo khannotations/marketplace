@@ -11,7 +11,6 @@ angular.module("Marketplace").directive("flash",
         var show = function(msg, state) {
           scope.msg = msg;
           scope.state = state;
-          
           $timeout(function() {
             scope.isVisible = "visible";
             $(".logo").hide();

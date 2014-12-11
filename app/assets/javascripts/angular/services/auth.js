@@ -3,7 +3,9 @@
 angular.module("Marketplace")
 	.factory("AuthService", ["$cookieStore", "User", function($cookieStore, User) {
 		var authService = {};
-		var COOKIE_KEY = "marketplace_user";
+		var COOKIE_KEY = "marketplace_user_netid";
+		this.currentUser = null;
+
 		/*
 		 * Checks if a current user is stored in the cookieStore.
 		 * @return boolean
@@ -18,29 +20,32 @@ angular.module("Marketplace")
 		 *   or null.
 		 */
 		authService.getCurrentUser = function () {
-			if(!authService.checkIfCurrentUser()) {
-				var user = User.getCurrent();
-				user.$promise.then(function(u) {
-					if (u.netid) {
-						$cookieStore.put(COOKIE_KEY, u);
-					}
-				});
-				return user;
-			} else {
-				return $cookieStore.get(COOKIE_KEY);
+			var t = this;
+			if (this.currentUser) {
+				// Cache in authService object
+				return this.currentUser;
 			}
+			return User.getCurrent(function(u) {
+				if (u.netid) {
+					// Persist state across page refresh
+					$cookieStore.put(COOKIE_KEY, u.netid);
+					// For object cache
+					t.currentUser = u;
+				}
+			});
 		};
 		/*
-		 * Sets currentUser manually
+		 * Sets currentUser manually. The cookie cannot be modified without
+		 * the login process. 
 		 */
 		authService.setCurrentUser = function(user) {
-			$cookieStore.put(COOKIE_KEY, user);
+			this.currentUser = user;
 		};
 		/* 
 		 * Checks if current user is admin.
 		 */
 		authService.isAdmin = function() {
-			return $cookieStore.get(COOKIE_KEY).is_admin;
+			return this.currentUser && this.currentUser.is_admin;
 		};
 		/* 
 		 * Checks if the current user is authorized for the given roles.
@@ -64,20 +69,18 @@ angular.module("Marketplace")
 		 */
 		authService.logout = function() {
 			$cookieStore.remove(COOKIE_KEY);
-		}
+			this.currentUser = null;
+		};
 
 		authService.isStarred = function(index) {
-			var user = $cookieStore.get(COOKIE_KEY);
-			return user && user.favorite_opening_ids.indexOf(index) !== -1;
-		}
-		authService.toggleStar = function(index) {
-			var user = $cookieStore.get(COOKIE_KEY);
-			if (!authService.isStarred(index)) {
-				user.favorite_opening_ids.push(index);
-			} else {
-				user.favorite_opening_ids = _.without(user.favorite_opening_ids, index);
+			if (!this.currentUser || !this.currentUser.favorite_opening_ids) {
+				return false;
 			}
-			$cookieStore.put(COOKIE_KEY, user);
-		}
+			return this.currentUser.favorite_opening_ids.indexOf(index) !== -1;
+		};
+
+		authService.toggleStar = function(index) {
+			return this.currentUser.$toggleStar({opening_id: index});
+		};
 		return authService;
 	}]);
