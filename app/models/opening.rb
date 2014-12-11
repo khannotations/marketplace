@@ -62,7 +62,6 @@ class Opening < ActiveRecord::Base
         o.expire_notified = true
         o.save
     end
-    AdminMailer.job_ran.deliver
   end
 
   def serializable_hash(options={})

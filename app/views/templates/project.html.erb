@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-9 col-md-10">
       <div class="searchbox">
-        <img class="form-icon project-form-icon" src="/assets/project-blue.png" alt="" class="searchicon"></img>
+        <img class="form-icon project-form-icon" src="<%= asset_path 'project-blue.png' %>" alt="" class="searchicon"></img>
         <span class="search-font margin-left" ng-switch-when="true">{{project.name}}</span>
         <input type="text" maxlength="25" class="searchfield search-font grey" placeholder="Project Name" autofocus="autofocus" ng-model="project.name" ng-switch-when="false" name="name">
       </div>

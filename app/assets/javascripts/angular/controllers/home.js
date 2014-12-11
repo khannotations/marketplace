@@ -32,7 +32,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
       });
     }
     // Start initial search (returns everything if no q param)
-    search($scope.searchParams["q"] || "");
+    search($scope.searchParams["q"]);
 
     /*
      * Opens the login modal.
@@ -102,6 +102,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
      * Searches backend by given query term. 
      */
     function search(query) {
+      query = query || "";
       allOpenings = Opening.search({search: {q: query}});
       allUsers = User.search({search: {q: query}});
       // Once both found, filter the results. 
