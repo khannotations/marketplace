@@ -6,7 +6,6 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     var currentUser = AuthService.getCurrentUser();
     $stateParams.netid = $stateParams.netid || currentUser.netid;
     $scope.user = User.get({netid: $stateParams.netid}, function() {
-      console.log("hey", AuthService.getCurrentUser());
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
         currentUser.is_admin;
       if(!$scope.user.has_logged_in) {
@@ -40,6 +39,7 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
       if ($scope.canEdit) {
         $scope.user.$update();
         delete $scope.editingUser;
+        AuthService.setCurrentUser($scope.user);
         $scope.$emit("flash", {state: "success",
                msg: "Changes saved!"});
       }

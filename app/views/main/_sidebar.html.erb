@@ -1,5 +1,8 @@
 
-<div class='logo'></div>
+<div class="logo-wrap">
+	<div class='logo'></div>
+</div>
+<div class="sidebar-text">
 <div class="navlink-group">
 	<a class="navlink title link explore-tab" ui-sref="home" id="current-tab">Explore</a>
 	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
@@ -13,7 +16,10 @@
 	<p class="body-text thin white">Use the search bar to find job openings around campus. You can search by skill, description, pay type and more.</p>
 
 
-<a class="link footer-link thin white" ng-click="clearCookies()" ng-if="isLoggedIn">LOGOUT</a>
-<a class="link footer-link thin white" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
+<a class="link footer-link thin white serif" ng-click="clearCookies()" ng-if="isLoggedIn">LOGOUT</a>
+<a class="link footer-link thin white serif" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
 <span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
-<a class="link footer-link thin white" ng-click="setTab('')" ui-sref="about" class="about">ABOUT</a>
+<a class="link footer-link thin white serif" ng-click="setTab('')" ui-sref="about" class="about">ABOUT</a>
+<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
+<a class="link footer-link thin white serif" ng-click="setTab('')" ui-sref="about" class="about">CONTACT</a>
+</div>

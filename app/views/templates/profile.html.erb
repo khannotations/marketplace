@@ -49,7 +49,7 @@
     </div>
   </div>
   <!-- Contact, Skills & Bio -->
-  <div class="row pad-left">
+  <div class="row">
     <div class="col-xs-12 col-md-6">
       <div class="profile-about">
         <h1 class="body-text grey">ABOUT</h1>
@@ -74,15 +74,15 @@
     </div>
     <div class="col-xs-6 col-md-4">
       <h1 class="body-text grey">CONTACT</h1>
-        <p class="body-text">
+        <p class="body-text no-space">
           <a ng-href="mailto:{{user.email}}" target="blank">{{user.email}}</a>
         </p>
-        <p>
-          <span ng-switch-when="false">linkedin.com/in/<input type="text" ng-model="opening.linkedin_url"></span>
+        <p class="body-text no-space sm-margin">
+          <span ng-switch-when="false">linkedin.com/in/<input type="text" class="half-width" ng-model="user.linkedin_url"></span>
           <a ng-href="http://linkedin.com/in/{{user.linkedin_url}}" target="blank" ng-if="user.linkedin_url && !editingUser">linkedin.com/in/{{user.linkedin_url}}</a>
         </p>
-        <p class="body-text">
-          <span ng-switch-when="false">github.com/<input type="text" ng-model="opening.github_url"></span>
+        <p class="body-text no-space sm-margin">
+          <span ng-switch-when="false">github.com/<input type="text" class="half-width" ng-model="user.github_url"></span>
           <a ng-href="http://github.com/{{user.github_url}}" target="blank"  ng-if="user.github_url && !editingUser">github.com/{{user.github_url}}</a>
         </p>
     </div>

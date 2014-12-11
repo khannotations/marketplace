@@ -1,7 +1,7 @@
 "use strict";
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
-  "ngCookies", 'localytics.directives', "ui.bootstrap"])
+  "ngCookies", 'localytics.directives', "ui.bootstrap", "angulartics", "angulartics.google.analytics"])
   .config(["$stateProvider", "$locationProvider", "$urlRouterProvider", 
     function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
@@ -93,5 +93,6 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
 
     $rootScope.setTab = function(tab) {
       $rootScope.currentTab = tab;
+      // close flash alert
     };
   }]);

@@ -8,5 +8,7 @@
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require angular-chosen
+//= require angulartics-ga
+//= require angulartics
 //= require angular/marketplace
 //= require_tree ./angular

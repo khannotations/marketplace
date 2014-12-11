@@ -25,4 +25,11 @@ marketplace.controller("StarredCtrl", ["$scope", "$stateParams", "AuthService",
   		$scope.allOpenings = openings; // All resolved
       console.log($scope.allOpenings);
   	});
+
+    $scope.unstarAll =  function() {
+      _.map(openings, function(opening) {
+        AuthService.toggleStar(opening.id);
+      });
+      $scope.allOpenings = [];
+    };
   }]);

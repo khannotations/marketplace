@@ -34,8 +34,9 @@ $sidebar-height-phone: 50px;
   top: 0; right: 0;
   width: $sidebar-width;
   height: 100%;
-  background-color: $green;
+  background-color: $blue;
   padding: 10px;
+  overflow: scroll;
   @include mobile {
     position: fixed;
     left: 0;
@@ -68,14 +69,14 @@ hr {
   transition: .1s;
 
   @include mobile {
-    border: 1px solid $blue;
-    background-color: $blue;
+    border: 1px solid $green;
+    background-color: $green;
   }
 }
 
 .options-button:hover {
-  background-color: $blue;
-  border: 1px $blue solid;
+  background-color: $green;
+  border: 1px $green solid;
   p, value {
     color: white;
   } 
@@ -190,8 +191,8 @@ hr {
 
 .about-text {
   font-family: $sans;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 28px;
 }
 
 .about-header {
@@ -338,6 +339,13 @@ hr {
   margin-top: 50px;
 }
 
+.sm-margin {
+  margin-top: 5px;
+  @include phone {
+    margin-top: 3px;
+  }
+}
+
 .caps {
   text-transform: uppercase;
 }
@@ -359,7 +367,7 @@ hr {
 
 .extra-breakpoint {
   @media only screen and (max-width: 670px) {
-    font-size: 8px;
+    font-size: 7px;
   } 
 }
 
@@ -484,7 +492,52 @@ input, textarea {
   margin-bottom: 10px;
 }
 
+/* FLASH */
 
+.flash {
+  position: absolute;
+  padding: 10px;
+  top: 26px;
+  right: 15px;
+  //height: 123px;
+  width: 220px;
+  background-color: $lighter-grey;
+  border-radius: 2px;
+  z-index: 100;
+  //opacity:(.7);
+
+  @include mobile {
+
+  }
+
+}
+
+.close {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.success {
+  background-color: $dark-blue;
+}
+
+.error {
+  background-color: $orange;
+  .msg {
+    color: $dark-blue !important;
+  }
+  .close {
+    color: $dark-blue !important;
+  }
+}
+
+.msg {
+  line-height: 8px;
+}
 
 
 /* ABOUT PAGE */

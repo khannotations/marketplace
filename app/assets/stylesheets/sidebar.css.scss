@@ -4,14 +4,29 @@
 
 }
 
+.logo-wrap {
+	height: 250px;
+	@include tablet {
+		height: 50px;
+		width: 80px;
+		float: right;
+	}
+	@include phone {
+		height: 45px;
+		float: right;
+		width: 35px;
+	}
+}
+
 .logo {
+	display: inline-block;
 	background-image: url(asset-path("logo.png"));
 	background-repeat:no-repeat;
-  background-size: 180px 90px;
+	background-size: 180px 90px;
 	margin-left:15px;
 	height: 200px;
+	width: 290px;
 	margin-top: 10px;
-	margin-bottom: calc(100vh - 750px);
 
 	@include tablet {
 		float: right;
@@ -38,6 +53,14 @@
 		width: 35px
 	}
 }
+
+.sidebar-text {
+	top: 300px;
+	@include mobile {
+		top: 0px;
+	}
+}
+
 .navlink {
 
 	display:inline-block;

@@ -12,14 +12,16 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
 
     // Check authorization
 
+
     var setCurrentUser = function() {
       var isCurrentUser = AuthService.checkIfCurrentUser();
+      console.log(isCurrentUser, $scope.user);
       // display flash message if user is logged in but has no bio or no skills
-      if (isCurrentUser && !$scope.user.has_logged_in) {
+      if (isCurrentUser && !$scope.user.bio) {
         $scope.$emit("flash", {state: "success",
           msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
-        $state.go("profile", {netid: $scope.user.netid});
       }
+
       if(!isCurrentUser) {
         openModal();
       }
@@ -40,6 +42,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
         }
      });
     };
+
     // Run login code
     $scope.user = AuthService.getCurrentUser();
     if ($scope.user.$promise) {
