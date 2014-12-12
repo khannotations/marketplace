@@ -11,7 +11,6 @@ class ProjectMailer < ActionMailer::Base
     @opening = opening
     to = @opening.project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(", ")
     if (to != "")
-      puts "to: #{to}"
       mail(to: to, subject: "Your posting #{@opening.name} has expired")
     else
       puts "no leaders for opening #{opening.name}."

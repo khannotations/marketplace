@@ -62,7 +62,7 @@ class OpeningsController < ApplicationController
     if (params[:search] && search_params[:q] != "")
       @openings = Opening.search(search_params, params[:page])
     else
-      @openings = Opening.all
+      @openings = Opening.search_filtered(Opening.all)
     end
     render json: @openings
   end

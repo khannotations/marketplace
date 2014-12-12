@@ -52,6 +52,7 @@
   </div>
   <div class="row">
     <div class="col-md-10">
+      <div class="bold" ng-if="project.id && !project.approved" style="border: 2pt solid red;">PENDING APPROVAL. To ensure quaity, your project is waiting for approval by one of the site administrators. We're already on it—you should receive an approval or feedback in the next 24 hours. In the meantime, create some openings!</div>
       <div ng-repeat="leader in project.leaders">
         <p class="body-text grey">Lead by {{leader.full_name}} &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
       </div>
