@@ -22,6 +22,9 @@
 <a class="link footer-link thin white serif" onclick="window.location.assign('/login')" ng-if="!isLoggedIn">LOGIN</a>
 <span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
 <a class="link footer-link thin white serif" ng-click="setTab('')" ui-sref="about" class="about">ABOUT</a>
-<span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
-<a class="link footer-link thin white serif" ng-click="setTab('')" ui-sref="about" class="about">CONTACT</a>
+<!-- Admin link -->
+<span ng-if="user.is_admin">
+  <span class="serif thin white slash footer-link">&nbsp; /&nbsp; </span>
+  <a class="link footer-link thin white serif" ng-click="setTab('')" ui-sref="admin.approve" class="about">APPROVE</a>
+</span>
 </div>

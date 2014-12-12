@@ -71,7 +71,7 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       resolve: {
         currentUser: userResolve
       }
-    }).state("admin.project-approve", {
+    }).state("admin.approve", {
       url: "/approve",
       templateUrl: "/templates/admin/approve",
     });
