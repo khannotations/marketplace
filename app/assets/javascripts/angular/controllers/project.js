@@ -33,7 +33,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
 
     $scope.openingPayTypes = Opening.PAY_TYPES;     // constant
     $scope.openingTimeframes = Opening.TIMEFRAMES;  // constant
-    $scope.allSkills = Skill.query(); // Get all skills
+    $scope.allSkills = Skill.query();               // Get all skills
     /*
      * The edit, cancel, and save functions take an optional paramter: index.
      * If index is provided, it does the corresponding action to the opening
@@ -101,34 +101,37 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       if (index !== undefined) {
         // Editing an opening
         var opening = new Opening($scope.project.openings[index]);
-        opening.id ? opening.$update() : opening.$save(); // Save if no ID (new)
-        $scope.editingOpening = null;
-        $scope.editingIndex = null;
-        $scope.$emit("flash", {state: "success",
-             msg: "Your project has been updated!"});
-        $scope.editingProject = null;
+        var savedOpening = opening.id ? opening.$update() : opening.$save();
+        savedOpening.then(function() {
+          // Only on success
+          $scope.editingOpening = null;
+          $scope.editingIndex = null;
+          $scope.$emit("flash", {state: "success", 
+            msg: "Your project has been updated!"});
+          $scope.editingProject = null;
+        });
       } else {
-        // Editing a project
+        // Editing a project -- no form validators, so check manually
+        if(!$scope.project.name || !$scope.project.description){
+          $scope.$emit("flash", {state: "success",
+           msg: "Make sure your project has a name" +
+                " and a description before you continue."});
+          return false;
+        } 
         if ($scope.project.id) {
           // Updating
-          $scope.project.$update();
-          $scope.editingProject = null;
+          $scope.project.$update().then(function() {
+            $scope.editingProject = null;
+          });
         } else {
           // Creating a new project
-          if(!$scope.project.name || !$scope.project.description){
+          $scope.project.$save().then(function() {
             $scope.$emit("flash", {state: "success",
-             msg: "Make sure your project has a name" +
-                  " and a description before you continue."});
-            return false;
-          } else {
-            $scope.project.$save(function() {
-              $scope.$emit("flash", {state: "success",
-               msg: "Your project has been created! You'll have to wait for site approval " +
-                 "before it displays in the search results. In the meantime, " +
-                 "add openings that describe the positions you're looking to fill."});
-              $state.go("project", {id: $scope.project.id});
-            });            
-          }
+             msg: "Your project has been created! You'll have to wait for site approval " +
+               "before it displays in the search results. In the meantime, " +
+               "add openings that describe the positions you're looking to fill."});
+            $state.go("project", {id: $scope.project.id});
+          });            
         }
       }
       return true;
@@ -136,10 +139,10 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
 
     $scope.destroy = function(index) {
       if (!$scope.canEdit) {
-        return;
+        return false;
       }
       if (!confirm("Are you sure?")) {
-        return;
+        return false;
       }
       if (index !== undefined) {
         // Remove opening
@@ -154,10 +157,11 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         $scope.$emit("flash", {state: "success",
              msg: "Your project has been deleted"});
       }
+      return true;
     };
     /*
-     * addOpening() works by adding a stub opening to the end of the 
-     * project's openings array and calling edit() on it. If cancel is pushed,
+     * addOpening() works by adding a stub opening to the top of the 
+     * project's openings array and calling edit() on it. If cancel is called,
      * the cancel() function checks to see if the given index has an ID—if not,
      * it is considered an unwanted new opening and removed from the array.
      */
@@ -168,19 +172,20 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       $scope.project.openings.unshift(new Opening( {
         project_id: $scope.project.id
       }));
-      $scope.edit(0);
+      return $scope.edit(0);
     };
     /*
      * Approves a given project
      */
     $scope.approve = function() {
       if (!$scope.isAdmin) {
-        return;
+        return false;
       }
       $scope.project.$approve(function() {
-        $scope.$emit("flash:success", {msg:
+        $scope.$emit("flash", {state: "success", msg:
           "Project approved! The project leaders will be notified"})
       });
+      return true;
     };
   }]);
 

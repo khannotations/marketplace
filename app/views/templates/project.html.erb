@@ -56,7 +56,7 @@
         <p class="body-text grey">Lead by {{leader.full_name}} &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
       </div>
       <p class="body-text" ng-switch-when="true">{{project.description}}</p>
-      <textarea class="body-text padding full-width grey description-textarea" placeholder="Give a brief overview of your project. You may want to describe your motivation for working on the project, its current status, and future plans. Don't worry about specific job openings — we'll add those individually below." ng-model="project.description" ng-switch-when="false" cols="30" rows="10"></textarea>
+      <textarea class="body-text padding full-width grey description-textarea" placeholder="Give a brief overview of your project. You may want to describe your motivation for working on the project, its current status, and future plans. Don't worry about specific job openings — we'll add those individually below." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
     </div>
   </div>
   <div class="row" ng-if="project.id">
@@ -81,35 +81,35 @@
           <!-- TITLE & DESCRIPTION -->
           <div class="col-xs-6">
             <p class="title-small blue no-space" ng-switch-when="true">{{opening.name}}</p>
-            <input class="title-small blue no-space full-width" type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!">
+            <input class="title-small blue no-space full-width" type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!" name="opening-name">
             <div>
               <p class="body-text margin-top" ng-switch-when="true">{{opening.description}}</p>
-              <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" required placeholder="And this is why"></textarea>
+              <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" required placeholder="And this is why" name="opening-description"></textarea>
             </div>
           </div>
           <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
             <p class="body-text grey caps no-space">SKILLS</p>
             <span ng-switch-when="true">
-              <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
+              <ul class="list">
                 <li class="body-text" ng-repeat="skill in opening.skills | limitTo:skillLimit" >
                   {{skill.name}}
                 </li>
-                <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4">
+                <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4" ng-click="skillLimit = 20">
                   Show all...
                 </li>
-                <li class="body-text grey" ng-if="skillLimit == 20">Show fewer...</li>
+                <li class="body-text grey" ng-if="skillLimit == 20" ng-click="skillLimit = 4">Show fewer...</li>
               </ul>
             </span>
             <!-- A multiple-select jQuery chosen element that shows the name
             of each skill and binds the selected elements to the opening's skills array -->
             <!-- Add the ng-switch-when to the span because it doesn't work with chosen properly -->
             <span ng-switch-when="false" >
-              <select class="body-text" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" required style="width: 100%;" data-placeholder="Choose some skills..."></select>
+              <select class="body-text" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="opening.skills" style="width: 100%;" data-placeholder="Choose some skills..."></select>
             </span>
           </div>
           <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
             <span class="title-small no-space pay-amt" ng-switch-when="true">${{opening.pay_amount}}</span>
-            <input class="title-small no-space pay-amt pay-input" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required>
+            <input class="title-small no-space pay-amt pay-input" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required name="opening-pay-amount">
             <span ng-switch-when="true">
               <p class="body-text grey caps no-space">{{opening.pay_type}}</p>
             </span>
