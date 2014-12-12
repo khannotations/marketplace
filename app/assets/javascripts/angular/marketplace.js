@@ -1,7 +1,8 @@
 "use strict";
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
-  "ngCookies", 'localytics.directives', "ui.bootstrap", "angulartics", "angulartics.google.analytics"])
+  "ngCookies", "ngSanitize", 'localytics.directives', "ui.bootstrap",
+  "angulartics", "angulartics.google.analytics"])
   .config(["$stateProvider", "$locationProvider", "$urlRouterProvider", 
     function($stateProvider, $locationProvider, $urlRouterProvider) {
 

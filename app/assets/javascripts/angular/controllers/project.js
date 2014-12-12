@@ -68,7 +68,6 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
      */
     $scope.cancel = function(index) {
       if (!confirm("You'll lose any unsaved changes to what you're editing. Are you sure?")) {
-        console.log("false");
         return false;
       }
       if (index !== undefined) {
@@ -107,7 +106,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           $scope.editingOpening = null;
           $scope.editingIndex = null;
           $scope.$emit("flash", {state: "success", 
-            msg: "Your project has been updated!"});
+            msg: "Your opening has been saved!"});
           $scope.editingProject = null;
         });
       } else {
@@ -122,6 +121,8 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // Updating
           $scope.project.$update().then(function() {
             $scope.editingProject = null;
+            $scope.$emit("flash", {state: "success", 
+              msg: "Your project has been updated!"});
           });
         } else {
           // Creating a new project

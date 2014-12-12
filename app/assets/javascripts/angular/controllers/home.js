@@ -16,7 +16,10 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
       // User logged in
       if (!currentUser.bio) {
         $scope.$emit("flash", {state: "success",
-          msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
+          msg: "Your profile isn't complete! " +
+          "Add a bio and some skills to help us show you the jobs you're " + 
+          "best suited for on your <a href='/profile/" + currentUser.netid +
+          "'>profile</a> page."});
       }
     } else {
       // User not logged in

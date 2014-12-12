@@ -69,7 +69,7 @@
       </div>
     </div>
   </div>
-  <p class="about-text thin" ng-if="!project.openings.length">
+  <p class="about-text thin" ng-if="project.id && !project.openings.length">
     Make sure to create some openings! Openings are what actually show up in search results, and how users will apply to work on your project.
   </p>
   <div class="opening no-hover" ng-init="skillLimit = 4" ng-repeat="opening in project.openings">

@@ -492,50 +492,45 @@ input, textarea {
 /* FLASH */
 
 .flash {
-  position: absolute;
-  padding: 10px;
+  position: fixed;
+  padding: 20px;
   top: 26px;
-  right: 15px;
+  left: 25%;
   //height: 123px;
-  width: 220px;
+  width: 50%;
   background-color: $lighter-grey;
   border-radius: 2px;
   z-index: 100;
   //opacity:(.7);
-
-  @include mobile {
-
-  }
-
-}
-
-.close {
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
-  width: 8px;
-  height: 8px;
-  cursor: pointer;
-}
-
-.success {
-  background-color: $dark-blue;
-}
-
-.error {
-  background-color: $orange;
-  .msg {
-    color: $dark-blue !important;
-  }
+  $close-size: 20px;
   .close {
-    color: $dark-blue !important;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -$close-size/2; // Center vertically
+    font-size: $close-size;
+    line-height: $close-size;
+    cursor: pointer;
+  }
+
+  .msg {
+    line-height: 8px;
+  }
+
+  &.success {
+    background-color: $dark-blue;
+  }
+
+  &.error {
+    background-color: $orange;
+    .msg {
+      color: $dark-blue;
+    }
+    .close {
+      color: $dark-blue;
+    }
   }
 }
-
-.msg {
-  line-height: 8px;
-}
-
 
 /* ABOUT PAGE */
 
