@@ -3,7 +3,6 @@
 marketplace.factory('httpErrorInterceptor', ["$q", "$rootScope", function($q, $rootScope) {
   return {
     responseError: function(response) {
-      console.log(response);
       switch(response.status) {
         case 403:
           $rootScope.$emit("auth-not-authorized");

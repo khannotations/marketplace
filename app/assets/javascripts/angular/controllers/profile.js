@@ -1,14 +1,13 @@
 "use strict";
 
 marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
-  "User", "Skill", "Opening",
-  function($scope, $stateParams, AuthService, User, Skill, Opening) {
-    var currentUser = AuthService.getCurrentUser();
+  "User", "Skill", "Opening", "currentUser",
+  function($scope, $stateParams, AuthService, User, Skill, Opening, currentUser) {
     $stateParams.netid = $stateParams.netid || currentUser.netid;
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
         currentUser.is_admin;
-      if(!$scope.user.has_logged_in) {
+      if(currentUser.netid === $scope.user.netid && !$scope.user.has_logged_in) {
         $scope.user.has_logged_in = true;
         $scope.user.$update();
         AuthService.setCurrentUser($scope.user);
@@ -19,7 +18,6 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     $scope.setTab("profile");
 
     $scope.edit = function() {
-      $scope.canEdit = true;
       if ($scope.canEdit) {
         $scope.editingUser = angular.copy($scope.user);
       }
@@ -36,13 +34,12 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
     }
 
     $scope.save = function() {
-      if ($scope.canEdit) {
-        $scope.user.$update();
-        delete $scope.editingUser;
-        AuthService.setCurrentUser($scope.user);
-        $scope.$emit("flash", {state: "success",
-               msg: "Changes saved!"});
+      if (!$scope.canEdit) {
+        return;
       }
-
+      $scope.user.$update();
+      delete $scope.editingUser;
+      AuthService.setCurrentUser($scope.user);
+      $scope.$emit("flash", {state: "success", msg: "Changes saved!"});
     }
   }]);

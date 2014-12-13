@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-9 col-md-10">
       <div class="searchbox">
-        <img class="form-icon" src="/assets/default-user.png" alt="" class="searchicon"></img>
+        <img class="form-icon" src="<%= asset_path 'default-user.png' %>" alt="" class="searchicon"></img>
          <span class="search-font margin-left" ng-switch-when="true">{{user.first_name}}</span>
         <span class="search-font" ng-switch-when="true">&nbsp;{{user.last_name}}</span>
         <input type="text" class="searchfield search-font grey" autofocus="autofocus" ng-model="user.first_name" ng-switch-when="false" required>
