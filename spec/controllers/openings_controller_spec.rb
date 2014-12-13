@@ -146,21 +146,32 @@ RSpec.describe OpeningsController, :type => :controller do
     it "fails when project is not approved" do
       get :search, @search_params
       expect(response.status).to be 200
-      expect(response.body).to match /\[\]/
+      expect(assigns[:openings].length).to be 0
+    end
+
+    it "fails when project is not approved and no search param" do
+      @search_params = {}
+      get :search, @search_params
+      expect(response.status).to be 200
+      expect(assigns[:openings].length).to be 0
     end
 
     it "returns all with out a search param" do
-      3.times { create(:opening) }
+      p = create(:project, approved: true)
+      3.times { o = create(:opening, project: p) }
       @search_params = {}
       get :search, @search_params
-      expect(assigns[:openings].length).to be 4
+      expect(response.status).to be 200
+      expect(assigns[:openings].length).to be 3 # Original project not approved
     end
 
     it "returns all with a blank search param" do
-      3.times { create(:opening) }
+      p = create(:project, approved: true)
+      3.times { o = create(:opening, project: p) }
       @search_params = {search: {q: ""}.to_json}
       get :search, @search_params
-      expect(assigns[:openings].length).to be 4
+      expect(response.status).to be 200
+      expect(assigns[:openings].length).to be 3 # Original project not approved
     end
   end
 

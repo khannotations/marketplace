@@ -20,7 +20,8 @@ class OpeningsController < ApplicationController
       end
       render json: @opening
     else
-      render_error "You opening could not be created. Please make sure you've filled out all the fields", 4000
+      render_error "Your opening could not be created." + 
+        " Please make sure you've filled out all the fields", 400
     end
   end
 
@@ -61,7 +62,7 @@ class OpeningsController < ApplicationController
     if (params[:search] && search_params[:q] != "")
       @openings = Opening.search(search_params, params[:page])
     else
-      @openings = Opening.all
+      @openings = Opening.search_filtered(Opening.all)
     end
     render json: @openings
   end

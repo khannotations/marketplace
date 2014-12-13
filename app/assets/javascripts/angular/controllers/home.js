@@ -1,33 +1,46 @@
 "use strict";
 
-marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams", "$q",
-  "$location", "AuthService", "Opening", "User", 
-  function($scope, $modal, $state, $stateParams, $q, $location, AuthService, Opening, User) {
+marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
+  "$location", "Opening", "User", "currentUser", 
+  function($scope, $modal, $stateParams, $q, $location, Opening, User, currentUser) {
     $scope.foundOpenings = []
     $scope.searchParams = $stateParams;
     var allOpenings = [];
     var allUsers = [];
     var openModal;
     $scope.setTab("explore");
+    $scope.user = currentUser
 
     // Check authorization
-
-
-    var setCurrentUser = function() {
-      var isCurrentUser = AuthService.checkIfCurrentUser();
-      console.log(isCurrentUser, $scope.user);
-      // display flash message if user is logged in but has no bio or no skills
-      if (isCurrentUser && !$scope.user.bio) {
+    if (currentUser.id) {
+      // User logged in
+      if (!currentUser.bio) {
         $scope.$emit("flash", {state: "success",
-          msg: "Your profile isn't complete! Add a bio and some skills to help us show you the jobs you're best suited for."});
+          msg: "Your profile isn't complete! " +
+          "Add a bio and some skills to help us show you the jobs you're " + 
+          "best suited for on your <a href='/profile/" + currentUser.netid +
+          "'>profile</a> page."});
       }
-
-      if(!isCurrentUser) {
-        openModal();
-      }
+    } else {
+      // User not logged in
+      openModal();
     }
-    
-    var openModal = function (size) {
+
+    // Set up searchParams from URL
+    $scope.tfs = {};
+    if ($scope.searchParams["tfs"]) {
+      var arr = $scope.searchParams["tfs"].split(",");
+      _.each(arr, function(elem) {
+        $scope.tfs[elem] = true;
+      });
+    }
+    // Start initial search (returns everything if no q param)
+    search($scope.searchParams["q"]);
+
+    /*
+     * Opens the login modal.
+     */
+    function openModal(size) {
       $("#wrapper").css("-webkit-filter", "blur(8px)");
       var modalInstance = $modal.open( {
         templateUrl: '/templates/directives/modalContent',
@@ -43,22 +56,12 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
      });
     };
 
-    // Run login code
-    $scope.user = AuthService.getCurrentUser();
-    if ($scope.user.$promise) {
-      $scope.user.$promise.then(function() {
-        // Wait for user to load
-        setCurrentUser();
-      });
-    } else {
-      setCurrentUser();
-    }
     /*
      * Filter openings by the values in $scope.searchParams
      * Starts from global variables allOpenings and allUsers
      * Modifies scope variables $scope.filteredOpenings and $scope.filteredUsers
      */
-    var filterResults = function() {
+    function filterResults() {
       var openings = allOpenings;
       var users = allUsers;
       var tfs = $scope.searchParams["tfs"]; // timeframes
@@ -101,7 +104,8 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
      * The actual search action.
      * Searches backend by given query term. 
      */
-    var search = function(query) {
+    function search(query) {
+      query = query || "";
       allOpenings = Opening.search({search: {q: query}});
       allUsers = User.search({search: {q: query}});
       // Once both found, filter the results. 
@@ -110,7 +114,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
       });
     }
 
-    var adjustUrl = function() {
+    function adjustUrl() {
       // Query, sort are already added as searchParams.q and searchParams.sort
       // Timeframes
       var arr = [];
@@ -134,17 +138,6 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
       $location.search($scope.searchParams);
     }
 
-    // Set up searchParams from URL
-    $scope.tfs = {};
-    if ($scope.searchParams["tfs"]) {
-      var arr = $scope.searchParams["tfs"].split(",");
-      _.each(arr, function(elem) {
-        $scope.tfs[elem] = true;
-      });
-    }
-    // Start initial search (returns everything if no q param)
-    search($scope.searchParams["q"] || "");
-
     /*
      * When the user presses enter in the search bar.
      * Sets $scope.searchParams (as well as the URL) and then calls search()
@@ -154,7 +147,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$state", "$stateParams"
       search($scope.searchParams.q);
     }
 
-    // $scope.$watchGruop isn't working...
+    // Watchers for URLs
     $scope.$watchCollection("tfs", function() {
       adjustUrl();
       filterResults();

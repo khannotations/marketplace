@@ -26,7 +26,11 @@ $orange: #FFA319;
 $body: Proxima, "HelveticaNeue", sans-serif;
 $font-size: 16px;
 $sans: "Roboto", Arial, sans-serif;
-$serif: "Glegoo", Times, serif; 
+$serif: "Glegoo", Times, serif;
+
+$sidebar-width: 250px;
+$sidebar-height-mobile: 65px;
+$sidebar-height-phone: 50px;
 
 @mixin helvetica-light {
   font-family: "HelveticaNeue-Thin", "HelveticaNeue", $body;

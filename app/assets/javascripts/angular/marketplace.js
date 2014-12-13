@@ -1,11 +1,16 @@
 "use strict";
 
 var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
-  "ngCookies", 'localytics.directives', "ui.bootstrap", "angulartics", "angulartics.google.analytics"])
+  "ngCookies", "ngSanitize", 'localytics.directives', "ui.bootstrap",
+  "angulartics", "angulartics.google.analytics"])
   .config(["$stateProvider", "$locationProvider", "$urlRouterProvider", 
     function($stateProvider, $locationProvider, $urlRouterProvider) {
-    $stateProvider
 
+    var userResolve = ["AuthService", function(AuthService) {
+      return AuthService.getCurrentUser().$promise;
+    }];
+
+    $stateProvider
     .state("home", {
       url: "/?q&tfs&sort&show&options",
       templateUrl: "/templates/home",
@@ -13,12 +18,18 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       reloadOnSearch: false,
       data: {
         authorizedRoles: ["ADMIN", "USER", "PUBLIC"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
     }).state("about", {
       url: "/about",
       templateUrl: "/templates/about",
       data: {
         authorizedRoles: ["ADMIN", "USER", "PUBLIC"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
     }).state("project", {
       url: "/projects/:id",
@@ -26,6 +37,9 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       controller: "ProjectCtrl",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
     }).state("profile", {
       url: "/profile/:netid",
@@ -33,6 +47,9 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       controller: "ProfileCtrl",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
     }).state("starred", {
       url: "/starred",
@@ -40,6 +57,9 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       controller: "StarredCtrl",
       data: {
         authorizedRoles: ["ADMIN", "USER"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
     }).state("admin", {
       abstract: true,
@@ -48,10 +68,13 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
       template: "<div class='ui-view'></div>",
       data: {
         authorizedRoles: ["ADMIN"]
+      },
+      resolve: {
+        currentUser: userResolve
       }
-    }).state("admin.project-approve", {
+    }).state("admin.approve", {
       url: "/approve",
-      templateUrl: "/templates/admin/approve"
+      templateUrl: "/templates/admin/approve",
     });
 
     $locationProvider.html5Mode(true);
@@ -65,9 +88,6 @@ var marketplace = angular.module("Marketplace", ["ui.router", "ngResource",
     // Set up authorization check.
     $rootScope.$on('$stateChangeStart', function(event, next) {
       var roles = next.data.authorizedRoles;
-      // if (next.name == "home") {
-      //   return; // Always allow visit to home page. 
-      // }
       if (!AuthService.isAuthorized(roles)) {
         event.preventDefault();
         if (AuthService.checkIfCurrentUser()) {

@@ -37,6 +37,12 @@ class Opening < ActiveRecord::Base
     return expires_on <= Date.now
   end
 
+  # Given an array of openings, returns those that are OK to show in search
+  # results
+  def self.search_filtered(openings)
+    openings.select { |o| o.project.approved && !o.expire_notified && !o.filled}
+  end
+
   # Search is put here, though it returns Openings and User
   # Returns all openings that match any of the query terms, or whose project
   # does, or that have a skill that matches one of the query terms
@@ -50,7 +56,7 @@ class Opening < ActiveRecord::Base
     project_openings = Project.thorough_search(query).map(&:openings).flatten
     skill_openings = Skill.search(query).map(&:openings).flatten
     all = (matching_openings + project_openings + skill_openings).uniq
-    return all.select { |o| o.project.approved && !o.expire_notified && !o.filled}
+    return Opening.search_filtered all
   end
 
   def self.notify_expired
@@ -62,7 +68,6 @@ class Opening < ActiveRecord::Base
         o.expire_notified = true
         o.save
     end
-    AdminMailer.job_ran.deliver
   end
 
   def serializable_hash(options={})
