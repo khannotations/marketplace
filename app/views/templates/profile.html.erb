@@ -53,8 +53,16 @@
     <div class="col-xs-12 col-md-6">
       <div class="profile-about">
         <h1 class="body-text grey">ABOUT</h1>
-       <p class="body-text" ng-switch-when="true">{{user.bio}}</p>
+        <p class="body-text" ng-switch-when="true">{{user.bio}}</p>
         <textarea class="full-width body-text" ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
+      </div>
+      <div>
+        <input type="checkbox" ng-model="user.show_in_results" ng-click="
+        toggleShowInResults()" ng-if="canEdit"> Show me in search results.
+        <!-- Tooltip -->
+        <span class="link grey" tooltip="With this unchecked, you won't appear in search results in the Explore tab." tooltip-placement="right" tooltip-popup-delay="0" tooltip-animation="false">
+          What's this?
+        </span>
       </div>
     </div>
     <div class="col-xs-6 col-md-2">        

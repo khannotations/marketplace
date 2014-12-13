@@ -15,7 +15,7 @@
   </div>
 
 <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in allOpenings">
-  <div star opening-id="{{opening.id}}" class="star"></div>
+  <div star opening="opening"></div>
   <form ng-submit="save($index)">
 
     <!-- A switch on the edit mode for this opening. True => not-editing -->

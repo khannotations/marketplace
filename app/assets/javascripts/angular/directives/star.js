@@ -1,27 +1,29 @@
 "use strict";
 
 angular.module("Marketplace").directive("star",
-  ["AuthService", "User", function(AuthService, User) {
+  ["AuthService", function(AuthService) {
     return {
       restrict: "A",   // Attributes only
       scope: {
-        openingId: "@" // The value of the opening-id attribute
+        opening: "=" // The value of the opening attributes
       },
+      replace: true,
+      templateUrl: "/templates/directives/star",
       link: function(scope, element, attrs) {
-        var currentUser = new User(AuthService.getCurrentUser());
-        var elem = angular.element(element);
-        var oId = parseInt(scope.openingId);
-        elem.addClass("star"); // For styling
-        if (AuthService.isStarred(oId)) {
-          elem.addClass("starred");
-        }
-        elem.on('click', function() {
+        var oId;
+        // Wait for opening to resolve, and watch for changes to favorite_count
+        scope.$watch('opening', function() {
+          oId = scope.opening.id;
+          scope.starred = AuthService.isStarred(oId);
+          scope.numStarred = scope.opening.favorite_count;
+        }, true); // True checks for entire object
+
+        scope.toggleStar = function() {
           AuthService.toggleStar(oId).then(function() {
-            // Change on front-end
-            AuthService.isStarred(oId) ? elem.addClass("starred") :
-              elem.removeClass("starred");
-          });                
-        });
+            scope.starred ? scope.opening.favorite_count-- :
+              scope.opening.favorite_count++;
+          });         
+        };
       }
     }
 }]);

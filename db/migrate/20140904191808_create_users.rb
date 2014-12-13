@@ -20,6 +20,7 @@ class CreateUsers < ActiveRecord::Migration
       t.attachment :picture
 
       t.boolean :has_logged_in, default: false
+      t.boolean :show_in_results, default: true
 
       t.timestamps
     end

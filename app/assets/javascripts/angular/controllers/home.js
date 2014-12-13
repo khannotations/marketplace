@@ -41,19 +41,16 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
      * Opens the login modal.
      */
     function openModal(size) {
-      $("#wrapper").css("-webkit-filter", "blur(8px)");
-      var modalInstance = $modal.open( {
-        templateUrl: '/templates/directives/modalContent',
-        controller: 'ModalCtrl',
+      $("#wrapper").addClass("blur");
+      $modal.open({
+        templateUrl: '/templates/directives/loginModal',
         size: size,
         backdrop: false, 
-        windowClass: "modal fade in",
-        resolve: {
-         items: function () {
-          return $scope.items;
-         }
-        }
-     });
+        windowClass: "modal fade in"
+      }).result.then(function() {
+        // When closed, remove window blur
+        $("#wrapper").removeClass("blur");
+      });
     };
 
     /*

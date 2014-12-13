@@ -12,8 +12,8 @@ marketplace.factory('httpErrorInterceptor', ["$q", "$rootScope", function($q, $r
           break;
         default:
           $rootScope.$emit("flash", {state: "error", msg: ("We apologize, but" +
-            "the application has encountered an error—one of the admins is working" +
-            "to solve the problem! In the meantime, please try refreshing the page.")})
+            " the application has encountered an error—one of the admins is working" +
+            " to solve the problem! In the meantime, please try refreshing the page.")})
       }
       return $q.reject(response);
     }

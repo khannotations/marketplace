@@ -7,6 +7,15 @@ class ProjectMailer < ActionMailer::Base
     mail(to: to, subject: "#{project.name} successfully created!")
   end
 
+  def opening_contact(opening, user)
+    @opening = opening
+    @project = opening.project
+    @user = user
+    to = @project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(",")
+    mail(to: to, cc: "#{@user.full_name} <#{@user.email}>",
+      subject: "#{user.first_name} expressed interest in #{opening.name}")
+  end
+
   def expired_opening(opening)
     @opening = opening
     to = @opening.project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(", ")

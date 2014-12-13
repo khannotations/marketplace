@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def self.search_filtered(users)
+    users.select { |u| u.show_in_results }.uniq
+  end
+
   def self.search(search_params, page=0)
     page ||= 0
     query = search_params[:q]
@@ -41,7 +45,7 @@ class User < ActiveRecord::Base
     skill_openings = Skill.search(query).map(&:users).flatten
     # TODO: Prioritize those that match by both
     # TODO: Match by projects?
-    return (matching_openings + skill_openings).uniq
+    return User.search_filtered (matching_openings + skill_openings)
   end
 
   def serializable_hash(options={})

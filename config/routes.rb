@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     put '/projects/:id/approve' => 'projects#approve'
     resources :projects, only: [:show, :create, :update, :destroy]
     put '/openings/:id/renew' => 'openings#renew'
+    post '/openings/:id/contact' => 'openings#contact'
     resources :openings, only: [:show, :create, :update, :destroy]
     resources :skills, only: [:index, :create, :update, :destroy]
 

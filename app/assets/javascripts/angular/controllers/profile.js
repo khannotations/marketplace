@@ -5,9 +5,8 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
   function($scope, $stateParams, AuthService, User, Skill, Opening, currentUser) {
     $stateParams.netid = $stateParams.netid || currentUser.netid;
     $scope.user = User.get({netid: $stateParams.netid}, function() {
-      $scope.canEdit = (currentUser.netid === $scope.user.netid) ||
-        currentUser.is_admin;
-      if(currentUser.netid === $scope.user.netid && !$scope.user.has_logged_in) {
+      $scope.canEdit = (currentUser.netid === $scope.user.netid);
+      if($scope.canEdit && !$scope.user.has_logged_in) {
         $scope.user.has_logged_in = true;
         $scope.user.$update();
         AuthService.setCurrentUser($scope.user);
@@ -42,4 +41,12 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
       AuthService.setCurrentUser($scope.user);
       $scope.$emit("flash", {state: "success", msg: "Changes saved!"});
     }
+
+    $scope.$watch("user.show_in_results", function() {
+      if (!$scope.canEdit) {
+        return;
+      }
+      $scope.user.$update();
+      AuthService.setCurrentUser($scope.user);
+    });
   }]);

@@ -35,10 +35,8 @@ gem 'turbolinks'
 # Testing, errors
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'jasmine-rails'
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'better_errors'
-  # gem 'pry-debugger'
   gem 'binding_of_caller'
+  # gem 'pry-debugger'
 end
