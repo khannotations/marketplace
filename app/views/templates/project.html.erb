@@ -51,18 +51,25 @@
     </div>
   </div>
   <div class="row">
+    
     <div class="col-md-10">
-      <div class="bold" ng-if="project.id && !project.approved" style="border: 2pt solid red;">PENDING APPROVAL. To ensure quaity, your project is waiting for approval by one of the site administrators. We're already on it—you should receive an approval or feedback in the next 24 hours. In the meantime, create some openings!</div>
-      <div ng-repeat="leader in project.leaders">
-        <p class="body-text grey">Lead by {{leader.full_name}} &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
+      <div class="approved-warning" ng-if="project.id && !project.approved">
+        <img src="<%= asset_path 'warning30.png' %>" alt="" class="searchicon"></img>
+        <p class="body-text">To ensure quaity, your project is waiting for approval by one of the site administrators. We're already on it—you should receive an approval or feedback in the next 24 hours. In the meantime, create some openings!</p>
+      </div>
+      <div>
+        <p class="body-text grey">Lead by
+          <a class="link grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
+            &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
       </div>
       <p class="body-text" ng-switch-when="true">{{project.description}}</p>
       <textarea class="body-text padding full-width grey description-textarea" placeholder="Give a brief overview of your project. You may want to describe your motivation for working on the project, its current status, and future plans. Don't worry about specific job openings — we'll add those individually below." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
     </div>
+    
   </div>
   <div class="row" ng-if="project.id">
     <div class="col-md-10">
-      <h3 class="title-small blue">Openings</h3>
+      <p class="body-text caps grey">Job Openings for this project</p>
     </div>
     <div class="col-md-2">
       <div class="options-button add-opening" ng-click="addOpening()" ng-if="canEdit && (!project.openings.length || project.openings[0].id)">
@@ -70,19 +77,29 @@
       </div>
     </div>
   </div>
-  <p class="about-text thin" ng-if="project.id && !project.openings.length">
+  <p class="body-text larger-body thin" ng-if="project.id && !project.openings.length">
     Make sure to create some openings! Openings are what actually show up in search results, and how users will apply to work on your project.
   </p>
+
+
   <div class="opening no-hover" ng-init="skillLimit = 4" ng-repeat="opening in project.openings">
+
+    <!-- only show if opening is expired -->
+    <div ng-if="opening.is_expired">
+      <p class="title-small expired-text col-xs-10">THIS OPENING HAS EXPIRED</p>
+      <div class="options-button renew-button tall-button mobile-margin-top orange-button" ng-click="renew($index)">
+      <p class="button-text renew-button-text tall-button-text extra-breakpoint">Renew</p>
+      </div>
+    </div>
     <div star opening-id="{{opening.id}}" class="star"></div>
-    <form ng-submit="save($index)">
+    <form ng-class='{"opening-faded": opening.expire_notified}' ng-submit="save($index)">
       <!-- A switch on the edit mode for this opening. True => not-editing -->
       <span ng-switch="editingIndex != $index">
         <div class="row">
           <!-- TITLE & DESCRIPTION -->
           <div class="col-xs-6">
             <p class="title-small blue no-space" ng-switch-when="true">{{opening.name}}</p>
-            <input class="title-small blue no-space full-width" type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!" name="opening-name">
+            <input class="title-small blue no-space full-width title-placeholder" type="text" ng-model="opening.name" ng-switch-when="false" required placeholder="The best job ever!" name="opening-name">
             <div>
               <p class="body-text margin-top" ng-switch-when="true">{{opening.description}}</p>
               <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" required placeholder="And this is why" name="opening-description"></textarea>
@@ -110,7 +127,7 @@
           </div>
           <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
             <span class="title-small no-space pay-amt" ng-switch-when="true">${{opening.pay_amount}}</span>
-            <input class="title-small no-space pay-amt pay-input" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required name="opening-pay-amount">
+            <input class="title-small no-space pay-amt pay-input placeholder-title" placeholder="Pay" type="number" ng-switch-when="false" ng-model="opening.pay_amount" required name="opening-pay-amount">
             <span ng-switch-when="true">
               <p class="body-text grey caps no-space">{{opening.pay_type}}</p>
             </span>
@@ -153,6 +170,9 @@
         </div>
       </span>
     </form>
+
   </div>
+
+
 </div>
 </span>

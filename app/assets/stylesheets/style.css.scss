@@ -178,6 +178,19 @@ hr {
   }
 }
 
+.larger-body {
+  font-size: 18px;
+  line-height: 22px;
+  @include tablet { 
+    font-size: 14px;
+    line-height: 16px;
+  }
+  @include phone {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
 .serif {
   font-family: $serif;
 }
@@ -454,6 +467,9 @@ hr {
   }
 }
 
+.orange {
+  color: $orange;
+}
 
 .margin-left {
   margin-left: 20px;
@@ -494,15 +510,21 @@ input, textarea {
 .flash {
   position: fixed;
   padding: 20px;
-  top: 26px;
-  left: 25%;
-  //height: 123px;
-  width: 50%;
+  bottom: 20px;
+  left: 20px;
+  min-width: 80%;
+  padding-right: 30px;
   background-color: $lighter-grey;
   border-radius: 2px;
   z-index: 100;
   //opacity:(.7);
   $close-size: 20px;
+
+  @include phone {
+    padding: 3px;
+    $close-size: 10px;
+  }
+
   .close {
     position: absolute;
     top: 50%;
@@ -515,10 +537,11 @@ input, textarea {
 
   .msg {
     line-height: 8px;
+    color: #ffffff;
   }
 
   &.success {
-    background-color: $dark-blue;
+    background-color: $green;
   }
 
   &.error {
@@ -532,9 +555,13 @@ input, textarea {
   }
 }
 
+
+
 /* ABOUT PAGE */
 
 .about-wrapper{
   padding: 60px;
   padding-top: 20px;
 }
+
+

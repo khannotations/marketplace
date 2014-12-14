@@ -112,7 +112,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       } else {
         // Editing a project -- no form validators, so check manually
         if(!$scope.project.name || !$scope.project.description){
-          $scope.$emit("flash", {state: "success",
+          $scope.$emit("flash", {state: "error",
            msg: "Make sure your project has a name" +
                 " and a description before you continue."});
           return false;
@@ -175,6 +175,12 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       }));
       return $scope.edit(0);
     };
+
+    $scope.renew = function(index) {
+      var opening = new Opening($scope.project.openings[index]);
+      opening.$renew();
+    };
+
     /*
      * Approves a given project
      */
