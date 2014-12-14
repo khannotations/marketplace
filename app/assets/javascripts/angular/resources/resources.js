@@ -23,7 +23,8 @@ marketplace.factory("User", ["$resource", function($resource) {
     {
       update: {method: "PUT"},
       search: {method: "GET", url: "/api/search/openings", isArray: true},
-      renew:  {method: "PUT", url: "/api/openings/:id/renew"}
+      renew:  {method: "PUT", url: "/api/openings/:id/renew"},
+      contact: {method: "POST", url: "/api/openings/:id/contact"}
     }
   );
   // Don't change these without changing the backend values as well!

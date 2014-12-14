@@ -57,27 +57,22 @@
       </div>
     </div>
   </div>
-
-
   <div class="row">
     <div class="col-md-10 col-sm-12">
       <p class="body-text larger-body grey" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
         <p class="body-text grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
-
-
         <!-- Job Opening returned from search -->
         <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-          <div star opening-id="{{opening.id}}" class="star"></div>
+          <div star opening="opening"></div>
           <div class="row">
             <div class="col-xs-7 col-sm-8" ui-sref="project({id: opening.project_id})">
                 <h1 class="title-small blue no-space">{{opening.name}}</h1>
               
               <p class="body-text caps grey no-space larger-body small-margin">{{opening.project.name}}</p>
+
               <p class="body-text no-space med-margin clear-bottom">{{opening.description}}</p>
-              
             </div>
             <p class="body-text thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
-
             <div class="col-xs-2 col-sm-2 no-mobile-padding has-borders">
               <p class="body-text grey caps no-space">SKILLS</p>
               <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
@@ -90,7 +85,6 @@
                 <li class="body-text grey" ng-if="skillLimit == 20">Show fewer...</li>
               </ul>
             </div>
-
             <div class="col-xs-3 col-sm-2 pay-column no-mobile-padding">
               <p class="title-small no-space pay-amt">${{opening.pay_amount}}</p>
               <p class="body-text grey caps tiny-text no-space">{{opening.pay_type}}</p>
@@ -98,11 +92,13 @@
             </div>
           </div>
         </div>
-
-
         <hr>
+<<<<<<< HEAD
 
         <p class="body-text larger-body grey" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+=======
+        <p class="body-text grey thin" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+>>>>>>> 6f1c4c3128ad6c5e30685ff04d4adfc307af0864
         <p class="body-text grey thin" ng-if="!filteredUsers.length">No users match your search</p>
         <!-- Users go here -->
         <div class="opening user" ng-repeat="user in filteredUsers">
@@ -113,7 +109,6 @@
               <h2 class="body-text caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
               <p class="body-text no-space med-margin">{{user.bio}}</p>
             </div>
-
             <div class="col-sm-2 col-xs-4 has-borders">
               <p class="body-text grey caps no-space"> SKILLS</p>
               <ul class="list">
@@ -147,6 +142,7 @@
             <div class="btn-group sort-by">
               <label class="btn btn-primary filter-btn top" ng-model="searchParams.sort" btn-radio="'newest'">newest</label>
               <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">pay</label>
+              <label class="btn btn-primary filter-btn" ng-model="searchParams.sort" btn-radio="'pay'">popularity</label>
             </div>
           </div>
         <div class="option-block">

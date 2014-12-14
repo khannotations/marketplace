@@ -6,6 +6,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "first.last#{n}@yale.edu" }
     is_admin false
     has_logged_in false
+    show_in_results true
   end
 
   factory :opening do

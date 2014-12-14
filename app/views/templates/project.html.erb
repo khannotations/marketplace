@@ -93,6 +93,7 @@
     </div>
     <div star opening-id="{{opening.id}}" class="star"></div>
     <form ng-class='{"opening-faded": opening.expire_notified}' ng-submit="save($index)">
+
       <!-- A switch on the edit mode for this opening. True => not-editing -->
       <span ng-switch="editingIndex != $index">
         <div class="row">
@@ -145,7 +146,7 @@
             <div class="options-button cancel red-button" ng-if="canEdit && editingIndex != $index" ng-click="destroy($index)">
               <p class="button-text ">Delete</p>
             </div>
-            <div contact opening="opening" class="options-button green-button tall-button tall-mobile-button" ng-if="!canEdit && editingIndex != $index">
+            <div contact opening="opening" class="options-button green-button tall-button tall-mobile-button" ng-if="!canEdit">
               <p class="button-text tall-button-text tall-mobile-text">Contact</p>
             </div>
             <input class="options-button full-width save-button green-button button-text " value="Save" type="submit" ng-if="canEdit && editingIndex == $index"></input>

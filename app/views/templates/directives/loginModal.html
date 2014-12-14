@@ -1,4 +1,3 @@
-
 <div class="modal-body greeter-modal">
   <!-- <h1 class="modal-title1">Welcome</h1> -->
   <div class="modal-header">
@@ -15,5 +14,5 @@
   <div class='options-button modal-button' onclick="window.location.assign('<%= login_path %>')">
     <p class="button-text">Login with CAS</p>
   </div>
-  <p class="body-text thin grey centered-column no-space" ng-click="cancel()">No CAS? Take a demo &rarr;</p>
+  <p class="body-text thin grey centered-column no-space" ng-click="$close()">No CAS? Take a demo &rarr;</p>
 </div>

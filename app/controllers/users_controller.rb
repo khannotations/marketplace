@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       @users = User.search(JSON.parse(params[:search], symbolize_names: true),
         params[:page])
     else
-      @users = User.all
+      @users = User.search_filtered(User.all)
     end
     render json: @users, include: :skills
   end
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.permit(:first_name, :bio, :github_url, :linkedin_url, :has_logged_in)
+    params.permit(:first_name, :bio, :github_url, :linkedin_url, :has_logged_in, 
+      :show_in_results)
   end
 end

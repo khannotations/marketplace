@@ -16,6 +16,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         // Viewing normal project
         $scope.canEdit = (currentUser.is_admin || 
           _.pluck($scope.project.leaders, "id").indexOf(currentUser.id) != -1);
+        $scope.canEdit = false;
         // Only viewable if the project is approved, or the user is an admin
         if (!$scope.project.approved && !$scope.canEdit) {
           $scope.$emit("auth-not-authorized");

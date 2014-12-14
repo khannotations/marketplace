@@ -190,4 +190,28 @@ RSpec.describe OpeningsController, :type => :controller do
       expect(Opening.find(@opening.id).expire_notified).to eql false
     end
   end
+
+  describe "contact" do
+    it "forbids when not logged in" do
+      session[:cas_user] = nil
+      post :contact, @opening.attributes
+      expect(response.status).to be 403
+    end
+
+    it "sends email when logged in" do
+      @user = create(:user)
+      @project.leaders << @user
+      expect {
+        post :contact, @opening.attributes
+      }.to change {
+        ActionMailer::Base.deliveries.length
+      }.by(1)
+    end
+
+    it "fails gracefully" do
+      post :contact, @opening.attributes # Fails bc no leaders
+      expect(response.status).to be 500
+      expect(response.body).to match "error"
+    end
+  end
 end

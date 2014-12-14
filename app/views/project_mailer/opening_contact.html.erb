@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>
+    Great news from the Yale Projects Board!
+  </p>
+  <p>
+    <%= @user.full_name %> (cc'd) has expressed interest in your posting 
+    <a href="<%= ENV['BASE_URL'] %>/projects/<%= @project.id %>"><%= @opening.name %></a>. 
+  </p>
+  <p>
+    The next step would be to view their 
+    <a href="<%= ENV['BASE_URL'] %>/profile/<%= @user.netid %>">profile page</a> or send them at email at <%= @user.email %>. We hope this leads to a fruitful relationship!
+  </p>
+  <p>
+    All the best,
+  </p>
+  <p>
+    The Yale Projects Board
+  </p>
+</body>
+</html>

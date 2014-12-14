@@ -1,20 +1,37 @@
 "use strict";
 
 angular.module("Marketplace").directive("contact",
-  [function() {
+  ["$modal", "Opening", "AuthService", function($modal, Opening, AuthService) {
     return {
       restrict: "A",   // Attributes only
       transclude: true,
-      template: ('<a class="link" ng-href="mailto:{{link}}" ng-transclude '+ 
-        'target="_blank"></a>'),
+      template: "<span ng-click='contact()' ng-transclude></span>",
       link: function(scope, element, attrs) {
-        var to = _.map(scope.opening.project.leaders, function(l) {
-          return l.full_name+"<"+l.email+">"
-        }).join(",");
-        var subject = "?subject=Interest+in+"+ scope.opening.name
-        var body = "&body=I+found+your+posting+"+ scope.opening.name+
-          "+on+the+Yale+Projects+Board"
-        scope.link = to + subject + body;
+        scope.contact = function() {
+          $("#wrapper").addClass("blur");
+          $modal.open({
+            templateUrl: '/templates/directives/contactModal',
+            backdrop: false, 
+            windowClass: "modal fade in",
+            scope: scope
+          }).result.then(function(result) {
+            if (result === "email") {
+              if (!AuthService.isStarred(scope.opening.id)) {
+                AuthService.toggleStar(scope.opening.id).then(function() {
+                  scope.opening.favorite_count++;
+                });
+              }
+              // Create an actual resource
+              scope.openingResource = new Opening(scope.opening);
+              scope.openingResource.$contact(function() {
+                scope.$emit("flash", {state: "success",
+                  msg: "The opening leaders were contacted!<br>" + 
+                  "We've also added this opening to your list of starred openings."});
+              });
+            }
+            $("#wrapper").removeClass("blur");
+          });
+        };
       }
     }
 }]);

@@ -3,7 +3,7 @@ class OpeningsController < ApplicationController
   before_filter :require_login, except: :search
   before_filter :check_authorization_to_project, only:
     [:create, :update,  :renew, :destroy]
-  before_filter :set_opening, only: [:show, :update, :renew, :destroy]
+  before_filter :set_opening, only: [:show, :update, :renew, :destroy, :contact]
 
   def show
     render json: @opening
@@ -65,6 +65,15 @@ class OpeningsController < ApplicationController
       @openings = Opening.search_filtered(Opening.all)
     end
     render json: @openings
+  end
+
+  def contact
+    begin
+      ProjectMailer.opening_contact(@opening, current_user).deliver!
+      render json: @opening
+    rescue
+      render_error "Leaders could not be contacted, please try again later.", 500
+    end
   end
 
   protected
