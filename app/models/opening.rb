@@ -37,10 +37,14 @@ class Opening < ActiveRecord::Base
     return expires_on <= Date.now
   end
 
+  def favorite_count
+    return favorite_ids.count
+  end
+
   # Given an array of openings, returns those that are OK to show in search
   # results
   def self.search_filtered(openings)
-    openings.select { |o| o.project.approved && !o.expire_notified && !o.filled}
+    openings.select { |o| o.project.approved && !o.expire_notified && !o.filled}.uniq
   end
 
   # Search is put here, though it returns Openings and User
@@ -55,7 +59,7 @@ class Opening < ActiveRecord::Base
     matching_openings = thorough_search(query) # match by name, desc
     project_openings = Project.thorough_search(query).map(&:openings).flatten
     skill_openings = Skill.search(query).map(&:openings).flatten
-    all = (matching_openings + project_openings + skill_openings).uniq
+    all = (matching_openings + project_openings + skill_openings)
     return Opening.search_filtered all
   end
 
@@ -72,7 +76,8 @@ class Opening < ActiveRecord::Base
 
   def serializable_hash(options={})
     options = {
-      :include => [:skills, :project]
+      :include => [:skills, :project],
+      :methods => [:favorite_count]
     }.update(options)
     super(options)
   end

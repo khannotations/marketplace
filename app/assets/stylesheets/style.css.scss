@@ -12,6 +12,10 @@ html, body, #wrapper {
   background-repeat: repeat;
 }
 
+#wrapper.blur {
+  -webkit-filter: blur(8px);
+}
+
 #content {
   width: 100%;
   padding: 20px 10px;
@@ -146,9 +150,10 @@ hr {
 .title-small {
   font-family: $serif;
   font-size: 30px;
-
+  line-height: 36px;
   @include tablet {
     font-size: 20px;
+    line-height: 24px;
   }
 
   @include phone {

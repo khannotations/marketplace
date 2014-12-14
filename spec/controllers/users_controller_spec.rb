@@ -112,6 +112,14 @@ RSpec.describe UsersController, :type => :controller do
       expect(response.body).to match /\[.*\]/
       expect(response.body).to match "\"id\":#{@current_user.id}"
     end
+
+    it "fails if user chose not to appear in search" do
+      @current_user.update(show_in_results: false)
+      get :search, @search_params
+      expect(response.status).to be 200
+      expect(assigns[:users].length).to be 0
+      expect(response.body).to match /\[\]/
+    end
   end
 
   describe "star" do

@@ -1,0 +1,7 @@
+<span>
+  <span class="num-stars">
+    <span ng-bind="numStarred"></span>
+    <span ng-pluralize count="numStarred" when="{'one': 'star', 'other': 'stars'}"></span>
+  </span>
+  <div class="star" ng-class="{starred: starred}" ng-click="toggleStar()"></div>
+</span>
