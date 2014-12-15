@@ -54,7 +54,7 @@
       <div class="profile-about">
         <h1 class="body-text grey">ABOUT</h1>
         <p class="body-text" ng-switch-when="true">{{user.bio}}</p>
-        <textarea class="full-width body-text" ng-model="user.bio" ng-switch-when="false" cols="30" rows="10"></textarea>
+        <textarea class="full-width body-text" ng-model="user.bio" placeholder="Write a brief bio to go with your profile." ng-switch-when="false" cols="30" rows="10"></textarea>
       </div>
 
     </div>
@@ -86,13 +86,15 @@
           <span ng-switch-when="false">github.com/<input type="text" class="half-width" ng-model="user.github_url"></span>
           <a ng-href="http://github.com/{{user.github_url}}" target="blank"  ng-if="user.github_url && !editingUser">github.com/{{user.github_url}}</a>
         </p>
-        <div class="margin-top">
-          <input type="checkbox" ng-model="user.show_in_results" ng-click="
-          toggleShowInResults()" class="float-left regular-checkbox" ng-if="canEdit">  <p class="body-text no-space">Show me in search results. &nbsp;</p>
-          <!-- Tooltip -->
-          <span class="link body-text grey no-space" tooltip="With this unchecked, you won't appear in search results in the Explore tab." tooltip-placement="right" tooltip-popup-delay="0" tooltip-animation="false">What's this?
+        <span ng-switch-when="false">
+          <div class="margin-top">
+            <input type="checkbox" ng-model="user.show_in_results" ng-click="
+            toggleShowInResults()" class="float-left regular-checkbox" ng-if="canEdit">  <p class="body-text no-space">Show me in search results. &nbsp;</p>
+            <!-- Tooltip -->
+            <span class="link body-text grey no-space" tooltip="With this unchecked, you won't appear in search results in the Explore tab." tooltip-placement="right" tooltip-popup-delay="0" tooltip-animation="false">What's this?
+            </div>
           </span>
-        </div>
+        </span>
     </div>
   </div>
   <hr class="bottom-margin">
