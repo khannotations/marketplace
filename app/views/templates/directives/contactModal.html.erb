@@ -1,11 +1,11 @@
 <div class="modal-body contact-modal">
   <!-- <h1 class="modal-title1">Welcome</h1> -->
   <div class="modal-header">
-    <h3 class="title-small">Express interest in {{opening.name}}</h3>
+    <h3 class="title-small blue centered-column">Express your interest in {{opening.name}}</h3>
   </div>
-  <div class="modal-text">
-    <p>
-      The Projects Board will send an email to the managers of the posting "{{opening.name}}" on your behalf, cc'ing you. The email will contain a link to your profile page, so make sure it looks good!
+  <div class="interest-modal-text">
+    <p class="body-text larger-body">
+      The Projects Board will send an email to {{project.leaders[0].first_name}} {{project.leaders[0].last_name}}, the leader of this project, to express your interest in "{{opening.name}}". You'll be cc'd on the email, so feel free to follow up. The email will contain a link to your profile page so make sure it looks good!
     </p>
   </div>
 </div>

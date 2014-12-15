@@ -60,10 +60,11 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
      */
     function filterResults() {
       var openings = allOpenings;
-      var users = allUsers;
+      var users = [];
       var tfs = $scope.searchParams["tfs"]; // timeframes
       var sort = $scope.searchParams["sort"];
       var show = $scope.searchParams["show"];
+      console.log(show);
       if (tfs) {
         // Only filter on timeframes if one of them is set
         openings = _.filter(openings, function(opening) {
@@ -76,6 +77,10 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
           break;
         case "users":
           openings = [];
+          users = allUsers;
+          break;
+        case "all":
+          users = allUsers;
           break;
       }
       switch(sort) {

@@ -57,7 +57,7 @@
         <img src="<%= asset_path 'warning30.png' %>" alt="" class="searchicon"></img>
         <p class="body-text">To ensure quaity, your project is waiting for approval by one of the site administrators. We're already on it—you should receive an approval or feedback in the next 24 hours. In the meantime, create some openings!</p>
       </div>
-      <div>
+      <div ng-if="project.id">
         <p class="body-text grey">Lead by
           <a class="link grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
             &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
@@ -91,7 +91,8 @@
       <p class="button-text renew-button-text tall-button-text extra-breakpoint">Renew</p>
       </div>
     </div>
-    <div star opening-id="{{opening.id}}" class="star"></div>
+
+    <div star opening="opening" ></div>
     <form ng-class='{"opening-faded": opening.expire_notified}' ng-submit="save($index)">
 
       <!-- A switch on the edit mode for this opening. True => not-editing -->
@@ -106,6 +107,8 @@
               <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" required placeholder="And this is why" name="opening-description"></textarea>
             </div>
           </div>
+          <p ng-if="canEdit" class="body-text thin grey bottom-left">Expires on {{opening.expires_on| date:"medium"}}</p>
+
           <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
             <p class="body-text grey caps no-space">SKILLS</p>
             <span ng-switch-when="true">

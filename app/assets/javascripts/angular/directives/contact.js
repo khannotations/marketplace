@@ -25,7 +25,7 @@ angular.module("Marketplace").directive("contact",
               scope.openingResource = new Opening(scope.opening);
               scope.openingResource.$contact(function() {
                 scope.$emit("flash", {state: "success",
-                  msg: "The opening leaders were contacted!<br>" + 
+                  msg: "The project's leaders were contacted! Check your email to follow up.<br>" + 
                   "We've also added this opening to your list of starred openings."});
               });
             }

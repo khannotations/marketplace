@@ -127,9 +127,14 @@
 	font-size: 40px;
 	color: $green;
 	line-height: 40px;
+	@media only screen and (max-width: 1200px) {
+		font-size: 30px;
+		line-height: 30px;
+	} 
+
 	@include tablet {
-		font-size: 24px;
-		line-height: 24px;
+		font-size: 22px;
+		line-height: 22px;
 	}
 	@include phone {
 		font-size: 13px;

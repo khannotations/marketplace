@@ -16,14 +16,12 @@
 
 <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in allOpenings">
   <div star opening="opening"></div>
-  <form ng-submit="save($index)">
 
-    <!-- A switch on the edit mode for this opening. True => not-editing -->
 
     <div class="row">
 
       <!-- TITLE & DESCRIPTION -->
-      <div class="col-xs-6">
+      <div class="col-xs-6" ui-sref="project({id: opening.project_id})">
         <p class="title-small blue no-space">{{opening.name}}</p>
         <div>
           <p class="body-text margin-top">{{opening.description}}</p>
@@ -39,7 +37,7 @@
             <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4">
               Show all...
             </li>
-            <li class="body-text grey" ng-if="skillLimit == 20">Show fewer...</li>
+            <li class="body-text grey" ng-if="skillLimit == 20 && opening.skills.length > 4">Show fewer...</li>
           </ul>
 
       </div>
