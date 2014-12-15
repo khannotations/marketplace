@@ -599,3 +599,14 @@ input, textarea {
   width: 75%;
   margin:auto;
 }
+
+.starred-filler {
+  width: 600px;
+  height: auto;
+  float: right;
+  //margin-right: 17%;
+  @include mobile {
+    width: 300px;
+    margin-left: 30px;
+  }
+}

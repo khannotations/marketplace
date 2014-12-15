@@ -14,6 +14,11 @@
     </div>
   </div>
 
+<div >
+  <p class="body-text larger-body grey">You haven't starred any openings!</p>
+  <img src="<%= asset_path 'no-stars.png' %>" class="starred-filler"></img>
+</div>
+
 <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in allOpenings">
   <div star opening="opening"></div>
 
