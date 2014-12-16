@@ -59,15 +59,18 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-sm-12">
-      <p class="body-text grey thin" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
+      <p class="body-text larger-body grey" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
         <p class="body-text grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
+
         <!-- Job Opening returned from search -->
         <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-          <div star opening="opening"></div>
+          <div star opening="opening" ></div>
           <div class="row">
             <div class="col-xs-7 col-sm-8" ui-sref="project({id: opening.project_id})">
                 <h1 class="title-small blue no-space">{{opening.name}}</h1>
-              <p class="body-text caps grey no-space small-margin">{{opening.project.name}}</p>
+              
+              <p class="body-text caps grey no-space larger-body small-margin">{{opening.project.name}}</p>
+
               <p class="body-text no-space med-margin clear-bottom">{{opening.description}}</p>
             </div>
             <p class="body-text thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
@@ -91,8 +94,10 @@
           </div>
         </div>
         <hr>
-        <p class="body-text grey thin" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
-        <p class="body-text grey thin" ng-if="!filteredUsers.length">No users match your search</p>
+
+        <p class="body-text larger-body grey" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
+
+        <p class="body-text grey thin" ng-if="!filteredUsers.length && $scope.searchParams['show']">No users match your search</p>
         <!-- Users go here -->
         <div class="opening user" ng-repeat="user in filteredUsers">
           <div class="row">

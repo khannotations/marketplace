@@ -183,6 +183,19 @@ hr {
   }
 }
 
+.larger-body {
+  font-size: 18px;
+  line-height: 22px;
+  @include tablet { 
+    font-size: 14px;
+    line-height: 16px;
+  }
+  @include phone {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
 .serif {
   font-family: $serif;
 }
@@ -219,7 +232,7 @@ hr {
   } 
 
   @include mobile {
-    font-size:10px;
+    font-size:12px;
     letter-spacing:0px;
     line-height: 33px;
     text-align: center;
@@ -227,8 +240,8 @@ hr {
   }
 
   @include phone {
-    font-size: 8px;
-    line-height: 15px;
+    font-size: 10px;
+    line-height: 18px;
   }
 }
 
@@ -246,8 +259,8 @@ hr {
   }
 
   @include phone {
-    font-size: 8px;
-    line-height: 15px;
+    font-size: 10px;
+    line-height: 18px;
   }
 }
 
@@ -369,7 +382,7 @@ hr {
 
 .extra-breakpoint {
   @media only screen and (max-width: 670px) {
-    font-size: 7px;
+    font-size: 9px;
   } 
 }
 
@@ -391,6 +404,20 @@ hr {
     background-size: 10px 10px;
     top: 2px;
     right: 2px;
+  }
+}
+
+.num-stars {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: $lighter-grey;
+  @include phone {
+    top: -2px;
+    right: 15px;
+    font-size: 7px;
   }
 }
 
@@ -442,6 +469,10 @@ hr {
   float: right;
 }
 
+.float-left {
+  float: left;
+}
+
 .clear-bottom {
   margin-bottom: 12px;
 }
@@ -459,6 +490,16 @@ hr {
   }
 }
 
+.orange {
+  color: $orange;
+}
+
+.margin-top {
+  margin-top: 15px;
+  @include mobile {
+    margin-top: 10px;
+  }
+}
 
 .margin-left {
   margin-left: 20px;
@@ -499,15 +540,19 @@ input, textarea {
 .flash {
   position: fixed;
   padding: 20px;
-  top: 26px;
-  left: 25%;
-  //height: 123px;
-  width: 50%;
+  bottom: 20px;
+  left: 20px;
+  min-width: 80%;
+  padding-right: 30px;
   background-color: $lighter-grey;
   border-radius: 2px;
   z-index: 100;
-  //opacity:(.7);
   $close-size: 20px;
+
+  @include phone {
+    padding: 3px;
+  }
+
   .close {
     position: absolute;
     top: 50%;
@@ -516,14 +561,18 @@ input, textarea {
     font-size: $close-size;
     line-height: $close-size;
     cursor: pointer;
+    @include phone {
+      font-size: 10px;
+    }
   }
 
   .msg {
     line-height: 8px;
+    color: #ffffff;
   }
 
   &.success {
-    background-color: $dark-blue;
+    background-color: $green;
   }
 
   &.error {
@@ -537,9 +586,27 @@ input, textarea {
   }
 }
 
+
+
 /* ABOUT PAGE */
 
 .about-wrapper{
   padding: 60px;
   padding-top: 20px;
+}
+
+.interest-modal-text {
+  width: 75%;
+  margin:auto;
+}
+
+.starred-filler {
+  width: 600px;
+  height: auto;
+  float: right;
+  //margin-right: 17%;
+  @include mobile {
+    width: 300px;
+    margin-left: 30px;
+  }
 }

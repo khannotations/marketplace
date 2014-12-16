@@ -5,7 +5,7 @@
 }
 
 .logo-wrap {
-	height: 250px;
+	//height: 250px;
 	@include tablet {
 		height: 50px;
 		width: 80px;
@@ -121,6 +121,7 @@
 
 .sidebar-footer{
 	margin-left: 5px;
+	margin-top:30px;
 	@include mobile {
 		display: none;
 	}

@@ -34,6 +34,8 @@
 
 .pay-input {
 	width: 75%;
+	padding-left:5px;
+
 }
 
 .project-opening-buttons {
@@ -41,9 +43,84 @@
 }
 
 .add-opening {
-	margin-top: 25px;
+	//margin-top: 25px;
 	@include mobile {
 		margin-top: 5px;
 	}
 }
 
+.approved-warning {
+	border: 4px solid $orange;
+	background-color: white;
+	p {
+		margin-left: 10px;
+		@include mobile {
+			margin: 5px;
+		}
+	}
+	img {
+
+		float: left;
+		height: 55px;
+		width: 50px;
+		margin: 5px;
+		margin-right: 10px;
+		@include mobile {
+			height: 30px;
+			width: 28px;
+		}
+	}
+}
+
+.title-placeholder {
+	line-height: 60px;
+	@include mobile {
+		line-height: 30px;
+	}
+}
+
+
+.expired-text {
+	position: absolute;
+	top: 30px;
+	left: 70px;
+	z-index:100;
+	@include mobile {
+		top: 30px;
+		left: 50px;
+	}
+	@include phone {
+		top: 10px;
+	}
+}
+
+.opening-faded {
+  -webkit-filter: blur(4px);
+}
+
+.no-blur {
+	-webkit-filter: blur(0px);
+}
+
+.renew-button {
+	position: absolute;
+	top: 30px;
+	right: 10px;
+	width: 15%;
+	z-index: 100;
+	@include phone {
+		width: 95%;
+		margin:auto;
+		clear: both;
+		top: 50px;
+	}
+}
+
+.renew-button-text {
+	@include mobile {
+		line-height: 80px;
+	}
+	@include phone {
+		line-height: 30px;
+	}
+}
