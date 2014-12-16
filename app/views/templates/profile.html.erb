@@ -79,11 +79,15 @@
           <a ng-href="mailto:{{user.email}}" target="blank">{{user.email}}</a>
         </p>
         <p class="body-text no-space sm-margin">
-          <span ng-switch-when="false">linkedin.com/in/<input type="text" class="half-width" ng-model="user.linkedin_url"></span>
+          <span ng-switch-when="false">http://<input type="text" class="half-width thin" ng-model="user.personal_site" placeholder=" personal site"></span>
+          <a ng-href="http://{{user.personal_site}}" target="blank"  ng-if="user.personal_site && !editingUser">{{user.personal_site}}</a>
+        </p>
+        <p class="body-text no-space sm-margin">
+          <span ng-switch-when="false">linkedin.com/in/<input type="text" class="half-width thin" ng-model="user.linkedin_url" placeholder=" Linkedin username"></span>
           <a ng-href="http://linkedin.com/in/{{user.linkedin_url}}" target="blank" ng-if="user.linkedin_url && !editingUser">linkedin.com/in/{{user.linkedin_url}}</a>
         </p>
         <p class="body-text no-space sm-margin">
-          <span ng-switch-when="false">github.com/<input type="text" class="half-width" ng-model="user.github_url"></span>
+          <span ng-switch-when="false">github.com/<input type="text" class="half-width thin" ng-model="user.github_url" placeholder=" Github username"></span>
           <a ng-href="http://github.com/{{user.github_url}}" target="blank"  ng-if="user.github_url && !editingUser">github.com/{{user.github_url}}</a>
         </p>
         <span ng-switch-when="false">
@@ -101,11 +105,11 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="profile-projects">
-        <h1 class="title-small" ng-if="user.leading_projects.length">Projects {{user.first_name}} leads</h1>
+        <h1 class="body-text grey caps" ng-if="user.leading_projects.length">Projects {{user.first_name}} leads</h1>
         <div class="opening" ui-sref="project({id: project.id})" ng-click="setTab('explore')" ng-repeat="project in user.leading_projects">
           <p class="title-small blue no-space">{{project.name}}</p>
           <p class="body-text">{{project.description}}</p>
-          <p class="body-text thin grey bottom-left">Posted on {{project.updated_at | date:"medium"}}</p>
+          <p class="body-text thin grey bottom-left">Posted on {{project.updated_at | date:"short"}}</p>
         </div>
       </div>
       <h1 class="body-text grey thin" ng-if="!user.leading_projects.length">This user is not leading any projects</h1>

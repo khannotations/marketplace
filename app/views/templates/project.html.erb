@@ -107,7 +107,7 @@
               <textarea class="body-text margin-top full-width project-description" cols="30" rows="10" ng-switch-when="false" ng-model="opening.description" required placeholder="And this is why" name="opening-description"></textarea>
             </div>
           </div>
-          <p ng-if="canEdit" class="body-text thin grey bottom-left">Expires on {{opening.expires_on| date:"medium"}}</p>
+          <p ng-if="canEdit" class="body-text thin grey bottom-left">Expires on {{opening.expires_on| date:"mediumDate"}}</p>
 
           <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
             <p class="body-text grey caps no-space">SKILLS</p>

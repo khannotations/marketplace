@@ -90,7 +90,12 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
             if (opening.pay_type == "hourly") {
               amount *= 20; // Guessing avg ~20 hours/job
             }
-            return -1*amount; // Descending
+            return amount; // Descending
+          });
+          break;
+        case "popularity":
+          openings = _.sortBy(openings, function(opening) {
+            return opening.favorite_count;
           });
           break;
         default: // "newest", or nothing
@@ -98,7 +103,7 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
             return opening.created_at;
           });
       }
-      $scope.filteredOpenings = openings;
+      $scope.filteredOpenings = openings.reverse(); // Sorted ascending
       $scope.filteredUsers = users;
     }
 

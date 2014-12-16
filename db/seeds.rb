@@ -7,6 +7,8 @@ rafi = User.create({
   "college"=>"Pierson College",
   "division"=>"Yale College",
   "title"=>nil,
+  "bio"=>"Rafi is a senior and loves to push buttons on the computer. He hopes you find 
+  a sweet project on the Board.",
   "is_admin"=>true,
   });
 
@@ -19,6 +21,7 @@ bobby = User.create({
   "college"=>"Pierson College",
   "division"=>"Yale College",
   "title"=>nil,
+  "bio"=>"Bobby is a senior Computer Science major in Pierson. He likes cats and 2px border radius.",
   "is_admin"=>true,
   });
 
@@ -60,7 +63,9 @@ puts "done!"
 print "creating skills..."
 skills = ["Javascript", "CoffeeScript", "Ruby on Rails", "Ruby", "CSS", "SASS",
 "Python", "C", "C++", "Java", "Adobe Photoshop", "Adobe Illustrator",
-"Adobe InDesign", "Postgres"]
+"Adobe InDesign", "Postgres", "HTML", "Django", "jQuery", "AngularJS", "Databases",
+"Objective-C", "iOS", "Android", "Swift", "UI/UX Design", "Go (language)",
+"Wordpress"]
 skills.each {|s| Skill.create!(name: s)}
 puts "done!"
 
@@ -76,6 +81,7 @@ Opening.second.skills << Skill.find_by(name: "Java")
 Opening.second.skills << Skill.find_by(name: "C")
 Opening.third.skills << Skill.find_by(name: "C++")
 Opening.second.skills << Skill.find_by(name: "Postgres")
+Opening.second.skills << Skill.find_by(name: "HTML")
 
 rafi.skills << Skill.find_by(name: "Javascript")
 rafi.skills << Skill.find_by(name: "CSS")

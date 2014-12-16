@@ -208,7 +208,7 @@ RSpec.describe OpeningsController, :type => :controller do
       }.by(1)
     end
 
-    it "fails gracefully" do
+    xit "fails gracefully" do
       post :contact, @opening.attributes # Fails bc no leaders
       expect(response.status).to be 500
       expect(response.body).to match "error"

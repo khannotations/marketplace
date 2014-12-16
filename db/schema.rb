@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.boolean  "is_admin",             default: false
     t.string   "github_url"
     t.string   "linkedin_url"
+    t.string   "personal_site"
     t.text     "bio"
     t.text     "past_experiences"
     t.string   "resume_file_name"

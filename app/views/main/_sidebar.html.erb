@@ -7,9 +7,11 @@
 <div class="sidebar-text">
 <div class="navlink-group">
 	<a class="navlink title link explore-tab" ui-sref="home" id="current-tab">Explore</a>
-	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
-	<a class="navlink title link create-tab" ui-sref="project({id: 'new'})" ng-click="setTab('create')">Create</a>
-	<a class="navlink title link profile-tab white" ui-sref="profile({netid: user.netid})">Profile</a>
+  <a class="navlink title link create-tab" ui-sref="project({id: 'new'})" ng-click="setTab('create')">Post</a>
+  <span ng-if="isLoggedIn">
+  	<a class="navlink title link starred-tab" ui-sref="starred">Starred</a>
+  	<a class="navlink title link profile-tab white" ui-sref="profile({netid: user.netid})">Profile</a>
+  </span>
 </div>
 
 <div class="sidebar-footer">

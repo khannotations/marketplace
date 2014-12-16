@@ -14,7 +14,7 @@
     </div>
   </div>
 
-<div >
+<div ng-if="!allOpenings.length">
   <p class="body-text larger-body grey">You haven't starred any openings!</p>
   <img src="<%= asset_path 'no-stars.png' %>" class="starred-filler"></img>
 </div>

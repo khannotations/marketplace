@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.string :github_url
       t.string :linkedin_url
+      t.string :personal_site
       t.text :bio
       t.text :past_experiences
 
