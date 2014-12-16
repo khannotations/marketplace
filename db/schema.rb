@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20141027025023) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
-    t.integer  "opening_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "openings", force: true do |t|
-    t.integer  "project_id"
+  create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
+    t.string   "photo_url"
     t.string   "timeframe"
     t.integer  "pay_amount"
     t.string   "pay_type"
@@ -34,20 +34,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.date     "expires_on"
     t.boolean  "expire_notified", default: false
     t.boolean  "filled",          default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "openings_users", id: false, force: true do |t|
-    t.integer "user_id",    null: false
-    t.integer "opening_id", null: false
-  end
-
-  create_table "projects", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "photo_url"
-    t.boolean  "approved",    default: false
+    t.boolean  "approved",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,12 +53,6 @@ ActiveRecord::Schema.define(version: 20141027025023) do
   end
 
   create_table "skills", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

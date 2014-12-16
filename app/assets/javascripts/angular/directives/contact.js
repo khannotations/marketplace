@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("Marketplace").directive("contact",
-  ["$modal", "Opening", "AuthService", function($modal, Opening, AuthService) {
+  ["$modal", "Project", "AuthService", function($modal, Project, AuthService) {
     return {
       restrict: "A",   // Attributes only
       transclude: true,
@@ -16,17 +16,17 @@ angular.module("Marketplace").directive("contact",
             scope: scope
           }).result.then(function(result) {
             if (result === "email") {
-              if (!AuthService.isStarred(scope.opening.id)) {
-                AuthService.toggleStar(scope.opening.id).then(function() {
-                  scope.opening.favorite_count++;
+              if (!AuthService.isStarred(scope.project.id)) {
+                AuthService.toggleStar(scope.project.id).then(function() {
+                  scope.project.favorite_count++;
                 });
               }
               // Create an actual resource
-              scope.openingResource = new Opening(scope.opening);
-              scope.openingResource.$contact(function() {
+              scope.projectResource = new Project(scope.project);
+              scope.projectResource.$contact(function() {
                 scope.$emit("flash", {state: "success",
                   msg: "The project's leaders were contacted! Check your email to follow up.<br>" + 
-                  "We've also added this opening to your list of starred openings."});
+                  "We've also added this project to your list of starred projects."});
               });
             }
             $("#wrapper").removeClass("blur");

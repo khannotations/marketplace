@@ -1,8 +1,8 @@
 "use strict";
 
 marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
-  "User", "Skill", "Opening", "currentUser",
-  function($scope, $stateParams, AuthService, User, Skill, Opening, currentUser) {
+  "User", "Skill", "currentUser",
+  function($scope, $stateParams, AuthService, User, Skill, currentUser) {
     $stateParams.netid = $stateParams.netid || currentUser.netid;
     $scope.user = User.get({netid: $stateParams.netid}, function() {
       $scope.canEdit = (currentUser.netid === $scope.user.netid);
@@ -39,14 +39,14 @@ marketplace.controller("ProfileCtrl", ["$scope", "$stateParams", "AuthService",
       $scope.user.$update();
       delete $scope.editingUser;
       AuthService.setCurrentUser($scope.user);
-      $scope.$emit("flash", {state: "success", msg: "Changes saved!"});
+      $scope.$emit("flash", {state: "success", msg: "Changes saved"});
     }
 
-    $scope.$watch("user.show_in_results", function() {
-      if (!$scope.canEdit) {
-        return;
-      }
-      $scope.user.$update();
-      AuthService.setCurrentUser($scope.user);
-    });
+    // $scope.$watch("user.show_in_results", function() {
+    //   if (!$scope.canEdit) {
+    //     return;
+    //   }
+    //   $scope.user.$update();
+    //   AuthService.setCurrentUser($scope.user);
+    // });
   }]);

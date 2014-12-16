@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 
   def check_authorization_to_project(project_id=nil)
     id = project_id || params[:project_id] || params[:id]
-    @project = Project.includes(:leaders, :openings).find_by(id: id)
+    @project = Project.find_by(id: id)
     render_error "project not found", 404 unless @project
     @user = current_user
     unless @project.leader_ids.include? @user.id or @user.is_admin

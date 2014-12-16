@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:skills, :leading_projects, :favorite_openings)
+    @user = User.includes(:skills, :leading_projects, :favorites)
       .find_by(netid: params[:id])
     if @user
       render json: @user, include: [:skills, :leading_projects]
@@ -44,14 +44,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # Don't need to check authorization, becuase you can only star/unstar logged in user
-  def star
-    @fav = Favorite.find_or_initialize_by(user_id: current_user.id,
-      opening_id: params[:opening_id])
-    @fav.persisted? ? @fav.destroy : @fav.save
-    render json: current_user
-  end
-
   def search
     if (params[:search])
       search_params = JSON.parse(params[:search], symbolize_names: true)
@@ -69,6 +61,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:first_name, :bio, :github_url, :linkedin_url, :has_logged_in, 
-      :show_in_results, :personal_site)
+      :show_in_results, :personal_site, :favorite_project_ids)
   end
 end

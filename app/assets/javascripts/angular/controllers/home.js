@@ -1,11 +1,11 @@
 "use strict";
 
 marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
-  "$location", "Opening", "User", "currentUser", 
-  function($scope, $modal, $stateParams, $q, $location, Opening, User, currentUser) {
-    $scope.foundOpenings = []
+  "$location", "Project", "User", "currentUser", 
+  function($scope, $modal, $stateParams, $q, $location, Project, User, currentUser) {
+    $scope.foundProjects = []
     $scope.searchParams = $stateParams;
-    var allOpenings = [];
+    var allProjects = [];
     var allUsers = [];
     var openModal;
     $scope.setTab("explore");
@@ -54,29 +54,28 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
     };
 
     /*
-     * Filter openings by the values in $scope.searchParams
-     * Starts from global variables allOpenings and allUsers
-     * Modifies scope variables $scope.filteredOpenings and $scope.filteredUsers
+     * Filter projects by the values in $scope.searchParams
+     * Starts from global variables allProjects and allUsers
+     * Modifies scope variables $scope.filteredProjects and $scope.filteredUsers
      */
     function filterResults() {
-      var openings = allOpenings;
+      var projects = allProjects;
       var users = [];
       var tfs = $scope.searchParams["tfs"]; // timeframes
       var sort = $scope.searchParams["sort"];
       var show = $scope.searchParams["show"];
-      console.log(show);
       if (tfs) {
         // Only filter on timeframes if one of them is set
-        openings = _.filter(openings, function(opening) {
-          return tfs.indexOf(opening.timeframe) !== -1;
+        projects = _.filter(projects, function(project) {
+          return tfs.indexOf(project.timeframe) !== -1;
         });
       }
       switch(show) {
-        case "openings":
+        case "projects":
           users = [];
           break;
         case "users":
-          openings = [];
+          projects = [];
           users = allUsers;
           break;
         case "all":
@@ -85,25 +84,25 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
       }
       switch(sort) {
         case "pay":
-          openings = _.sortBy(openings, function(opening) {
-            var amount = opening.pay_amount;
-            if (opening.pay_type == "hourly") {
+          projects = _.sortBy(projects, function(project) {
+            var amount = project.pay_amount;
+            if (project.pay_type == "hourly") {
               amount *= 20; // Guessing avg ~20 hours/job
             }
             return amount; // Descending
           });
           break;
         case "popularity":
-          openings = _.sortBy(openings, function(opening) {
-            return opening.favorite_count;
+          projects = _.sortBy(projects, function(project) {
+            return project.favorite_count;
           });
           break;
         default: // "newest", or nothing
-          openings = _.sortBy(openings, function(opening) {
-            return opening.created_at;
+          projects = _.sortBy(projects, function(project) {
+            return project.created_at;
           });
       }
-      $scope.filteredOpenings = openings.reverse(); // Sorted ascending
+      $scope.filteredProjects = projects.reverse(); // Sorted ascending
       $scope.filteredUsers = users;
     }
 
@@ -113,10 +112,10 @@ marketplace.controller("HomeCtrl", ["$scope", "$modal", "$stateParams", "$q",
      */
     function search(query) {
       query = query || "";
-      allOpenings = Opening.search({search: {q: query}});
+      allProjects = Project.search({search: {q: query}});
       allUsers = User.search({search: {q: query}});
       // Once both found, filter the results. 
-      $q.all([allOpenings.$promise, allUsers.$promise]).then(function() {
+      $q.all([allProjects.$promise, allUsers.$promise]).then(function() {
         filterResults();
       });
     }

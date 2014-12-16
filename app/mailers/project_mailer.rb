@@ -1,28 +1,33 @@
 class ProjectMailer < ActionMailer::Base
   default from: "Yale Projects Board <noreply@projectsboard.io>"
 
-  def project_created(project)
+  def created(project)
     @project = project
-    to = project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(",")
+    to = leader_emails @project
     mail(to: to, subject: "#{project.name} successfully created!")
   end
 
-  def opening_contact(opening, user)
-    @opening = opening
-    @project = opening.project
+  def contact(project, user)
+    @project = project
     @user = user
-    to = @project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(",")
+    to = leader_emails @project
     mail(to: to, cc: "#{@user.full_name} <#{@user.email}>",
-      subject: "#{user.first_name} expressed interest in #{opening.name}")
+      subject: "#{user.first_name} expressed interest in #{project.name}")
   end
 
-  def expired_opening(opening)
-    @opening = opening
-    to = @opening.project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(", ")
+  def expired(project)
+    @project = project
+    to = leader_emails @project
     if (to != "")
-      mail(to: to, subject: "Your posting #{@opening.name} has expired")
+      mail(to: to, subject: "Your posting #{@project.name} has expired")
     else
-      puts "no leaders for opening #{opening.name}."
+      puts "no leaders for project #{project.name}."
     end
+  end
+
+  protected
+
+  def leader_emails(project)
+    project.leaders.map{ |l| "#{l.full_name} <#{l.email}>"}.join(", ")
   end
 end
