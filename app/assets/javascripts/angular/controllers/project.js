@@ -130,5 +130,13 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       });
       return true;
     };
+
+    $scope.$watch("project.description", function() {
+      if ($scope.project.description === undefined) {
+        return;
+      }
+      $scope.project.descriptionHtml =
+        markdown.toHTML($scope.project.description);
+    });
   }]);
 

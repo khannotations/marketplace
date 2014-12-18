@@ -1,5 +1,6 @@
 //= require jquery
 //= require underscore
+//= require markdown.min
 //= require chosen-jquery
 //= require angular
 //= require angular-resource

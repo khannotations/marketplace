@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   before_filter :require_login, except: :search
   before_filter :check_admin, only: [:approve, :unapproved]
   # check_authorization_to_project calls set_project
-  before_filter :check_authorization_to_project, only: [:update, :renew, :destroy]
+  before_filter :check_authorization_to_project,
+    only: [:update, :renew, :destroy]
   before_filter :set_project, only: [:show, :contact, :approve]
 
   def show

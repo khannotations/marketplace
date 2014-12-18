@@ -6,7 +6,8 @@ marketplace.factory("User", ["$resource", function($resource) {
     {
       update: {method: "PUT"}, // The update action is not there by default
       getCurrent: {method: "GET", url: "/api/current_user.json"},
-      search: {method: "GET", url: "/api/search/users", isArray: true},
+      search: {method: "GET", url: "/api/search/users.json", isArray: true},
+      toggleStar: {method: "PUT", url: "/api/star/:project_id.json"}
     });
 
   User.prototype.isStarred = function(id) {
@@ -14,15 +15,6 @@ marketplace.factory("User", ["$resource", function($resource) {
       return false;
     }
     return this.favorite_project_ids.indexOf(id) !== -1;
-  }
-
-  User.prototype.toggleStar = function(id) {
-    if (this.isStarred(id)) {
-      this.favorite_project_ids = _.without(this.favorite_project_ids, id);
-    } else {
-      this.favorite_project_ids.push(id);
-    }
-    return this.$update();
   }
 
   return User;

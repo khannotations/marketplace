@@ -61,8 +61,9 @@
             <a class="link grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
             &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
           </div>
-          <p class="body-text" ng-switch-when="true">{{project.description}}</p>
+          <p class="body-text" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
           <textarea class="body-text padding full-width grey description-textarea" placeholder="Give a brief overview of your project. You may want to describe your motivation for working on the project, its current status, and future plans." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
+          <div ng-bind-html="project.descriptionHtml" ng-switch-when="false"></div>
         </div>
       </div>
 

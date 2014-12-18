@@ -23,7 +23,7 @@ marketplace.controller("StarredCtrl", ["$scope", "AuthService", "Project", "$q",
 
     $scope.unstarAll =  function() {
       _.map(projects, function(project) {
-        currentUser.toggleStar(project.id);
+        currentUser.$toggleStar({project_id: project.id});
       });
       $scope.allProjects = [];
     };

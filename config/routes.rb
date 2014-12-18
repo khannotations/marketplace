@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   scope '/api' do
     get '/current_user' => 'users#current'
     resources :users, only: [:show, :update]
-
+    put '/star/:project_id' => 'users#star'
     # Projects
     get '/projects/unapproved' => 'projects#unapproved'
     resources :projects, only: [:show, :create, :update, :destroy] do

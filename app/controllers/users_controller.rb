@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :json
   # Since AJAX doesn't work well with the CAS filter, we check for authorization
   # and authentication manually
-  before_filter :require_login, except: [:current, :search]
+  before_filter :require_login, except: [:current, :star, :search]
   before_filter :check_authorization_to_user, only: [:update]
 
   # Get current user
@@ -44,6 +44,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def star
+    @fav = Favorite.find_or_initialize_by(user_id: current_user.id,
+      project_id: params[:project_id])
+    @fav.persisted? ? @fav.destroy : @fav.save
+    render json: current_user
+  end
+
   def search
     if (params[:search])
       search_params = JSON.parse(params[:search], symbolize_names: true)
@@ -61,6 +68,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:first_name, :bio, :github_url, :linkedin_url, :has_logged_in, 
-      :show_in_results, :personal_site, :favorite_project_ids)
+      :show_in_results, :personal_site)
   end
 end

@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def favorite_project_ids
+    self.favorite_projects.map(&:id) # favorite_project_ids is being REALLY weird
+  end
+
   def self.search_filtered(users)
     users.select { |u| u.show_in_results }.uniq
   end
