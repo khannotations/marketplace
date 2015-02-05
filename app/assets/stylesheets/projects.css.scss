@@ -35,6 +35,9 @@
 .pay-input {
 	width: 75%;
 	padding-left:5px;
+	@include phone {
+		width: 40%;
+	}
 
 }
 
@@ -123,4 +126,15 @@
 	@include phone {
 		line-height: 30px;
 	}
+}
+
+.chosen {
+	height: 50px;
+}
+
+.project-star {
+	position: absolute;
+	right: 20px;
+	width: 100px;
+	top: -5px;
 }

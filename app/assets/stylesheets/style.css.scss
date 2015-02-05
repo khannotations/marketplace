@@ -350,6 +350,13 @@ hr {
   }
 }
 
+.med-lg-margin {
+  margin-top: 20px;
+  @include phone {
+    margin-top: 10px;
+  }
+}
+
 .lg-margin {
   margin-top: 50px;
 }
@@ -423,6 +430,11 @@ hr {
 
 .star.starred {
     background-image: url(asset-path("starred.png"));
+}
+
+.star-not-abs {
+  position: relative !important;
+  float: left;
 }
 
 .full-width {
@@ -592,6 +604,7 @@ input, textarea {
 
 .about-wrapper{
   padding: 60px;
+  padding-right: 100px;
   padding-top: 20px;
 }
 
@@ -609,4 +622,23 @@ input, textarea {
     width: 300px;
     margin-left: 30px;
   }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inherit-no-space {
+  p {
+    margin: 0px;
+  }
+}
+
+.about-wrapper .larger-body {
+  line-height: 22px;
+}
+
+.pad-left-right {
+  padding-left: 20px;
+  padding-right: 20px;
 }
