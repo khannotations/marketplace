@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("Marketplace").directive("contact",
-  ["$modal", "Project", "AuthService", function($modal, Project, AuthService) {
+  ["$modal", "Project", function($modal, Project) {
     return {
       restrict: "A",   // Attributes only
       transclude: true,
@@ -16,11 +16,11 @@ angular.module("Marketplace").directive("contact",
             scope: scope
           }).result.then(function(result) {
             if (result === "email") {
-              if (!AuthService.isStarred(scope.project.id)) {
-                AuthService.toggleStar(scope.project.id).then(function() {
-                  scope.project.favorite_count++;
-                });
-              }
+              // if (!.isStarred(scope.project.id)) {
+              //   .toggleStar(scope.project.id).then(function() {
+              //     scope.project.favorite_count++;
+              //   });
+              // }
               // Create an actual resource
               scope.projectResource = new Project(scope.project);
               scope.projectResource.$contact(function() {
