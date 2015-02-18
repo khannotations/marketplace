@@ -5,7 +5,7 @@
         <div class="searchbox">
           <img class="form-icon project-form-icon" src="<%= asset_path 'project-blue.png' %>" alt="" class="searchicon"></img>
           <span class="search-font margin-left" ng-switch-when="true">{{project.name}}</span>
-          <input type="text" maxlength="25" class="searchfield search-font grey" placeholder="Project Name" autofocus="autofocus" ng-model="project.name" ng-switch-when="false" name="name">
+          <input type="text" maxlength="25" class="searchfield search-font" placeholder="Project Name" autofocus="autofocus" ng-model="project.name" ng-switch-when="false" name="name">
         </div>
       </div> 
 
@@ -75,26 +75,26 @@
         <div ng-if="project.id">
 
           <p class="body-text grey no-space">Lead by
-            <a class="link grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
+            <a class="link-blue grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
             &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
             <div star project="project" class='project-star'></div>
           
           </div>
       </div>
       
-      <div class="col-md-7 col-sm-10">
+      <div class="col-md-8 col-sm-10">
 
 
-          <p class="body-text grey caps no-space med-lg-margin">ABOUT</p>
-          <p class="body-text no-space inherit-no-space" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
-          <textarea class="body-text padding full-width grey description-textarea no-space" placeholder="Give a brief overview of your project and describe the role you're looking to fill. You may want to discuss your motivation for working on the project, its current status, and what type of person would be best suited for the job." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
+          <p class="title-small grey caps no-space lg-margin">ABOUT</p>
+          <p class="body-text no-space inherit-no-space sm-margin med-line-space" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
+          <textarea class="body-text padding full-width description-textarea no-space" placeholder="Give a brief overview of your project and describe the role you're looking to fill. You may want to discuss your motivation for working on the project, its current status, and what type of person would be best suited for the job." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
 
-          <p class="body-text grey caps no-space med-lg-margin">SKILLS</p>
+          <p class="title-small grey caps no-space lg-margin sm-margin-bottom">SKILLS</p>
             <span ng-switch-when="true">
                 <span class="body-text" ng-repeat="skill in project.skills.slice(0,-1)" >
                   {{skill.name}}, 
                 </span>
-                <span class='body-text'>{{project.skills[project.skills.length-1].name}}</span>
+                <span class='larger-body'>{{project.skills[project.skills.length-1].name}}</span>
               <!-- </ul> -->
             </span>
 
@@ -109,7 +109,7 @@
 
         </div>
           <!-- PAY -->
-          <div class="col-md-3 col-sm-2 col-xs-12 med-lg-margin pay-column no-mobile-padding centered-column">
+          <div class="col-md-2 col-sm-2 col-xs-12 lg-margin pay-column no-mobile-padding centered-column">
             <span class="title-small no-space pay-amt" ng-switch-when="true">${{project.pay_amount}}</span>
             <input class="title-small no-space pay-amt pay-input placeholder-title" placeholder="Pay" type="number" ng-switch-when="false" ng-model="project.pay_amount" required>
             <span ng-switch-when="true">
