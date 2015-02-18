@@ -61,7 +61,7 @@
   <div class="row">
     <div class="col-md-10 col-sm-12">
       <p class="body-text larger-body grey" ng-if="filteredProjects.length > 0">Found {{filteredProjects.length}} projects that match your search</p>
-        <p class="body-text grey thin" ng-if="!filteredProjects.length">No projects match your search.</p>
+        <p class="body-text grey thin" ng-if="!filteredProjects.length && $scope.searchParams['show'] != 'users'">No projects match your search.</p>
 
         <!-- Job Project returned from search -->
         <div class="opening" ng-init="skillLimit=4" ng-repeat="project in filteredProjects | orderBy:sort">
@@ -96,7 +96,7 @@
 
         <p class="body-text larger-body grey" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
 
-        <p class="body-text grey thin" ng-if="!filteredUsers.length && $scope.searchParams['show']">No users match your search</p>
+        <p class="body-text grey thin" ng-if="!filteredUsers.length && $scope.searchParams['show'] != 'projects'">No users match your search</p>
         <!-- Users go here -->
         <div class="opening user" ng-repeat="user in filteredUsers">
           <div class="row">
@@ -106,7 +106,7 @@
               <h2 class="body-text caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
               <p class="body-text no-space med-margin">{{user.bio}}</p>
             </div>
-            <div class="col-sm-2 col-xs-4 has-borders">
+            <div class="col-sm-4 col-xs-4 has-borders">
               <p class="body-text grey caps no-space"> SKILLS</p>
               <ul class="list">
                 <li class="body-text" ng-repeat="skill in user.skills">
@@ -115,9 +115,9 @@
              </ul>
             </div>
             
-            <div class="col-sm-2 col-xs-12">
+            <!-- <div class="col-sm-2 col-xs-12">
               <div class="options-button green-button contact-button tall-button mobile-margin-top"><p class="button-text tall-button-text link">Contact </p></div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
