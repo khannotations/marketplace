@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
         leader_ids = params[:leaders].map{ |l| l[:id] } # Get ids
         @project.leader_ids = leader_ids.compact.uniq   # Remove nils and dups
       end
-      render json: @project, include: [:leaders]
+      render json: @project, include: [:leaders, :skills]
     else
       render_error "Your posting could not be updated. " + 
         @project.error_string, 400
@@ -103,6 +103,6 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.permit(:name, :description, :timeframe, :pay_amount, :pay_type,
-      :skills, :filled)
+      :skills, :filled, :Leaders)
   end
 end

@@ -38,6 +38,15 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.body).to match "\"first_name\":\"#{@current_user.first_name}\""
       expect(response.body).to match "\"first_name\":\"#{new_user.first_name}\""
     end
+
+    it "sends back associated skills" do
+      new_skill = create(:skill)
+      @project.skills << new_skill
+      get :show, id: @project.id
+      expect(response.status).to be 200
+      expect(response.body).to match "\"id\":#{new_skill.id}"
+      expect(response.body).to match "\"name\":\"#{new_skill.name}\""
+    end
   end
 
   describe "create" do
