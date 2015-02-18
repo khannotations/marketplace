@@ -138,3 +138,13 @@
 	width: 100px;
 	top: -5px;
 }
+ .pay-padding {
+ 	padding-top: 34px;
+ }
+
+ .project-pay-placeholder {
+ 	line-height: 48px;
+ 	@include mobile {
+ 		line-height: 30px;
+ 	}
+ }

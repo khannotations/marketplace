@@ -178,8 +178,8 @@ hr {
   }
 
   @include phone {
-    font-size: 8px; 
-    line-height: 9px;
+    font-size: 9px; 
+    line-height: 11px;
   }
 }
 
@@ -367,6 +367,9 @@ hr {
 
 .lg-margin {
   margin-top: 50px;
+  @include mobile {
+    margin-top: 25px;
+  }
 }
 
 .md-margin-bottom {
