@@ -22,6 +22,7 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // Only admins can approve
           $scope.isAdmin = currentUser.is_admin;
         }
+        $scope.project.makeHtml();
       });
       // The previous version of the project being edited
       $scope.editingProject = null;
@@ -82,7 +83,9 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       if ($scope.project.id) {
         // Updating
         $scope.project.$update().then(function() {
+          console.log($scope.project);
           $scope.editingProject = null;
+          $scope.project.makeHtml();
           $scope.$emit("flash", {state: "success", 
             msg: "Your project has been updated!"});
         });
@@ -130,13 +133,5 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       });
       return true;
     };
-
-    $scope.$watch("project.description", function() {
-      if ($scope.project.description === undefined) {
-        return;
-      }
-      $scope.project.descriptionHtml =
-        markdown.toHTML($scope.project.description);
-    });
   }]);
 

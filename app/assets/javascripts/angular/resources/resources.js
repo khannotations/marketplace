@@ -28,6 +28,12 @@ marketplace.factory("User", ["$resource", function($resource) {
     approve: {method: "PUT", url: "/api/projects/:id/approve.json"}
   });
 
+  Project.prototype.makeHtml = function() {
+    if (this.description === undefined) {
+      return;
+    }
+    this.descriptionHtml = markdown.toHTML(this.description);
+  };
   // Don't change these without changing the backend values as well!
   Project.PAY_TYPES = ["hourly", "lumpsum", "volunteer"]
   Project.TIMEFRAMES = ["termtime", "summer", "fulltime"]
