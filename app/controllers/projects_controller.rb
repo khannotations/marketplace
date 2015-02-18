@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
       AdminMailer.project_approval(@project).deliver
       ProjectMailer.created(@project).deliver
     else
-      render_error "Your posting could not be created. " +
+      render_error "Your posting could not be created. <br>" +
         @project.error_string, 400
     end
   end
