@@ -53,7 +53,9 @@
 	border: 1px solid $lighter-grey;
 	background-color: white;
 	@include border-radius(2px);
-
+	&.no-height {
+		height: auto;
+	}
 	@include mobile {
 		height: 35px;
 
