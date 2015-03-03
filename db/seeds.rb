@@ -30,7 +30,9 @@ print "creating projects..."
 projects = [
   {
     name: "Frontend developer",
-    description: "A quick-thinking expert at Javascript and CSS. You will work with a team of 1-100 people building the front-end of our super-useless app. Must be a nice guy to boot!",
+    overview: "A small team of elite(ish) developers that are making something cool!",
+    project_description: "This is the best senior project ever!! Please join.",
+    job_description: "A quick-thinking expert at Javascript and CSS. You will work with a team of 1-100 people building the front-end of our super-useless app. Must be a nice guy to boot!",
     pay_amount: "20",
     pay_type: Project::PAY_TYPE_HOURLY,
     timeframe: Project::TIMEFRAME_TERM,
@@ -38,7 +40,9 @@ projects = [
   },
   {
     name: "Backend developer",
-    description: "A master of Ruby, Rails, Postgres and all other technologies",
+    overview: "A small team of elite(ish) developers that are making something cool!",
+    project_description: "This is the best senior project ever!! Please join.",
+    job_description: "A master of Ruby, Rails, Postgres and all other technologies",
     pay_amount: "500",
     pay_type: Project::PAY_TYPE_LUMPSUM,
     timeframe: Project::TIMEFRAME_TERM,

@@ -25,16 +25,18 @@ ActiveRecord::Schema.define(version: 20141027025023) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description"
+    t.string   "overview"
+    t.text     "project_description"
+    t.text     "job_description"
     t.string   "photo_url"
     t.string   "timeframe"
     t.integer  "pay_amount"
     t.string   "pay_type"
     t.integer  "num_slots"
     t.date     "expires_on"
-    t.boolean  "expire_notified", default: false
-    t.boolean  "filled",          default: false
-    t.boolean  "approved",        default: false
+    t.boolean  "expire_notified",     default: false
+    t.boolean  "filled",              default: false
+    t.boolean  "approved",            default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

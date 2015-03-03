@@ -2,8 +2,9 @@ class Project < ActiveRecord::Base
   include PgSearch
 
   # Validations
-  validates_presence_of :name, :description, :pay_amount, :pay_type,
-    :timeframe
+  validates_presence_of :name, :overview, :job_description,
+  :project_description, :pay_amount, :pay_type, :timeframe
+  validates :overview, length: { maximum: 140 }
 
   # Callbacks
   before_create :set_expires
@@ -30,7 +31,7 @@ class Project < ActiveRecord::Base
   TIMEFRAME_FULL = "fulltime"
 
   pg_search_scope :thorough_search,
-    against: [:name, :description],
+    against: [:name, :project_description, :job_description, :overview],
     using: {tsearch: {dictionary: "english", any_word: true}}
 
   def expired?
