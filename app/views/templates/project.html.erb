@@ -81,13 +81,49 @@
           
           </div>
       </div>
+    </div>
+
+    
+    <div class="row">
+        
+      <div class="col-sm-6">
+          <p class="title-small grey caps no-space lg-margin">OVERVIEW</p>
+            <p class="body-text no-space inherit-no-space sm-margin med-line-space" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
+            <textarea class="body-text padding full-width description-textarea no-space" placeholder="Give a brief overview of your project and describe the role you're looking to fill. You may want to discuss your motivation for working on the project, its current status, and what type of person would be best suited for the job." ng-model="project.overview" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
+      </div>
+
+      <!-- PAY -->
+      <div class=" col-sm-6 col-xs-12 lg-margin pay-column pay-padding no-mobile-padding centered-column">
+        <span class="title-small no-space pay-amt" ng-switch-when="true">${{project.pay_amount}}</span>
+        <input class="title-small no-space pay-amt pay-input placeholder-title project-pay-placeholder" placeholder="Pay" type="number" ng-switch-when="false" ng-model="project.pay_amount" required>
+        <span ng-switch-when="true">
+          <p class="body-text grey caps no-space">{{project.pay_type}}</p>
+        </span>
+        <select class="form-control med-margin body-text grey caps" ng-switch-when="false" ng-options="name for name in projectPayTypes" ng-model="project.pay_type" required>
+          <option value="" disabled selected><p class="grey">pay type</p></option>
+        </select>
+        <span ng-switch-when="true">
+          <p class="body-text no-space grey caps thin" >({{project.timeframe}})</p>
+        </span>
+        <select class="form-control body-text grey caps sm-margin" ng-switch-when="false" ng-options="name for name in projectTimeframes" ng-model="project.timeframe" required>
+          <option class='grey' value="" disabled selected>timeframe</option>
+        </select>
+      </div>
+
+
+    </div>
+
       
+    <div class="row">
       <div class="col-md-8 col-sm-10">
-
-
-          <p class="title-small grey caps no-space lg-margin">ABOUT</p>
+          <p class="title-small grey caps no-space lg-margin">THE PROJECT</p>
           <p class="body-text no-space inherit-no-space sm-margin med-line-space" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
           <textarea class="body-text padding full-width description-textarea no-space" placeholder="Give a brief overview of your project and describe the role you're looking to fill. You may want to discuss your motivation for working on the project, its current status, and what type of person would be best suited for the job." ng-model="project.description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
+
+          <p class="title-small grey caps no-space lg-margin">THE JOB</p>
+          <p class="body-text no-space inherit-no-space sm-margin med-line-space" ng-switch-when="true" ng-bind-html="project.descriptionHtml"></p>
+          <textarea class="body-text padding full-width description-textarea no-space" placeholder="Give a brief overview of your project and describe the role you're looking to fill. You may want to discuss your motivation for working on the project, its current status, and what type of person would be best suited for the job." ng-model="project.job_description" ng-switch-when="false" cols="30" rows="10" name="description"></textarea>
+
 
           <p class="title-small grey caps no-space lg-margin sm-margin-bottom">SKILLS</p>
             <span ng-switch-when="true">
@@ -104,28 +140,7 @@
             <span ng-switch-when="false" >
               <select class="body-text chosen" multiple chosen ng-options="skill.name for skill in allSkills track by skill.id" ng-model="project.skills" style="width: 100%;" data-placeholder="Choose some skills required for this project..."></select>
             </span>
-
-
-
         </div>
-          <!-- PAY -->
-          <div class="col-md-2 col-sm-2 col-xs-12 lg-margin pay-column pay-padding no-mobile-padding centered-column">
-            <span class="title-small no-space pay-amt" ng-switch-when="true">${{project.pay_amount}}</span>
-            <input class="title-small no-space pay-amt pay-input placeholder-title project-pay-placeholder" placeholder="Pay" type="number" ng-switch-when="false" ng-model="project.pay_amount" required>
-            <span ng-switch-when="true">
-              <p class="body-text grey caps no-space">{{project.pay_type}}</p>
-            </span>
-            <select class="form-control med-margin body-text grey caps" ng-switch-when="false" ng-options="name for name in projectPayTypes" ng-model="project.pay_type" required>
-              <option value="" disabled selected><p class="grey">pay type</p></option>
-            </select>
-            <span ng-switch-when="true">
-              <p class="body-text no-space grey caps thin" >({{project.timeframe}})</p>
-            </span>
-            <select class="form-control body-text grey caps sm-margin" ng-switch-when="false" ng-options="name for name in projectTimeframes" ng-model="project.timeframe" required>
-              <option class='grey' value="" disabled selected>timeframe</option>
-            </select>
-          </div>
-
       </div>
 
       <!-- only show if project is expired -->
