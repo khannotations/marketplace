@@ -29,14 +29,6 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.body).to match "\"error\":"
     end
 
-    it "sends back associated openings" do
-      opening = create(:opening, project: @project, name: "Awesome opening")
-      get :show, id: @project.id
-      expect(response.status).to be 200
-      expect(response.body).to match "\"id\":#{opening.id}"
-      expect(response.body).to match "\"name\":\"#{opening.name}\""
-    end
-
     it "sends back associated leaders" do
       @project.leaders << @current_user
       new_user = create(:user)
@@ -45,6 +37,15 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.status).to be 200
       expect(response.body).to match "\"first_name\":\"#{@current_user.first_name}\""
       expect(response.body).to match "\"first_name\":\"#{new_user.first_name}\""
+    end
+
+    it "sends back associated skills" do
+      new_skill = create(:skill)
+      @project.skills << new_skill
+      get :show, id: @project.id
+      expect(response.status).to be 200
+      expect(response.body).to match "\"id\":#{new_skill.id}"
+      expect(response.body).to match "\"name\":\"#{new_skill.name}\""
     end
   end
 
@@ -134,7 +135,7 @@ RSpec.describe ProjectsController, :type => :controller do
       @current_user.is_admin = true
       @current_user.save
       expect(Project.find_by(id: @project.id).approved).to be false
-      put :approve, {id: @project.id}
+      put :approve, {project_id: @project.id}
       expect(response.status).to be 200
       expect(Project.find_by(id: @project.id).approved).to be true
     end
@@ -142,12 +143,14 @@ RSpec.describe ProjectsController, :type => :controller do
     it "doesn't approve project when not admin, even when project leader" do
       @project.leaders << @current_user
       expect(Project.find_by(id: @project.id).approved).to be false
-      put :approve, {id: @project.id}
+      put :approve, {project_id: @project.id}
       expect(response.status).to be 403
       expect(Project.find_by(id: @project.id).approved).to be false
     end
 
-    it "gets unapproved projects" do
+    it "gets unapproved projects when admin" do
+      @current_user.is_admin = true
+      @current_user.save
       @approved_project = create(:project, approved: true)
       get :unapproved
       expect(response.status).to be 200

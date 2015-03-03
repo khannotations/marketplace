@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :json
   # Since AJAX doesn't work well with the CAS filter, we check for authorization
   # and authentication manually
-  before_filter :require_login, except: [:current, :search]
+  before_filter :require_login, except: [:current, :star, :search]
   before_filter :check_authorization_to_user, only: [:update]
 
   # Get current user
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:skills, :leading_projects, :favorite_openings)
+    @user = User.includes(:skills, :leading_projects, :favorites)
       .find_by(netid: params[:id])
     if @user
       render json: @user, include: [:skills, :leading_projects]
@@ -44,10 +44,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # Don't need to check authorization, becuase you can only star/unstar logged in user
   def star
     @fav = Favorite.find_or_initialize_by(user_id: current_user.id,
-      opening_id: params[:opening_id])
+      project_id: params[:project_id])
     @fav.persisted? ? @fav.destroy : @fav.save
     render json: current_user
   end

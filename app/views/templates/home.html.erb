@@ -32,7 +32,7 @@
         <h1 class="body-text grey no-space">SHOW</h1>
         <div class="btn-group show mobile-block">
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
-          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
+          <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'projects'">projects</label>
           <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
         </div>
     </div>
@@ -60,37 +60,35 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-sm-12">
-      <p class="body-text larger-body grey" ng-if="filteredOpenings.length > 0">Found {{filteredOpenings.length}} openings that match your search</p>
-        <p class="body-text grey thin" ng-if="!filteredOpenings.length">No openings match your search.</p>
+      <p class="body-text larger-body grey" ng-if="filteredProjects.length > 0">Found {{filteredProjects.length}} projects that match your search</p>
+        <p class="body-text grey thin" ng-if="!filteredProjects.length && $scope.searchParams['show'] != 'users'">No projects match your search.</p>
 
-        <!-- Job Opening returned from search -->
-        <div class="opening" ng-init="skillLimit=4" ng-repeat="opening in filteredOpenings | orderBy:sort">
-          <div star opening="opening" ></div>
+        <!-- Job Project returned from search -->
+        <div class="opening" ng-init="skillLimit=4" ng-repeat="project in filteredProjects | orderBy:sort">
+          <div star project="project" ></div>
           <div class="row">
-            <div class="col-xs-7 col-sm-8" ui-sref="project({id: opening.project_id})">
-                <h1 class="title-small blue no-space">{{opening.name}}</h1>
+            <div class="col-xs-7 col-sm-8" ui-sref="project({id: project.id})">
+                <h1 class="title-small blue no-space">{{project.name}}</h1>
               
-              <p class="body-text caps grey no-space larger-body small-margin">{{opening.project.name}}</p>
-
-              <p class="body-text no-space med-margin clear-bottom">{{opening.description}}</p>
+              <p class="body-text no-space med-margin clear-bottom">{{project.description | limitTo: 250}}...</p>
             </div>
-            <p class="body-text thin grey bottom-left">Updated on {{opening.updated_at | date:"medium"}}</p>
+            <p class="body-text thin grey bottom-left">Updated on {{project.updated_at | date:"medium"}}</p>
             <div class="col-xs-2 col-sm-2 no-mobile-padding has-borders">
               <p class="body-text grey caps no-space">SKILLS</p>
               <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
-                <li class="body-text" ng-repeat="skill in opening.skills | limitTo:skillLimit" >
+                <li class="body-text" ng-repeat="skill in project.skills | limitTo:skillLimit" >
                   {{skill.name}}
                 </li>
-                <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4">
+                <li class="body-text grey" ng-if="project.skills.length > 4 && skillLimit == 4">
                   Show all...
                 </li>
                 <li class="body-text grey" ng-if="skillLimit == 20">Show fewer...</li>
               </ul>
             </div>
             <div class="col-xs-3 col-sm-2 pay-column no-mobile-padding">
-              <p class="title-small no-space pay-amt">${{opening.pay_amount}}</p>
-              <p class="body-text grey caps tiny-text no-space">{{opening.pay_type}}</p>
-              <p class="body-text grey no-space thin tiny-text">({{opening.timeframe}})</p>
+              <p class="title-small no-space pay-amt">${{project.pay_amount}}</p>
+              <p class="body-text grey caps tiny-text no-space">{{project.pay_type}}</p>
+              <p class="body-text grey no-space thin tiny-text">({{project.timeframe}})</p>
             </div>
           </div>
         </div>
@@ -98,7 +96,7 @@
 
         <p class="body-text larger-body grey" ng-if="filteredUsers.length > 0">Found {{filteredUsers.length}} users who match your search.</p>
 
-        <p class="body-text grey thin" ng-if="!filteredUsers.length && $scope.searchParams['show']">No users match your search</p>
+        <p class="body-text grey thin" ng-if="!filteredUsers.length && $scope.searchParams['show'] != 'projects'">No users match your search</p>
         <!-- Users go here -->
         <div class="opening user" ng-repeat="user in filteredUsers">
           <div class="row">
@@ -108,7 +106,7 @@
               <h2 class="body-text caps grey no-space small-margin">{{user.college}} {{user.year}}</h2>
               <p class="body-text no-space med-margin">{{user.bio}}</p>
             </div>
-            <div class="col-sm-2 col-xs-4 has-borders">
+            <div class="col-sm-4 col-xs-4 has-borders">
               <p class="body-text grey caps no-space"> SKILLS</p>
               <ul class="list">
                 <li class="body-text" ng-repeat="skill in user.skills">
@@ -117,9 +115,9 @@
              </ul>
             </div>
             
-            <div class="col-sm-2 col-xs-12">
+            <!-- <div class="col-sm-2 col-xs-12">
               <div class="options-button green-button contact-button tall-button mobile-margin-top"><p class="button-text tall-button-text link">Contact </p></div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -132,7 +130,7 @@
           <h1 class="body-text grey">SHOW</h1>
           <div class="btn-group show">
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'all'">both</label>
-            <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'openings'">openings</label>
+            <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'projects'">projects</label>
             <label class="btn btn-primary filter-btn" ng-model="searchParams.show" btn-radio="'users'">users</label>
           </div>
         </div>

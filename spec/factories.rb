@@ -9,18 +9,14 @@ FactoryGirl.define do
     show_in_results true
   end
 
-  factory :opening do
-    sequence(:name) { |n| "opening#{n}" }
-    description "This is the opening description"
-    pay_amount 20
-    pay_type "hourly"
-    timeframe "term"
-    association :project
-  end
-
   factory :project do
     sequence(:name) { |n| "project#{n}" }
     description "This is the project description"
+    pay_amount 20
+    pay_type "hourly"
+    timeframe "term"
+    expires_on -> { Date.today + 1.month }
+    expire_notified false
     approved false
   end
 

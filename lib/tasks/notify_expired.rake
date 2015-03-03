@@ -1,4 +1,4 @@
-desc "Notify the leaders of all expired Openings, and mark them as notified"
+desc "Notify the leaders of all expired projects, and mark them as notified"
 task :notify_expired => :environment do
-  Opening.notify_expired
+  Project.notify_expired
 end

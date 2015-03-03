@@ -178,12 +178,13 @@ hr {
   }
 
   @include phone {
-    font-size: 8px; 
-    line-height: 9px;
+    font-size: 9px; 
+    line-height: 11px;
   }
 }
 
 .larger-body {
+  font-family: $body;
   font-size: 18px;
   line-height: 22px;
   @include tablet { 
@@ -306,6 +307,13 @@ hr {
   }
 }
 
+.link-blue {
+  transition: .3s;
+  &:hover {
+    color: $blue;
+  }
+}
+
 .link-b {
   &:hover {
     color: $orange;
@@ -350,14 +358,38 @@ hr {
   }
 }
 
+.med-lg-margin {
+  margin-top: 20px;
+  @include phone {
+    margin-top: 10px;
+  }
+}
+
 .lg-margin {
   margin-top: 50px;
+  @include mobile {
+    margin-top: 25px;
+  }
+}
+
+.md-margin-bottom {
+  margin-bottom: 30px;
+  @include phone {
+    margin-bottom: 10px;
+  }
 }
 
 .sm-margin {
   margin-top: 5px;
   @include phone {
     margin-top: 3px;
+  }
+}
+
+.sm-margin-bottom {
+  margin-bottom: 5px;
+  @include phone {
+    margin-bottom: 3px;
   }
 }
 
@@ -423,6 +455,11 @@ hr {
 
 .star.starred {
     background-image: url(asset-path("starred.png"));
+}
+
+.star-not-abs {
+  position: relative !important;
+  float: left;
 }
 
 .full-width {
@@ -592,6 +629,7 @@ input, textarea {
 
 .about-wrapper{
   padding: 60px;
+  padding-right: 100px;
   padding-top: 20px;
 }
 
@@ -609,4 +647,27 @@ input, textarea {
     width: 300px;
     margin-left: 30px;
   }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inherit-no-space {
+  p {
+    margin: 0px;
+  }
+}
+
+.about-wrapper .larger-body {
+  line-height: 22px;
+}
+
+.pad-left-right {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.med-line-space {
+  line-spacing: 26px;
 }

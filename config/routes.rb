@@ -8,18 +8,17 @@ Rails.application.routes.draw do
   scope '/api' do
     get '/current_user' => 'users#current'
     resources :users, only: [:show, :update]
-    put '/star/:opening_id' => 'users#star'
-
-    # Projects and Openings
+    put '/star/:project_id' => 'users#star'
+    # Projects
     get '/projects/unapproved' => 'projects#unapproved'
-    put '/projects/:id/approve' => 'projects#approve'
-    resources :projects, only: [:show, :create, :update, :destroy]
-    put '/openings/:id/renew' => 'openings#renew'
-    post '/openings/:id/contact' => 'openings#contact'
-    resources :openings, only: [:show, :create, :update, :destroy]
+    resources :projects, only: [:show, :create, :update, :destroy] do
+      put '/approve' => 'projects#approve'
+      put '/renew' => 'projects#renew'
+      post '/contact' => 'projects#contact'
+    end
     resources :skills, only: [:index, :create, :update, :destroy]
 
-    get '/search/openings' => 'openings#search'
+    get '/search/projects' => 'projects#search'
     get '/search/users' => 'users#search'
   end
 

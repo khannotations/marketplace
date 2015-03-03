@@ -13,15 +13,15 @@ RSpec.describe Skill, :type => :model do
 
   context "skillables" do
     before(:each) do
-      @o = create(:opening)
+      @p = create(:project)
       @u = create(:user)
       @s = create(:skill)
       @s.users << @u 
-      @s.openings << @o
+      @s.projects << @p
     end
 
-    it "gets openings" do
-      expect(@s.openings).to eq [@o]
+    it "gets projects" do
+      expect(@s.projects).to eq [@p]
     end
 
     it "gets users" do
@@ -31,22 +31,20 @@ RSpec.describe Skill, :type => :model do
 
   context "search" do
     before(:each) do
-      @o = create(:opening, name: "Ruby on Rails")
-      @o.project = create(:project, approved: true)
-      @o.save
+      @p = create(:project, name: "Ruby on Rails", approved: true)
     end
 
     it "finds by exact name" do
-      expect(Opening.search({q: "ruby on rails"})).to eq [@o]
+      expect(Project.search({q: "ruby on rails"})).to eq [@p]
     end
 
     it "finds by part of name" do
-      expect(Opening.search({q: "ruby"})).to eq [@o]
-      expect(Opening.search({q: "rails"})).to eq [@o]
+      expect(Project.search({q: "ruby"})).to eq [@p]
+      expect(Project.search({q: "rails"})).to eq [@p]
     end
 
     it "misses when wrong name" do
-      expect(Opening.search({q: "iOS"})).to eq []
+      expect(Project.search({q: "iOS"})).to eq []
     end
   end
 end

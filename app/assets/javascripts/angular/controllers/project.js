@@ -1,12 +1,11 @@
 "use strict";
 
 marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
-  "Project", "Opening", "Skill", "currentUser",
-  function($scope, $stateParams, $state, Project, Opening, Skill, currentUser) {
+  "Project", "Skill", "currentUser",
+  function($scope, $stateParams, $state, Project, Skill, currentUser) {
     // if this is a new projet being created
     if($stateParams.id === "new") {
       $scope.project = new Project;
-      $scope.project.openings = [];
       $scope.canEdit = true;
       $scope.editingProject = true;
       $scope.isNewProject = true;
@@ -23,117 +22,82 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
           // Only admins can approve
           $scope.isAdmin = currentUser.is_admin;
         }
+        $scope.project.makeHtml();
       });
       // The previous version of the project being edited
       $scope.editingProject = null;
-      // The previous version of the opening being edited, and its index
-      $scope.editingOpening = null;
-      $scope.editingIndex = null;
     }
 
-    $scope.openingPayTypes = Opening.PAY_TYPES;     // constant
-    $scope.openingTimeframes = Opening.TIMEFRAMES;  // constant
+    $scope.projectPayTypes = Project.PAY_TYPES;     // constant
+    $scope.projectTimeframes = Project.TIMEFRAMES;  // constant
     $scope.allSkills = Skill.query();               // Get all skills
     /*
      * The edit, cancel, and save functions take an optional paramter: index.
-     * If index is provided, it does the corresponding action to the opening
-     * that is number `index` in the current project's openings array.
+     * If index is provided, it does the corresponding action to the project
+     * that is number `index` in the current project's projects array.
      * If index is undefined, then it does the action to the project.
      */
     /*
-     * Marks the specified opening or project as being edited. Stores a copy of the
+     * Marks the specified project or project as being edited. Stores a copy of the
      * version prior to editing, so we can revert on cancel.
-     * @param? index The index of the opening (use undefined to edit the project)
+     * @param? index The index of the project (use undefined to edit the project)
      */
-    $scope.edit = function(index) {
+    $scope.edit = function() {
       if(!$scope.canEdit) {
         return false;
       }
-      if (index !== undefined) {
-        if ($scope.editingIndex !== null && !$scope.cancel($scope.editingIndex)) {
-          return false; // Cancel the previously edited
-        }
-        // Save current version of opening into previous versions array
-        $scope.editingOpening = angular.copy($scope.project.openings[index]);
-        $scope.editingIndex = index;
-      } else {
-        // Save current version of project
-        $scope.editingProject = angular.copy($scope.project);
-      }
+      // Save current version of project
+      $scope.editingProject = angular.copy($scope.project);
       return true;
     };
     /*
      * Cancels the editing, reverting to previous version.
-     * @param? index The index of the opening (use undefined to edit the project)
+     * @param? index The index of the project (use undefined to edit the project)
      */
     $scope.cancel = function(index) {
       if (!confirm("You'll lose any unsaved changes to what you're editing. Are you sure?")) {
         return false;
       }
-      if (index !== undefined) {
-        // Restore previous version
-        if ($scope.editingOpening.id) {
-          $scope.project.openings[index] = $scope.editingOpening;          
-        } else {
-          // Was a new opening, so remove from the array since we can't "revert"
-          $scope.project.openings.shift();
-        }
-        $scope.editingOpening = null;
-        $scope.editingIndex = null;
-      } else {
-        if($stateParams.id === 'new'){
-          $state.go("home");
-        }
-        $scope.project = $scope.editingProject;
-        $scope.editingProject = null;
+      if($stateParams.id === 'new'){
+        $state.go("home");
       }
+      $scope.project = $scope.editingProject;
+      $scope.editingProject = null;
       return true;
     };
     /*
      * Persists the pending changes after edit() to the database.
-     * @param? index The index of the opening (use undefined to save the project)
+     * @param? index The index of the project (use undefined to save the project)
      */
     $scope.save = function(index) {
       if (!$scope.canEdit) {
         return false;
       }
-      if (index !== undefined) {
-        // Editing an opening
-        var opening = new Opening($scope.project.openings[index]);
-        var savedOpening = opening.id ? opening.$update() : opening.$save();
-        savedOpening.then(function() {
-          // Only on success
-          $scope.editingOpening = null;
-          $scope.editingIndex = null;
-          $scope.$emit("flash", {state: "success", 
-            msg: "Your opening has been saved!"});
+      // Editing a project -- no form validators, so check manually
+      if(!$scope.project.name || !$scope.project.description){
+        $scope.$emit("flash", {state: "error",
+         msg: "Make sure your project has a name" +
+              " and a description before you continue."});
+        return false;
+      } 
+      if ($scope.project.id) {
+        // Updating
+        $scope.project.$update().then(function() {
+          console.log($scope.project);
           $scope.editingProject = null;
+          $scope.project.makeHtml();
+          $scope.$emit("flash", {state: "success", 
+            msg: "Your project has been updated!"});
         });
       } else {
-        // Editing a project -- no form validators, so check manually
-        if(!$scope.project.name || !$scope.project.description){
-          $scope.$emit("flash", {state: "error",
-           msg: "Make sure your project has a name" +
-                " and a description before you continue."});
-          return false;
-        } 
-        if ($scope.project.id) {
-          // Updating
-          $scope.project.$update().then(function() {
-            $scope.editingProject = null;
-            $scope.$emit("flash", {state: "success", 
-              msg: "Your project has been updated!"});
-          });
-        } else {
-          // Creating a new project
-          $scope.project.$save().then(function() {
-            $scope.$emit("flash", {state: "success",
-             msg: "Your project has been created! You'll have to wait for site approval " +
-               "before it displays in the search results. In the meantime, " +
-               "add openings that describe the positions you're looking to fill."});
-            $state.go("project", {id: $scope.project.id});
-          });            
-        }
+        // Creating a new project
+        $scope.project.$save().then(function() {
+          $scope.$emit("flash", {state: "success",
+           msg: "Your project has been created! You'll have to wait for site approval " +
+             "before it displays in the search results. In the meantime, " +
+             "add projects that describe the positions you're looking to fill."});
+          $state.go("project", {id: $scope.project.id});
+        });            
       }
       return true;
     };
@@ -145,40 +109,15 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
       if (!confirm("Are you sure?")) {
         return false;
       }
-      if (index !== undefined) {
-        // Remove opening
-        var opening = new Opening($scope.project.openings.splice(index, 1)[0]);
-        // Destroy it
-        opening.$remove();
-        $scope.$emit("flash", {state: "success",
-             msg: "Opening removed"});
-      } else {
-        $scope.project.$remove();
-        $state.go("home");
-        $scope.$emit("flash", {state: "success",
-             msg: "Your project has been deleted"});
-      }
+      $scope.project.$remove();
+      $state.go("home");
+      $scope.$emit("flash", {state: "success",
+           msg: "Your project has been deleted"});
       return true;
     };
-    /*
-     * addOpening() works by adding a stub opening to the top of the 
-     * project's openings array and calling edit() on it. If cancel is called,
-     * the cancel() function checks to see if the given index has an ID—if not,
-     * it is considered an unwanted new opening and removed from the array.
-     */
-    $scope.addOpening = function() {
-      if ($scope.editingIndex !== null && !$scope.cancel($scope.editingIndex)) {
-        return false;
-      }
-      $scope.project.openings.unshift(new Opening( {
-        project_id: $scope.project.id
-      }));
-      return $scope.edit(0);
-    };
 
-    $scope.renew = function(index) {
-      var opening = new Opening($scope.project.openings[index]);
-      opening.$renew();
+    $scope.renew = function() {
+      $scope.project.$renew();
     };
 
     /*

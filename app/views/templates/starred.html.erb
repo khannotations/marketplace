@@ -3,7 +3,7 @@
     <div class="col-sm-10">
     <div class="searchbox">
       <img class="form-icon star-form-icon" src="<%= asset_path 'starred.png' %>" alt="" class="searchicon"></img>
-      <span class="search-font margin-left">Your Starred Openings</span>
+      <span class="search-font margin-left">Your Starred Projects</span>
     </div>
   </div>
     <div class="col-sm-2 col-xs-12">
@@ -14,49 +14,49 @@
     </div>
   </div>
 
-<div ng-if="!allOpenings.length">
-  <p class="body-text larger-body grey">You haven't starred any openings!</p>
+<div ng-if="!allProjects.length">
+  <p class="body-text larger-body grey">You haven't starred any projects!</p>
   <img src="<%= asset_path 'no-stars.png' %>" class="starred-filler"></img>
 </div>
 
-<div class="opening" ng-init="skillLimit=4" ng-repeat="opening in allOpenings">
-  <div star opening="opening"></div>
+<div class="opening" ng-init="skillLimit=4" ng-repeat="project in allProjects">
+  <div star project="project"></div>
 
 
     <div class="row">
 
       <!-- TITLE & DESCRIPTION -->
-      <div class="col-xs-6" ui-sref="project({id: opening.project_id})">
-        <p class="title-small blue no-space">{{opening.name}}</p>
+      <div class="col-xs-6" ui-sref="project({id: project.id})">
+        <p class="title-small blue no-space">{{project.name}}</p>
         <div>
-          <p class="body-text margin-top">{{opening.description}}</p>
+          <p class="body-text margin-top">{{project.description}}</p>
         </div>
       </div>
 
       <div class="col-sm-2 col-xs-3 no-mobile-padding has-borders">
         <p class="body-text grey caps no-space">SKILLS</p>
           <ul ng-click="skillLimit==4 ? skillLimit = 20 : skillLimit = 4" class="list">
-            <li class="body-text" ng-repeat="skill in opening.skills | limitTo:skillLimit" >
+            <li class="body-text" ng-repeat="skill in project.skills | limitTo:skillLimit" >
               {{skill.name}}
             </li>
-            <li class="body-text grey" ng-if="opening.skills.length > 4 && skillLimit == 4">
+            <li class="body-text grey" ng-if="project.skills.length > 4 && skillLimit == 4">
               Show all...
             </li>
-            <li class="body-text grey" ng-if="skillLimit == 20 && opening.skills.length > 4">Show fewer...</li>
+            <li class="body-text grey" ng-if="skillLimit == 20 && project.skills.length > 4">Show fewer...</li>
           </ul>
 
       </div>
 
-       <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
-        <span class="title-small no-space pay-amt">${{opening.pay_amount}}</span>
-        <p class="body-text grey caps no-space">{{opening.pay_type}}</p>
-        <p class="body-text grey caps thin no-space" >({{opening.timeframe}})</p>
+      <div class="col-sm-2 col-xs-3 pay-column no-mobile-padding">
+        <span class="title-small no-space pay-amt">${{project.pay_amount}}</span>
+        <p class="body-text grey caps no-space">{{project.pay_type}}</p>
+        <p class="body-text grey caps thin no-space" >({{project.timeframe}})</p>
       </div>
 
       
       <!-- Control buttons; show only if has edit access -->
       
-      <div contact class="margin-top col-xs-2 no-phone">
+      <div contact class="margin-top col-xs-2 no-phone" project="project">
         <div class="options-button green-button tall-button tall-mobile-button contact-button">
           <p class="button-text tall-button-text tall-mobile-text">Contact</p>
         </div>

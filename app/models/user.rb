@@ -5,15 +5,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :netid
 
   has_and_belongs_to_many :leading_projects, class_name: "Project", source: :leaders
-  has_and_belongs_to_many :openings
-  # has_many :member_projects, through: :openings, source: :members
 
   has_many :skill_links, as: :skillable, dependent: :destroy
   has_many :skills, through: :skill_links
 
   has_many :favorites, dependent: :destroy
-  has_many :favorite_openings, through: :favorites,
-    class_name: "Opening", source: :opening
+  has_many :favorite_projects, through: :favorites,
+    class_name: "Project", source: :project
 
 
   has_attached_file :resume
@@ -33,6 +31,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def favorite_project_ids
+    self.favorite_projects.map(&:id) # favorite_project_ids is being REALLY weird
+  end
+
   def self.search_filtered(users)
     users.select { |u| u.show_in_results }.uniq
   end
@@ -41,16 +43,17 @@ class User < ActiveRecord::Base
     page ||= 0
     query = search_params[:q]
     # TODO: how to match everything? Does postgres search do globbing? ie. *
-    matching_openings = basic_search(query) # match by name, desc
-    skill_openings = Skill.search(query).map(&:users).flatten
+    matching_projects = basic_search(query) # match by name, desc
+    skill_projects = Skill.search(query).map(&:users).flatten
     # TODO: Prioritize those that match by both
     # TODO: Match by projects?
-    return User.search_filtered (matching_openings + skill_openings)
+    return User.search_filtered (matching_projects + skill_projects)
   end
 
   def serializable_hash(options={})
     options = {
-      :methods => [:favorite_opening_ids, :full_name],
+      :methods => [:favorite_project_ids, :full_name],
+      :include => [:skills],
       :except => [:created_at, :updated_at]
     }.update(options)
     super(options)

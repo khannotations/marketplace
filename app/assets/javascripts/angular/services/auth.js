@@ -72,15 +72,15 @@ angular.module("Marketplace")
 			this.currentUser = null;
 		};
 
-		authService.isStarred = function(index) {
-			if (!this.currentUser || !this.currentUser.favorite_opening_ids) {
-				return false;
-			}
-			return this.currentUser.favorite_opening_ids.indexOf(index) !== -1;
-		};
+		// authService.isStarred = function(index) {
+		// 	if (!this.currentUser || !this.currentUser.favorite_project_ids) {
+		// 		return false;
+		// 	}
+		// 	return this.currentUser.favorite_project_ids.indexOf(index) !== -1;
+		// };
 
-		authService.toggleStar = function(index) {
-			return this.currentUser.$toggleStar({opening_id: index});
-		};
+		// authService.toggleStar = function(index) {
+		// 	return this.currentUser.$toggleStar({project_id: index});
+		// };
 		return authService;
 	}]);
