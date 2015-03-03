@@ -74,7 +74,7 @@
       <div class="col-md-10 col-sm-9">
         <div ng-if="project.id">
 
-          <p class="body-text grey no-space">Lead by
+          <p class="body-text grey no-space">Posted by
             <a class="link-blue grey" ng-repeat="leader in project.leaders" ui-sref="profile({netid: leader.netid})">{{leader.full_name}}</a>
             &nbsp;|  &nbsp;Created on {{project.created_at | date: "short"}}</p>
             <div star project="project" class='project-star'></div>
@@ -94,7 +94,7 @@
                 <span class="body-text" ng-repeat="skill in project.skills.slice(0,-1)" >
                   {{skill.name}}, 
                 </span>
-                <span class='larger-body'>{{project.skills[project.skills.length-1].name}}</span>
+                <span class='body-text'>{{project.skills[project.skills.length-1].name}}</span>
               <!-- </ul> -->
             </span>
 
@@ -109,19 +109,19 @@
 
         </div>
           <!-- PAY -->
-          <div class="col-md-2 col-sm-2 col-xs-12 lg-margin pay-column no-mobile-padding centered-column">
+          <div class="col-md-2 col-sm-2 col-xs-12 lg-margin pay-column pay-padding no-mobile-padding centered-column">
             <span class="title-small no-space pay-amt" ng-switch-when="true">${{project.pay_amount}}</span>
-            <input class="title-small no-space pay-amt pay-input placeholder-title" placeholder="Pay" type="number" ng-switch-when="false" ng-model="project.pay_amount" required>
+            <input class="title-small no-space pay-amt pay-input placeholder-title project-pay-placeholder" placeholder="Pay" type="number" ng-switch-when="false" ng-model="project.pay_amount" required>
             <span ng-switch-when="true">
               <p class="body-text grey caps no-space">{{project.pay_type}}</p>
             </span>
-            <select class="body-text grey caps no-space" ng-switch-when="false" ng-options="name for name in projectPayTypes" ng-model="project.pay_type" required>
+            <select class="form-control med-margin body-text grey caps" ng-switch-when="false" ng-options="name for name in projectPayTypes" ng-model="project.pay_type" required>
               <option value="" disabled selected><p class="grey">pay type</p></option>
             </select>
             <span ng-switch-when="true">
-              <p class="body-text grey caps thin no-space" >({{project.timeframe}})</p>
+              <p class="body-text no-space grey caps thin" >({{project.timeframe}})</p>
             </span>
-            <select class="body-text grey caps no-space" ng-switch-when="false" ng-options="name for name in projectTimeframes" ng-model="project.timeframe" required>
+            <select class="form-control body-text grey caps sm-margin" ng-switch-when="false" ng-options="name for name in projectTimeframes" ng-model="project.timeframe" required>
               <option class='grey' value="" disabled selected>timeframe</option>
             </select>
           </div>
