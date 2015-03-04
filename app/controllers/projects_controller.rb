@@ -102,7 +102,8 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.permit(:name, :description, :timeframe, :pay_amount, :pay_type,
+    params.permit(:name, :overview, :project_description, :job_description, 
+      :timeframe, :pay_amount, :pay_type,
       :skills, :filled, :Leaders)
   end
 end

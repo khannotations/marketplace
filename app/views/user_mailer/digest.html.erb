@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>
+    Here are some cool projects to check out! 
+  </p>
+
+  <% @projects.each do |project| %>
+    <div class="pretty-project">
+      <h2 style="font-weight: bold; ">
+        <a href="<%= ENV['BASE_URL'] %>/projects/<%= project.id %>"><%= project.name %></a>
+      </h2>
+      <p style="font-style: italic"><%= project.overview %></p>
+      <h4 style="color: #777;">Project Description</h4>
+      <p>
+        <%= project.project_description %>
+      </p>
+      <h4 style="color: #777;">Job Description</h4>
+      <p>
+        <%= project.job_description %>
+      </p>
+      <br>
+    </div>
+  <% end %>
+  <p>
+    All the best,
+  </p>
+  <p>
+    The Yale Projects Board
+  </p>
+</body>
+</html>

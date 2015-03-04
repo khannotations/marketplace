@@ -22,6 +22,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.boolean :has_logged_in, default: false
       t.boolean :show_in_results, default: true
+      t.boolean :send_digest, default: true
 
       t.timestamps
     end

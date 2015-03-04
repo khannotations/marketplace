@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     self.favorite_projects.map(&:id) # favorite_project_ids is being REALLY weird
   end
 
+  def digest_projects
+    Project.order(created_at: :desc).limit(3)
+  end
+
   def self.search_filtered(users)
     users.select { |u| u.show_in_results }.uniq
   end
