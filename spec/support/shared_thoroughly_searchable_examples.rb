@@ -2,17 +2,29 @@
 shared_examples "thoroughly searchable" do
   before(:each) do
     @ios_searchable = create(described_class, name: "iOS Searchable",
-    description: "Must have design sense, experience with Swift.")
+    job_description: "Must have design sense, experience with Swift.", 
+    project_description: "Red", 
+    overview: "Blue")
     @js_searchable = create(described_class, name: "Javascript Searchable",
-    description: "For fast-paced, experienced coders.") 
+    job_description: "For fast-paced, experienced coders.", 
+    overview: "Green", 
+    project_description: "Yellow") 
   end
 
   it "finds when word is in name" do
     expect(described_class.thorough_search("iOS")).to eq [@ios_searchable]
   end
 
-  it "finds when word is in description" do
+  it "finds when word is in job description" do
     expect(described_class.thorough_search("Swift")).to eq [@ios_searchable]
+  end
+
+  it "finds when word is in project description" do
+    expect(described_class.thorough_search("green")).to eq [@js_searchable]
+  end
+
+  it "finds when word is in overview" do
+    expect(described_class.thorough_search("yellow")).to eq [@js_searchable]
   end
 
   it "is case insensitive" do

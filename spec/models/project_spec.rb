@@ -4,7 +4,11 @@ RSpec.describe Project, :type => :model do
   describe "create" do
     it "requires necessary attributes" do
       expect(build(:project, name: nil)).to_not be_valid
-      expect(build(:project, description: nil)).to_not be_valid
+      expect(build(:project, overview: nil)).to_not be_valid
+      # Long overview
+      expect(build(:project, overview: "123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790")).to_not be_valid
+      expect(build(:project, project_description: nil)).to_not be_valid
+      expect(build(:project, job_description: nil)).to_not be_valid
       expect(build(:project, pay_amount: nil)).to_not be_valid
       expect(build(:project, pay_type: nil)).to_not be_valid
       expect(build(:project, timeframe: nil)).to_not be_valid

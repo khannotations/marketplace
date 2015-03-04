@@ -11,7 +11,9 @@ FactoryGirl.define do
 
   factory :project do
     sequence(:name) { |n| "project#{n}" }
-    description "This is the project description"
+    overview "This is the overview"
+    job_description "This is the job description"
+    project_description "This is the project description"
     pay_amount 20
     pay_type "hourly"
     timeframe "term"
