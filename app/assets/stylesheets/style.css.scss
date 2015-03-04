@@ -165,6 +165,14 @@ hr {
 .title-smallest {
   font-family: $serif;
   font-size: 24px;
+  @include tablet {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  @include phone {
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
 .body-text{
@@ -376,6 +384,13 @@ hr {
   margin-bottom: 30px;
   @include phone {
     margin-bottom: 10px;
+  }
+}
+
+.lg-margin-bottom {
+  margin-bottom: 100px;
+  @include phone {
+    margin-bottom: 40px;
   }
 }
 
@@ -650,7 +665,7 @@ input, textarea {
 }
 
 .pointer {
-  cursor: pointer;
+  cursor: pointer ;
 }
 
 .inherit-no-space {
@@ -670,4 +685,15 @@ input, textarea {
 
 .med-line-space {
   line-spacing: 26px;
+}
+
+.form-control {
+  height: 52px;
+  @include mobile {
+    height: 30px;
+  }
+}
+
+.clearfix {
+  clear: both;
 }

@@ -53,7 +53,13 @@
 	border: 1px solid $lighter-grey;
 	background-color: white;
 	@include border-radius(2px);
-
+	&.no-height {
+		height: auto;
+		min-height:85px;
+		@include mobile {
+			min-height: 35px;
+		}
+	}
 	@include mobile {
 		height: 35px;
 

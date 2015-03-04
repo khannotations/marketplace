@@ -33,12 +33,17 @@
 }
 
 .pay-input {
-	width: 75%;
-	padding-left:5px;
+	width: 30%;
+	margin-right:1%;
+	float: left;
 	@include phone {
-		width: 40%;
+		//width: 40%;
 	}
 
+}
+
+.img-container {
+	height: 100%;
 }
 
 .project-opening-buttons {
