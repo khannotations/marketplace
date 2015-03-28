@@ -74,10 +74,13 @@ marketplace.controller("ProjectCtrl", ["$scope", "$stateParams", "$state",
         return false;
       }
       // Editing a project -- no form validators, so check manually
-      if(!$scope.project.name || !$scope.project.description){
+      console.log($scope.project);
+      if(!$scope.project.name
+         || !$scope.project.project_description
+         || !$scope.project.job_description){
         $scope.$emit("flash", {state: "error",
          msg: "Make sure your project has a name" +
-              " and a description before you continue."});
+              " and a project and job description before you continue."});
         return false;
       } 
       if ($scope.project.id) {

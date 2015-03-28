@@ -29,10 +29,8 @@ marketplace.factory("User", ["$resource", function($resource) {
   });
 
   Project.prototype.makeHtml = function() {
-    if (this.description === undefined) {
-      return;
-    }
-    this.descriptionHtml = markdown.toHTML(this.description);
+    this.projectDescriptionHtml = markdown.toHTML(this.project_description || "");
+    this.jobDescriptionHtml = markdown.toHTML(this.job_description || "");
   };
   // Don't change these without changing the backend values as well!
   Project.PAY_TYPES = ["hourly", "lumpsum", "volunteer"]
