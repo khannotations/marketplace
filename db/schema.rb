@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20141027025023) do
     t.datetime "picture_updated_at"
     t.boolean  "has_logged_in",        default: false
     t.boolean  "show_in_results",      default: true
+    t.boolean  "send_digest",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
